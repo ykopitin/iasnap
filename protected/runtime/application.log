@@ -1,0 +1,64 @@
+2014/07/21 00:10:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:13:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:16:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:17:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:20:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:20:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:28:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
+2014/07/21 00:31:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=gii
+---
