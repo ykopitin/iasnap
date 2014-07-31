@@ -24,7 +24,12 @@ return array(
 			'password'=>'iasnap',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			//'ipFilters'=>array('127.0.0.1','::1'),
-		),		
+                    'generatorPaths'=>array(
+                        'application.gii',
+                        'application.gii.ewsdl2php',
+                        'application.gii.ewsdl2php.wsdl2php',
+                        ),
+                 ),
 	),
  
 	// application components
@@ -43,10 +48,10 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
+		
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
+		),*/
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
