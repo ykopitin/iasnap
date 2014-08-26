@@ -62,3 +62,1349 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/iasnap/index.php?r=gii
 ---
+2014/08/23 13:54:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin
+---
+2014/08/23 13:54:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genServRegulations/create".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genServRe...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genServRegulations/create
+---
+2014/08/23 21:03:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/index".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/index')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/index
+---
+2014/08/23 21:03:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/index".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/index')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/index
+---
+2014/08/24 00:18:37 [error] [php] Undefined variable: model (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:13)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud/index
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 00:39:13 [error] [php] Undefined index: model (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:13)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud/index
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 00:41:15 [error] [php] Undefined index: CrudCode_model (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:13)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 00:43:31 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$res1' in 'where clause'. The SQL statement executed was: SELECT table_comment FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='cnap_portal' AND table_name=$res1.
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 00:43:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$res1' in 'where clause'. The SQL statement executed was: SELECT table_comment FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='cnap_portal' AND table_name=$res1' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php(20): CDbCommand->queryRow()
+#2 /web/sites/allium2.soborka.net/framework/gii/CCodeModel.php(321): require('/web/sites/alli...')
+#3 /web/sites/allium2.soborka.net/framework/gii/generators/crud/CrudCode.php(97): CCodeModel->render('/web/sites/alli...')
+#4 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#5 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#6 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/crud')
+#12 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=gii/crud
+---
+2014/08/24 00:44:12 [error] [php] Undefined variable: res1 (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:18)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 00:50:03 [error] [php] Undefined variable: res1 (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:18)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 00:50:04 [error] [php] Undefined variable: res1 (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:18)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 09:08:27 [error] [php] include(Gen Services.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php(17): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeModel.php(321): require()
+#2 /web/sites/allium2.soborka.net/framework/gii/generators/crud/CrudCode.php(97): CrudCode->render()
+#3 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#4 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#5 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#9 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#10 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 09:12:24 [error] [php] Undefined variable: model (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:17)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 09:12:52 [error] [exception.CException] exception 'CException' with message 'Property "CrudCode.pluralize" is not defined.' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php(17): CComponent->__get('pluralize')
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeModel.php(321): require('/web/sites/alli...')
+#2 /web/sites/allium2.soborka.net/framework/gii/generators/crud/CrudCode.php(97): CCodeModel->render('/web/sites/alli...')
+#3 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#4 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#5 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#10 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/crud')
+#11 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=gii/crud
+---
+2014/08/24 09:14:18 [error] [php] Object of class CrudCode could not be converted to string (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:17)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/24 21:27:36 [error] [exception.CException] exception 'CException' with message 'Property "CMenu.label" is not defined.' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:173
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWidgetFactory.php(161): CComponent->__set('label', 'ert')
+#1 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(DefaultController), 'zii.widgets.CMe...', Array)
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(15): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#8 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(7): CController->render('index')
+#9 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('index')
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default/i...')
+#15 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default/index
+---
+2014/08/24 21:32:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "пшш".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('??????')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=%D0%BF%D1%88%D1%88
+---
+2014/08/24 21:32:50 [error] [exception.CException] exception 'CException' with message 'CrudCode and its behaviors do not have a method or closure named "widget".' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:266
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/create.php(24): CComponent->__call('widget', Array)
+#1 /web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/create.php(24): CrudCode->widget('zii.widgets.CMe...', Array)
+#2 /web/sites/allium2.soborka.net/framework/gii/CCodeModel.php(321): require('/web/sites/alli...')
+#3 /web/sites/allium2.soborka.net/framework/gii/generators/crud/CrudCode.php(97): CCodeModel->render('/web/sites/alli...')
+#4 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#5 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#6 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('index')
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/crud/index')
+#12 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/iasnap/index.php?r=gii/crud/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=gii/crud/index
+---
+2014/08/25 08:12:27 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id LIMIT 1.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (32)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 08:12:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id LIMIT 1' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): CActiveRecord->find(Object(CDbCriteria))
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(32): DefaultController->getMenuItems()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): CController->render('index')
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default')
+#16 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default
+---
+2014/08/25 08:13:00 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (32)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 08:13:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): CActiveRecord->findAll(Object(CDbCriteria))
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(32): DefaultController->getMenuItems()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): CController->render('index')
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default')
+#16 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default
+---
+2014/08/25 08:14:29 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (32)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 08:14:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): CActiveRecord->findAll(Object(CDbCriteria))
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(32): DefaultController->getMenuItems()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): CController->render('index')
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default')
+#16 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default
+---
+2014/08/25 08:14:53 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (32)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 08:14:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): CActiveRecord->findAll(Object(CDbCriteria))
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(32): DefaultController->getMenuItems()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): CController->render('index')
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default')
+#16 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default
+---
+2014/08/25 08:14:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (32)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 08:14:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT name FROM `cab_adm_menu` `t` WHERE par_id=:par_id' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): CActiveRecord->findAll(Object(CDbCriteria))
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(32): DefaultController->getMenuItems()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): CController->render('index')
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('')
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default')
+#16 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default
+---
+2014/08/25 10:12:41 [error] [exception.CException] exception 'CException' with message 'Property "DefaultController.breadcrumbs1" is not defined.' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(2): CComponent->__get('breadcrumbs1')
+#1 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', NULL, true)
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', NULL, true)
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#5 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(24): CController->render('index')
+#6 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('index')
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default/i...')
+#12 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/default/index
+---
+2014/08/25 10:31:37 [error] [php] Missing argument 1 for DefaultController::getMenuItems(), called in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php on line 37 and defined (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php:5)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#2 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(31): DefaultController->render()
+#4 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#8 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#9 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (5)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (37)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (31)
+2014/08/25 10:32:14 [error] [php] Missing argument 1 for DefaultController::getMenuItems(), called in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php on line 37 and defined (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php:5)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#2 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(31): DefaultController->render()
+#4 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#8 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#9 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (5)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (37)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (31)
+2014/08/25 10:38:55 [error] [php] Missing argument 1 for DefaultController::getMenuItems(), called in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php on line 37 and defined (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php:5)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#2 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(31): DefaultController->render()
+#4 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#8 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#9 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (5)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (37)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (31)
+2014/08/25 10:46:28 [error] [php] Missing argument 1 for DefaultController::getMenuItems(), called in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php on line 36 and defined (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php:5)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#2 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(26): DefaultController->render()
+#4 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#8 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#9 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/index
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (5)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (36)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (26)
+2014/08/25 10:49:27 [error] [php] Undefined variable: id (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php:37)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#2 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(33): DefaultController->render()
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#8 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (37)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (33)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 11:08:56 [error] [exception.CException] exception 'CException' with message 'Alias "modules.admin.GenMenuItems" is invalid. Make sure it points to an existing directory or file.' in /web/sites/allium2.soborka.net/framework/YiiBase.php:347
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/generators/crud/CrudCode.php(59): YiiBase::import('modules.admin.G...', true)
+#1 /web/sites/allium2.soborka.net/framework/validators/CInlineValidator.php(42): CrudCode->validateModel('model', Array)
+#2 /web/sites/allium2.soborka.net/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(CrudCode), 'model')
+#3 /web/sites/allium2.soborka.net/framework/base/CModel.php(159): CValidator->validate(Object(CrudCode), NULL)
+#4 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(159): CModel->validate()
+#5 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#6 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('index')
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/crud/index')
+#12 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/iasnap/index.php?r=gii/crud/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=gii/crud/index
+---
+2014/08/25 11:52:27 [error] [php] Object of class CWebApplication could not be converted to string (/web/sites/allium2.soborka.net/framework/gii/generators/crud/templates/admtpl/index.php:21)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(162): CrudCode->prepare()
+#1 /web/sites/allium2.soborka.net/framework/gii/CCodeGenerator.php(63): CrudGenerator->prepare()
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CrudGenerator->actionIndex()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(286): CrudGenerator->runAction()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CrudGenerator->runActionWithFilters()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CrudGenerator->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=gii/crud/index
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 11:53:49 [error] [php] include(CabAdmMenu.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(395): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/framework/web/CActiveDataProvider.php(165): model()
+#2 /web/sites/allium2.soborka.net/framework/web/CActiveDataProvider.php(87): CActiveDataProvider->getModel()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/controllers/CabAdmMenuController.php(125): CActiveDataProvider->__construct()
+#4 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): CabAdmMenuController->actionIndex()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CabAdmMenuController->runAction()
+#7 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CabAdmMenuController->filterAccessControl()
+#10 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CabAdmMenuController->runActionWithFilters()
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CabAdmMenuController->run()
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=cabAdmMenu
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/CabAdmMenuController.php (125)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 11:57:38 [error] [php] include(CabAdmMenu.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php(37): DefaultController->getMenuItems()
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#6 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(33): DefaultController->render()
+#7 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (37)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (33)
+2014/08/25 11:57:46 [error] [php] include(CabAdmMenu.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(36): DefaultController->getMenuItems()
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#6 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): DefaultController->render()
+#7 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (36)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 11:57:52 [error] [php] include(CabAdmMenu.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(11): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php(36): DefaultController->getMenuItems()
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#6 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(25): DefaultController->render()
+#7 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(286): DefaultController->runAction()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#11 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/index
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (11)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (36)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (25)
+2014/08/25 13:53:37 [error] [php] Use of undefined constant delete - assumed 'delete' (/web/sites/allium2.soborka.net/framework/base/CComponent.php(612) : eval()'d code:1)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/zii/widgets/grid/CButtonColumn.php(319): CButtonColumn->renderButton()
+#1 /web/sites/allium2.soborka.net/framework/zii/widgets/grid/CGridColumn.php(151): CButtonColumn->renderDataCellContent()
+#2 /web/sites/allium2.soborka.net/framework/zii/widgets/grid/CGridView.php(616): CButtonColumn->renderDataCell()
+#3 /web/sites/allium2.soborka.net/framework/zii/widgets/grid/CGridView.php(572): CGridView->renderTableRow()
+#4 /web/sites/allium2.soborka.net/framework/zii/widgets/grid/CGridView.php(482): CGridView->renderTableBody()
+#5 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(167): CGridView->renderItems()
+#6 unknown(0): CGridView->renderSection()
+#7 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(150): preg_replace_callback()
+#8 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(135): CGridView->renderContent()
+#9 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(173): CGridView->run()
+#10 /web/sites/allium2.soborka.net/iasnap/protected/views/genServClasses/admin.php(60): GenServClassesController->widget()
+#11 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#12 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenServClassesController->renderInternal()
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenServClassesController->renderFile()
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenServClassesController->renderPartial()
+#15 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenServClassesController.php(143): GenServClassesController->render()
+#16 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenServClassesController->actionAdmin()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#18 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenServClassesController->runAction()
+#19 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#20 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#21 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenServClassesController->filterAccessControl()
+#22 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#23 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#24 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenServClassesController->runActionWithFilters()
+#25 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenServClassesController->run()
+#26 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#27 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#28 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genServClasses/admin
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genServClasses/admin.php (60)
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenServClassesController.php (143)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 14:35:51 [error] [php] Undefined variable: hname (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/genServClasses/admin.php:7)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenServClassesController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenServClassesController->renderPartial()
+#2 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServClassesController.php(143): GenServClassesController->render()
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenServClassesController->actionAdmin()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenServClassesController->runAction()
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenServClassesController->filterAccessControl()
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenServClassesController->runActionWithFilters()
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenServClassesController->run()
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/genServClasses/admin
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/genServClasses/admin.php (7)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServClassesController.php (143)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 14:38:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/admin/default/id4".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/admin/def...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/admin/default/id4
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genServClasses/admin
+---
+2014/08/25 14:42:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/index".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/index')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genServClasses/admin
+---
+2014/08/25 14:45:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/index".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/index')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genServClasses/admin
+---
+2014/08/25 14:45:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/index".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/index')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genServClasses/admin
+---
+2014/08/25 15:24:11 [error] [php] Undefined variable: model (/web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_view.php:14)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/zii/widgets/CListView.php(291): GenLocationsController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(167): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(150): preg_replace_callback()
+#4 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(135): CListView->renderContent()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(173): CListView->run()
+#6 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/index.php(22): GenLocationsController->widget()
+#7 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#8 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenLocationsController->renderPartial()
+#11 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(128): GenLocationsController->render()
+#12 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenLocationsController->actionIndex()
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#14 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenLocationsController->runAction()
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#17 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenLocationsController->filterAccessControl()
+#18 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#19 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#20 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenLocationsController->runActionWithFilters()
+#21 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenLocationsController->run()
+#22 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#23 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genLocations/index
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_view.php (14)
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/index.php (22)
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php (128)
+2014/08/25 16:06:40 [error] [php] include(DBEnum.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(3): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(354): require()
+#2 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#3 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genLocations/create
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php (3)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 16:10:00 [error] [php] include(Enum.php): failed to open stream: No such file or directory (/web/sites/allium2.soborka.net/framework/YiiBase.php:427)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/extensions/enum/DBEnum.php(9): spl_autoload_call()
+#1 /web/sites/allium2.soborka.net/framework/YiiBase.php(401): include()
+#2 unknown(0): autoload()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(4): spl_autoload_call()
+#4 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(354): require()
+#5 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#6 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genLocations/create
+in /web/sites/allium2.soborka.net/iasnap/protected/extensions/enum/DBEnum.php (9)
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php (4)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/25 16:41:49 [error] [php] Undefined index: gen_location (/web/sites/allium2.soborka.net/iasnap/protected/components/ZHtml.php:12)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#1 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#2 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/create.php(20): GenLocationsController->renderPartial()
+#4 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenLocationsController->renderPartial()
+#8 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(79): GenLocationsController->render()
+#9 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenLocationsController->actionCreate()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#11 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenLocationsController->runAction()
+#12 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#14 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenLocationsController->filterAccessControl()
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#16 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenLocationsController->runActionWithFilters()
+#18 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenLocationsController->run()
+#19 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#20 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genLocations/create
+in /web/sites/allium2.soborka.net/iasnap/protected/components/ZHtml.php (12)
+in /web/sites/allium2.soborka.net/iasnap/protected/components/ZHtml.php (6)
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php (42)
+2014/08/25 17:00:15 [error] [exception.CException] exception 'CException' with message 'Property "GenLocations.genderOptions" is not defined.' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('genderOptions')
+#1 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php(27): CActiveRecord->__get('genderOptions')
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', Array, true)
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', Array, true)
+#5 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/update.php(23): CController->renderPartial('_form', Array)
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#7 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', Array, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', Array, true)
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#10 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(103): CController->render('update', Array)
+#11 [internal function]: GenLocationsController->actionUpdate('1')
+#12 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(GenLocationsController), Array)
+#13 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(GenLocationsController), Object(ReflectionMethod), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#21 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('update')
+#23 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('genLocations/up...')
+#24 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#25 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/iasnap/index.php?r=genLocations/update&id=1
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genLocations/admin
+---
+2014/08/25 17:12:41 [error] [exception.CException] exception 'CException' with message 'CActiveForm and its behaviors do not have a method or closure named "enumDropDownList".' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:266
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php(28): CComponent->__call('enumDropDownLis...', Array)
+#1 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php(28): CActiveForm->enumDropDownList(Object(GenLocations), 'type', Array, Array)
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', Array, true)
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', Array, true)
+#5 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/update.php(23): CController->renderPartial('_form', Array)
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#7 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', Array, true)
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', Array, true)
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#10 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(103): CController->render('update', Array)
+#11 [internal function]: GenLocationsController->actionUpdate('1')
+#12 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(GenLocationsController), Array)
+#13 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(GenLocationsController), Object(ReflectionMethod), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#21 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('update')
+#23 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('genLocations/up...')
+#24 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#25 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/iasnap/index.php?r=genLocations/update&id=1
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genLocations/admin
+---
+2014/08/25 17:13:49 [error] [php] Invalid argument supplied for foreach() (/web/sites/allium2.soborka.net/framework/web/helpers/CHtml.php:2325)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php(28): CActiveForm->dropDownList()
+#1 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#3 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#4 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/update.php(23): GenLocationsController->renderPartial()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenLocationsController->renderPartial()
+#9 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(103): GenLocationsController->render()
+#10 unknown(0): GenLocationsController->actionUpdate()
+#11 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#12 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#14 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenLocationsController->runAction()
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#17 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenLocationsController->filterAccessControl()
+#18 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#19 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#20 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenLocationsController->runActionWithFilters()
+#21 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenLocationsController->run()
+#22 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#23 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genLocations/update&id=1
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php (28)
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/update.php (23)
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php (103)
+2014/08/25 17:15:01 [error] [php] Missing argument 3 for CActiveForm::dropDownList(), called in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php on line 28 and defined (/web/sites/allium2.soborka.net/framework/web/widgets/CActiveForm.php:845)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#2 /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/update.php(23): GenLocationsController->renderPartial()
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#4 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): GenLocationsController->renderInternal()
+#5 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenLocationsController->renderFile()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenLocationsController->renderPartial()
+#7 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php(103): GenLocationsController->render()
+#8 unknown(0): GenLocationsController->actionUpdate()
+#9 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenLocationsController->runAction()
+#13 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenLocationsController->filterAccessControl()
+#16 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#18 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenLocationsController->runActionWithFilters()
+#19 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenLocationsController->run()
+#20 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genLocations/update&id=1
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/_form.php (28)
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genLocations/update.php (23)
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenLocationsController.php (103)
+2014/08/25 17:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/id1".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/id1')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/id1
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genRegulations/update&id=1
+---
+2014/08/25 18:49:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/id4".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/id4')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/id4
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genServCategories/admin
+---
+2014/08/25 21:54:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genOtherInfo/update".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo/update&id=1
+---
+2014/08/25 21:54:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genOtherInfo".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo
+---
+2014/08/25 21:55:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genotherinfo".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genotheri...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genotherinfo
+---
+2014/08/25 21:56:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genservclasses".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genservcl...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genservclasses
+---
+2014/08/25 21:56:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genOtherInfo".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo
+---
+2014/08/25 21:57:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/genOtherInfo".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo
+---
+2014/08/26 09:51:53 [error] [exception.CException] exception 'CException' with message 'Property "GenOtherInfo.date_start" is not defined.' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('date_start')
+#1 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/models/GenOtherInfo.php(113): CActiveRecord->__get('date_start')
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1866): GenOtherInfo->afterFind()
+#3 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1887): CActiveRecord->populateRecord(Array, true)
+#4 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1351): CActiveRecord->populateRecords(Array, true, NULL)
+#5 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 /web/sites/allium2.soborka.net/framework/web/CActiveDataProvider.php(199): CActiveRecord->findAll(Object(CDbCriteria))
+#7 /web/sites/allium2.soborka.net/framework/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
+#8 /web/sites/allium2.soborka.net/framework/zii/widgets/CBaseListView.php(111): CDataProvider->getData()
+#9 /web/sites/allium2.soborka.net/framework/zii/widgets/grid/CGridView.php(339): CBaseListView->init()
+#10 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(147): CGridView->init()
+#11 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/genOtherInfo/admin.php(71): CBaseController->widget('zii.widgets.gri...', Array)
+#13 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#14 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', Array, true)
+#15 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', Array, true)
+#16 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('admin', Array, true)
+#17 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenOtherInfoController.php(139): CController->render('admin', Array)
+#18 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenOtherInfoController->actionAdmin()
+#19 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('admin')
+#28 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#29 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo/admin
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genOtherInfo/create
+---
+2014/08/26 09:55:51 [error] [exception.CException] exception 'CException' with message 'Property "GenOtherInfo.date_start" is not defined.' in /web/sites/allium2.soborka.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('date_start')
+#1 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/models/GenOtherInfo.php(104): CActiveRecord->__get('date_start')
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1071): GenOtherInfo->beforeSave()
+#3 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenOtherInfoController.php(69): CActiveRecord->save()
+#5 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenOtherInfoController->actionCreate()
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('create')
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#16 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo/create
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genOtherInfo/create
+---
+2014/08/26 09:58:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenOtherInfoController.php:153
+Stack trace:
+#0 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenOtherInfoController.php(51): GenOtherInfoController->loadModel('')
+#1 [internal function]: GenOtherInfoController->actionView('')
+#2 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(GenOtherInfoController), Array)
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(GenOtherInfoController), Object(ReflectionMethod), Array)
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genOtherI...')
+#14 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genOtherInfo/view&id=
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genOtherInfo/create
+---
+2014/08/26 11:21:19 [warning] [application] Failed to set unsafe attribute "visability" of "GenServCategories".
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServCategoriesController.php (92)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/26 11:27:49 [warning] [application] Failed to set unsafe attribute "visability" of "GenServCategories".
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServCategoriesController.php (92)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/26 11:28:18 [warning] [application] Failed to set unsafe attribute "visability" of "GenServClasses".
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServClassesController.php (92)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/26 11:29:41 [warning] [application] Failed to set unsafe attribute "visability" of "GenServClasses".
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServClassesController.php (92)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/26 11:30:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/index".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/index')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/index
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genServClasses/
+---
+2014/08/26 16:46:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/id1".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/id1')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/id1
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genOtherInfo
+---
+2014/08/26 17:22:04 [warning] [application] Failed to set unsafe attribute "visability" of "GenServCategories".
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServCategoriesController.php (92)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:07:47 [error] [php] Undefined variable: model (/web/sites/allium2.soborka.net/iasnap/protected/views/genCatCon/index.php:29)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CController.php(869): GenCatConController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(782): GenCatConController->renderPartial()
+#2 /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenCatConController.php(128): GenCatConController->render()
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenCatConController->actionIndex()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): GenCatConController->runAction()
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): GenCatConController->filterAccessControl()
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(265): GenCatConController->runActionWithFilters()
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): GenCatConController->run()
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=genCatCon
+in /web/sites/allium2.soborka.net/iasnap/protected/views/genCatCon/index.php (29)
+in /web/sites/allium2.soborka.net/iasnap/protected/controllers/GenCatConController.php (128)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:12:48 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "view1".' in /web/sites/allium2.soborka.net/framework/web/CController.php:878
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/widgets/CTabView.php(217): CController->renderPartial('view1', Array)
+#1 /web/sites/allium2.soborka.net/framework/web/widgets/CTabView.php(149): CTabView->renderBody()
+#2 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(173): CTabView->run()
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php(53): CBaseController->widget('CTabView', Array)
+#4 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require('/web/sites/alli...')
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/web/sites/alli...', Array, true)
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(869): CBaseController->renderFile('/web/sites/alli...', Array, true)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(782): CController->renderPartial('menus', Array, true)
+#8 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(54): CController->render('menus', Array)
+#9 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('id1')
+#19 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/default/i...')
+#20 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/
+---
+2014/08/27 00:13:35 [error] [php] Undefined variable: idis (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php:36)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/web/widgets/CTabView.php(217): DefaultController->renderPartial()
+#2 /web/sites/allium2.soborka.net/framework/web/widgets/CTabView.php(149): CTabView->renderBody()
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(173): CTabView->run()
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php(53): DefaultController->widget()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(54): DefaultController->render()
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): DefaultController->runAction()
+#13 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): DefaultController->filterAccessControl()
+#16 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#18 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#19 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#20 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (36)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (53)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (54)
+2014/08/27 00:13:52 [error] [php] Undefined variable: model (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php:46)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#2 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(54): DefaultController->render()
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): DefaultController->runAction()
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): DefaultController->filterAccessControl()
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (46)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (54)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:14:04 [error] [php] Undefined variable: idis (/web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php:36)
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#1 /web/sites/allium2.soborka.net/framework/web/widgets/CTabView.php(217): DefaultController->renderPartial()
+#2 /web/sites/allium2.soborka.net/framework/web/widgets/CTabView.php(149): CTabView->renderBody()
+#3 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(173): CTabView->run()
+#4 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php(53): DefaultController->widget()
+#5 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(126): require()
+#6 /web/sites/allium2.soborka.net/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(869): DefaultController->renderFile()
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(782): DefaultController->renderPartial()
+#9 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php(54): DefaultController->render()
+#10 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): DefaultController->actionId1()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): DefaultController->runAction()
+#13 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#15 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): DefaultController->filterAccessControl()
+#16 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#17 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#18 /web/sites/allium2.soborka.net/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#19 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): DefaultController->run()
+#20 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /web/sites/allium2.soborka.net/iasnap/index.php(13): CWebApplication->run()
+REQUEST_URI=/iasnap/index.php?r=admin/default/id1
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/index.php (36)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/views/default/menus.php (53)
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/DefaultController.php (54)
+2014/08/27 00:25:03 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cnap_portal`.`gen_cat_con`, CONSTRAINT `cat_con_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_con` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `gen_cat_con` (`cat_id`, `class_id`) VALUES (:yp0, :yp1).
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenCatConController.php (73)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:25:03 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cnap_portal`.`gen_cat_con`, CONSTRAINT `cat_con_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_con` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `gen_cat_con` (`cat_id`, `class_id`) VALUES (:yp0, :yp1)' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1077): CDbCommand->execute()
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenCatConController.php(73): CActiveRecord->save()
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenCatConController->actionCreate()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('create')
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genCatCon...')
+#14 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genCatCon/create
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genCatCon/create
+---
+2014/08/27 00:26:51 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cnap_portal`.`gen_cat_con`, CONSTRAINT `cat_con_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_con` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: UPDATE `gen_cat_con` SET `id`=:yp0, `cat_id`=:yp1, `class_id`=:yp2 WHERE `gen_cat_con`.`id`=2.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenCatConController.php (97)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:26:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cnap_portal`.`gen_cat_con`, CONSTRAINT `cat_con_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_con` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: UPDATE `gen_cat_con` SET `id`=:yp0, `cat_id`=:yp1, `class_id`=:yp2 WHERE `gen_cat_con`.`id`=2' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1748): CDbCommand->execute()
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1124): CActiveRecord->updateByPk('2', Array)
+#2 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(806): CActiveRecord->update(NULL)
+#3 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenCatConController.php(97): CActiveRecord->save()
+#4 [internal function]: GenCatConController->actionUpdate('2')
+#5 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(GenCatConController), Array)
+#6 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(GenCatConController), Object(ReflectionMethod), Array)
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#14 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('update')
+#16 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genCatCon...')
+#17 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genCatCon/update&id=2
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genCatCon/update&id=2
+---
+2014/08/27 00:35:39 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cnap_portal`.`gen_cat_con`, CONSTRAINT `cat_con_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_con` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `gen_cat_con` (`cat_id`, `class_id`) VALUES (:yp0, :yp1).
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenCatConController.php (73)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:35:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cnap_portal`.`gen_cat_con`, CONSTRAINT `cat_con_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_con` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `gen_cat_con` (`cat_id`, `class_id`) VALUES (:yp0, :yp1)' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1077): CDbCommand->execute()
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenCatConController.php(73): CActiveRecord->save()
+#3 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(49): GenCatConController->actionCreate()
+#4 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#11 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('create')
+#13 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genCatCon...')
+#14 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/iasnap/index.php?r=admin/genCatCon/create
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genCatCon/create
+---
+2014/08/27 00:37:15 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cnap_portal`.`gen_serv_con`, CONSTRAINT `class_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_classes` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: DELETE FROM `gen_serv_classes` WHERE `gen_serv_classes`.`id`=2.
+in /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServClassesController.php (113)
+in /web/sites/allium2.soborka.net/iasnap/index.php (13)
+2014/08/27 00:37:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cnap_portal`.`gen_serv_con`, CONSTRAINT `class_id` FOREIGN KEY (`class_id`) REFERENCES `gen_serv_classes` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE). The SQL statement executed was: DELETE FROM `gen_serv_classes` WHERE `gen_serv_classes`.`id`=2' in /web/sites/allium2.soborka.net/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1802): CDbCommand->execute()
+#1 /web/sites/allium2.soborka.net/framework/db/ar/CActiveRecord.php(1222): CActiveRecord->deleteByPk('2')
+#2 /web/sites/allium2.soborka.net/iasnap/protected/modules/admin/controllers/GenServClassesController.php(113): CActiveRecord->delete()
+#3 [internal function]: GenServClassesController->actionDelete('2')
+#4 /web/sites/allium2.soborka.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(GenServClassesController), Array)
+#5 /web/sites/allium2.soborka.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(GenServClassesController), Object(ReflectionMethod), Array)
+#6 /web/sites/allium2.soborka.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 /web/sites/allium2.soborka.net/framework/web/CController.php(1116): CFilterChain->run()
+#9 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#10 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /web/sites/allium2.soborka.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#12 /web/sites/allium2.soborka.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 /web/sites/allium2.soborka.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 /web/sites/allium2.soborka.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 /web/sites/allium2.soborka.net/framework/web/CController.php(291): CFilterChain->run()
+#16 /web/sites/allium2.soborka.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(282): CController->run('delete')
+#18 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/genServCl...')
+#19 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/iasnap/index.php?ajax=gen-serv-classes-grid&id=2&r=admin%2FgenServClasses%2Fdelete
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=admin/genServClasses/admin
+---
+2014/08/27 00:52:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default/id2".' in /web/sites/allium2.soborka.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /web/sites/allium2.soborka.net/framework/web/CWebApplication.php(141): CWebApplication->runController('default/id2')
+#1 /web/sites/allium2.soborka.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /web/sites/allium2.soborka.net/iasnap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/iasnap/index.php?r=default/id2
+HTTP_REFERER=http://allium2.soborka.net/iasnap/index.php?r=genServices
+---
