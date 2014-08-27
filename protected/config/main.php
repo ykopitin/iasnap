@@ -27,6 +27,7 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
 		),
+                "mff",
 		/**/
 	),
 
