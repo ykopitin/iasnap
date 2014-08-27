@@ -1714,3 +1714,43 @@ Stack trace:
 REQUEST_URI=/index.php?r=admin/genServCatCon/index
 HTTP_REFERER=http://localhost:8000/index.php?r=admin/default/id2
 ---
+2014/08/27 13:02:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cnap_portal.gen_serv_cat_con' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `gen_serv_cat_con`.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\admin\views\genServCatCon\index.php (22)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\admin\controllers\GenServCatConController.php (124)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/08/27 13:02:08 [error] [exception.CDbException] exception 'CDbException' with message 'The table "gen_serv_cat_con" for active record class "GenServCatCon" cannot be found in the database.' in C:\Users\prk\Documents\NetBeansProjects\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(GenServCatCon))
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\db\ar\CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
+#4 C:\Users\prk\Documents\NetBeansProjects\framework\web\CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#5 C:\Users\prk\Documents\NetBeansProjects\framework\web\CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\CDataProvider.php(168): CActiveDataProvider->fetchData()
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\zii\widgets\CBaseListView.php(111): CDataProvider->getData()
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\zii\widgets\CListView.php(211): CBaseListView->init()
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(147): CListView->init()
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#11 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\admin\views\genServCatCon\index.php(22): CBaseController->widget('zii.widgets.CLi...', Array)
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#14 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#15 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#16 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\admin\controllers\GenServCatConController.php(124): CController->render('index', Array)
+#17 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(49): GenServCatConController->actionIndex()
+#18 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#19 C:\Users\prk\Documents\NetBeansProjects\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#20 C:\Users\prk\Documents\NetBeansProjects\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#21 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#22 C:\Users\prk\Documents\NetBeansProjects\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#23 C:\Users\prk\Documents\NetBeansProjects\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#24 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(291): CFilterChain->run()
+#25 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#26 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('index')
+#27 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/genServCa...')
+#28 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#29 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#30 {main}
+REQUEST_URI=/index.php?r=admin/genServCatCon/index
+HTTP_REFERER=http://localhost:8000/index.php?r=admin/default/id2
+---
