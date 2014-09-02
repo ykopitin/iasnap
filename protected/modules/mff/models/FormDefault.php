@@ -6,6 +6,11 @@
  * The followings are the available columns in table 'form_default':
  * @property string $id
  * @property integer $storage
+ * @property integer $registry
+ *
+ * The followings are the available model relations:
+ * @property FormStorage $storage0
+ * @property FormRegistry $registry0
  */
 class FormDefault extends CActiveRecord
 {
@@ -25,11 +30,11 @@ class FormDefault extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('storage', 'required'),
-			array('storage', 'numerical', 'integerOnly'=>true),
+			array('storage, registry', 'required'),
+			array('storage, registry', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, storage', 'safe', 'on'=>'search'),
+			array('id, storage, registry', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -41,6 +46,8 @@ class FormDefault extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'storage_item' => array(self::BELONGS_TO, 'FormStorage', 'storage'),
+			'registry_item' => array(self::BELONGS_TO, 'FormRegistry', 'registry'),
 		);
 	}
 
@@ -51,7 +58,8 @@ class FormDefault extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'storage' => 'Storage',
+			'storage' => 'Ссылка на хранилище',
+			'registry' => 'Ссылка на регистрацию',
 		);
 	}
 
@@ -75,6 +83,7 @@ class FormDefault extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('storage',$this->storage);
+		$criteria->compare('registry',$this->registry);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

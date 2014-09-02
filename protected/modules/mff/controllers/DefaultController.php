@@ -3,20 +3,15 @@
 class DefaultController extends Controller
 {
     public $layout='//layouts/column2';
+    //public $defaultAction='listforms';
     
-    public function actionIndex()
-    {
-        $model = new FormStorage();
-        $this->render('index',$model);
+    public function actionIndex($parentid=null)
+    {        
+        $this->render('listforms',array("parentid"=>$parentid));
     }
 
-    public function actionCreate() 
+    public function actionEdit($id,$parentid=null)
     {
-        $this->render('index');
-    }
-
-    public function actionEdit($name) 
-    {
-        $this->render('index');
+        $this->render("listforms", array("parentid"=>$parentid,"id"=>$id));
     }
 }

@@ -8,6 +8,11 @@
  * @property integer $parent
  * @property string $tablename
  * @property string $description
+ * @property integer $protected
+ *
+ * The followings are the available model relations:
+ * @property FormDefault[] $formDefaults
+ * @property FormField[] $formFields
  */
 class FormRegistry extends CActiveRecord
 {
@@ -27,13 +32,13 @@ class FormRegistry extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, tablename', 'required'),
-			array('id, parent', 'numerical', 'integerOnly'=>true),
+			array('tablename', 'required'),
+			array('parent, protected', 'numerical', 'integerOnly'=>true),
 			array('tablename', 'length', 'max'=>45),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent, tablename, description', 'safe', 'on'=>'search'),
+			array('id, parent, tablename, description, protected', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,6 +50,9 @@ class FormRegistry extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'formDefaults' => array(self::HAS_MANY, 'FormDefault', 'registry'),
+			'formFields' => array(self::HAS_MANY, 'FormField', 'formid'),
+                        'parentItem' => array(self::HAS_ONE, 'FormRegistry', 'parent'),
 		);
 	}
 
@@ -55,9 +63,10 @@ class FormRegistry extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'parent' => 'Parent',
-			'tablename' => 'Tablename',
-			'description' => 'Description',
+			'parent' => 'ссылка на родителя',
+			'tablename' => 'Имя таблицы в которая используется для хранения данных свободной формы',
+			'description' => 'описание',
+			'protected' => 'Блокировка/ системная таблица',
 		);
 	}
 
@@ -83,6 +92,7 @@ class FormRegistry extends CActiveRecord
 		$criteria->compare('parent',$this->parent);
 		$criteria->compare('tablename',$this->tablename,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('protected',$this->protected);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

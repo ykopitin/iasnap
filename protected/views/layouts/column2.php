@@ -13,6 +13,7 @@
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>$this->menu,
+                        'encodeLabel'=>false,
 			'htmlOptions'=>array('class'=>'operations'),
 		));
 		$this->endWidget();

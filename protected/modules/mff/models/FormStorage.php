@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'form_storage':
  * @property integer $id
  * @property string $name
+ *
+ * The followings are the available model relations:
+ * @property FormDefault[] $formDefaults
  */
 class FormStorage extends CActiveRecord
 {
@@ -41,6 +44,7 @@ class FormStorage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'formDefaults' => array(self::HAS_MANY, 'FormDefault', 'storage'),
 		);
 	}
 
@@ -51,7 +55,7 @@ class FormStorage extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => 'Имя хранилища',
 		);
 	}
 
