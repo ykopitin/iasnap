@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-    public $layout='//layouts/column3';
+    public $layout='//layouts/column4';
     //public $defaultAction='listforms';
     
     public function actionIndex($parentid=null)
