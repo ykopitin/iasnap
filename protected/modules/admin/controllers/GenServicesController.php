@@ -47,6 +47,7 @@ class GenServicesController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->layout='//layouts/column1';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -70,6 +71,7 @@ class GenServicesController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+		$this->layout='//layouts/column1';
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -94,6 +96,7 @@ class GenServicesController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+		$this->layout='//layouts/column1';
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -119,6 +122,7 @@ class GenServicesController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('GenServices');
+		$this->layout='//layouts/column1';
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -134,6 +138,7 @@ class GenServicesController extends Controller
 		if(isset($_GET['GenServices']))
 			$model->attributes=$_GET['GenServices'];
 
+		$this->layout='//layouts/column1';
 		$this->render('admin',array(
 			'model'=>$model,
 		));

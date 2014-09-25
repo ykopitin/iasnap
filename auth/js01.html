@@ -1,0 +1,37 @@
+	<html>
+<script>
+var formContent = ""; 
+	formContent+= "<div class=\"Form\">"; 
+	formContent+= "<form name=\"keyMedia\" action=\"#\" class=\"formKeyMedia\">"; 
+	formContent+= '<div align="center"><h3 class="FormHeader">' + this.title + '</h3></div>'
+	formContent+= '<table height=90% width=100% border="1" class="border" bordercolor="#C0C0C0">'; 
+	if(this.subTitle != null && this.subTitle != "") {
+	//	formContent+= '<tr><td align="center"><i>'+ this.subTitle + '</i></tr></td>';
+	}
+	formContent+= "<tr><td valign=\"top\" align=\"center\" class=\"form\">"; 
+	formContent+= "   <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Тип носія:</td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"center\">"; 
+	//formContent+= "   <select id = " + DeviceTypeSelectID + " class=\"select\">"; 
+	var result = "";
+	var typeIndex = 0; 
+	
+	formContent+= "   </select>"; 
+	formContent+= "   </td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Назва носія:</td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Пароль:</td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"center\"><input type=\"Password\" id = id01 +  class=\"edit\" maxlength=\"20\" onkeydown=\"if(event.keyCode==13){alert(aaa);}\" /></td></tr>"; 
+	
+	
+	formContent+= "   <tr><td valign=\"top\" align=\"right\" nowrap style=\"padding-top:20px\"></td></tr>"; 
+	formContent+= "   </table>"; 
+	formContent+= "</td></tr>"; 
+	formContent+= "</table>"; var aaa= "Ой! А кто это тут нажимает Enter!";
+	formContent+= '<div align="right" style="padding: 0px 10px 10px 0px"><input type="button"  class="btn" />';
+	formContent+= '<input type="button" id = id02' +  + ' value=\"Відміна\" class="btn" /></div>';
+	formContent+= "</form>"; 
+	formContent+= "</div>"; 
+	
+	document.write(formContent);
+	</script>
+	</html>

@@ -9,7 +9,7 @@
  * @property string $visability
  *
  * The followings are the available model relations:
- * @property GenServCatCon[] $genServCatCons
+ * @property GenCatClasses[] $genCatClasses
  */
 class GenServCategories extends CActiveRecord
 {
@@ -46,7 +46,7 @@ class GenServCategories extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'genServCatCons' => array(self::HAS_MANY, 'GenServCatCon', 'categorie_id'),
+			'genCatClasses' => array(self::HAS_MANY, 'GenCatClasses', 'categorie_id'),
 		);
 	}
 
@@ -99,4 +99,86 @@ class GenServCategories extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+ 
+  public function getOrgMenu() {
+         $t=array();
+         $m=array();
+       $rows1=GenCatClasses::model()->findAllByAttributes(array('class_id'=>2));
+                 
+        foreach($rows1 as $row) 
+        {
+              
+             $t=GenCatClasses::model()->getMenuOrg($row['id']);
+             $m=$row['id'];
+             $rows3=$this->findAllByPk($t);   
+                foreach($rows3 as $row) {
+                $menu[]=array(
+                'label'=>$row['name'],
+                'url'=>array('/serv/?class=2&&servid='.$m))
+                //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
+            ;
+        }  }
+        return $menu;
+    }
+     
+    
+    
+    
+    
+        public function getGromMenu() {
+              $t=array();
+              $m=array();
+       $rows1=GenCatClasses::model()->findAllByAttributes(array('class_id'=>1));  
+            
+        foreach($rows1 as $row) 
+        {
+           
+             $t=GenCatClasses::model()->getMenuGrom($row['id']);
+             $m=$row['id'];
+             $rows3=$this->findAllByPk($t);   
+                foreach($rows3 as $row) {
+                $menu[]=array(
+                'label'=>$row['name'],
+                'url'=>array('/serv/?class=1&&servid='.$m))
+                //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
+            ;
+        }  }
+        return $menu;
+    }
+ 
+ /*
+ public function getOrgMenu() {
+        
+                     
+       $rows=$this->findAllByPk(GenCatClasses::model()->getMenuOrg());            
+       $menu=array();
+       foreach($rows as $row) {
+            $menu[]=array(
+                'label'=>$row['name'],
+                'url'=>array('/serv/?servid='.$row['id']));
+                //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
+//            ;
+        }
+        return $menu;
+    }
+    
+    
+    
+    
+    
+     public function getGromMenu() {
+        
+                     
+       $rows=$this->findAllByPk(GenCatClasses::model()->getMenuGrom());            
+       $menu=array();
+       foreach($rows as $row) {
+            $menu[]=array(
+                'label'=>$row['name'],
+               'url'=>array('/serv/?servid='.$row['id']))
+                //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
+            ;
+        }
+        return $menu;
+    }
+	*/
 }

@@ -21,8 +21,9 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('locations_id')); ?>:</b>
-	<?php echo CHtml::encode($data->locations_id); ?>
+	<b><?php echo CHtml::encode('Назва населеного пункту'); ?>:</b>
+	<?php //echo CHtml::encode($data->locations_id); ?>
+	<?php echo CHtml::encode(GenLocations::model()->find('id=:id', array(':id'=>$data->locations_id))->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('index')); ?>:</b>
@@ -32,8 +33,8 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('street')); ?>:</b>
 	<?php echo CHtml::encode($data->street); ?>
 	<br />
-
-	<?php /*
+ 
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('building')); ?>:</b>
 	<?php echo CHtml::encode($data->building); ?>
 	<br />
@@ -74,6 +75,6 @@
 	<?php echo CHtml::encode($data->photo); ?>
 	<br />
 
-	*/ ?>
+	
 
 </div>

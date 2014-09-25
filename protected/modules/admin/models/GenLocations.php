@@ -78,7 +78,7 @@ class GenLocations extends CActiveRecord
 	public function search()
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
-
+/*
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
@@ -88,6 +88,18 @@ class GenLocations extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+		*/ 
+		
+		$users=GenLocations::model()->with(array(
+        'genAuthorities'=>array(
+        'select'=>array('locations.id'),
+        'joinType'=>'INNER JOIN',
+        ),
+        ))->findAll();
+
+	    return new CActiveDataProvider($this, array(
+        'data'=>$users,
+        ));
 	}
 
 	/**

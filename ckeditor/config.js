@@ -33,13 +33,18 @@ CKEDITOR.editorConfig = function( config ) {
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
    
-   config.filebrowserBrowseUrl = 'ckeditor/kcfinder/browse.php?opener=ckeditor&type=files';
-   config.filebrowserImageBrowseUrl = 'ckeditor/kcfinder/browse.php?opener=ckeditor&type=images';
-   config.filebrowserFlashBrowseUrl = 'ckeditor/kcfinder/browse.php?opener=ckeditor&type=flash';
-   config.filebrowserUploadUrl = 'ckeditor/kcfinder/upload.php?opener=ckeditor&type=files';
-   config.filebrowserImageUploadUrl = 'ckeditor/kcfinder/upload.php?opener=ckeditor&type=images';
-   config.filebrowserFlashUploadUrl = 'ckeditor/kcfinder/upload.php?opener=ckeditor&type=flash';
+   config.filebrowserBrowseUrl = 'http://allium2.soborka.net/iasnap/ckeditor/kcfinder/browse.php?opener=ckeditor&type=files';
+   config.filebrowserImageBrowseUrl = 'http://allium2.soborka.net/iasnap/ckeditor/kcfinder/browse.php?opener=ckeditor&type=images';
+   config.filebrowserFlashBrowseUrl = 'http://allium2.soborka.net/iasnap/ckeditor/kcfinder/browse.php?opener=ckeditor&type=flash';
+   config.filebrowserUploadUrl = 'http://allium2.soborka.net/iasnap/ckeditor/kcfinder/upload.php?opener=ckeditor&type=files';
+   config.filebrowserImageUploadUrl = 'http://allium2.soborka.net/iasnap/ckeditor/kcfinder/upload.php?opener=ckeditor&type=images';
+   config.filebrowserFlashUploadUrl = 'http://allium2.soborka.net/iasnap/ckeditor/kcfinder/upload.php?opener=ckeditor&type=flash';
 	
 	// Simplify the dialog windows.
+	config.resize_enabled = false;
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-};
+	////////////////
+	
+        config.width =640;
+		config.height = 150;
+	};

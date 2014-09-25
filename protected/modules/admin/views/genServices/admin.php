@@ -45,12 +45,14 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'id',
 		'name',
-		'subjnap_id',
+		//'subjnap_id',
+		//'subwork_id',
+		
 		'regulations',
 		'reason',
 		'submission_proc',
-		/*
-		'docums',
+		
+		/*'docums',
 		'is_payed',
 		'payed_regulations',
 		'payed_rate',

@@ -41,13 +41,18 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-authorities-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'is_cnap',
 		'type',
 		'name',
-		'locations_id',
+		//'locations_id',
+		array(
+        	'name'=>'Назва населеного пункту',
+	        'value'=>'$data->locations->name',
+	        'type'=>'text',
+	    ),
 		'index',
 		/*
 		'street',

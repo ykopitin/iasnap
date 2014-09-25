@@ -41,7 +41,7 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-other-info-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'publicationDate',
@@ -49,6 +49,13 @@ $('.search-form form').submit(function(){
 		'summary',
 		'text',
 		'img',
+		
+		array(
+        	'name'=>'Розділ',
+	        'value'=>'$data->kindOfPublication->content',
+	        'type'=>'text',
+	    ),
+		
 		/*
 		'kind_of_publication',
 		*/

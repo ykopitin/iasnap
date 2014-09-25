@@ -25,6 +25,11 @@
 		<?php echo $form->label($model,'subjnap_id'); ?>
 		<?php echo $form->textField($model,'subjnap_id'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->label($model,'subjwork_id'); ?>
+		<?php echo $form->textField($model,'subjwork_id'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'regulations'); ?>

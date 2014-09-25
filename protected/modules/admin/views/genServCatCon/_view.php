@@ -10,11 +10,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('categorie_id')); ?>:</b>
-	<?php echo CHtml::encode($data->categorie_id); ?>
+	<?php echo CHtml::encode(GenServCategories::model()->findByPk($data->categorie_id)->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('service_id')); ?>:</b>
-	<?php echo CHtml::encode($data->service_id); ?>
+	<?php echo CHtml::encode(GenServices::model()->findByPk($data->service_id)->name); ?>
 	<br />
 
 

@@ -3,7 +3,11 @@
 /* @var $model GenOtherInfo */
 /* @var $form CActiveForm */
 ?>
-<script src="ckeditor/ckeditor.js"></script>
+<?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
+?>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

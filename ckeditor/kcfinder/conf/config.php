@@ -29,7 +29,7 @@ return array(
     'types' => array(
 
     // (F)CKEditor types
-        'files'   =>  "doc docx",
+        'files'   =>  "doc docx xls xlsx",
         'flash'   =>  "swf",
         'images'  =>  "*img",
 

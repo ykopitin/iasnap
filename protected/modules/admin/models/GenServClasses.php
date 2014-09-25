@@ -9,7 +9,7 @@
  * @property string $visability
  *
  * The followings are the available model relations:
- * @property GenServCon[] $genServCons
+ * @property GenCatClasses[] $genCatClasses
  */
 class GenServClasses extends CActiveRecord
 {
@@ -46,7 +46,7 @@ class GenServClasses extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'genServCons' => array(self::HAS_MANY, 'GenServCon', 'class_id'),
+			'genCatClasses' => array(self::HAS_MANY, 'GenCatClasses', 'class_id'),
 		);
 	}
 

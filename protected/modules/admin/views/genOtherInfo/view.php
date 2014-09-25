@@ -20,8 +20,12 @@ $this->menu=array(
 
 <h1>Відобразити Таблиця «Посилання на статті до категорій сайту» запис №<?php echo $model->id; ?></h1>
 
+
+
 <?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
+	//'data'=>$model->search(),
+//'dataProvider'=>$model->search(),
+'data'=>$model,
 	'attributes'=>array(
 		'id',
 		'publicationDate',

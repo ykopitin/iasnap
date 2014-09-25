@@ -99,6 +99,19 @@ class GenOtherInfo extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+
+/*
+        $users=GenOtherInfo::model()->with(array(
+        'kindOfPublication'=>array( 
+        'select'=>array('genOtherInfos.id'),
+        'joinType'=>'INNER JOIN',
+        ),
+        ))->findAll();
+
+	    return new CActiveDataProvider($this, array(
+        'data'=>$users,
+        ));
+*/
 	}
 
 	/**

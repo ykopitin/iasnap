@@ -29,8 +29,10 @@
 	<?php echo CHtml::encode($data->img); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('kind_of_publication')); ?>:</b>
-	<?php echo CHtml::encode($data->kind_of_publication); ?>
+	<b><?php echo CHtml::encode('Вид публікації'); ?>:</b>
+	<?php //echo CHtml::encode($data->kind_of_publication); ?>
+	<?php echo CHtml::encode(GenMenuItems::model()->find('id=:id', array(':id'=>$data->kind_of_publication))->content); ?>
+	
 	<br />
 
 

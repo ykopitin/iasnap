@@ -6,7 +6,7 @@ class GenMenuItemsController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -47,6 +47,7 @@ class GenMenuItemsController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->layout='//layouts/column1';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -69,7 +70,7 @@ class GenMenuItemsController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
+        $this->layout='//layouts/column1';
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -94,6 +95,7 @@ class GenMenuItemsController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+		$this->layout='//layouts/column1';
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -119,6 +121,7 @@ class GenMenuItemsController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('GenMenuItems');
+		$this->layout='//layouts/column1';
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,7 +136,7 @@ class GenMenuItemsController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['GenMenuItems']))
 			$model->attributes=$_GET['GenMenuItems'];
-
+        $this->layout='//layouts/column1';
 		$this->render('admin',array(
 			'model'=>$model,
 		));

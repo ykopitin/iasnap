@@ -3,7 +3,13 @@
 /* @var $model GenAuthorities */
 /* @var $form CActiveForm */
 ?>
-<script src="ckeditor/ckeditor.js"></script>
+<?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
+//$cs->registerScriptFile($baseUrl.'/js/jquery.js');
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -125,8 +131,6 @@
 
 <?php $this->endWidget(); ?>
 <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'GenAuthorities[working_time]' );
+CKEDITOR.replace( 'GenAuthorities[working_time]' );              
 </script>
 </div><!-- form -->

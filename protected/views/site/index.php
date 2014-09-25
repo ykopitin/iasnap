@@ -1,20 +1,12 @@
-<?php
-/* @var $this SiteController */
-
-$this->pageTitle=Yii::app()->name;
-?>
-
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div id="maintext">
+<h4>Дякуємо Вам за те, що обрали портал електронних послуг міста Одеси! </h4>
+<p align='justify'>Тут Ви завжди зможете отримати інформацію про порядок та спосіб отримання адміністративних послуг, 
+вивчити перелік необхідних документів або завантажити електронні форми заяв.</p>
+<p align='justify'>Якщо ви маєте власний електронний цифровий підпис, Ви маєте можливість замовити деякі послуги в режимі on-line. 
+Для замовлення on-line послуги, просимо Вас створити обліковий запис та перейти в необхідний розділ 
+«<? echo CHtml::link(GenServClasses::model()->findByPk('2')->item_name, array('serv/?class=2'));?>» або 
+«<? echo CHtml::link(GenServClasses::model()->findByPk('1')->item_name, array('serv/?class=1'));?>». 
+Обліковий запис створюється на підставі реєстрації користувача на порталі електронних послуг за його персональною електронним 
+цифровим підписом, що дозволить у подальшому отримувати інформацію про статус замовлення, візуалізувати історію попередніх замовлень, 
+отримувати додаткову інформацію.</p>
+</div>

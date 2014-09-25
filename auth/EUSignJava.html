@@ -1,0 +1,1097 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>ІІТ Користувач ЦСК-1.3. Бібліотека підпису (java)</title>
+	<meta name="Author" content="JSC IIT | http://iit.com.ua/" />
+	<meta name="Author-Corporate" content="Copyright 2012 JSC IIT" />
+	<meta name="copyright" content="Copyright 2012 JSC IIT" />
+	<meta content="text/html; charset=windows-1251" http-equiv="Content-Type" />
+	<meta http-equiv="pragma" />
+	<script type="text/JavaScript" src="Spin.js"></script>
+	<script type="text/JavaScript" src="Table.js"></script>
+	<script type="text/JavaScript" src="Utils.js"></script>
+	<script type="text/JavaScript" src="InformationAlerts.js"></script>
+	<script type="text/JavaScript" src="Certificates.js"></script>
+	<script type="text/JavaScript" src="CRLs.js"></script>
+	<script type="text/JavaScript" src="ReadPrivateKey.js"></script>
+	<script type="text/JavaScript" src="ServerSettingsTab.js"></script>
+	<script type="text/JavaScript" src="Settings.js"></script>
+	<script type="text/JavaScript" src="GenPrivateKey.js"></script>
+
+	<script src="jquery.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" type="text/css" href="Styles.css">
+	<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="StylesIE6.css" />
+	<![endif]-->
+</head>
+<body onresize="getWindowSizes();" onload="getWindowSizes();">
+<applet codebase="http://192.168.222.77/autorize"
+	code="com.iit.certificateAuthority.endUser.libraries.signJava.EndUser.class"
+	cache_archive="EUSignJava.jar"
+	cache_version="1.3.23"
+	archive="EUSignJava.jar"
+	id="euSign"
+	width="100%"
+	height="64">
+</applet>
+<!--
+	cache_archive_ex="http://192.168.222.77/autorize/EUSignJava.jar;preload"
+	cache_archive="EUSignJava.jar"
+-->
+<div id="opaco" class="hidden"></div>
+<div id="popup" class="hidden"></div> 
+<div id="common" align="center"> 
+<form name="formEndUserSign"> 
+<table border="1" cellspacing="0" cellpadding="0" align="center" width="760" class="border"  bordercolor="#C0C0C0"> 
+<tr>
+	<td width="60%" valign="top" align="left" class="content">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr><td align="left" valign="top" class="header">Загальні параметри</td></tr>
+		<tr><td align="left" valign="top" style="padding:20px 0px 0px 0px">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tr><td align="left" valign="top" class="label">Ініціалізація бібліотеки</td></tr> 
+			<tr> 
+				<td align="left" valign="top"> 
+					<input type="button" id="initButton" value="Ініціалізувати..."
+						onclick="initialize()" style="width:185px" class="button" />
+				</td>
+			</tr> 
+			<tr><td align="left" valign="top" class="label">Параметри роботи</td></tr> 
+			<tr> 
+				<td align="left" valign="top"> 
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr><td align="left" class="text" nowrap="nowrap" colspan="2"> 
+						<input type="checkbox" id="useOfflineMode"
+							onclick="changeModeSettings()" disabled="disabled" />
+							Off-line режим роботи(Не взаємодіяти з ЦСК)
+					</td></tr> 
+					<tr><td align="left" style="padding:5px 10px 0px 0px; width: 196px; height: 22px;"> 
+						<input type="button" id="paramsButton" value="Параметри криптобібліотеки" 
+							onclick="setSettings()" disabled="disabled" style="width:185px" class="button" />
+					</td> 
+					<td align="left" width="100%" style="padding:5px 10px 0px 0px; height: 22px;"> 
+						<input type="button" id="defaultParamsButton" value="Встановити за замовчуванням" 
+							onclick="setDefaultSettings()" disabled="disabled" style="width:185px" class="button" />
+					</td></tr>
+					</table> 
+					
+				</td>
+			</tr>
+			<tr><td align="left" valign="top" class="label">Перегляд сертифікатів та СВС</td></tr>
+			<tr> 
+				<td align="left" valign="top"> 
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr><td align="left" style="padding:0px 10px 0px 0px"> 
+						<input type="button" id="showCertificatesButton" value="Сертифікати..."
+							onclick="showCertificates()" disabled="disabled" style="width:185px" class="button" />
+					</td> 
+					<td align="left" width="100%"> 
+						<input type="button" id="showCRLsButton" value="СВС..." 
+							onclick="showCRLs()" disabled="disabled" style="width:185px" class="button" />
+					</td> 
+					</tr>
+					<tr><td align="left" style="padding:5px 10px 0px 0px; width: 196px; height: 22px;"> 
+						<input type="button" id="selectCertificateInfoButton" value="Інформація про сертифікат" 
+							onclick="selectCertificateInfo()" disabled="disabled" style="width:185px" class="button" />
+					</td> 
+					<td align="left" width="100%" style="padding:5px 10px 0px 0px; height: 22px;"> 
+						<input type="button" id="selectCertificateInfoExButton" value="Розширена інф. про сертифікат" 
+							onclick="selectCertificateInfoEx()" disabled="disabled" style="width:185px" class="button" />
+					</td></tr>
+					</table> 
+				</td> 
+			</tr> 
+			<tr><td align="left" valign="top" class="label">Сховище сертифікатів</td></tr>
+			<tr> 
+				<td align="left" valign="top"> 
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr>
+					<td align="left" style="padding:5px 10px 0px 0px; width: 196px; height: 22px;"> 
+						<input type="button" id="importCertificateButton" value="Імпортувати сертифікат"
+							onclick="importCertificate()" disabled="disabled" style="width:185px" class="button" />
+					</td> 
+					<td align="left" width="100%" style="padding:5px 10px 0px 0px; height: 22px;"> 
+						<input type="button" id="importCertificatesButton" value="Імпорт ланцюжка сертифікатів" 
+							onclick="importCertificates()" disabled="disabled" style="width:185px" class="button" />
+					</td>
+					</tr>
+					<tr>
+						<td align="left" style="padding:5px 10px 0px 0px; width: 196px; height: 22px;"> 
+							<input type="button" id="checkCertificateButton" value="Перевірити сертифікат" 
+								onclick="checkCertificate()" disabled="disabled" style="width:185px" class="button" />
+						</td> 
+						<td align="left" width="100%" style="padding:5px 10px 0px 0px; height: 22px;"> 
+							<input type="button" id="updateCertificateStoreButton" value="Оновити сховище сертифікатів" 
+								onclick="updateCertificateStore()" disabled="disabled" style="width:185px" class="button" />
+						</td>
+					</tr>
+					</table> 
+				</td> 
+			</tr> 
+			<tr><td align="left" valign="top" class="label">Особистий ключ та сертифікат</td></tr> 
+			<tr> 
+				<td align="left" valign="top" style="height: 65px"> 
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr><td align="left" style="padding:0px 0px 5px 0px" colspan="2"> 
+						<input type="button" id="readPKeyButton" value="Зчитати ключ" 
+							onclick="readKey()" disabled="disabled" style="width:185px" class="button" />
+					</td></tr> 
+					<tr><td align="left" style="padding:0px 10px 0px 0px; width: 196px; height: 22px;"> 
+						<input type="button" id="readPKeyAsBinaryButton" value="Зчитати ключ(масив байт)" 
+							onclick="readKeyAsBinary()" disabled="disabled" style="width:185px" class="button" />
+					</td></tr> 
+<!--
+					<tr>
+						<td align="left" style="padding:5px 10px 0px 0px; width: 196px; height: 22px;"> 
+						<input type="button" id="showOwnCertButton" value="Сертифікат зчитаного ключа" 
+							onclick="showOwnCert()" disabled="disabled" style="width:185px" class="button" />
+						</td> 
+					</tr> 
+-->
+					<tr>
+						<td align="left" style="padding:5px 10px 0px 0px; width: 196px; height: 22px;"> 
+						<input type="button" id="enumOwnCertButton" value="Перегляд всіх сертифікатів" 
+							onclick="enumOwnCert()" disabled="disabled" style="width:185px" class="button" />
+						</td> 
+					</tr> 
+					</table> 
+				</td> 
+			</tr> 
+			<tr><td align="left" valign="top" class="label">Параметри підпису даних</td></tr> 
+			<tr>
+				<td align="left" valign="top">
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr>
+						<td align="left" class="text" nowrap="nowrap" colspan="2">
+						<input type="checkbox" id="addCertToInternalSignCheckBox" disabled="" checked="true" />
+							Додавати сертифікат до внутрішнього підпису 
+						</td>
+					</tr> 
+					<tr><td align="left" class="text" nowrap="nowrap" colspan="2">
+						<input type="checkbox" id="useExtendedSignInfoCheckBox" disabled="disabled" checked="true" />
+						Отримувати розширену інформацію про підпис 
+					</td></tr> 
+					</table> 
+				</td> 
+			</tr>
+			</table> 
+		</td></tr> 
+		</table> 
+	</td> 
+	<td  width="40%" valign="top" align="left" class="content"><div align="justify" class="comments">
+		<b>ІІТ Користувач ЦСК-1.3. Бібліотека підпису (java)</b><br /><br />
+		Для початку роботи необхідно <b>ініціалізувати</b> форму, після чого, будуть
+		доступні всі елементи форми.<br /><br />
+		За допомогою форми можна підписувати дані з форми (текстові дані),
+		або файли, що знаходяться на файловій системі
+		 <br /><br />
+		Форма підпису може використовувати як діалоги з оператором криптографічної бібліотеки
+		(можуть мати певні обмеження в використанні наприклад у ОС Linux), так і
+		виводити власні (XHTML, тільки для зчитування особистого ключа).
+		Щоб обрати відповідний спосіб відображення діалогів з оператором необхідно встановити
+		відповідну позначку
+	</div></td>
+</tr>
+<tr>
+	<td width="60%" valign="top" align="left" class="content"> 
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+		<tr><td align="left" valign="top" class="header">Підпис текстових даних</td></tr> 
+		<tr><td align="left" valign="top" style="padding:20px 0px 0px 0px"> 
+			<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+			<tr><td align="left" valign="top" class="label">Текстові дані</td></tr>
+			<tr><td align="left" valign="top"><input type="text" id="edtText" class="edit" /></td></tr>
+			<tr>
+				<td align="left" valign="top" style="padding:20px 0px 0px 0px">
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr><td align="left" style="padding:0px 10px 0px 119px">
+					<input type="button" id="signButton" value="Підписати"
+						onclick="signForm()" style="width:125px" class="button" disabled="disabled" />
+					</td>
+					<td align="left" width="100%">
+					<input type="button" id="verifyButton" value="Перевірити"
+						onclick="verifyForm()" style="width:125px" class="button" disabled="disabled" />
+					</td></tr>
+					<tr><td align="left" style="padding:5px 10px 0px 119px">
+					<input type="button" id="addSignButton" value="Додати підпис"
+						onclick="addSignForm()" style="width:125px" class="button" disabled="disabled" />
+					</td>
+					<td align="left" width="100%" style="padding:5px 0px 0px 0px">
+					<input type="button" id="verifySignaturesButton" value="Перевірити підписи"
+						onclick="verifyFormSignatures()" style="width:125px" class="button" disabled="disabled" />
+					</td></tr>
+					<tr><td align="right" style="padding:5px 0px 0px 0px"></td> 
+					<td align="left" width="100%" style="padding:5px 0px 0px 0px">
+					<input type="button" id="signerCertButton" value="Серт. підписувача"
+						onclick="showSignerCert()" class="button" style="width:125px" disabled="disabled" />
+					</td></tr>
+					</table> 
+				</td> 
+			</tr> 
+			</table> 
+		</td></tr> 
+		</table> 
+	</td> 
+	<td width="40%" valign="top" align="left" class="content"> 
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+		<tr><td align="left" valign="top" class="headerg">Результат підпису</td></tr> 
+		<tr><td align="left" valign="top" style="padding:20px 0px 0px 0px"> 
+			<textarea name="Signature" id="Signature" class="textarea" cols="2" rows="10"></textarea> 
+		</td></tr> 
+		<tr><td align="left" valign="top" style="padding:10px 0px 0px 139px">
+			<input type="button" id="resetButton" value="Очистити" 
+				onclick="resetForm()" style="width:125px" class="button" />
+		</td></tr> 
+		<tr><td align="left" valign="top" style="padding:10px 0px 0px 139px">
+			<input type="button" id="jsonButton" value="JSON start"
+				onclick="jsonForm()" style="width:125px" class="button" />
+		</td></tr>
+		</table>
+	</td> 
+</tr> 
+<tr> 
+	<td width="60%" valign="top" align="left" class="content"> 
+		<div id="orderlayer" class="orderlayer">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+		<tr><td align="left" valign="top" class="header">Підпис файлів</td></tr> 
+		<tr><td align="left" valign="top" style="padding:20px 0px 0px 0px"> 
+			<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+			<tr><td align="left" valign="top" class="label">Файли для підпису</td></tr>
+			<tr><td align="left" valign="top" style="padding:0px 0px 5px 0px;"><input type="edit" id="filesToSign0" name="filesToSign" size="58" class="edit" style="width:280px;"/></td>
+				<td align="left" class="text" style="padding:0px 0px 5px 5px"><input type="button" value="Обрати" class="button" style="width:60px; height:19px;" onclick="selectFileBrowse('filesToSign0')" /></td>
+				<td align="left" class="text" style="padding:0px 0px 5px 5px" width="100%"><input type="button" value="+" class="button" style="width:20px; height:19px;" onclick="showFileBrowse()" /></td>
+			</tr>
+			</table> 
+			<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+			<tr><td align="left" valign="top"> 
+				<div id="inputpanel1" class="inputpanel"> 
+				<table border="0" align="left" cellpadding="0" cellspacing="0" width="100%"> 
+				<tr><td align="left" class="text" style="padding:0px 0px 0px 0px"><input type="edit" id="filesToSign1" name="filesToSign" size="58" class="edit" style="width:280px;"/></td>
+					<td align="left" class="text" style="padding:0px 0px 0px 5px"><input type="button" value="Обрати" class="button" style="width:60px; height:19px;" onclick="selectFileBrowse('filesToSign1')" /></td>
+					<td align="left" class="text" style="padding:0px 0px 0px 5px" width="100%"><input type="button" value="-" class="button" style="width:20px; height:19px;" onclick="hideFileBrowse()" /></td></tr>
+				</table> 
+				</div> 
+				<div id="inputpanel2" class="inputpanel"> 
+				<table border="0" align="left" cellpadding="0" cellspacing="0" width="100%"> 
+				<tr><td align="left" class="text" style="padding:0px 0px 0px 0px"><input type="edit" id="filesToSign2" name="filesToSign" size="58" class="edit" style="width:280px;"/></td>
+					<td align="left" class="text" style="padding:0px 0px 0px 5px"><input type="button" value="Обрати" class="button" style="width:60px; height:19px;" onclick="selectFileBrowse('filesToSign2')" /></td>
+					<td align="left" class="text" style="padding:0px 0px 0px 5px" width="100%"><input type="button" value="-" class="button" style="width:20px; height:19px;" onclick="hideFileBrowse()" /></td></tr> 
+				</table> 
+				</div> 
+				<div id="inputpanel3" class="inputpanel"> 
+				<table border="0" align="left" cellpadding="0" cellspacing="0" width="100%">
+				<tr><td align="left" class="text" style="padding:0px 0px 0px 0px"><input type="edit" id="filesToSign3" name="filesToSign" size="58" class="edit" style="width:280px;"></td>
+				<td align="left" class="text" style="padding:0px 0px 0px 5px"><input type="button" value="Обрати" class="button" style="width:60px; height:19px;" onclick="selectFileBrowse('filesToSign3')" /></td>
+					<td align="left" class="text" style="padding:0px 0px 0px 5px" width="100%"><input type="button" value="-" class="button" style="width:20px; height:19px;" onclick="hideFileBrowse()" /></td></tr> 
+				</table> 
+				</div> 
+			</td></tr> 
+			</table> 
+			<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+			<tr> 
+				<td align="left" valign="top" style="padding:20px 0px 0px 0px"> 
+					<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+					<tr><td align="left" style="padding:0px 10px 0px 116px"> 
+					<input type="button" id="signFileButton" value="Підписати"
+						onclick="signFile()" style="width:125px" class="button" disabled="disabled" />
+					</td>
+					<td align="left" width="100%">
+					<input type="button" id="verifyFileButton" value="Перевірити"
+						onclick="verifyFile()" style="width:125px" class="button" disabled="disabled" />
+					</td></tr>
+					<tr><td align="left" style="padding:5px 10px 0px 116px"> 
+					<input type="button" id="verifySignaturesFileButton" value="Перевірити підписи"
+						onclick="verifyFileSignatures()" style="width:125px" class="button" disabled="disabled" />
+					</td></tr>
+					<tr><td align="right" style="padding:5px 0px 0px 0px"></td> 
+					<td align="left" width="100%" style="padding:5px 0px 0px 0px">
+					<input type="button" id="signerFileCertButton" value="Серт. підписувача"
+						onclick="showFileSignerCert()" class="button" style="width:125px" disabled="disabled" />
+					</td></tr>					
+					</table> 
+				</td> 
+			</tr> 
+			</table>
+		</td></tr> 
+		</table> 
+		</div> 
+	</td> 
+	<td  width="40%" valign="top" align="left" class="content"><div align="justify" class="comments"> 
+		Для додавання підпису до файлів необхідно підписати файли використовуючи звичайний підпис, 
+		після чого зчитати інший особистий ключ та натиснути додати підпис. 
+		В якості файлу для додавання підпису повинен бути обраний файл, який підписувався, 
+		а файл з підписом повинен розміщуватися в тій же директорії. Наприклад, файл для підпису: 
+		C:\FileToSign.txt, файл з підписом C:\FileToSign.txt.p7s.<br><br>
+	</div></td>
+</tr>
+</table> 
+</form>
+</div> 
+</body> 
+
+<script type="text/javascript" language="javascript">
+
+//=============================================================================
+
+	var euSign = document.getElementById("euSign");
+	
+	var userSession, serverSession;
+	var certDataForHash = null;
+	
+	var frameHeight = 640;
+	var frameWidth = 800;
+
+//=============================================================================
+
+function getWindowSizes() {
+	if (self.innerHeight) 
+		frameHeight = self.innerHeight; 
+	else if (document.documentElement && 
+		document.documentElement.clientHeight) 
+		frameHeight = document.documentElement.clientHeight; 
+	else if (document.body) 
+		frameHeight = document.body.clientHeight; 
+	if (self.innerWidth) 
+		frameWidth = self.innerWidth; 
+	else if (document.documentElement && 
+		document.documentElement.clientWidth) 
+		frameWidth = document.documentElement.clientWidth; 
+	else if (document.body) 
+		frameWidth = document.body.clientWidth;
+}
+
+//=============================================================================
+
+	function initialize() {
+				
+		try {
+
+			var disabled = "";
+			var initButton = document.getElementById("initButton");
+			if (initButton.value == "Ініціалізувати...") {
+				euSign.SetCharset("UTF-16LE");
+				changeUIMode();
+
+				euSign.Initialize();
+				euSign.width = "1px";
+				changeUIMode();
+
+				var modeSettings = euSign.GetModeSettings();
+				document.getElementById("useOfflineMode").checked = modeSettings.GetOfflineMode();
+
+				initButton.value = "Завершити роботу...";
+				disabled = "";
+			} else {
+				euSign.Finalize();
+
+				initButton.value = "Ініціалізувати...";
+				
+				configPrivateKeyButtons("disabled");
+//				closeSession();
+				disabled = "disabled";			
+			}
+		} catch (e) {
+			showException(e);
+			disabled = "disabled";
+			configPrivateKeyButtons("disabled");
+//			closeSession();
+		}		
+	
+		document.getElementById("paramsButton").disabled = disabled;
+		document.getElementById("defaultParamsButton").disabled = disabled;
+		document.getElementById("showCertificatesButton").disabled = disabled;
+		document.getElementById("showCRLsButton").disabled = disabled;
+		document.getElementById("selectCertificateInfoButton").disabled = disabled;
+		document.getElementById("selectCertificateInfoExButton").disabled = disabled;
+				
+//		document.getElementById("useInternalSignCheckBox").disabled = disabled;
+		document.getElementById("addCertToInternalSignCheckBox").disabled = disabled;
+//		document.getElementById("useRawSignCheckBox").disabled = disabled;
+//		document.getElementById("signHashCheckBox").disabled = disabled;
+//		document.getElementById("addParamsToHashCheckBox").disabled = disabled;
+		document.getElementById("useExtendedSignInfoCheckBox").disabled = disabled;
+		document.getElementById("verifyButton").disabled = disabled;
+		document.getElementById("verifySignaturesButton").disabled = disabled;
+		document.getElementById("signerCertButton").disabled = disabled;
+		document.getElementById("verifyFileButton").disabled = disabled;
+		document.getElementById("verifySignaturesFileButton").disabled = disabled;
+		document.getElementById("signerFileCertButton").disabled = disabled;
+//		document.getElementById("verifyWebFileButton").disabled = disabled;
+		document.getElementById("filesToSign0").disabled = disabled;
+		
+//		document.getElementById("useOwnGUI").disabled = disabled;
+		document.getElementById("useOfflineMode").disabled = disabled;
+		
+//		document.getElementById("exportCertificateButton").disabled = disabled;
+		document.getElementById("importCertificateButton").disabled = disabled;
+//		document.getElementById("importFullCRLButton").disabled = disabled;
+//		document.getElementById("importDeltaCRLButton").disabled = disabled;
+		document.getElementById("importCertificatesButton").disabled = disabled;		
+		document.getElementById("checkCertificateButton").disabled = disabled;
+		document.getElementById("updateCertificateStoreButton").disabled = disabled;
+	
+		document.getElementById("readPKeyButton").disabled = disabled;
+		document.getElementById("readPKeyAsBinaryButton").disabled = disabled;
+//		document.getElementById("readPKeyAsFileButton").disabled = disabled;	
+		
+//		document.getElementById("genPKButton").disabled = disabled;
+//		document.getElementById("destroyPrivateKeyButton").disabled = disabled;
+//		document.getElementById("changePKPasswordButton").disabled = disabled;
+//		document.getElementById("backupPrivateKeyButton").disabled = disabled;
+		
+//		document.getElementById("findCertificateByEmailButton").disabled = disabled;
+//		document.getElementById("findCertificateByNBUCodeButton").disabled = disabled;
+		
+//		document.getElementById("useDynamicKeysCheckBox").disabled = disabled;
+//		useDynamicKeysCheckBoxClick();
+	}
+
+//=============================================================================
+	
+	function setSettings() {
+		var euSettingsForm = EUSettingsForm(frameHeight, frameWidth, 200, 650);
+		euSettingsForm.ShowForm();
+	}
+
+//-----------------------------------------------------------------------------
+
+	function setDefaultSettings() {
+		if (!confirm("Налаштування бібліотеки будуть встановлені за замовчуванням. Продовжити?")) {
+			return;
+		}
+				
+		var fileStorageSetting = euSign.CreateFileStoreSettings();
+		euSign.SetFileStoreSettings(fileStorageSetting);
+		
+		var proxySettings = euSign.CreateProxySettings();
+		euSign.SetProxySettings(proxySettings);
+		  
+		var OCSPSettings = euSign.CreateOCSPSettings();
+		euSign.SetOCSPSettings(OCSPSettings);
+
+		var TSPSettings = euSign.CreateTSPSettings();
+		euSign.SetTSPSettings(TSPSettings);
+		
+		var LDAPSettings = euSign.CreateLDAPSettings();
+		euSign.SetLDAPSettings(LDAPSettings);
+		
+		var CMPSettings = euSign.CreateCMPSettings();
+		euSign.SetCMPSettings(CMPSettings);
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function changeUIMode() {
+			euSign.SetUIMode(false);
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function changeModeSettings() {
+		var modeSettings = euSign.CreateModeSettings();
+		modeSettings.SetOfflineMode(document.getElementById("useOfflineMode").checked);
+		euSign.SetModeSettings(modeSettings);
+	}
+
+//=============================================================================
+
+	function showCertificates() {
+		var euCertificatesForm = EUCertificatesForm(frameHeight, frameWidth, 400, 600);
+		euCertificatesForm.ShowForm("Сертифікати", "CertificatesType.CertTypeAll");
+	}
+
+//-----------------------------------------------------------------------------
+
+	function showCRLs() {
+		var euCRLsForm = EUCRLsForm(frameHeight, frameWidth, 400, 600);
+		euCRLsForm.ShowForm();
+	}
+
+//-----------------------------------------------------------------------------
+
+	function selectCertificateInfo() {
+		var euCertificatesForm = EUCertificatesForm(frameHeight, frameWidth, 400, 600);
+		euCertificatesForm.SelectCertificate("Сертифікати користувача", 
+			"CertificatesType.CertTypeEndUser", 
+			function(ownerInfo){showCertInfo(ownerInfo, false);},
+			function(){alert("Операція відмінена користувачем")});
+	}
+	
+//-----------------------------------------------------------------------------
+
+	function selectCertificateInfoEx() {
+		var euCertificatesForm = EUCertificatesForm(frameHeight, frameWidth, 400, 600);
+		euCertificatesForm.SelectCertificate("Сертифікати користувача", 
+			"CertificatesType.CertTypeEndUser", 
+			function(ownerInfo){showCertInfo(euSign.GetCertificateInfoEx(ownerInfo.GetIssuer(), ownerInfo.GetSerial()), true);},
+			function(){alert("Операція відмінена користувачем")});
+	}
+
+//=============================================================================
+	
+	function importCertificate() {
+		try {
+			var fileName = euSign.SelectFile(true, "");
+			if(fileName == "")
+				return;
+			var certData = euSign.ReadFile(fileName);
+			euSign.SaveCertificate(certData);
+		} catch(e) {
+			showException(e);
+		}
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function importCertificates() {
+		try {
+			var fileName = euSign.SelectFile(true, "");
+			if(fileName == "")
+				return;
+			var certData = euSign.ReadFile(fileName);
+			euSign.SaveCertificates(certData);
+		} catch(e) {
+			showException(e);
+		}
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function checkCertificate() {		
+		var euCertificatesForm = EUCertificatesForm(frameHeight, frameWidth, 400, 600);
+		euCertificatesForm.SelectCertificate("Сертифікати користувача", 
+			"CertificatesType.CertTypeEndUser", 
+			function(ownerInfo){
+			 try {
+				var certData = euSign.GetCertificate(ownerInfo.GetIssuer(), 
+				ownerInfo.GetSerial());
+				euSign.CheckCertificate(certData);
+				alert("Сертифікат успішно перевірено");
+				} catch(e) {
+					showException(e);					
+				}},
+			function(){alert("Операція відмінена користувачем")});
+	}
+
+//-----------------------------------------------------------------------------
+
+	function updateCertificateStore() {
+		var reload = confirm("Перечитати повністю сертифікати та СВС в файловому сховищі?");
+		euSign.RefreshFileStore(reload);
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function getTodayDateString() {
+		//dd/MM/yyyy HH:mm:ss
+		var today = new Date()
+		
+		var dd = today.getDate();
+		var MM = today.getMonth() + 1;
+		var yyyy = today.getFullYear();
+		var HH = today.getHours();
+		var mm = today.getMinutes();
+		var ss = today.getSeconds();
+
+		return  dd + "/" + MM + "/" + yyyy + " " + HH + ":" + mm + ":" + ss;
+	}
+
+
+//=============================================================================
+	
+	function configPrivateKeyButtons(disabled) {
+		document.getElementById("signButton").disabled = disabled;
+		document.getElementById("addSignButton").disabled = disabled;
+		document.getElementById("signFileButton").disabled = disabled;
+//		document.getElementById("addSignFileButton").disabled = disabled;		
+//		document.getElementById("signWebFileButton").disabled = disabled;
+		
+//		document.getElementById("showOwnCertButton").disabled = 
+//			document.getElementById("useOwnGUI").checked ? "disabled" : disabled;
+		
+//		document.getElementById("exportOwnCertButton").disabled = disabled;
+		document.getElementById("enumOwnCertButton").disabled = disabled;
+
+//		document.getElementById("envelopButton").disabled = disabled;
+//		document.getElementById("developButton").disabled = disabled;
+		
+//		document.getElementById("encryptFileButton").disabled = disabled;
+//		document.getElementById("decryptFileButton").disabled = disabled;
+		
+//		document.getElementById("initSessionButton").disabled = disabled;
+//		document.getElementById("testSessionButton").disabled = disabled;	
+//		document.getElementById("loadUserSessionButton").disabled = disabled;
+//		document.getElementById("loadServerSessionButton").disabled = disabled;
+				
+//		document.getElementById("testSignDataButton").disabled = disabled;
+				
+//		configEnvelopCheckBoxes(disabled);
+	}
+	
+//-----------------------------------------------------------------------------
+	
+	function readKey() {
+		var euReadPKForm = EUReadPKForm(frameHeight, frameWidth, 300, 330);
+		euReadPKForm.ShowForm( 
+			function(deviceType, deviceName, password) {
+						try {
+							euSign.ResetOperation();
+							euSign.ResetPrivateKey();
+							euSign.ReadPrivateKeySilently(parseInt(deviceType, 10), parseInt(deviceName, 10), password); 
+							configPrivateKeyButtons(""); 
+						} catch(e)  {
+							showException(e);
+							configPrivateKeyButtons("disabled");
+						}
+					},
+			function() {configPrivateKeyButtons("disabled");}, 
+			null, 
+			"Зчитування особистого <br> ключа");
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function readKeyAsBinary() {
+		try {				
+				var fileName = euSign.SelectFile(true, "");
+				if(fileName == "")
+					return;
+					
+				var keyData = euSign.ReadFile(fileName);
+				var password = prompt("Пароль доступу до носія:", "");
+				if(password == "" || password == null)
+					return;
+					
+				euSign.ResetOperation();
+				euSign.ResetPrivateKey();
+				euSign.ReadPrivateKeyBinary(keyData, password);
+				
+				configPrivateKeyButtons("");
+			} catch (e) {
+				showException(e);
+				configPrivateKeyButtons("disabled");
+			}
+	}
+	
+//-----------------------------------------------------------------------------
+	
+//-----------------------------------------------------------------------------
+	
+//	function showOwnCert() {
+//		euSign.ShowOwnCertificate();
+//	}
+
+//-----------------------------------------------------------------------------
+	
+
+//-----------------------------------------------------------------------------
+	
+	function enumOwnCert() {
+		try {
+			var index = 0; 
+			var certStrings = "";
+			while(true) {
+				var certInfoEx = euSign.EnumOwnCertificates(index);
+				if(certInfoEx == null || certInfoEx == ""){alert("breaking");
+					break;}
+				certStrings += "Власний сертифікат користувача № " + (index + 1) + "\n";
+				certStrings += "Серійний номер: " + certInfoEx.GetSerial() + "\n";
+				certStrings += "Призначення: " + certInfoEx.GetKeyUsage() + "\n";
+				if(certInfoEx.GetPublicKeyType() == euSign.CERT_KEY_TYPE_DSTU4145){
+					certStrings += "Алгоритм відкритого ключа: ДСТУ-4145(2002)\n";
+				}
+				else if(certInfoEx.GetPublicKeyType() == euSign.CERT_KEY_TYPE_RSA){
+					certStrings += "Алгоритм відкритого ключа: RSA("+ certInfoEx.GetPublicKeyBits() +" біт(а))\n";
+				}
+				else {
+					certStrings += "Алгоритм відкритого ключа: не визначено\n";
+				}
+				                
+				certStrings += "\n------------------------------------------------------------------------------\n\n";
+				index++;
+			}
+			alert(certStrings);
+		} catch(e) {
+			showException(e);
+		}
+	}
+	
+//-----------------------------------------------------------------------------
+
+
+//=============================================================================
+
+	function isPrivateKeyHardware(deviceType, deviceName, password) {
+		return euSign.IsHardwareKeyMedia(parseInt(deviceType, 10), parseInt(deviceName, 10), password);
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function isPrivateKeyExists(deviceType, deviceName, password) {
+		return euSign.IsPrivateKeyExists(parseInt(deviceType, 10), parseInt(deviceName, 10), password);
+	}
+	
+//=============================================================================
+	
+//-----------------------------------------------------------------------------
+
+	
+//=============================================================================
+	
+	function signForm() {
+		var data = document.getElementById("edtText").value + "";
+		var addCert = document.getElementById("addCertToInternalSignCheckBox").checked;
+		
+		try {
+			document.getElementById("Signature").value = euSign.SignInternal(addCert, data);
+		} catch (e) {
+			showException(e);
+			euSign.ResetOperation();
+		}
+	}
+
+//-----------------------------------------------------------------------------
+
+	function addSignForm() {
+		var signature = document.getElementById("Signature").value;
+		var data = document.getElementById("edtText").value + "";
+		var addCert = document.getElementById("addCertToInternalSignCheckBox").checked;
+		
+		if(signature == '') {
+			alert("Підпис для додавання підпису відсутний");
+			return;
+		}
+		
+		if (document.getElementById("useRawSignCheckBox").disabled == "" &&
+			document.getElementById("useRawSignCheckBox").checked == true) {
+				alert("Додавання підпису до простого підпису не підтримується");
+				return;
+		} 
+		
+		try {
+			if(euSign.IsAlreadySigned(signature)) {
+				alert("Дані вже підписані особистим ключем користувача");
+				return;
+			}
+		} catch(e) {
+			showException(e);
+		}
+	
+		try {
+				document.getElementById("Signature").value = euSign.AppendSignInternal(addCert, signature);
+		} catch (e) {
+			showException(e);
+			euSign.ResetOperation();
+		}
+	}
+
+//-----------------------------------------------------------------------------
+
+	function verifyForm() {
+		var data = document.getElementById("edtText").value + "";
+		var signature = document.getElementById("Signature").value;
+//		var useOwnGUI = document.getElementById("useOwnGUI").checked;
+		var showSignInfo = document.getElementById("useExtendedSignInfoCheckBox").checked;
+		
+		try {
+			if (showSignInfo) {
+				signInfo = euSign.VerifyInternal(signature);
+				showSignerInfo(signInfo);
+			} else {
+				data = euSign.VerifyInternalString(signature, false);
+				alert("Перевірені дані: " + data);
+			}
+		} catch (e) {
+			showException(e);
+			euSign.ResetOperation();
+		}
+	}
+
+//-----------------------------------------------------------------------------
+
+	function verifyFormSignatures() {
+		var data = document.getElementById("edtText").value + "";
+		var signature = document.getElementById("Signature").value;
+//		var useOwnGUI = document.getElementById("useOwnGUI").checked;
+		var showSignInfo = document.getElementById("useExtendedSignInfoCheckBox").checked;
+		
+		if (document.getElementById("useRawSignCheckBox").disabled == "" &&
+			document.getElementById("useRawSignCheckBox").checked == true) {
+				alert("Мультипідпис для простого підпису не підтримується");
+			return;
+		} 
+			
+		try {		
+			var count = euSign.GetSignsCount(signature);
+			
+			for(var i = 0; i < count; i++) {
+				if (showSignInfo) {
+					signInfo = euSign.VerifySpecificInternal(signature, i);
+					showSignerInfo(signInfo);
+				} else {
+					data = euSign.VerifySpecificInternalString(signature, i, false);
+					alert("Перевірені дані: " + data);
+				}
+			}
+
+		} catch (e) {
+			showException(e);
+			euSign.ResetOperation();
+		}
+	}
+	
+//-----------------------------------------------------------------------------
+
+	function showSignerCert() {
+		var signature = document.getElementById("Signature").value;
+		
+		if(signature == '') {
+			alert("Підпис відсутній");
+			return;
+		}
+		
+		try {
+			var certData = euSign.GetSignerCertificate(0, signature);
+			var fileName = euSign.SelectFile(false, "cert.cer");
+			if(fileName == "")
+				return;
+			euSign.WriteFile(fileName, certData);
+		} catch (e) {
+			showException(e);
+		}
+	}	
+	
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+	
+	function signFile() {
+		var i = 0;
+		try {
+			for (i=0; i<4; i++){
+				if (document.forms.formEndUserSign.filesToSign[i].value != "") {
+					obj = document.forms.formEndUserSign.filesToSign[i];
+
+//					euSign.SignFile(
+//							obj.value, obj.value + ".p7s",
+//							!document.getElementById(
+//							"useInternalSignCheckBox").checked);
+
+					euSign.SignFile(
+							obj.value, obj.value + ".p7s",
+							false);
+
+					alert("Файл з підписом: " + obj.value + ".p7s");
+				}
+			}
+		} catch (e) {
+			showException(e);
+		}
+	}
+
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+
+	function verifyFile() {
+		var i = 0;
+		try {
+			for (i=0; i<4; i++){
+				if (document.forms.formEndUserSign.filesToSign[i].value != "") {
+					obj = document.forms.formEndUserSign.filesToSign[i];
+
+					if (document.getElementById(
+						"useExtendedSignInfoCheckBox").checked == true) {
+						signInfo = euSign.VerifyFileWithInternalSign(
+								obj.value, obj.value + ".new");
+
+						showSignerInfo(signInfo);
+					} else {
+						euSign.VerifyFileWithInternalSign(
+							obj.value, obj.value + ".new", true);
+					}
+				}
+			}
+		} catch (e) {
+			showException(e);
+		}
+	}
+
+//-----------------------------------------------------------------------------
+
+	function verifyFileSignatures() {
+		
+//		var useOwnGUI = document.getElementById("useOwnGUI").checked;
+		var showSignInfo = document.getElementById("useExtendedSignInfoCheckBox").checked;
+		
+		var i = 0;
+		try {
+			for (i=0; i<4; i++){
+				if (document.forms.formEndUserSign.filesToSign[i].value != "") {
+					obj = document.forms.formEndUserSign.filesToSign[i];
+					var count = euSign.GetFileSignsCount(obj.value);
+						
+					for(var signInd = 0; signInd < count; signInd++) {
+						if (showSignInfo) {
+							signInfo = euSign.VerifyFileWithInternalSignSpecific(signInd,
+								obj.value, obj.value + ".new");
+							showSignerInfo(signInfo);
+						} else {
+//							euSign.VerifyFileWithInternalSignSpecific(signInd,
+//								obj.value, obj.value + ".new", !useOwnGUI);
+//							if(useOwnGUI)
+//								alert("Підпис успішно перевірено");
+
+							euSign.VerifyFileWithInternalSignSpecific(signInd,
+								obj.value, obj.value + ".new", false);
+							alert("Підпис успішно перевірено");
+						}
+					}
+				}
+			}
+		} catch (e) {
+			showException(e);
+		}
+	}
+
+//-----------------------------------------------------------------------------
+
+	function showFileSignerCert() {
+		var obj = document.forms.formEndUserSign.filesToSign[0];
+		if(obj.value == '') {
+			alert("Відсутній файл з підписом");
+			return;
+		}
+		
+		try {
+			
+			var certData = euSign.GetFileSignerCertificate(0, obj.value);
+			var fileName = euSign.SelectFile(false, "cert.cer");
+			if(fileName == "")
+				return;
+			euSign.WriteFile(fileName, certData);
+		} catch (e) {
+			showException(e);
+		}
+	}	
+	
+//=============================================================================
+	
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+	function resetForm() {
+		document.getElementById("edtText").value = "";
+		document.getElementById("Signature").value = "";
+		if (euSign.IsInitialized()) 
+			euSign.ResetOperation();
+	}
+
+//=============================================================================
+//added 20130719
+
+
+
+	function jsonForm() {
+		$send = document.getElementById("Signature").value;
+		$.ajax({
+		  type: 'POST',
+		  url: 'ajax1.php',
+		  data: 'name='+btoa($send),
+		  success: function(data){
+		    $('.results').html(data);
+//		    alert(data.nameq);
+			alert("Результат перевірки: " + data.len);
+		$leng = data.nameq.length;
+		alert($leng);
+		  }
+		});
+	};
+
+	
+
+//=============================================================================
+
+	
+//-----------------------------------------------------------------------------
+
+		
+//=============================================================================
+
+	var inputBrowse = 1; 
+	var checkedMajore = 0; 
+	function showFileBrowse() {
+		var layer0Obj = document.getElementById('orderlayer'); 
+		var layer1Obj = document.getElementById('inputpanel1'); 
+		var layer2Obj = document.getElementById('inputpanel2'); 
+		var layer3Obj = document.getElementById('inputpanel3'); 
+		switch (inputBrowse) {
+			case 1:
+
+				layer0Obj.style.height='180px';layer1Obj.style.height='25px';layer1Obj.style.visibility='visible';layer2Obj.style.height='1px';layer2Obj.style.visibility='hidden';layer3Obj.style.height='1px';layer3Obj.style.visibility='hidden';document.forms.formEndUserSign.filesToSign[2].value="";document.forms.formEndUserSign.filesToSign[3].value="";inputBrowse=2;
+				break; 
+			case 2: 
+				layer0Obj.style.height='205px';layer1Obj.style.height='25px';layer1Obj.style.visibility='visible';layer2Obj.style.height='25px';layer2Obj.style.visibility='visible';layer3Obj.style.height='1px';layer3Obj.style.visibility='hidden';document.forms.formEndUserSign.filesToSign[3].value="";inputBrowse=3; 
+				break; 
+			case 3: 
+				layer0Obj.style.height='230px';layer1Obj.style.height='25px';layer1Obj.style.visibility='visible';layer2Obj.style.height='25px';layer2Obj.style.visibility='visible';layer3Obj.style.height='25px';layer3Obj.style.visibility='visible';inputBrowse=4; 
+				break; 
+			case 4: 
+				break;
+			default: 
+				layer0Obj.style.height='160px';layer1Obj.style.height='1px';layer1Obj.style.visibility='hidden';layer2Obj.style.height='1px';layer2Obj.style.visibility='hidden';layer3Obj.style.height='1px';layer3Obj.style.visibility='hidden';document.forms.formEndUserSign.filesToSign[1].value="";document.forms.formEndUserSign.filesToSign[2].value="";document.forms.formEndUserSign.filesToSign[3].value="";inputBrowse=1;
+				break; 
+		}
+	}
+
+//-----------------------------------------------------------------------------
+	
+	function selectFileBrowse(fileEdit)
+	{
+		var fileName = euSign.SelectFile(true, "");
+		if(fileName == "")
+			return;
+		document.getElementById(fileEdit).value = fileName;
+	}
+//-----------------------------------------------------------------------------
+	
+	function hideFileBrowse() {
+		switch (inputBrowse) {
+			case 2: 
+				inputBrowse = 0; 
+				break; 
+			case 3: 
+				inputBrowse = 1; 
+				break; 
+			case 4: 
+				inputBrowse = 2; 
+				break; 
+			default: 
+				inputBrowse = 0; 
+				break; 
+		}
+		showFileBrowse(); 
+	}
+
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+//=============================================================================
+
+	
+//-----------------------------------------------------------------------------
+//=============================================================================
+	
+//-----------------------------------------------------------------------------
+
+//=============================================================================
+
+$(document).ready(initialize());
+if (!navigator.javaEnabled()) 
+alert("no Java");
+
+</script> 
+</html>

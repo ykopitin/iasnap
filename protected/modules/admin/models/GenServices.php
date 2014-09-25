@@ -23,7 +23,7 @@
  *
  * The followings are the available model relations:
  * @property CabPromotingBids[] $cabPromotingBids
- * @property GenServCon[] $genServCons
+ * @property GenServCatClass[] $genServCatClasses
  * @property GenServDocum[] $genServDocums
  * @property GenServRegulations[] $genServRegulations
  * @property GenAuthorities $subjnap
@@ -46,14 +46,14 @@ class GenServices extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, subjnap_id, regulations, reason, submission_proc, docums, is_payed, deadline, result, answer, is_online', 'required'),
-			array('subjnap_id, is_payed', 'numerical', 'integerOnly'=>true),
+			array('name, subjnap_id, subjwork_id, regulations, reason, submission_proc, docums, is_payed, deadline, result, answer, is_online', 'required'),
+			array('subjnap_id, subjwork_id, is_payed', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('is_online', 'length', 'max'=>6),
 			array('payed_regulations, payed_rate, bank_info, denail_grounds', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, subjnap_id, regulations, reason, submission_proc, docums, is_payed, payed_regulations, payed_rate, bank_info, deadline, denail_grounds, result, answer, is_online', 'safe', 'on'=>'search'),
+			array('id, name, subjnap_id, subjwork_id,regulations, reason, submission_proc, docums, is_payed, payed_regulations, payed_rate, bank_info, deadline, denail_grounds, result, answer, is_online', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,10 +66,11 @@ class GenServices extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'cabPromotingBids' => array(self::HAS_MANY, 'CabPromotingBids', 'services_id'),
-			'genServCons' => array(self::HAS_MANY, 'GenServCon', 'service_id'),
+			'genServCatClasses' => array(self::HAS_MANY, 'GenServCatClass', 'service_id'),
 			'genServDocums' => array(self::HAS_MANY, 'GenServDocum', 'service_id'),
 			'genServRegulations' => array(self::HAS_MANY, 'GenServRegulations', 'service_id'),
 			'subjnap' => array(self::BELONGS_TO, 'GenAuthorities', 'subjnap_id'),
+			'subjnapw' => array(self::BELONGS_TO, 'GenAuthorities', 'subjwork_id'),
 		);
 	}
 
@@ -81,7 +82,8 @@ class GenServices extends CActiveRecord
 		return array(
 			'id' => '№ з/п',
 			'name' => 'Назва послуги',
-			'subjnap_id' => 'ID суб’єкта НАП',
+			'subjnap_id' => 'Місце подачі документів',
+			'subjwork_id'=>'Виконавець',
 			'regulations' => 'Нормативно-правові акти',
 			'reason' => 'Підстава для отримання',
 			'submission_proc' => 'Порядок подання',
@@ -119,6 +121,7 @@ class GenServices extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('subjnap_id',$this->subjnap_id);
+		$criteria->compare('subjwork_id',$this->subjwork_id);
 		$criteria->compare('regulations',$this->regulations,true);
 		$criteria->compare('reason',$this->reason,true);
 		$criteria->compare('submission_proc',$this->submission_proc,true);

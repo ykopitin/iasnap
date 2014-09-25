@@ -43,6 +43,7 @@ class DefaultController extends Controller
 	public function actionIndex()
 	{
 		$idis=0;
+		$this->layout='//layouts/column1';
 		$this->render('index',array('idis'=>$idis));
 	}
 	
@@ -51,6 +52,7 @@ class DefaultController extends Controller
 		
 		$idis=1;
 		$hname="Управління загальним інтерфейсом порталу";
+		$this->layout='//layouts/column1';
 		$this->render('menus',array('hname'=>$hname,'idis'=>$idis));
 	}
 	
@@ -58,6 +60,7 @@ class DefaultController extends Controller
 	{
 		$idis=2;
 		$hname="Управління послугами";
+		$this->layout='//layouts/column1';
 		$this->render('menus',array('hname'=>$hname,'idis'=>$idis));
 	}
 	
@@ -65,6 +68,7 @@ class DefaultController extends Controller
 	{
 		$idis=3;
 		$hname="Управління користувачами";
+		$this->layout='//layouts/column1';
 		$this->render('menus',array('hname'=>$hname,'idis'=>$idis));
 	}
 	
@@ -72,6 +76,7 @@ class DefaultController extends Controller
 	{
 		$idis=4;
 		$hname="Управління довідниками";
+		$this->layout='//layouts/column1';
 		$this->render('menus',array('hname'=>$hname,'idis'=>$idis));
 	}
 }

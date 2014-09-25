@@ -1,0 +1,151 @@
+<?php
+/* @var $this AuthController */
+/* @var $model RegForm */
+/* @var $form CActiveForm  */
+
+$this->breadcrumbs=array(
+	'Auth',
+);
+?>
+<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
+
+<p>
+	You may change the content of this page by modifying
+	the file <tt><?php echo __FILE__; ?></tt>.
+</p>
+<applet codebase="http://sign.eu.iit.com.ua"
+	code="com.iit.certificateAuthority.endUser.libraries.signJava.EndUser.class"
+	cache_archive="Java.jar"
+	cache_version="1.3.51"
+	archive="EUSignJava.jar"
+	id="euSign"
+	width="100%"
+	height="16">
+</applet>
+                <!--	Елементи opaco та popup необхідні для коректного відображення форми вибору носія закритого ключа та форми параметрів	-->
+                <div id="opaco" class="hidden"></div>
+                <div id="popup" class="hidden"></div>
+
+
+<style type="text/css">
+label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+checkbox {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+</style>
+<script>
+//	Підтримка кодування Base64 всіма браузерами через функцію hybrid_encode. Якщо доступна, буде використовуватись вбудована в браузер функція btoa,
+//	якщо такої функції немає (IE), то використовується функція Base64.encode з файлу auth/base64ie.js
+function hybrid_encode(txt) {
+	if (typeof(btoa) === 'function') {
+		return btoa(txt);
+	} else {
+		return Base64.encode(txt);
+	}
+}
+
+function test_string() {
+//	Скрипт очікує послідовність символів GenerateAuthString як запит на генерування рядку автентифікації
+
+		jQuery.ajaxSetup({
+            xhr: function() {
+                    //return new window.XMLHttpRequest();
+                    try{
+                        if(window.ActiveXObject)
+                            return new window.ActiveXObject("Microsoft.XMLHTTP");
+                    } catch(e) { }
+
+                    return new window.XMLHttpRequest();
+                }
+        });
+		$send = "GenerateAuthString";
+		$send = hybrid_encode($send);
+		var Sign64 = "";
+		
+		jQuery.ajax({
+		  type: 'POST',
+//		  url: 'auth/gen_rstring',
+		  url: <?php echo "'".$this->createUrl('auth/getstring')."'"; ?>,
+//		  contentType: 'application/json; charset=utf-8',
+		  data: { ask: $send},
+		  dataType: 'json',
+		  success: function(data){
+		    $('.results').html(data);
+//	data.randstr містить рядок автентифікації
+			Sign64 = data.randstr;
+			alert(Sign64);
+		  },
+//	Функція, яка виконується, якщо підготовчий обмін даними з сервером не завершився успішно
+		  error: function(data){alert("Неможливо здійснити обмін даними з веб-порталом");}
+		});
+	return false;
+}
+</script>
+
+<div class="form">
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'reg-form',
+	'action' => Yii::app()->createUrl('auth/register'),
+	'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
+)); ?>
+
+	<div class="row">
+		<?php echo $form->hiddenfield($model,'Signature'); ?>
+		<?php echo $form->error($model,'Signature'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->textField($model, 'Email',array('id'=>'Email','placeholder'=>'Електронна пошта')); ?>
+		<?php echo $form->error($model,'Email'); ?>
+	</div>	
+
+	<div class="row">
+		<?php echo $form->textField($model, 'Email2',array('id'=>'Email2','placeholder'=>'Підтвердження електронної пошти')); ?>
+		<?php echo $form->error($model,'Email2'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->telField($model, 'Phone',array('placeholder' => 'Ваш номер телефону','id'=> 'Phone')); ?>
+		<?php echo $form->error($model,'Phone'); ?>
+	</div>
+
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Реєстрація',array('onclick'=>'return regForm_SignIn();')); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+</div><!-- form -->
+
+
+
+
+<input id="OwnCertPath" type="hidden" value="" />
+<input id="clickMe" type="button" value="clickme" onclick="test_string();" />
+<input id="Auth" type="button" value="Auth" onclick="authForm_SignIn();" /><br>
+<div>
+<label><input id="ProxyUse" type="checkbox" />ProxyUse</label><br>
+</div>
+<input id="ProxyName" type="text" value="" /><br>
+<input id="ProxyPort" type="text" value="" /><br>
+<div>
+<label><input id="ProxyAnonymous" type="checkbox" />ProxyUse</label><br>
+</div>
+<input id="ProxyUser" type="text" value="" /><br>
+<input id="ProxyPassword" type="password" value="" /><br>
+<input id="OwnCertPath" type="text" value="" /><br>
+

@@ -13,10 +13,16 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('subjnap_id')); ?>:</b>
-	<?php echo CHtml::encode($data->subjnap_id); ?>
+	<b><?php echo CHtml::encode('Відомості про місце подачі'); ?>:</b>
+	<?php //echo CHtml::encode($data->subjnap_id); ?>
+	<?php echo CHtml::encode(GenAuthorities::model()->find('id=:id', array(':id'=>$data->subjnap_id))->name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode('Відомості про виконавця'); ?>:</b>
+	<?php //echo CHtml::encode($data->subjnap_id); ?>
+	<?php echo CHtml::encode(GenAuthorities::model()->find('id=:id', array(':id'=>$data->subjwork_id))->name); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('regulations')); ?>:</b>
 	<?php echo CHtml::encode($data->regulations); ?>
 	<br />

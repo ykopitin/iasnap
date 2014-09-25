@@ -32,5 +32,5 @@ $this->menu=array(
 	),
 )); ?>
 <?php
-echo $model->text;
+//echo $model->text;
 ?>

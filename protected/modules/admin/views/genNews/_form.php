@@ -4,7 +4,12 @@
 /* @var $form CActiveForm */
 ?>
 
-<script src="ckeditor/ckeditor.js"></script>
+
+<?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
+?>
 
 <div class="form">
 
@@ -41,7 +46,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
+		<?php //echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textArea($model,'title',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
@@ -59,7 +65,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'img'); ?>
-		<?php echo $form->textField($model,'img',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textArea($model,'img',array('rows'=>6, 'cols'=>50)); ?>
+		<?php //echo $form->textField($model,'img',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'img'); ?>
 	</div>
 
@@ -71,7 +78,9 @@
 <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
-                CKEDITOR.replace( 'GenNews[summary]' );
+                CKEDITOR.replace( 'GenNews[title]' );
+				CKEDITOR.replace( 'GenNews[summary]' );
 				CKEDITOR.replace( 'GenNews[text]' );
+				CKEDITOR.replace( 'GenNews[img]' );
 </script>
 </div><!-- form -->

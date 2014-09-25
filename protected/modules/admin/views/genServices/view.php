@@ -26,6 +26,7 @@ $this->menu=array(
 		'id',
 		'name',
 		'subjnap_id',
+		'subjwork_id',
 		'regulations',
 		'reason',
 		'submission_proc',

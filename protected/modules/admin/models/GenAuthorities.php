@@ -50,7 +50,8 @@ class GenAuthorities extends CActiveRecord
 			array('locations_id', 'numerical', 'integerOnly'=>true),
 			array('is_cnap', 'length', 'max'=>8),
 			array('type', 'length', 'max'=>16),
-			array('name, working_time, transport, photo', 'length', 'max'=>255),
+			array('name, transport, photo', 'length', 'max'=>255),
+			array('working_time', 'length', 'max'=>1500),
 			array('index, office', 'length', 'max'=>5),
 			array('street', 'length', 'max'=>50),
 			array('building', 'length', 'max'=>10),
@@ -76,6 +77,7 @@ class GenAuthorities extends CActiveRecord
 			'cabUserInternals' => array(self::HAS_MANY, 'CabUserInternal', 'authorities_id'),
 			'locations' => array(self::BELONGS_TO, 'GenLocations', 'locations_id'),
 			'genServices' => array(self::HAS_MANY, 'GenServices', 'subjnap_id'),
+			'genServicesw' => array(self::HAS_MANY, 'GenServices', 'subjwork_id'),
 		);
 	}
 

@@ -83,7 +83,7 @@ class GenMenuItems extends CActiveRecord
 	public function search()
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
-
+/*
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
@@ -96,6 +96,19 @@ class GenMenuItems extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+*/		
+
+		$users=GenMenuItems::model()->with(array(
+        'genOtherInfos'=>array(
+        'select'=>array('kindOfPublication.id'),
+        'joinType'=>'INNER JOIN',
+        ),
+        ))->findAll();
+
+	    return new CActiveDataProvider($this, array(
+        'data'=>$users,
+        ));
+	
 	}
 
 	/**
