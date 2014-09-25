@@ -9910,3 +9910,143 @@ Stack trace:
 #15 {main}
 REQUEST_URI=/?r=mff
 ---
+2014/09/25 15:33:14 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "/serv/org".' in C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CController->renderPartial('/serv/org', NULL, true)
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#4 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php(10): CController->render('listforms', Array)
+#5 [internal function]: DefaultController->actionIndex(NULL)
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(DefaultController), Array)
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(DefaultController), Object(ReflectionMethod), Array)
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('')
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('mff')
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=mff
+---
+2014/09/25 15:37:38 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "/serv/org".' in C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CController->renderPartial('/serv/org', NULL, true)
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#4 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php(10): CController->render('listforms', Array)
+#5 [internal function]: DefaultController->actionIndex(NULL)
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(DefaultController), Array)
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(DefaultController), Object(ReflectionMethod), Array)
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('')
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('mff')
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=mff
+---
+2014/09/25 15:37:56 [error] [php] trim() expects parameter 1 to be string, array given (C:\Users\prk\Documents\NetBeansProjects\framework\web\CUrlManager.php:297)
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(556): CWebApplication->createUrl()
+#1 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CWebApplication->createAbsoluteUrl()
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require()
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#4 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): DefaultController->renderFile()
+#5 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php(10): DefaultController->render()
+#6 unknown(0): DefaultController->actionIndex()
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): DefaultController->runAction()
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): DefaultController->runActionWithFilters()
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): DefaultController->run()
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=mff
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php (126)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php (10)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/09/25 15:40:28 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "/application/serv/org".' in C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CController->renderPartial('/application/se...', NULL, true)
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#4 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php(10): CController->render('listforms', Array)
+#5 [internal function]: DefaultController->actionIndex(NULL)
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(DefaultController), Array)
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(DefaultController), Object(ReflectionMethod), Array)
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('')
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('mff')
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=mff
+---
+2014/09/25 15:42:00 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "application/serv/org".' in C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CController->renderPartial('application/ser...', NULL, true)
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#4 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php(10): CController->render('listforms', Array)
+#5 [internal function]: DefaultController->actionIndex(NULL)
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(DefaultController), Array)
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(DefaultController), Object(ReflectionMethod), Array)
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('')
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('mff')
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=mff
+---
+2014/09/25 15:42:41 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "application.serv.org".' in C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CController->renderPartial('application.ser...', NULL, true)
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#4 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\modules\mff\controllers\DefaultController.php(10): CController->render('listforms', Array)
+#5 [internal function]: DefaultController->actionIndex(NULL)
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(DefaultController), Array)
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(DefaultController), Object(ReflectionMethod), Array)
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('')
+#12 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('mff')
+#13 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=mff
+---
+2014/09/25 16:17:40 [error] [exception.CException] exception 'CException' with message 'SiteController cannot find the requested view "application/serv/org".' in C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\views\layouts\column2.php(126): CController->renderPartial('application/ser...', NULL, true)
+#1 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(126): require('C:\Users\prk\Do...')
+#2 C:\Users\prk\Documents\NetBeansProjects\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\prk\Do...', Array, true)
+#3 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(784): CBaseController->renderFile('C:\Users\prk\Do...', Array, true)
+#4 C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SiteController.php(32): CController->render('index')
+#5 C:\Users\prk\Documents\NetBeansProjects\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#6 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 C:\Users\prk\Documents\NetBeansProjects\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(282): CController->run('')
+#10 C:\Users\prk\Documents\NetBeansProjects\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#11 C:\Users\prk\Documents\NetBeansProjects\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/index.php?r=mff
+---

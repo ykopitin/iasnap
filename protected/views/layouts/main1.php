@@ -37,7 +37,7 @@
              ?>  </div>
 	<!-- mainmenu --> 
              </td> <td width="35%" bgcolor="#18262A" align="left">   <div id="loginmenu"> 
-             <?
+             <?php
            // echo CHtml::image(Yii::app()->request->baseUrl.'/images/zm.jpg'); 
              $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(	

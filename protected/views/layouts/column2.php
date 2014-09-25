@@ -123,7 +123,7 @@ else
           
            $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
-        "<span id='qwqw' style='color:white'>ОРГАНІЗАЦІЯМ</span>"=>$this->renderPartial('/serv/org', null,true),
+        "<span id='qwqw' style='color:white'>ОРГАНІЗАЦІЯМ</span>"=>$this->renderPartial('application/serv/org', null,true),
         
             ),
     
@@ -145,7 +145,7 @@ else
  $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
       
-        "<span id='qwqw' style='color:white'>ГРОМАДЯНАМ</span>"=>$this->renderPartial('/serv/grom', null,true),
+        "<span id='qwqw' style='color:white'>ГРОМАДЯНАМ</span>"=>$this->renderPartial(YiiBase::app()->createAbsoluteUrl(array('/serv/grom')), null,true),
             ),
     
     'options'=>array(

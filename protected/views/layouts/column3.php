@@ -1,5 +1,5 @@
 <?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
+<?php $this->beginContent('//layouts/main1'); ?>
 <div class="span-19">
 	<div id="content">
 		<?php echo $content; ?>
@@ -14,6 +14,7 @@
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>$this->menu,
 			'htmlOptions'=>array('class'=>'operations'),
+                        'encodeLabel'=>FALSE,
 		));
 		$this->endWidget();
 	?>
