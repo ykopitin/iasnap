@@ -23,7 +23,7 @@
         } 
         else {echo "<br><br>";}
          ?>
-	</div><?
+	</div><?php
 //$this->breadcrumbs=array(
 //	GenServClasses::model()->findByPk($_GET['class'])->item_name=>array('/serv'),
 //	GenServCategories::model()->findByPk(GenCatClasses::model()->findByPk($_GET['servid'])->categorie_id)->name,
@@ -36,11 +36,11 @@
 
 
      
-<?
+<?php
   if (isset($_GET['class']) ) 
   {
    
- ?><div id="org" class="mmm">  <?  
+ ?><div id="org" class="mmm">  <?php  
    if ($_GET['class']=='1'){
    
       $this->widget('zii.widgets.jui.CJuiAccordion',array(
@@ -59,7 +59,7 @@
 	            ),
 )); 
 
-?></div><div id="grom" class="mmm">  <?  
+?></div><div id="grom" class="mmm">  <?php  
  $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
       "<span id='qwqw' style='color:white'>ГРОМАДЯНАМ</span>"=>$this->renderPartial('/serv/grom', null,true),
@@ -75,12 +75,12 @@
 	            ),
 ));
 
-?></div> <?  
+?></div> <?php  
 }
    
    
     if ($_GET['class']=='2'){
-   ?><div id="org" class="mmm">  <?  
+   ?><div id="org" class="mmm">  <?php  
         $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
         "<span id='qwqw' style='color:white'>ОРГАНІЗАЦІЯМ</span>"=>$this->renderPartial('/serv/org', null,true),
@@ -97,7 +97,7 @@
 	            ),
 ));
      
-     ?></div><div id="grom" class="mmm">  <?  
+     ?></div><div id="grom" class="mmm">  <?php  
      
         $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
@@ -115,11 +115,11 @@
 	            ),
 ));
 
-?></div> <?  
-}  }
+?></div> <?php  
+  }  }
 else 
     {
-          ?><div id="org" class="mmm">  <?  
+          ?><div id="org" class="mmm">  <?php  
           
            $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
@@ -141,7 +141,7 @@ else
 	            ),
 ));
 
-?></div><div id="grom" class="mmm">  <?  
+?></div><div id="grom" class="mmm">  <?php  
  $this->widget('zii.widgets.jui.CJuiAccordion',array(
     'panels'=>array(
       
@@ -156,7 +156,7 @@ else
     'autoHeight'=>false,
      
 	            ),
-));?></div> <?  
+));?></div> <?php  
 }
    
      ?> </div> 

@@ -46,7 +46,7 @@
  
 ?>
 <div id='mainTabs'>
-<?
+<?php
  $this->widget('CTabView',array(
     //'activeTab'=>'tab2',
     'tabs'=>array(
@@ -78,18 +78,18 @@
     )
 ));
   
-?> </div> <?  
+?> </div> <?php  
 //  Yii::app()->controller->renderPartial('//../modules/user/views/user/login'
   
   
 ?>
 
-<?
+<?php
  if (GenServices::model()->findByPk($_GET['param'])->is_online=='так')
 {
 ?>
 <table width="200px"><tr><td><div id="otonline"><a href="#">ОТРИМАТИ ПОСЛУГУ ></a></div></td></tr></table>
-<?
+<?php
 }}
 
 
@@ -102,7 +102,7 @@ if (isset($_GET['param']) && !isset($_GET['servid']) ){
  
 
 echo '<div id=searchserv>';
- ?><< <a href="#" onclick="history.back();">Назад</a><br /><br /><?
+ ?><< <a href="#" onclick="history.back();">Назад</a><br /><br /><?php
 echo '<div id=posname><img src="http://allium2.soborka.net/iasnap/images/str.png">&nbsp;'.GenServices::model()->findByPk($_GET['param'])->name.'</div>';
     
  /*       
@@ -125,7 +125,7 @@ echo '<div id=posname><img src="http://allium2.soborka.net/iasnap/images/str.png
  
 ?>
 <div id='mainTabs'>
-<?
+<?php
  $this->widget('CTabView',array(
     //'activeTab'=>'tab2',
     'tabs'=>array(
@@ -157,19 +157,20 @@ echo '<div id=posname><img src="http://allium2.soborka.net/iasnap/images/str.png
     )
 ));
   
-?> </div> <?  
+?> </div> <?php  
 //  Yii::app()->controller->renderPartial('//../modules/user/views/user/login'
   
   
 ?>
 
-<?
+<?php
  if (GenServices::model()->findByPk($_GET['param'])->is_online=='так')
 {
 ?>
 <table width="200px"><tr><td><div id="otonline"><a href="#">ОТРИМАТИ ПОСЛУГУ ></a></div></td></tr></table>
-<?
+<?php
 }
-?></div><?
+?></div><?php
 }
 ?>
+

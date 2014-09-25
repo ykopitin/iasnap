@@ -10,7 +10,7 @@ return array(
 	'name'=>'Інформаційно-аналітична система надання адміністративних послуг',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+        'preload'=>array('log'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -27,6 +27,7 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
 		),
+                'mff'=>array()
 		/**/
 	),
 
@@ -39,15 +40,15 @@ return array(
 		),
 		// uncomment the following to enable URLs in path-format
 		
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'1'=>'site/contact',
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
+//		'urlManager'=>array(
+//			'urlFormat'=>'path',
+//			'rules'=>array(
+//				'1'=>'site/contact',
+//				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+//				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+//				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+//			),
+//		),
 		
 		/*
 		'db'=>array(

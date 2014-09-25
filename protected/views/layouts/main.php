@@ -59,8 +59,7 @@ $(function(){
  $dat = ddmenu($data);
  
  
-   
-   $this->widget('ext.cssmenu.CssMenu',array(
+ $this->widget('ext.cssmenu.CssMenu',array(
 			'items'=>$dat));
    
     
@@ -68,7 +67,7 @@ $(function(){
              ?>  </div>
 	<!-- mainmenu --> 
              </td> <td width="35%" bgcolor="#18262A" align="left">   <div id="loginmenu"> 
-             <?
+             <?php
            // echo CHtml::image(Yii::app()->request->baseUrl.'/images/zm.jpg'); 
              $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(	
@@ -106,7 +105,7 @@ $(function(){
 
 
 				<ul id="ticker01">
-						<? $rows=GenNews::model()->lastnews();
+						<?php $rows=GenNews::model()->lastnews();
 foreach($rows as $row) {
   
 	echo '<li><b>'.Yii::app()->dateFormatter->format("dd MMMM yyyy", $row['publicationDate']);
@@ -157,7 +156,7 @@ foreach($rows as $row) {
 		<td colspan="3"><h3>Новини порталу</h3></td>
 	</tr>
 	<tr>
-<? $rows=GenNews::model()->lastnews();
+<?php $rows=GenNews::model()->lastnews();
 foreach($rows as $row) {
      echo '<td width=33% valign=top><table>';   
 	echo '<tr><td ><b><font color=#16bae9>'.Yii::app()->dateFormatter->format("dd MMMM yyyy", $row["publicationDate"]).'</font></b></td></tr>';
@@ -207,7 +206,8 @@ foreach($rows as $row) {
 		<table background="<?php echo Yii::app()->baseUrl; ?>/images/but_z.jpg" width="100%" height="20"><tr><td ></td></tr></table>
 	<table ><tr><td ><div id="mainmenu">
 
-		<?php      
+		<?php   
+                    //var_dump($dat);
    $this->widget('ext.cssmenu.CssMenu',array(
 			'items'=>$dat));
                 

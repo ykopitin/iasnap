@@ -10,15 +10,15 @@ $rows=GenServCatClass::model()->getIdService($_GET['servid']);
 if (!empty($rows)){
 ?>
 <h3>Послуги:</h3>
-<font size=3 color="black">
 <div id="poslugy">
-<?
+<font size=3 color="black">
+<?php
 }
 else 
 {
 echo "Нажаль послуг за обраною категорією ще нема.";
 }
-?><ol><table><?
+?><ol><table><?php
 foreach($rows as $row) {
     
      if (GenServices::model()->findByPk($row)->is_online=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
@@ -29,7 +29,7 @@ foreach($rows as $row) {
        
          }
         
-?></table></ol><?
+?></table></ol><?php
 
 
 //echo 
@@ -38,8 +38,8 @@ foreach($rows as $row) {
          
         
 
-?></div>
-</font>
+?></font></div>
 
-<?} else {echo "Оберіть категорію";}?>
+
+<?php } else {echo "Оберіть категорію";}?>
 
