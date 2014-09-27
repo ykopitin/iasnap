@@ -27,7 +27,9 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
 		),
-                'mff'=>array()
+                'mff'=>array( // Модуль свободных форм
+                    'enableprotected'=>TRUE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
+                )
 		/**/
 	),
 
