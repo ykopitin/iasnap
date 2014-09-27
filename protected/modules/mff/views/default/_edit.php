@@ -6,16 +6,23 @@
  * and open the template in the editor.
  */
 $formregistry = FFRegistry::model()->findByPk($id);
-$this->beginWidget("zii.widgets.jui.CJuiDialog",
+$target_save = 'window.location='."'".$this->createUrl('default/index')."'";
+$target_close = 'window.location='."'".$this->createUrl('default/index',array("parentid"=>$id))."'";
+$dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
         array( 'options' => 
             array(
                 'title' => 'Изменить форму ID:'.$id,
                 'modal' => true,
                 'resizable'=> true,
                 'width'=>"60%",
+                'buttons' => array(
+                    array('text'=>'Сохранить','click'=> ('js:function(){'.$target_save.';}')),
+                    array('text'=>'Отменить','click'=> ('js:function(){'.$target_close.';}')),
+    )
             )
         )
 );
+
 $form=$this->beginWidget("CActiveForm");
 ?>
 <table>
@@ -63,8 +70,5 @@ $this->widget("zii.widgets.ClistView", array(
 ?>
 </td></tr></table>
 <?php 
-echo CHtml::submitButton('Добавить поле')."<br />";
-echo CHtml::submitButton('Сохранить');
-echo CHtml::submitButton('Отменить');
 $this->endWidget();
 $this->endWidget("zii.widgets.jui.CJuiDialog");

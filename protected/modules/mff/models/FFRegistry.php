@@ -33,12 +33,12 @@ class FFRegistry extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('tablename', 'required'),
-			array('parent, protected', 'numerical', 'integerOnly'=>true),
+			array('parent, protected, attaching, copying', 'numerical', 'integerOnly'=>true),
 			array('tablename', 'length', 'max'=>45),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent, tablename, description, protected', 'safe', 'on'=>'search'),
+			array('id, parent, tablename, description, protected, attaching, copying, view', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,9 +50,10 @@ class FFRegistry extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'formDefaults' => array(self::HAS_MANY, 'FFDefault', 'registry'),
+			'formDefaults' => array(self::HAS_MANY, 'FFModel', 'registry'),
 			'formFields' => array(self::HAS_MANY, 'FFField', 'formid'),
-                        'parentItem' => array(self::HAS_ONE, 'FFRegistry', 'parent'),
+                        'parentItem' => array(self::BELONGS_TO, 'FFRegistry', 'parent'),
+                        'chieldItems' => array(self::HAS_MANY, 'FFRegistry', 'parent'),
 		);
 	}
 
@@ -67,6 +68,9 @@ class FFRegistry extends CActiveRecord
 			'tablename' => 'Имя таблицы',
 			'description' => 'Описание',
 			'protected' => 'Блокировка/ системная таблица',
+			'attaching' => 'Внешняя таблица',
+			'copying' => 'Копирование при наследовании',
+			'view' => 'Отображение',
 		);
 	}
 
@@ -93,6 +97,9 @@ class FFRegistry extends CActiveRecord
 		$criteria->compare('tablename',$this->tablename,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('protected',$this->protected);
+		$criteria->compare('attaching',$this->attaching);
+		$criteria->compare('copying',$this->copying);
+		$criteria->compare('view',$this->view,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -109,4 +116,25 @@ class FFRegistry extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function onAfterDelete($event) {
+            parent::onAfterDelete($event);
+            $cmd =  Yii::app()->getDb()->createCommand("call FF_DELTBL(:idregistry)");
+            $cmd->params["idregistry"]=$this->primaryKey;
+            $cmd->execute();        
+        }
+
+        public function onAfterSave($event) {
+            parent::onAfterSave($event);
+            if ($this->isNewRecord) {
+                $cmd =  Yii::app()->getDb()->createCommand("call FF_CRTTBL(:idregistry)");
+                $cmd->params["idregistry"]=$this->primaryKey;
+                $cmd->execute();       
+            }
+            else {
+                $cmd =  Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)");
+                $cmd->params["idregistry"]=$this->primaryKey;
+                $cmd->execute();       
+            }
+        }
 }

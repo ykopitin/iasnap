@@ -21,7 +21,19 @@ class FFModel extends CActiveRecord
 	 */
 	public function tableName()
 	{
-            return $_ff_tablename;
+            try {
+                if ($this->registry) {
+                    $cmd =  Yii::app()->getDb()->createCommand("select concat('ff_',tablename) from `ff_registry` where (id=:idregistry) and (attaching=0)");
+                    $cmd->params["idregistry"]=$this->registry;
+                    $this->_ff_tablename = $cmd->queryScalar();     
+                    if (!$this->_ff_tablename) {
+                        $this->_ff_tablename = 'ff_default';
+                    }                    
+                }
+            } catch (Exception $e) {
+                 $this->_ff_tablename = 'ff_default';
+            }
+            return $this->_ff_tablename;
 	}
 
 	/**
@@ -48,8 +60,8 @@ class FFModel extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'storage_item' => array(self::BELONGS_TO, 'FFStorage', 'storage'),
-			'registry_item' => array(self::BELONGS_TO, 'FFRegistry', 'registry'),
+			'storageItem' => array(self::BELONGS_TO, 'FFStorage', 'storage'),
+			'registryItem' => array(self::BELONGS_TO, 'FFRegistry', 'registry'),
 		);
 	}
 
@@ -102,16 +114,5 @@ class FFModel extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-        
-        public function onAfterDelete($event) {
-            parent::onAfterDelete($event);
-            $cmd =  Yii::app()->getDb()->createCommand("call FF_DELTBL(:idregistry)");
-            $cmd->params["idregistry"]=$this->primaryKey;
-            $cmd->execute();        
-        }
-
-        public function onAfterSave($event) {
-            parent::onAfterSave($event);
-        }
-
+               
 }
