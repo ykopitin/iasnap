@@ -2,8 +2,8 @@
 
 class MffModule extends CWebModule
 {
-    public $enableprotected=FALSE;
-    
+    public $enableprotected=TRUE;
+
     public function init()
 	{
 		// this method is called when the module is being created

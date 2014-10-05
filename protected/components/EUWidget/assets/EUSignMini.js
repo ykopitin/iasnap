@@ -70,7 +70,7 @@ function authForm_SignIn(DataToSignAddRandom) {
 		euSign.SetUIMode(false);
 	} catch(e) {
 		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
-			window.location="http://www.java.com/ru/download/testjava.jsp";
+			window.open("http://www.java.com/ru/download/testjava.jsp");
 		}
 		return;
 	}

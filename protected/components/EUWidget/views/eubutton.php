@@ -62,7 +62,7 @@ checkbox {
 	echo '<div class="row buttons">';
 		$url= "'".Yii::app()->baseUrl."'";
 		if ($this->WidgetType == 'Login')
-			echo CHtml::submitButton('Вхід за ЕЦП', array('onclick'=>'return authForm_SignIn();'));
+			echo CHtml::submitButton('Вхід за ЕЦП', array('onclick'=>'authForm_SetProxyAndSignIn(); return false;'));
 		else 
 			echo CHtml::submitButton('Підписати', array('onclick'=>'return authForm_SignIn();'));
 error_log("WidgetType:".$this->WidgetType);	

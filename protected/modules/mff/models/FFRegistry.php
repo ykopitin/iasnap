@@ -117,6 +117,14 @@ class FFRegistry extends CActiveRecord
 		return parent::model($className);
 	}
         
+        public function isProtected() {
+            if (!Yii::app()->getModule('mff')->enableprotected) {
+                return FALSE;
+            } else {
+                return $this->protected;
+            }
+        }
+
         public function onAfterDelete($event) {
             parent::onAfterDelete($event);
             $cmd =  Yii::app()->getDb()->createCommand("call FF_DELTBL(:idregistry)");

@@ -12,7 +12,7 @@ $this->menu = array(
         array("label"=>$root_img."Корень","url"=>array("default/index","parentid"=>"")),
         array("label"=>$parent_img."Родители","url"=>array("default/index","parentid"=>$topparentid)),
         array("label"=>" ", "itemOptions"=>array("style"=>"border-top: double #55b")),
-        array("label"=>$add_img."Добавить","url"=>array("default/index")),
+        array("label"=>$add_img."Добавить","url"=>array("default/new")),
 );
 $criteria=new CDbCriteria();
 if ($parentid==null) {
@@ -41,8 +41,14 @@ $this->widget("zii.widgets.ClistView", array(
     //'separator'=>'</tr>',
     )
 );
-
 if ($this->action->id=="edit") {
-    $this->renderPartial("_edit",array("id"=>$id));
+    $this->renderPartial("_edit",array("id"=>$id,"parentid"=>$parentid));
+}
+else if ($this->action->id=="new") {
+    $this->renderPartial("_new",array("parentid"=>$parentid));
+}
+else if ($this->action->id=="fieldnew") {
+   // $this->renderPartial("_edit",array("id"=>$id,"parentid"=>$parentid));
+    $this->renderPartial("_addfield",array("parentid"=>$parentid));
 }
 ?>

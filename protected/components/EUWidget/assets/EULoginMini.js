@@ -71,7 +71,7 @@ function authForm_SignIn() {
 		euSign.SetUIMode(false);
 	} catch(e) {
 		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
-			window.location="http://www.java.com/ru/download/testjava.jsp";
+			window.open("http://www.java.com/ru/download/testjava.jsp");
 		}
 		return;
 	}
@@ -713,6 +713,21 @@ try {
 
 function authForm_SetProxy() {
 // Налаштування проксі-сервера, якщо користувач вказав його наявність
+	var euSign = document.getElementById("euSign");
+        try {
+		var euisinit = euSign.IsInitialized();
+		if (euisinit == true) {euSign.Finalize(); }
+		euSign.SetCharset("UTF-16LE");
+		euSign.SetUIMode(false);
+		euSign.Initialize();
+		euSign.width = "1px";
+		euSign.SetUIMode(false);
+	} catch(e) {
+		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
+			window.location="http://www.java.com/ru/download/testjava.jsp";
+		}
+		return false;
+	}
 	try {
 		var ProxySettings = euSign.CreateProxySettings();
 		ProxySettings = euSign.GetProxySettings();
@@ -779,6 +794,7 @@ function authForm_GetProxy() {
 function authForm_SetProxyAndSignIn() {
 	authForm_SetProxy();
 	authForm_SignIn();
+	return false;
 }
 
 

@@ -18,41 +18,62 @@ class DefaultController extends Controller
     }
     
     /// Сохраняет сформиророваную свободную форму
-    public function actionSave($id, $parentid=null)
+    public function actionSave($parentid=null)
     {
-        FFRegistry::model()->findByPk($id)->save();
-        $this->redirect($this->createUrl("mff/default/index", array("parentid"=>$parentid)));
     }
     
     /// Удаляет свободную форму
     public function actionDelete($id, $parentid=null)
     {
         FFRegistry::model()->findByPk($id)->delete();
-        $this->redirect($this->createUrl("mff/default/index", array("parentid"=>$parentid)));
     }
     
     /// Создает новую свободную форму
-    public function actionNew($parentid)
+    public function actionNew($parentid=1)
     {
-        
+        $this->render("listforms", array("parentid"=>$parentid));
     }
     
     /// Добавляет новое поле в свободной форме
-    public function actionFieldNew($id, $name, $type, $description, $order, $parentid=null)
+    public function actionFieldNew($formid)
     {
-        
+        $field=new FFField('insert');
+        if(isset($_POST['ajax']) && $_POST['ajax']==='formaddfield') 
+        {
+            echo CActiveForm::validate($field);
+            Yii::app()->end();
+        }
+        if (isset($_POST["FFField"])) {
+            $field->attributes = $_POST["FFField"];
+            $registry = FFRegistry::model()->findByPk($formid);
+            $parentid = ($registry->parent===null)?null:$registry->parentItem->id;
+            if ($field->validate()) {
+                $field->save();
+            }
+            $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));
+        }
     }
    
     /// Удаляет поле в свободной форме
-     public function actionFieldDelete($id, $idfield, $parentid=null)
+    public function actionFieldDelete($idfield)
     {
-        
+        $field = FFField::model()->findByPk($idfield);
+        $formid = $field->formid;
+        $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id;
+        $field->delete();
+        $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));       
     }
 
     /// Исправляет поле в свободной форме
-     public function actionEditDelete($id, $idfield, $parentid=null)
+    public function actionFieldEdit($idfield)
     {
+        $field = FFField::model()->findByPk($idfield);
+        $formid = $field->formid;
+        $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id;
         
+        $field->save();
+        $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));       
     }
     
+   
 }

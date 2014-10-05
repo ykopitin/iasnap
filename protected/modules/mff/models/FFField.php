@@ -28,13 +28,14 @@ class FFField extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('formid, name, type', 'required'),
-			array('formid, type, order', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('formid, name, type', 'required','message'=>'Отсутсвует обязательный параметр: {attribute}'),
+			array('formid, type, order, protected', 'numerical', 'integerOnly'=>true,'allowEmpty'=>false,'message'=>'Поле: {attribute} должно содержать целое число'),
+			array('name', 'length', 'min'=>1,'max'=>45,'allowEmpty'=>false, 'message'=>'Поле: {attribute} - не правильной длины. Необходимо 1-45 символов'),
+                        array('name', 'match', 'pattern' => '/^[A-Za-z][A-Za-z0-9]*$/u','message'  => 'Название поля содержит недопустимые символы.'),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, formid, name, type, description, order', 'safe', 'on'=>'search'),
+			array('id, formid, name, type, description, order, protected', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,7 +47,8 @@ class FFField extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'typeitem' => array(self::BELONGS_TO, 'FFTypes', 'type'),
+                    'typeItem' => array(self::BELONGS_TO, 'FFTypes', 'type'),
+                    'registryItem' => array(self::BELONGS_TO, 'FFRegistry', 'formid'),
 		);
 	}
 
@@ -62,6 +64,7 @@ class FFField extends CActiveRecord
 			'type' => 'Тип',
 			'description' => 'Описание',
 			'order' => 'Порядок',
+                        'protected' => 'Защищеный',
 		);
 	}
 
@@ -88,6 +91,8 @@ class FFField extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('type',$this->type);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('order',$this->order);
+		$criteria->compare('protected',$this->protected);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -104,4 +109,13 @@ class FFField extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+       public function isProtected() {
+            if (!Yii::app()->getModule('mff')->enableprotected) {
+                return FALSE;
+            } else {
+                return $this->protected || $this->registryItem->protected;
+            }
+        }
+
 }

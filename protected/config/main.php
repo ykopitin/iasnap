@@ -8,7 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Інформаційно-аналітична система надання адміністративних послуг',
-
+        'sourceLanguage'=>'en',
+        'language'=>'uk',
 	// preloading 'log' component
         'preload'=>array('log'),
 
@@ -28,7 +29,7 @@ return array(
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
 		),
                 'mff'=>array( // Модуль свободных форм
-                    'enableprotected'=>TRUE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
+                    'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
                 )
 		/**/
 	),
