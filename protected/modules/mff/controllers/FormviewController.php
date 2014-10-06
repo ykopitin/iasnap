@@ -1,6 +1,6 @@
 <?php
 
-class FormController extends Controller
+class FormviewController extends Controller
 {
     public $layout='//layouts/column4';
     //public $defaultAction='listforms';
