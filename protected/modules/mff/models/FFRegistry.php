@@ -32,9 +32,10 @@ class FFRegistry extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tablename', 'required'),
-			array('parent, protected, attaching, copying', 'numerical', 'integerOnly'=>true),
-			array('tablename', 'length', 'max'=>45),
+			array('tablename', 'required','message'=>'Отсутсвует обязательный параметр: {attribute}'),
+			array('tablename', 'match', 'pattern' => '/^[A-Za-z][A-Za-z0-9]*$/u','message'  => 'Название таблицы содержит недопустимые символы.'),
+			array('parent, protected, attaching, copying', 'numerical', 'integerOnly'=>true,'message'=>'Поле: {attribute} должно содержать целое число'),
+			array('tablename', 'length', 'min'=>1, 'max'=>45,'allowEmpty'=>false,'message'  =>"Не верное колво символов"),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -128,21 +129,19 @@ class FFRegistry extends CActiveRecord
         public function onAfterDelete($event) {
             parent::onAfterDelete($event);
             $cmd =  Yii::app()->getDb()->createCommand("call FF_DELTBL(:idregistry)");
-            $cmd->params["idregistry"]=$this->primaryKey;
-            $cmd->execute();        
+            $cmd->execute(array(":idregistry"=>$this->id));             
         }
 
         public function onAfterSave($event) {
             parent::onAfterSave($event);
+            echo 'onAfterSave';
             if ($this->isNewRecord) {
-                $cmd =  Yii::app()->getDb()->createCommand("call FF_CRTTBL(:idregistry)");
-                $cmd->params["idregistry"]=$this->primaryKey;
-                $cmd->execute();       
+                $sql="call FF_CRTTBL(:idregistry)";
+                Yii::app()->getDb()->createCommand($sql)->execute(array(":idregistry"=>$this->parent));      
+            } else {
+                $sql="call FF_ALTTBL(:idregistry)";
+                Yii::app()->getDb()->createCommand($sql)->execute(array(":idregistry"=>$this->id));     
             }
-            else {
-                $cmd =  Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)");
-                $cmd->params["idregistry"]=$this->primaryKey;
-                $cmd->execute();       
-            }
+              
         }
 }

@@ -103,7 +103,7 @@ class FFTypes extends CActiveRecord
 	}
         
         public function registryGuide($name, $description, $storage) {
-            
+            return;
         }
         
         

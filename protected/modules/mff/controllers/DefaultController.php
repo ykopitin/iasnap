@@ -20,6 +20,17 @@ class DefaultController extends Controller
     /// Сохраняет сформиророваную свободную форму
     public function actionSave($parentid=null)
     {
+        if (isset($_POST["FFRegistry"])) {
+            $registry = FFRegistry::model()->findAllByPk($_POST["FFRegistry"]["id"])[0];
+            $registry->attributes = $_POST["FFRegistry"];
+             if ($registry->validate()) {
+                if ($registry->save()) {
+                    $this->redirect("index",array("parentid"=>$registry->parent));
+                }
+            }        
+            $this->redirect("edit",array("parentid"=>$parentid,"id"=>$registry->id));
+       }
+       $this->redirect("index",array("parentid"=>$parentid));
     }
     
     /// Удаляет свободную форму
@@ -29,9 +40,24 @@ class DefaultController extends Controller
     }
     
     /// Создает новую свободную форму
-    public function actionNew($parentid=1)
+    public function actionNew($parentid)
     {
-        $this->render("listforms", array("parentid"=>$parentid));
+        
+        $registry=new FFRegistry();
+        if(isset($_POST['ajax']) && $_POST['ajax']==='formnew') 
+        {
+            echo CActiveForm::validate($registry);
+            Yii::app()->end();
+        }
+        if (isset($_POST["FFRegistry"])) {
+            $registry->attributes = $_POST["FFRegistry"];
+             if ($registry->validate()) {
+                if ($registry->save()) {
+                    $this->redirect($this->createUrl("index",array("parentid"=>$parentid)));
+                }
+            }        
+       }
+       $this->render("listforms", array("parentid"=>$parentid, "registry"=>$registry));
     }
     
     /// Добавляет новое поле в свободной форме
@@ -65,14 +91,29 @@ class DefaultController extends Controller
     }
 
     /// Исправляет поле в свободной форме
-    public function actionFieldEdit($idfield)
+    public function actionFieldEdit()
     {
-        $field = FFField::model()->findByPk($idfield);
-        $formid = $field->formid;
-        $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id;
-        
-        $field->save();
-        $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));       
+        $field = new FFField;
+        if(isset($_POST['ajax'])) 
+        {
+            echo CActiveForm::validate($field);
+            Yii::app()->end();
+        }
+        if (isset($_POST["FFField"])) {
+            $field = FFField::model()->findAllByPk($_POST["FFField"]["id"])[0];
+            $field->name = $_POST["FFField"]["name"];
+            $field->type=$_POST["FFField"]["type"];
+            $field->order=$_POST["FFField"]["order"];
+            $field->description=$_POST["FFField"]["description"];
+            $formid = $field->formid;
+            $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id; 
+            if ($field->validate()) {      
+                $field->save();
+            }
+            $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));    
+        } else {
+            $this->redirect($this->createUrl("default"));
+        }
     }
     
    

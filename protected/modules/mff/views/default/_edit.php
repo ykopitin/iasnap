@@ -14,7 +14,7 @@ $this->beginWidget("zii.widgets.jui.CJuiDialog",
                 'resizable'=> true,
                 'width'=>"65%",
                 'buttons' => array(
-                   // array('text'=>'Сохранить','click'=> 'js:function(){formedit.submit();}', 'visible'=>!$formregistry->isProtected($this)),
+                    array('text'=>'Сохранить','click'=> 'js:function(){formedit.submit();}', 'visible'=>!$formregistry->isProtected($this)),
                     array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
                 )
             ),
@@ -64,9 +64,12 @@ $this->widget("zii.widgets.ClistView", array(
     'tagName'=>'table',
     'itemsTagName'=>'tr',
     'enablePagination' => true,
-    'template'=>'<caption>{summary}</caption><thead><th>'.$headlabel["name"].
-        '</th><th>'.$headlabel["type"].'</th><th>'.$headlabel["order"].'</th><th>'.
-        $headlabel["description"].'</th><th>Действия</th></thead><tfoot><tr><td colspan="5">{pager}</td></tr></tfoot><tbody>{items}</tbody>',
+    'template'=>'<caption>{summary}</caption>'.
+        '<thead><th>'.$headlabel["name"].'</th><th>'.$headlabel["type"].
+        '</th><th>'.$headlabel["order"].'</th><th>'.
+        $headlabel["description"].'</th><th>Действия</th></thead>'.
+        '<tfoot><tr><td colspan="5">{pager}</td></tr></tfoot>'.
+        '<tbody>{items}</tbody>',
     )
 );
 

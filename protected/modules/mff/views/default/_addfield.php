@@ -3,8 +3,6 @@
     $fieldmodel = new FFField();
     CActiveForm::validate($fieldmodel);
     $fieldmodel->formid = $formid;
-    $target_saveaddfield = "$.post('".$this->createUrl('default/fieldnew',array("formid"=>$formid))."',formaddfield); $(this).dialog('close');";
-    
     $this->beginWidget("zii.widgets.jui.CJuiDialog",
             array( 'options' => 
                 array(
@@ -46,7 +44,7 @@
     <tr>
         <td><?php echo $formaddfield->labelEx($fieldmodel,"type"); ?></td>
         <td><?php 
-            $listdata =  array_merge(array(""=>""), CHtml::listData(FFTypes::model()->findAll(), "id", "typename"));
+            $listdata = array(""=>"") + CHtml::listData(FFTypes::model()->findAll(), "id", "typename") ;
             echo $formaddfield->dropDownList($fieldmodel, "type", $listdata);
         ?></td>
     </tr>

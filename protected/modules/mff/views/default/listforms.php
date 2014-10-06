@@ -45,10 +45,9 @@ if ($this->action->id=="edit") {
     $this->renderPartial("_edit",array("id"=>$id,"parentid"=>$parentid));
 }
 else if ($this->action->id=="new") {
-    $this->renderPartial("_new",array("parentid"=>$parentid));
+    $this->renderPartial("_new",array("parentid"=>$parentid,"formregistry"=>$registry));
 }
 else if ($this->action->id=="fieldnew") {
-   // $this->renderPartial("_edit",array("id"=>$id,"parentid"=>$parentid));
     $this->renderPartial("_addfield",array("parentid"=>$parentid));
 }
 ?>

@@ -117,5 +117,16 @@ class FFField extends CActiveRecord
                 return $this->protected || $this->registryItem->protected;
             }
         }
+        protected function afterSave() {
+            echo 'formid:'.$this->formid;
+            $cmd =  Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)");
+            $cmd->execute(array(":idregistry"=>$this->formid)); 
+        }
+        
+        protected function afterDelete() {
+            parent::afterDelete();
+            $cmd =  Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry);");
+            $cmd->execute(array(":idregistry"=>$this->formid)); 
+        }
 
 }
