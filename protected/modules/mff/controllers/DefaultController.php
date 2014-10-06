@@ -21,7 +21,7 @@ class DefaultController extends Controller
     public function actionSave()
     {
         if (isset($_POST["FFRegistry"])) {
-            $registry = FFRegistry::model()->findAllByPk($_POST["FFRegistry"]["id"])[0];
+            $registry = FFRegistry::model()->findByPk($_POST["FFRegistry"]["id"]);
             $registry->description = $_POST["FFRegistry"]["description"];
 
             if ($registry->validate()) {
@@ -38,6 +38,7 @@ class DefaultController extends Controller
     public function actionDelete($id, $parentid=null)
     {
         FFRegistry::model()->findByPk($id)->delete();
+        $this->redirect(array("index","parentid"=>$parentid));
     }
     
     /// Создает новую свободную форму
@@ -76,7 +77,7 @@ class DefaultController extends Controller
             if ($field->validate()) {
                 $field->save();
             }
-            $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));
+            $this->redirect($this->createUrl("edit", array("parentid"=>$parentid,"id"=>$formid)));
         }
     }
    
@@ -87,7 +88,7 @@ class DefaultController extends Controller
         $formid = $field->formid;
         $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id;
         $field->delete();
-        $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));       
+        $this->redirect($this->createUrl("edit", array("parentid"=>$parentid,"id"=>$formid)));       
     }
 
     /// Исправляет поле в свободной форме
@@ -100,7 +101,7 @@ class DefaultController extends Controller
             Yii::app()->end();
         }
         if (isset($_POST["FFField"])) {
-            $field = FFField::model()->findAllByPk($_POST["FFField"]["id"])[0];
+            $field = FFField::model()->findByPk($_POST["FFField"]["id"]);
             $field->name = $_POST["FFField"]["name"];
             $field->type = $_POST["FFField"]["type"];
             $field->order = $_POST["FFField"]["order"];
@@ -110,11 +111,29 @@ class DefaultController extends Controller
             if ($field->validate()) {      
                 $field->save();
             }
-            $this->redirect($this->createUrl("default/edit", array("parentid"=>$parentid,"id"=>$formid)));    
+            $this->redirect($this->createUrl("edit", array("parentid"=>$parentid,"id"=>$formid)));    
         } else {
-            $this->redirect($this->createUrl("default"));
+            $this->redirect("index");
         }
     }
     
+   public function actionRegistry($parentid=null) {
+       $modelregistry = new FFRegistry;
+       $modelregistry->parent=null;
+       $modelregistry->attaching=1;
+       $modelregistry->copying=0;
+       if(isset($_POST['ajax'])) 
+       {
+            echo CActiveForm::validate($modelregistry);
+            Yii::app()->end();
+       }
+       if (isset($_POST["FFRegistry"])) {
+            $modelregistry->attributes=$_POST["FFRegistry"];
+            if ($modelregistry->validate() && $modelregistry->save()) {
+                $this->redirect("index");
+            }
+       }
+       $this->render("listforms",array("parentid"=>null,"modelregistry"=>$modelregistry));
+   }
    
 }

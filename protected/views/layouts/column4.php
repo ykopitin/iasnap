@@ -9,7 +9,7 @@
 	<div id="sidebar">
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'Дії над даними',
+			'title'=>'Генерація вільних форм',
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>$this->menu,

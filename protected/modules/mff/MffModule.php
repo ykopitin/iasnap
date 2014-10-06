@@ -3,7 +3,8 @@
 class MffModule extends CWebModule
 {
     public $enableprotected=TRUE;
-
+    public $label="Модуль свободных форм";
+    
     public function init()
 	{
 		// this method is called when the module is being created

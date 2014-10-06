@@ -3,7 +3,7 @@ CActiveForm::validate($data);
 $formaddfield=$this->beginWidget("CActiveForm", array(
         'id'=>'fieldedit'.$data->id,
         'enableAjaxValidation' => true,
-        'action'=>$this->createUrl('default/fieldedit'),
+        'action'=>$this->createUrl($this->id.'/fieldedit'),
         'clientOptions' => array(
             'validateOnChange'=>true,           
             ),
@@ -32,7 +32,7 @@ echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"descrip
         <?php 
         if (!$data->isProtected($this)) {
             $del_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data_delete.png","Удалить",array("width"=>24,"height"=>24));
-            echo CHtml::link($del_img,$this->createUrl("default/fielddelete",array("idfield"=>$data->id)));         
+            echo CHtml::link($del_img,$this->createUrl($this->id."/fielddelete",array("idfield"=>$data->id)));         
             $upd_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data_edit.png","Изменить",array("width"=>24,"height"=>24));
             echo CHtml::link($upd_img,"javascript: fieldedit".$data->id.".submit();");         
         }

@@ -1,5 +1,4 @@
 <?php
-//$cs=Yii::app()->getClientScript(); $cs->registerCoreScript('jquery'); $cs->registerCoreScript('yii');
     $fieldmodel = new FFField();
     CActiveForm::validate($fieldmodel);
     $fieldmodel->formid = $formid;
@@ -22,7 +21,7 @@
     $formaddfield=$this->beginWidget("CActiveForm", array(
         'id'=>'formaddfield',
         'enableAjaxValidation' => true,
-        'action'=>$this->createUrl('default/fieldnew',array("formid"=>$formid)),
+        'action'=>$this->createUrl($this->id.'/fieldnew',array("formid"=>$formid)),
         'clientOptions' => array(
             'validateOnChange'=>true,           
             ),

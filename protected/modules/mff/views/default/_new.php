@@ -21,7 +21,7 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
 $form=$this->beginWidget("CActiveForm", array(
         'id'=>'formnew',
         'enableAjaxValidation' => true,
-        'action'=>$this->createUrl('default/new',array("parentid"=>$parentid)),
+        'action'=>$this->createUrl($this->id.'/new',array("parentid"=>$parentid)),
         'clientOptions' => array(
             'validateOnChange'=>true,           
         ),
