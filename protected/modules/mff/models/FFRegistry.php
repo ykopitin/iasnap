@@ -126,22 +126,20 @@ class FFRegistry extends CActiveRecord
             }
         }
 
-        public function onAfterDelete($event) {
-            parent::onAfterDelete($event);
+        protected function AfterDelete() {
+            parent::AfterDelete();
             $cmd =  Yii::app()->getDb()->createCommand("call FF_DELTBL(:idregistry)");
             $cmd->execute(array(":idregistry"=>$this->id));             
         }
 
-        public function onAfterSave($event) {
-            parent::onAfterSave($event);
-            echo 'onAfterSave';
+        protected function AfterSave() {
+            parent::AfterSave();
             if ($this->isNewRecord) {
                 $sql="call FF_CRTTBL(:idregistry)";
-                Yii::app()->getDb()->createCommand($sql)->execute(array(":idregistry"=>$this->parent));      
+                Yii::app()->getDb()->createCommand($sql)->execute(array(":idregistry"=>$this->id));      
             } else {
                 $sql="call FF_ALTTBL(:idregistry)";
                 Yii::app()->getDb()->createCommand($sql)->execute(array(":idregistry"=>$this->id));     
-            }
-              
+            }              
         }
 }

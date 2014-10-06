@@ -17,20 +17,21 @@ class DefaultController extends Controller
         $this->render("listforms", array("parentid"=>$parentid,"id"=>$id));
     }
     
-    /// Сохраняет сформиророваную свободную форму
-    public function actionSave($parentid=null)
+    /// Сохраняет сформиророваную свободную форму (при редактировании)
+    public function actionSave()
     {
         if (isset($_POST["FFRegistry"])) {
             $registry = FFRegistry::model()->findAllByPk($_POST["FFRegistry"]["id"])[0];
-            $registry->attributes = $_POST["FFRegistry"];
-             if ($registry->validate()) {
+            $registry->description = $_POST["FFRegistry"]["description"];
+
+            if ($registry->validate()) {
                 if ($registry->save()) {
-                    $this->redirect("index",array("parentid"=>$registry->parent));
+                    $this->redirect(array("index","parentid"=>$registry->parent));
                 }
             }        
-            $this->redirect("edit",array("parentid"=>$parentid,"id"=>$registry->id));
+            $this->redirect(array("edit","parentid"=>$registry->parent,"id"=>$registry->id));
        }
-       $this->redirect("index",array("parentid"=>$parentid));
+       $this->redirect("index");
     }
     
     /// Удаляет свободную форму
@@ -41,9 +42,8 @@ class DefaultController extends Controller
     
     /// Создает новую свободную форму
     public function actionNew($parentid)
-    {
-        
-        $registry=new FFRegistry();
+    {        
+        $registry=new FFRegistry('insert');
         if(isset($_POST['ajax']) && $_POST['ajax']==='formnew') 
         {
             echo CActiveForm::validate($registry);
@@ -53,7 +53,7 @@ class DefaultController extends Controller
             $registry->attributes = $_POST["FFRegistry"];
              if ($registry->validate()) {
                 if ($registry->save()) {
-                    $this->redirect($this->createUrl("index",array("parentid"=>$parentid)));
+                    $this->redirect(array("index","parentid"=>$parentid));
                 }
             }        
        }
@@ -102,11 +102,11 @@ class DefaultController extends Controller
         if (isset($_POST["FFField"])) {
             $field = FFField::model()->findAllByPk($_POST["FFField"]["id"])[0];
             $field->name = $_POST["FFField"]["name"];
-            $field->type=$_POST["FFField"]["type"];
-            $field->order=$_POST["FFField"]["order"];
-            $field->description=$_POST["FFField"]["description"];
+            $field->type = $_POST["FFField"]["type"];
+            $field->order = $_POST["FFField"]["order"];
+            $field->description = $_POST["FFField"]["description"];
             $formid = $field->formid;
-            $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id; 
+            $parentid = ($formid===null)?null:$field->registryItem->parent; 
             if ($field->validate()) {      
                 $field->save();
             }

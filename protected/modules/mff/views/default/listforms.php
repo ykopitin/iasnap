@@ -6,15 +6,15 @@ $this->breadcrumbs=array(
 );
 $root_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data.png","Корень",array("width"=>24,"height"=>24));
 $parent_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data_up.png","Родители",array("width"=>24,"height"=>24));
-$add_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data_add.png","Добавить",array("width"=>24,"height"=>24));
+$add_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data_add.png","Зар.таблицу",array("width"=>24,"height"=>24));
 $topparentid = (isset($parentid) && $parentid!=NULL)?FFRegistry::model()->findByPk($parentid)->parent:NULL;
 $this->menu = array(
         array("label"=>$root_img."Корень","url"=>array("default/index","parentid"=>"")),
         array("label"=>$parent_img."Родители","url"=>array("default/index","parentid"=>$topparentid)),
         array("label"=>" ", "itemOptions"=>array("style"=>"border-top: double #55b")),
-        array("label"=>$add_img."Добавить","url"=>array("default/new")),
+        array("label"=>$add_img."Зар.таблицу","url"=>array("default/new")),
 );
-$criteria=new CDbCriteria();
+$criteria=new CDbCriteria();http://allium2.soborka.net/iasnaphttp://allium2.soborka.net/iasnap
 if ($parentid==null) {
     $criteria->addCondition("parent is null");
 }

@@ -25,10 +25,11 @@ $this->beginWidget("zii.widgets.jui.CJuiDialog",
 $form=$this->beginWidget("CActiveForm",array(
         'id'=>'formedit',
         'enableAjaxValidation' => true,
-        'action'=>$this->createUrl('default/save',array("parentid"=>$parentid))
+        'action'=>$this->createUrl('default/save')
     )
 );
 echo $form->hiddenField($formregistry,"id");
+echo $form->hiddenField($formregistry,"parent");
 ?>
 <script type="text/javascript">
     $.ready($("#frmedit").dialog({close:function(){window.location='<?= $this->createUrl('default/index',array("parentid"=>$parentid)) ?>'}}));

@@ -117,16 +117,24 @@ class FFField extends CActiveRecord
                 return $this->protected || $this->registryItem->protected;
             }
         }
+        
         protected function afterSave() {
-            echo 'formid:'.$this->formid;
-            $cmd =  Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)");
-            $cmd->execute(array(":idregistry"=>$this->formid)); 
+            if ($this->isNewRecord) {
+                Yii::app()->getDb()->createCommand("call `FF_AI_FIELD`(:id)")->execute(array(":id"=>$this->id));
+            } else {
+                Yii::app()->getDb()->createCommand("call `FF_AU_FIELD`(:id)")->execute(array(":id"=>$this->id));
+            }            
+            Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)")->execute(array(":idregistry"=>$this->formid)); 
         }
         
         protected function afterDelete() {
             parent::afterDelete();
-            $cmd =  Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry);");
-            $cmd->execute(array(":idregistry"=>$this->formid)); 
+            Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry);")->execute(array(":idregistry"=>$this->formid)); 
         }
+        protected function beforeDelete() {
+            return parent::beforeDelete();
+            Yii::app()->getDb()->createCommand("call `FF_BD_FIELD`(:id)")->execute(array(":id"=>$this->id));
+        }
+
 
 }
