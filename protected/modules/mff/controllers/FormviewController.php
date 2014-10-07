@@ -2,7 +2,7 @@
 
 class FormviewController extends Controller
 {
-    public $layout='//layouts/column4';
+    public $layout='//layouts/main1';
     
     /// 
     public function actionIndex()
