@@ -31,7 +31,7 @@ $dataProvider=new CActiveDataProvider("FFRegistry", array(
 );
 $headlabel = $dataProvider->model->attributeLabels();
 
-$this->widget("zii.widgets.ClistView", array(
+$this->widget("zii.widgets.CListView", array(
     'dataProvider'=>$dataProvider,
     'itemView'=>'_view',
     'tagName'=>'table',
