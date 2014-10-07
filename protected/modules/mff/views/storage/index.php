@@ -1,8 +1,17 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+$this->breadcrumbs=array(
+    "Головна"=>"/",
+    $this->module->label => "/".$this->module->id,
+    $this->label => "/".$this->module->id."/".$this->id,
+);
+$this->widget('zii.widgets.grid.CGridView', 
+        array('id'=>'storage-grid', 
+            'dataProvider'=>$model->search(), 
+            'filter'=>$model, 
+            'columns'=>array( 
+                'id', 
+                'name', 
+                array( 'class'=>'CButtonColumn', ), 
+            ), 
+     )
+);

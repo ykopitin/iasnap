@@ -4,6 +4,7 @@ class FormgenController extends Controller
 {
     public $layout='//layouts/column4';
     //public $defaultAction='listforms';
+    public $label = "Генератор свободных форм";
     
     /// Формирует список сободных форм
     public function actionIndex($parentid=null)

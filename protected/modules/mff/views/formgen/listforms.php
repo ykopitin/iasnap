@@ -1,6 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-	$this->module->label,
+    "Головна"=>"/",
+    $this->module->label => "/".$this->module->id,
+    $this->label => "/".$this->module->id."/".$this->id,
 );
 $root_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data.png","Корень",array("width"=>24,"height"=>24));
 $parent_img = CHtml::image(Yii::app()->request->baseUrl."/protected/modules/mff/img/data_up.png","Родители",array("width"=>24,"height"=>24));
