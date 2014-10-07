@@ -56,10 +56,19 @@ echo "<td colspan=3>".$form->textField($formregistry,"view",array("style"=>"widt
 ?>
    </tr><tr>
         <?php echo "<td colspan=4>".$form->error($formregistry, "view")."</td>"; ?>
+   </tr>
+<?php if (!$formregistry->attaching) { ?>
+<tr>
+<?php
+echo "<td>".$form->labelEx($formregistry,"copying")."</td>";
+echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
+?>
    </tr><tr>
+        <?php echo "<td colspan=4>".$form->error($formregistry, "copying")."</td>"; ?>
+   </tr>   
+   <tr>
 <td colspan=4>
 <?php
-if (!$formregistry->attaching) {
     $criteria2=new CDbCriteria();
     $criteria2->compare("formid", isset($id)?$id:null);
     $criteria2->order = '`order`, `id`';
@@ -86,9 +95,10 @@ if (!$formregistry->attaching) {
             '<tbody>{items}</tbody>',
         )
     );
-}
 ?>
-</td></tr></table>
+</td></tr>
+<?php } ?>
+</table>
 <?php  
 if (!$formregistry->attaching && !$formregistry->isProtected()) {
         $this->widget("zii.widgets.jui.CJuiButton", array (

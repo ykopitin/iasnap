@@ -56,6 +56,19 @@ echo "<td colspan=3>".$form->textArea($formregistry,"description",array("style"=
        ?>
        </td>
    </tr>
+   <tr>
+<?php
+echo "<td>".$form->labelEx($formregistry,"copying")."</td>";
+echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
+?>
+   </tr>   
+   <tr>
+       <td colspan="4">
+       <?php
+        echo $form->error($formregistry, "copying");
+       ?>
+       </td>
+   </tr>
 </table>
 <?php 
 $this->endWidget("CActiveForm");

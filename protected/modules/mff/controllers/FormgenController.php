@@ -23,6 +23,7 @@ class FormgenController extends Controller
         if (isset($_POST["FFRegistry"])) {
             $registry = FFRegistry::model()->findByPk($_POST["FFRegistry"]["id"]);
             $registry->description = $_POST["FFRegistry"]["description"];
+            $registry->copying = $_POST["FFRegistry"]["copying"];
 
             if ($registry->validate()) {
                 if ($registry->save()) {
