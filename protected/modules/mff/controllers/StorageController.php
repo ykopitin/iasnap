@@ -11,4 +11,18 @@ class StorageController extends Controller
         $model = new FFStorage();
         $this->render("index",array("model"=>$model));
     }
+    
+    public function actionDelete($id)
+    {        
+        $model = FFStorage::model()->findByPk($id);
+        $model->delete();
+        $this->redirect("index");
+    }
+    
+    public function actionUpdate($id)
+    {        
+        $model = FFStorage::model()->findByPk($id);
+        $model->save();
+        $this->redirect(array("index"));
+    }
 }

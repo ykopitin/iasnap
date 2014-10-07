@@ -9,9 +9,16 @@ $this->widget('zii.widgets.grid.CGridView',
             'dataProvider'=>$model->search(), 
             'filter'=>$model, 
             'columns'=>array( 
-                array('name'=>'id',"htmlOptions"=>array("style"=>"witdh: 20%")), 
+                array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px")), 
                 array('name'=>"name"), 
-                array('class'=>'CButtonColumn', ), 
-            ), 
-     )
+                array('class'=>'CButtonColumn', 
+                    "header"=>"Действия",
+                    'buttons'=>array(
+                            'view'=>array(
+                                'visible'=>'false',
+                                ),
+                    ), 
+                ), 
+            )
+       )
 );
