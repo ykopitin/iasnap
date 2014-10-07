@@ -8,6 +8,6 @@ class FormController extends Controller
     /// Отображает 
     public function actionIndex($id)
     {        
-        ;
+        $this->render("index");
     }
 }
