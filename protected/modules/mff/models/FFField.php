@@ -111,10 +111,10 @@ class FFField extends CActiveRecord
 	}
         
        public function isProtected() {
-            if (!Yii::app()->getModule('mff')->enableprotected) {
-                return FALSE;
+            if (Yii::app()->getModule('mff')->enableprotected) {
+                return ($this->protected==1) || ($this->registryItem->protected==1);
             } else {
-                return $this->protected || $this->registryItem->protected;
+                return FALSE;
             }
         }
         

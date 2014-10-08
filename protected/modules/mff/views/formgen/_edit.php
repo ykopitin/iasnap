@@ -57,7 +57,7 @@ echo "<td colspan=3>".$form->textField($formregistry,"view",array("style"=>"widt
    </tr><tr>
         <?php echo "<td colspan=4>".$form->error($formregistry, "view")."</td>"; ?>
    </tr>
-<?php if (!$formregistry->attaching) { ?>
+<?php if (!($formregistry->attaching==1)) { ?>
 <tr>
 <?php
 echo "<td>".$form->labelEx($formregistry,"copying")."</td>";
@@ -100,7 +100,7 @@ echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
 <?php } ?>
 </table>
 <?php  
-if (!$formregistry->attaching && !$formregistry->isProtected()) {
+if (!($formregistry->attaching==1) && !$formregistry->isProtected()) {
         $this->widget("zii.widgets.jui.CJuiButton", array (
             "caption"=>"Добавить поле",
             "name"=>"addfield",

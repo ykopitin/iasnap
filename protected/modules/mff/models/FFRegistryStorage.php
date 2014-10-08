@@ -1,23 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "form_storage".
+ * This is the model class for table "ff_registry_storage".
  *
- * The followings are the available columns in table 'form_storage':
+ * The followings are the available columns in table 'ff_registry_storage':
  * @property integer $id
- * @property string $name
- *
- * The followings are the available model relations:
- * @property FormDefault[] $formDefaults
+ * @property integer $registry
+ * @property integer $storage
  */
-class FFStorage extends CActiveRecord
+class FFRegistryStorage extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'ff_storage';
+		return 'ff_registry_storage';
 	}
 
 	/**
@@ -28,11 +26,11 @@ class FFStorage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
+			array('registry, storage', 'required'),
+			array('registry, storage', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, comment', 'safe', 'on'=>'search'),
+			array('id, registry, storage', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,8 +42,7 @@ class FFStorage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'formDefaults' => array(self::HAS_MANY, 'FFModel', 'storage'),
-                        'registryItems' => array(self::MANY_MANY, 'FFRegistry', 'ff_registry_storage(storage, registry)'),
+                    
 		);
 	}
 
@@ -56,8 +53,8 @@ class FFStorage extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Имя хранилища',
-			'comment' => 'Описание',
+			'registry' => 'Registry',
+			'storage' => 'Storage',
 		);
 	}
 
@@ -80,8 +77,8 @@ class FFStorage extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('registry',$this->registry);
+		$criteria->compare('storage',$this->storage);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,7 +89,7 @@ class FFStorage extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return FormStorage the static model class
+	 * @return FFRegistryStorage the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

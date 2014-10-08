@@ -29,7 +29,7 @@ return array(
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
 		),
                 'mff'=>array( // Модуль свободных форм
-                    'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
+//                    'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
                 )
 		/**/
 	),
@@ -44,6 +44,7 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
+                        'baseUrl'=>'',
 			'urlFormat'=>'path',
 			'rules'=>array(
 				'1'=>'site/contact',

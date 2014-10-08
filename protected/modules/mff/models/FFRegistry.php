@@ -55,6 +55,7 @@ class FFRegistry extends CActiveRecord
 			'formFields' => array(self::HAS_MANY, 'FFField', 'formid'),
                         'parentItem' => array(self::BELONGS_TO, 'FFRegistry', 'parent'),
                         'chieldItems' => array(self::HAS_MANY, 'FFRegistry', 'parent'),
+                        'storageItems' => array(self::MANY_MANY, 'FFStorage', 'ff_registry_storage(registry, storage)'),
 		);
 	}
 
@@ -119,10 +120,10 @@ class FFRegistry extends CActiveRecord
 	}
         
         public function isProtected() {
-            if (!Yii::app()->getModule('mff')->enableprotected) {
-                return FALSE;
+            if (Yii::app()->getModule('mff')->enableprotected) {
+                return ($this->protected==1);
             } else {
-                return $this->protected;
+                return FALSE;
             }
         }
         protected function beforeDelete() {

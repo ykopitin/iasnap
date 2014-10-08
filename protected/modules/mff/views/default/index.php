@@ -1,8 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-    "Головна"=>"/",
-    $this->module->label => "/".$this->module->id,
-    $this->label => "/".$this->module->id."/".$this->id,
+    "Головна"=>array("/"),
+    "Админка"=>array("/admin"),
+    $this->module->label => array("/".$this->module->id),
 );
 ?>
 <ul>
