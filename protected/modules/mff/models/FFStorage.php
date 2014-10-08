@@ -29,10 +29,11 @@ class FFStorage extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, name, comment', 'safe', 'on'=>'search'),
+                        array('multiselect, type', 'numerical', 'integerOnly'=>true),
+                        array('name', 'length', 'max'=>255),
+                        array('description', 'safe'),
+
+                        array('id, name, description, multiselect, type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,7 +45,8 @@ class FFStorage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'formDefaults' => array(self::HAS_MANY, 'FFModel', 'storage'),
+			'records' => array(self::HAS_MANY, 'FFModel', 'storage'),
+			'typeItem' => array(self::BELONGS_TO, 'FFType', 'type'),
                         'registryItems' => array(self::MANY_MANY, 'FFRegistry', 'ff_registry_storage(storage, registry)'),
 		);
 	}
@@ -57,7 +59,9 @@ class FFStorage extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Имя хранилища',
-			'comment' => 'Описание',
+			'description' => 'Описание',
+                        'multiselect' => 'Множественный выбор',
+                        'type' => 'Тип данных',
 		);
 	}
 
@@ -81,7 +85,9 @@ class FFStorage extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('multiselect',$this->multiselect);
+		$criteria->compare('type',$this->type);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -98,4 +104,6 @@ class FFStorage extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+
 }

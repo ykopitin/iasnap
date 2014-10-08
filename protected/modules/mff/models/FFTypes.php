@@ -30,7 +30,7 @@ class FFTypes extends CActiveRecord
 		return array(
 			array('typename, systemtype', 'required'),
 			array('typename, systemtype, view', 'length', 'max'=>255),
-			array('descripton', 'safe'),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, typename, systemtype, view, descripton', 'safe', 'on'=>'search'),
@@ -45,6 +45,7 @@ class FFTypes extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'storageItem' => array(self::HAS_ONE, 'FFStorage', 'type'),
 		);
 	}
 
@@ -58,7 +59,7 @@ class FFTypes extends CActiveRecord
 			'typename' => 'Имя типа данных',
 			'systemtype' => 'Табличное имя',
 			'view' => 'Компонент отображения',
-			'descripton' => 'Описание',
+			'description' => 'Описание',
 		);
 	}
 
@@ -84,7 +85,7 @@ class FFTypes extends CActiveRecord
 		$criteria->compare('typename',$this->typename,true);
 		$criteria->compare('systemtype',$this->systemtype,true);
 		$criteria->compare('view',$this->view,true);
-		$criteria->compare('descripton',$this->descripton,true);
+		$criteria->compare('descripton',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -102,9 +103,6 @@ class FFTypes extends CActiveRecord
 		return parent::model($className);
 	}
         
-        public function registryGuide($name, $description, $storage) {
-            return;
-        }
         
         
 }

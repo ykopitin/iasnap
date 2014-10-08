@@ -36,10 +36,16 @@ $form=$this->beginWidget("CActiveForm", array(
         <td colspan="2"><?= $form->error($modelstorage,"name") ?></td>
     </tr>
     <tr>
-        <td style="width:30%"><?= $form->labelEx($modelstorage,"comment") ?></td>
-        <td><?= $form->textArea($modelstorage,"comment",array("style"=>"width:100%")) ?></td>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"description") ?></td>
+        <td><?= $form->textArea($modelstorage,"description",array("style"=>"width:100%")) ?></td>
     <tr>
-        <td colspan="2"><?= $form->error($modelstorage,"comment") ?></td>
+        <td colspan="2"><?= $form->error($modelstorage,"description") ?></td>
+    </tr>
+    <tr>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"multiselect") ?></td>
+        <td><?= $form->checkBox($modelstorage,"multiselect") ?></td>
+    <tr>
+        <td colspan="2"><?= $form->error($modelstorage,"multiselect") ?></td>
     </tr>
 </table>
 <?php

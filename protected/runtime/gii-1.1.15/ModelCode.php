@@ -5,6 +5,6 @@ return array (
   'tablePrefix' => '',
   'modelPath' => 'application.modules.mff.models',
   'baseClass' => 'CActiveRecord',
-  'buildRelations' => '0',
+  'buildRelations' => '1',
   'commentsAsLabels' => '1',
 );

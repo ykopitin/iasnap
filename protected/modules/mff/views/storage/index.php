@@ -15,15 +15,22 @@ if ($this->action->id=="index") {
             )
      );
 }
+$dp=new CActiveDataProvider("FFStorage", 
+                    array(
+                        'pagination' => array(
+                            'pageSize' => 25,
+                            )
+                        )
+                    );
 $this->widget('zii.widgets.grid.CGridView', 
         array('id'=>'storage-grid', 
-            'dataProvider'=>$model->search(), 
-            'filter'=>$model, 
+            'dataProvider'=>$dp, 
+            //'filter'=>$model, 
             "enablePagination"=>TRUE,
-            "pager"=>array('pageSize' => 30,),
             'columns'=>array( 
                 array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px")), 
-                array('name'=>"name"), 
+                array('name'=>"name",), 
+                array('name'=>"description",), 
                 array('class'=>'CButtonColumn', 
                     "header"=>"Действия",
                     'buttons'=>array(

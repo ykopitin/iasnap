@@ -39,10 +39,50 @@ $form=$this->beginWidget("CActiveForm", array(
         <td colspan="2"><?= $form->error($modelstorage,"name") ?></td>
     </tr>
     <tr>
-        <td style="width:30%"><?= $form->labelEx($modelstorage,"comment") ?></td>
-        <td><?= $form->textArea($modelstorage,"comment",array("style"=>"width:100%")) ?></td>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"description") ?></td>
+        <td><?= $form->textArea($modelstorage,"description",array("style"=>"width:100%")) ?></td>
     <tr>
-        <td colspan="2"><?= $form->error($modelstorage,"comment") ?></td>
+        <td colspan="2"><?= $form->error($modelstorage,"description") ?></td>
+    </tr>
+    <tr>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"multiselect") ?></td>
+        <td><?= $form->checkBox($modelstorage,"multiselect") ?></td>
+    <tr>
+        <td colspan="2"><?= $form->error($modelstorage,"multiselect") ?></td>
+    </tr>
+    <tr>
+        <td colspan="2">Подключенные формы к хранилищу</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <?php
+            $listtable=new CActiveDataProvider("FFRegistry", 
+                    array(
+                        'pagination' => array(
+                            'pageSize' => 200,
+                            )
+                        )
+                    );
+            $this->widget('zii.widgets.grid.CGridView', 
+                array('id'=>'storage-registry-grid', 
+                'dataProvider'=>$listtable, 
+                //'filter'=>$listtable->model, 
+                "enablePagination"=>true,
+                'columns'=>array( 
+                array(
+                    'class'=>'CCheckBoxColumn', 
+                    'selectableRows' => 2,
+                    'value'=>'$data->id',
+                    'checked'=>'(FFRegistryStorage::model()->exists("registry=".$data->id." and storage='.$modelstorage->id.'")==1)',
+                ), 
+                array('name'=>"tablename"),                 
+                array('name'=>"description"),                 
+            )
+       )
+);
+echo FFRegistryStorage::model()->exists("registry=1 and storage=18");
+            ?>
+        </td>
     </tr>
 </table>
 <?php
