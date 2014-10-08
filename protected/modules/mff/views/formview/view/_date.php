@@ -1,0 +1,13 @@
+<?php
+$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+    'name'=>$data->name,
+    'attribute'=>$data->name,
+    'model'=>$modelff,
+    'language'=>'uk',
+    'options'=>array(
+        'showAnim'=>'fold',
+    ),
+    'htmlOptions'=>array(
+        'style'=>'height:20px;'
+    ),
+));

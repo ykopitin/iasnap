@@ -1,0 +1,1 @@
+<?= $form->textArea($modelff,$data->name,array("style"=>"width:100%")) ?>
