@@ -29,11 +29,11 @@ class FFStorage extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-                        array('multiselect, type', 'numerical', 'integerOnly'=>true),
+                        array('subtype, type', 'numerical', 'integerOnly'=>true),
                         array('name', 'length', 'max'=>255),
                         array('description', 'safe'),
 
-                        array('id, name, description, multiselect, type', 'safe', 'on'=>'search'),
+                        array('id, name, description, subtype, type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +60,7 @@ class FFStorage extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Имя хранилища',
 			'description' => 'Описание',
-                        'multiselect' => 'Множественный выбор',
+                        'subtype' => 'Подтип',
                         'type' => 'Тип данных',
 		);
 	}
@@ -86,7 +86,7 @@ class FFStorage extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('multiselect',$this->multiselect);
+		$criteria->compare('subtype',$this->subtype);
 		$criteria->compare('type',$this->type);
 
 		return new CActiveDataProvider($this, array(

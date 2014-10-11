@@ -11,8 +11,8 @@ class DefaultController extends Controller
     }
     
     public function actionGetimage($image) {
-        $file=$_SERVER['DOCUMENT_ROOT']."/protected/modules/mff/img/".$image;
-        header("Content-Type: application/octet-stream");
+        $file=$_SERVER['DOCUMENT_ROOT']."/protected/modules/mff/img/".$image.".png";
+        header("Content-Type: application/png");
         header("Accept-Ranges: bytes");
         header("Content-Length: " . filesize($file));
         header("Content-Disposition: attachment; filename=".basename($file));

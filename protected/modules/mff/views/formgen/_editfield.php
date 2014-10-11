@@ -31,9 +31,9 @@ echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"descrip
     <td  style='vertical-align: top;'>
         <?php 
         if ($data->isProtected() == FALSE) {
-            $del_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_delete.png","Удалить",array("width"=>24,"height"=>24));
+            $del_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_delete")),"Удалить",array("width"=>24,"height"=>24));
             echo CHtml::link($del_img,$this->createUrl($this->id."/fielddelete",array("idfield"=>$data->id)));         
-            $upd_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_edit.png","Изменить",array("width"=>24,"height"=>24));
+            $upd_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_edit")),"Изменить",array("width"=>24,"height"=>24));
             echo CHtml::link($upd_img,"javascript: fieldedit".$data->id.".submit();");         
         }
         ?>        

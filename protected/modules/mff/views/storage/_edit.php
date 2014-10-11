@@ -45,8 +45,16 @@ $form=$this->beginWidget("CActiveForm", array(
         <td colspan="2"><?= $form->error($modelstorage,"description") ?></td>
     </tr>
     <tr>
-        <td style="width:30%"><?= $form->labelEx($modelstorage,"multiselect") ?></td>
-        <td><?= $form->checkBox($modelstorage,"multiselect") ?></td>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"subtype") ?></td>
+        <td><?= $form->dropDownList($modelstorage,"subtype",
+                array(
+                    "Выпадающий список",
+                    "Выбор нескольких значений",
+                    "Справочник одного значения",
+                    "Справочник нескольких значений",
+                    )
+                ) 
+        ?></td>
     <tr>
         <td colspan="2"><?= $form->error($modelstorage,"multiselect") ?></td>
     </tr>

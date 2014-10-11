@@ -88,7 +88,7 @@ class FormgenController extends Controller
     {
         $field = FFField::model()->findByPk($idfield);
         $formid = $field->formid;
-        $parentid = ($field->registryItem->parent===null)?null:$field->registryItem->parent->id;
+        $parentid = ($field->formid==null)?null:(($field->registryItem->parent==null)?null:$field->registryItem->parent);
         $field->delete();
         $this->redirect($this->createUrl("edit", array("parentid"=>$parentid,"id"=>$formid)));       
     }
@@ -109,7 +109,7 @@ class FormgenController extends Controller
             $field->order = $_POST["FFField"]["order"];
             $field->description = $_POST["FFField"]["description"];
             $formid = $field->formid;
-            $parentid = ($formid===null)?null:$field->registryItem->parent; 
+            $parentid = ($formid==null)?null:$field->registryItem->parent; 
             if ($field->validate()) {      
                 $field->save();
             }

@@ -4,10 +4,10 @@ echo "<tr><td>".CHtml::encode($data->id)."</td>";
 echo "<td>".CHtml::encode($data->tablename)."</td>";
 echo "<td>".CHtml::encode($data->description)."</td>";
 echo "<td>";
-    $chield_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_right.png","Потомки");
-    $edit_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_edit.png","Изменить");
-    $delete_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_delete.png","Удалить");
-    $add_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_add.png","Добавить потомка");
+    $chield_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_right")),"Потомки");
+    $edit_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_edit")),"Изменить");
+    $delete_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_delete")),"Удалить");
+    $add_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_add")),"Добавить потомка");
     if (count($data->chieldItems)>0 && !($data->attaching===1)) echo CHtml::link($chield_img,array($this->id."/index","parentid"=>$data->id));
     if ($data->isProtected()==FALSE) {
         echo CHtml::link($edit_img,array($this->id."/edit","id"=>$data->id,"parentid"=>isset($data->parent)?$data->parent:NULL));

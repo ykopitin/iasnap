@@ -5,9 +5,9 @@ $this->breadcrumbs=array(
     $this->module->label => array("/".$this->module->id),
     $this->label => array("/".$this->module->id."/".$this->id),
 );
-$root_img = CHtml::image(Yii::app()->baseUrl."/images/mff/img/data.png","Корень",array("width"=>24,"height"=>24));
-$parent_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_up.png","Родители",array("width"=>24,"height"=>24));
-$add_img = CHtml::image(Yii::app()->request->baseUrl."/images/mff/img/data_add.png","Зар.таблицу",array("width"=>24,"height"=>24));
+$root_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data")),"Корень",array("width"=>24,"height"=>24));
+$parent_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_up")),"Родители",array("width"=>24,"height"=>24));
+$add_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_add")),"Зар.таблицу",array("width"=>24,"height"=>24));
 $topparentid = (isset($parentid) && $parentid!=NULL)?FFRegistry::model()->findByPk($parentid)->parent:NULL;
 $this->menu = array(
         array("label"=>$root_img."Корень","url"=>array($this->id."/index","parentid"=>"")),

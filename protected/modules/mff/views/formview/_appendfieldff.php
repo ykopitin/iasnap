@@ -1,5 +1,5 @@
 <tr>
-    <td><?= CHtml::label($data->name,"") ?></td>
+    <td><?= CHtml::label($data->description,"") ?></td>
     <td>
         <?php       
             if (!isset($data->typeItem->view) || ($data->typeItem->view==null) || ($data->typeItem->view=="")) {
