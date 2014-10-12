@@ -17,4 +17,3 @@ try{
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }
-?>

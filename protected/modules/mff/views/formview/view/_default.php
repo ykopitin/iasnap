@@ -1,1 +1,1 @@
-<?= $form->textField($modelff,$data->name,array("style"=>"width:100%")) ?>
+<?= $form->textField($modelff,  strtolower($data->name),array("style"=>"width:100%")) ?>

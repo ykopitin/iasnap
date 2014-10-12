@@ -16,16 +16,20 @@ class FFModel extends CActiveRecord
 {
     private $_ff_tablename = 'ff_default';
     
-	/**
+    protected function _gettablename(){
+        $cmd =  $this->getDbConnection()->createCommand("select concat('ff_',tablename) from `ff_registry` where (id=:idregistry) and (attaching=0)");
+        $cmd->params[":idregistry"]=$this->registry;
+        return $cmd->queryScalar();
+    }
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
             try {
                 if ($this->registry) {
-                    $cmd =  Yii::app()->getDb()->createCommand("select concat('ff_',tablename) from `ff_registry` where (id=:idregistry) and (attaching=0)");
-                    $cmd->params["idregistry"]=$this->registry;
-                    $this->_ff_tablename = $cmd->queryScalar();     
+                    $this->_ff_tablename=$this->_gettablename();     
                     if (!$this->_ff_tablename) {
                         $this->_ff_tablename = 'ff_default';
                     }                    
@@ -36,7 +40,17 @@ class FFModel extends CActiveRecord
             return $this->_ff_tablename;
 	}
 
-	/**
+//        public function __set($name, $value) {
+//            parent::__set($name, $value);
+//            if (strtolower($name)=="registry") {
+//                $this->_ff_tablename=$this->_gettablename();     
+//                if (!$this->_ff_tablename) {
+//                    $this->_ff_tablename = 'ff_default';
+//                }       
+//            }
+//        }
+
+        /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -112,7 +126,44 @@ class FFModel extends CActiveRecord
 	 */
 	public static function model($className=__CLASS__)
 	{
-		return parent::model($className);
+            $model=new FFModel();
+            $model->refreshMetaData();
+            $model->refresh();
+            $model->attachBehaviors($model->behaviors());
+            return $model;
 	}
-               
+        
+        public function save($runValidation = true, $attributes = null) {
+            $trans=Yii::app()->getDb()->beginTransaction();
+            if ($this->isNewRecord) {
+                $cmd=Yii::app()->getDb()->createCommand("call `FF_INITID`(:idregistry,:idstorage, @id)");
+                $cmd->execute(array(":idregistry"=> $this->registry,":idstorage"=>  $this->storage));
+                $this->id=Yii::app()->getDb()->createCommand('select @id')->queryScalar();
+                $this->setIsNewRecord(FALSE);               
+                $this->setScenario("update");
+            }
+            $result=parent::save($runValidation, $attributes);
+            if ($result) {
+                $trans->commit();
+            } else {
+                $trans->rollback();
+            }
+            return $result;
+        }
+
+        protected function afterSave() {
+            parent::afterSave();
+            Yii::app()->getDb()->createCommand("call `FF_SYNCDATA`(:ID)")->execute(array(":ID"=>  $this->id));
+        }
+
+        protected function beforeDelete() {
+            parent::afterDelete();
+            Yii::app()->getDb()->createCommand("call `FF_SYNCDATA`(:ID)")->execute(array(":ID"=>  $this->id));
+        }
+
 }
+
+/// Временый класс для справочников
+class fieldlist_FFModel extends FFModel {} 
+
+

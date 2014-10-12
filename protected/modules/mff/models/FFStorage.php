@@ -45,7 +45,7 @@ class FFStorage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'records' => array(self::HAS_MANY, 'FFModel', 'storage'),
+			'records' => array(self::HAS_MANY, 'fieldlist_FFModel', 'storage'),
 			'typeItem' => array(self::BELONGS_TO, 'FFType', 'type'),
                         'registryItems' => array(self::MANY_MANY, 'FFRegistry', 'ff_registry_storage(storage, registry)'),
 		);

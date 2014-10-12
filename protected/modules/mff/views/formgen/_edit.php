@@ -75,7 +75,7 @@ echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
     $dataProvider2=new CActiveDataProvider("FFField", array(
             'criteria' => $criteria2,
             'pagination' => array(
-                'pageSize' => 5,
+                'pageSize' => 15,
             )
         )
             ); 

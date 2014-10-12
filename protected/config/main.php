@@ -66,27 +66,37 @@ return array(
 			'username' => 'iasnap',
 			'password' => 'iasnap98',
 			'charset' => 'utf8',
+//                    'enableProfiling'=>true, // показываем значения параметров 
+//                    'enableParamLogging' => true, 
 		),
 		/**/
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
-			),
-		),
+//		'log'=>array(
+//			'class'=>'CLogRouter',
+//			'routes'=>array(
+//				array(
+//					'class'=>'CFileLogRoute',                                       
+//					'levels'=>'error, warning, trace, log, vardump',
+//				),
+//                                array(
+//                                        'class'=>'CProfileLogRoute',
+//                                        'levels' => 'error, warning, trace, profile, info',
+//                                        'report'=>'callstack',
+//                                        'enabled'=>true,
+//                                ),				
+//                                array(
+//					'class'=>'CWebLogRoute',
+//                                        'enabled' => true,
+//                                        'levels' => 'error, warning, trace, notice',
+//                                        'categories' => 'application',
+//                                        'showInFireBug' => false,
+//				),
+//				
+//			),
+//		),
 	),
 
 	// application-level parameters that can be accessed
