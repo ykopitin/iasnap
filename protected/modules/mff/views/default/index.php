@@ -9,5 +9,6 @@ $this->breadcrumbs=array(
     <li><a href="<?= $this->createUrl('formgen/index') ?>">Генератор свободных форм</a></li>
     <li><a href="<?= $this->createUrl('storage/index') ?>">Управление хранилищами</a></li>
     <li><a href="<?= $this->createUrl('formview/index') ?>">Тестирование документов на отчетных формах</a></li>
+    <li><a href="<?= $this->createUrl('cabinet/index') ?>">Тестирование кабинетов</a></li>
 </ul>
 
