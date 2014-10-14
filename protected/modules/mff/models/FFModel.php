@@ -161,9 +161,33 @@ class FFModel extends CActiveRecord
             Yii::app()->getDb()->createCommand("call `FF_SYNCDATA`(:ID)")->execute(array(":ID"=>  $this->id));
         }
 
+        
+        public static function isParent($registry1,$registry2) {
+            return Yii::app()->getDb()->
+                    createCommand("select `FF_isParent`(:idregistry1,^idregistry2)")->
+                    execute(array(":idregistry1"=>$registry1,":idregistry2"=>$registry2));
+        }
+        
+        public static function commonParent($registrys) {
+            if (is_array($registrys)) {
+                $commonP=$registrys[0];
+                for ($i=1;$i<count($registrys);$i++){
+                    $ip = self::isParent($registrys[i-1],$registrys[i]);
+                    if ($ip==0) {
+                        return 1;
+                    } else if ($ip>0) {
+                        $commonP=$registrys[i];
+                    }                  
+                }
+                return $commonP;
+            }
+            return $registrys;
+        }
 }
 
 /// Временый класс для справочников
 class fieldlist_FFModel extends FFModel {} 
+/// Временый класс для справочников
+class subguide_FFModel extends FFModel {} 
 
 

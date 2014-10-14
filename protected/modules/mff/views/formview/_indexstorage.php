@@ -9,7 +9,13 @@
     ?></td>
     <td>
         <?php 
-        echo CHtml::link("Удалить",$this->createUrl("delete",array("idform"=>$data->id,"idstorage"=>$idstorage)));
+        echo CHtml::link("Удалить",$this->createUrl("delete",array("idform"=>$data->id,"idstorage"=>$idstorage))); 
+        echo "&nbsp;";
+        echo CHtml::link("Изменить",$this->createUrl("save",array(
+            "idform"=>$data->id,
+            "idstorage"=>$idstorage, 
+            "idregistry"=>$idregistry,
+            "scenario"=>"update")));
         ?>
     </td>    
 </tr>

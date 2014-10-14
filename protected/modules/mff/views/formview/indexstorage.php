@@ -40,7 +40,7 @@ $dataProvider=new CActiveDataProvider("FFModel", array(
 $this->widget("zii.widgets.CListView", array(
     'dataProvider'=>$dataProvider,
     'itemView'=>'_indexstorage',
-    'viewData'=>array("idstorage"=>$storagemodel->id),
+    'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$registrymodel->id),
     'tagName'=>'table',
     'template'=>'<caption>{summary}</caption><thead><th>ID</th><th>Name</th>'.
     '<th>Действия</th></thead><tbody>{items}</tbody>',

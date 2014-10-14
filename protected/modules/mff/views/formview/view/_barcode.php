@@ -1,0 +1,1 @@
+<?= CHtml::image($this->createUrl("barcode",array("id"=>$modelff->id))) ?>
