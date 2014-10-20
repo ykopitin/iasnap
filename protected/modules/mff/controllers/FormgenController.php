@@ -102,6 +102,7 @@ class FormgenController extends Controller
             echo CActiveForm::validate($field);
             Yii::app()->end();
         }
+        
         if (isset($_POST["FFField"])) {
             $field = FFField::model()->findByPk($_POST["FFField"]["id"]);
             $field->name = $_POST["FFField"]["name"];

@@ -26,7 +26,13 @@ function regFormUtils_DefaultFileSettings() {
 //	Застосувати встановлені параметри та записати їх до реєстру
 		euSign.SetFileStoreSettings(settings);
 
-	} catch(e) {showException(e); alert("Помилка створення параметрів файлового сховища. "+euSign.GetLastError()); euSign.Finalize(); return;}
+	} catch(e) {showException(e); var er=euSign.GetLastErrorCode(); alert("Помилка створення параметрів файлового сховища. "+euSign.GetLastError()); euSign.Finalize(); 
+		if (callback_error != "") {
+			callback_error("default_file_settings", er);
+			return;
+		}
+
+	return;}
 }
 
 
@@ -49,7 +55,7 @@ function hybrid_decode(txt) {
 
 
 //	Функція EUWidgetSign викликається іншими функціями
-function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, SignatureIsExternal, callback, DataToSignAddOwnCert) {
+function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, SignatureIsExternal, callback, DataToSignAddOwnCert, callback_error, callback_waitfunction) {
 	if (!DataToSignAddRandom) {
 		DataToSignAddRandom = "";
 	}
@@ -59,6 +65,16 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 //	}
 	if (!DataToSignAddOwnCert) {
 		DataToSignAddOwnCert = "";
+	}
+	if (!callback_error) {
+		callback_error = "";
+	}
+	if (!callback_waitfunction) {
+		callback_waitfunction = "";
+	}
+	
+	if (callback_waitfunction != "") {
+		callback_waitfunction("wait_on");
 	}
 	var url_certs = YiiUrl("getcertificates");
 	var url_string = YiiUrl("getstring");
@@ -70,7 +86,7 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 	$send = hybrid_encode($send);
 //	Підготовчі дії з ініціалізації криптографічного модулю
 	var euSign = document.getElementById("euSign");
-        try {
+    try {
 		var euisinit = euSign.IsInitialized();
 		if (euisinit == true) {euSign.Finalize(); }
 		euSign.SetCharset("UTF-16LE");
@@ -81,6 +97,12 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 	} catch(e) {
 		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
 			window.open("http://www.java.com/ru/download/testjava.jsp");
+			
+		}
+		try {euSign.Finalize();} catch(e1) {};
+		if (callback_error != "") {
+			callback_error("eu_initialize", 1);
+			return false;
 		}
 		return false;
 	}
@@ -104,6 +126,10 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 			} catch(e) {
 				alert("Помилка отримання комплекту сертифікатів. " +e.Message);
 				euSign.Finalize();
+				if (callback_error != "") {
+					callback_error("web_error_getcertificates", 1);
+					return false;
+				}
 				return;
 			}
 		}
@@ -144,7 +170,14 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 							ProxySettings = euSign.CreateProxySettings();
 							euSign.SetProxySettings(ProxySettings);
 						} catch(e) {
-							showException(e); alert("Помилка при встановленні початкових параметрів. Перевірте, чи запущений програмний модуль Java. "+euSign.GetLastError()); euSign.Finalize(); return;
+							var er=euSign.GetLastErrorCode();
+							showException(e); alert("Помилка при встановленні початкових параметрів. Перевірте, чи запущений програмний модуль Java. "+euSign.GetLastError()); euSign.Finalize(); 
+							euSign.Finalize();
+							if (callback_error != "") {
+								callback_error("eu_proxy_settings", er);
+								return false;
+							}
+							return;
 						}
 					}
 //	Спроба зчитування збережених параметрів файлового сховища
@@ -153,14 +186,25 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 						settings = euSign.GetFileStoreSettings();
 						document.getElementById('OwnCertPath').value = settings.GetPath();
 					} catch(e) {
+						var er=euSign.GetLastErrorCode();
 						showException(e); alert("Помилка створення параметрів файлового сховища. "+euSign.GetLastError()); euSign.Finalize();
+						euSign.Finalize();
+						if (callback_error != "") {
+							callback_error("eu_filestore_error", er);
+							return false;
+						}
 						return;
 					}
 		
 				} catch(e) {
 
 					if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки Java?")) {
-						window.location="http://www.java.com/ru/download/testjava.jsp";
+						window.open="http://www.java.com/ru/download/testjava.jsp";
+					}
+					euSign.Finalize();
+					if (callback_error != "") {
+						callback_error("web_java_error", 1);
+						return false;
 					}
 					return;
 				}				
@@ -198,22 +242,43 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 			
 			} catch(e) {
 				if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
-					window.location="http://www.java.com/ru/download/testjava.jsp";
+					window.open="http://www.java.com/ru/download/testjava.jsp";
 				}
+				var er = euSign.GetLastErrorCode();
+				euSign.Finalize();
+				if (callback_error != "") {
+					callback_error("eu_ocsp_settings_error", er);
+					return false;
+				}
+				
 				return;
 			}
 //	Відображення форми вибору носія з закритим ключем
+			if (callback_waitfunction != "") {
+				callback_waitfunction("wait_off");
+			}
 			var frameHeight = 450;
 			var frameWidth = 800;
 			var euReadPKForm = EUReadPKForm(frameHeight, frameWidth, 300, 330);
+			var key_read_success = 0;
 			euReadPKForm.ShowForm( 
 //	Тут розміщена функція, яка виконується у разі успішного вибору носія закритого ключа			
 				function(deviceType, deviceName, password) {
+				  if (callback_waitfunction != "") {
+					  callback_waitfunction("wait_on");
+				  }
+				  setTimeout(function () {
 					try {
+
 //	Вибір сертифікату CMP-сервера з комплекту завантажених сертифікатів, що підходить до зчитуваного закритого ключа
 						var CMPCertCount = euSign.GetCMPServerCertificatesCount();
 						if (CMPCertCount <= 0) {
+							euSign.Finalize();
 							alert("Не знайдено жодного сертифікату");
+							if (callback_error != "") {
+								callback_error("eu_no_cmp_certs", 1);
+								return false;
+							}
 							return;
 						}
 						for (var i = 0; i < CMPCertCount; i++) {
@@ -234,10 +299,30 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 //alert("cmp03");
 							euSign.ReadPrivateKeySilently(parseInt(deviceType, 10), parseInt(deviceName, 10), password);
 //alert("cmp04");
+							key_read_success = 1;
 						    } catch(e) {
 //	Todo: Додати перевірку коду помилки. Якщо код не дорівнює помилці зчитування закритого ключа - тоді вихід з функції
-//							alert("cmp " + euSign.GetLastErrorCode());
+//							alert("cmp " + euSign.GetLastErrorCode());	
+								var er = euSign.GetLastErrorCode();
+								ar = [5, 8, 10, 65, 81, 97];
+								if ($.inArray(er, ar) > -1) {
+									if (callback_error != "") {
+										euSign.Finalize();
+										callback_error("eu_cmp_server_choose_error", er);
+										return false;
+									}
+								}
 						    }
+						}
+						if (euSign.IsPrivateKeyReaded() == false) {
+							euSign.Finalize();
+							callback_waitfunction("wait_off");
+							alert("Не вдалось зчитати ключ. Можливо, введений невірний пароль, або не підключений необхідний ключовий носій");
+							if (callback_error != "") {
+								callback_error("eu_key_not_readed", 1);
+								return false;
+							}
+							return;
 						}
 //alert("0:0 key readed");
 						try {
@@ -260,7 +345,7 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 							{
 //	Встановити обов'язковість наявності позначки часу у підписі користувача
 								tsp.SetGetStamps(true);
-								tsp.SetGetStamps(false);
+//								tsp.SetGetStamps(false);
 //	Встановлення адреси TSP-сервера з сертифіката користувача (функція GetTSPAccessInfo, яка витягує інформацію про TSP з сертифікату, не містить порту сервера)
 								tsp.SetAddress(CertInfoTSP);
 //	Todo: необхідно перевірити, чи всі сертифікати мають TSP-сервер з портом 80
@@ -273,24 +358,39 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 									euSign.SetTSPSettings(tsp);
 								} catch(e) { 
 //	У випадку збою встановлення параметрів - зтерти зчитаний закритий ключ та завершити роботу Java-модулю
+									var er=euSign.GetLastErrorCode();
 									euSign.ResetPrivateKey();
 									euSign.Finalize();
 									showException(e);
 									alert("Не встановлені параметри TSP-сервера. Перевірте наявність сертифіката TSP-сервера у файловому сховищі");
+									if (callback_error != "") {
+										callback_error("eu_tsp_settings_error", er);
+										return false;
+									}
 									return;
 								}
 							} else {
 //	Якщо в сховищі нема жодного сертифіката TSP-сервера. Це може статися, коли на сервері ЦЗО немає інформації про TSP-сервер видавця сертифіката, але це є проблемою конкретного видавця сертифікатів
 //	або коли не вдалося підключитись до сервера ЦЗО для отримання інформації про імпортований сертифікат користувача
+								var er = euSign.GetLastErrorCode();
 								euSign.ResetPrivateKey();
 								euSign.Finalize();
 								alert("Перевірте наявність сертифіката TSP-сервера у файловому сховищі, а також параметри доступу до мережі Інтернет");
+								if (callback_error != "") {
+									callback_error("eu_tsp_no_cert_error", er);
+									return false;
+								}
 								return;
 							}
 						} catch(e) {showException(e+" " + euSign.GetLastError()+" " + euSign.GetLastErrorCode());
+							var er=euSign.GetLastErrorCode();
 							euSign.ResetPrivateKey();
 							euSign.Finalize();
 							alert("Виникла помилка при встановлені параметрів сервера міток часу");
+							if (callback_error != "") {
+								callback_error("eu_tsp_set_settings_error", er);
+								return false;
+							}
 							return;
 						}
 						
@@ -326,6 +426,12 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 //alert("01 04");
 						callback(ReturnSignedData, DataToSign);
 					} catch(e)  {
+						var er = euSign.GetLastErrorCode();
+						if (callback_error != "") {
+							callback_error("signing", er);
+							euSign.Finalize();
+							return false;
+						}
 						if (euSign.GetLastErrorCode() == 65)	//EU_ERROR_GET_TIME_STAMP
 						{
 							alert("Виникла помилка при отриманні позначки часу. Перевірте з'єднання з мережею Інтернет (параметри проксі-сервера) а також чинність сертифікату");
@@ -358,6 +464,7 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 						}
 						alert("Помилка при створенні підпису. Код помилки:" + euSign.GetLastErrorCode());
 					}
+				  }, 500) // 500 мс для появи повідомлення "Зачекайте", тому що Java аплет блокує процес
 				},
 //	Тут може бути функція, яка виконується у разі невдалої спроби зчитування ключа з носія (необхідно уточнити)
 				null,
@@ -367,16 +474,58 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 				"Оберіть ключовий носій");
 		  },
 //	Функція, яка виконується, якщо підготовчий обмін даними з сервером не завершився успішно
-		  error: function(data){alert("Неможливо здійснити обмін даними з веб-порталом");}
+		  error: function(data){alert("Неможливо здійснити обмін даними з веб-порталом");
+									if (callback_error != "") {
+										try {euSign.Finalize();} catch(e) {};
+										callback_error("web_getauthstring_error", 1);
+										return false;
+									}
+								}
 	})
 
 				  },
-				  error: function(){alert("Помилка отримання комплекту сертифікатів."); return;}
+				  error: function(){alert("Помилка отримання комплекту сертифікатів."); 
+										if (callback_error != "") {
+											try {euSign.Finalize();} catch(e) {};
+											callback_error("web_getcertificates_error", 1);
+											return false;
+										}
+									return;}
+
 				});
 //	return false - т.к. Submit должен происходить исключительно через JS
 	return false;
 }
 
+
+function euSelectFile() {
+	var euSign = document.getElementById("euSign");
+    try {
+		var euisinit = euSign.IsInitialized();
+		if (euisinit == true) {euSign.Finalize(); }
+		euSign.SetCharset("UTF-16LE");
+		euSign.SetUIMode(false);
+		euSign.Initialize();
+		euSign.width = "1px";
+		euSign.SetUIMode(false);
+	} catch(e) {
+		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
+			window.open("http://www.java.com/ru/download/testjava.jsp");
+		}
+		try {euSign.Finalize();} catch(e1) {};
+		return false;
+	}
+	var selectedFile = "";
+	try {
+		selectedFile = euSign.SelectFile(true, "*.pdf");
+		euSign.Finalize();
+		return selectedFile;
+	} catch (e) {
+		euSign.Finalize();
+		alert("Файл не обраний");
+		return "";
+	}
+}
 
 
 //	Функції динамічного показу елементів налаштування проксі-сервера
@@ -571,22 +720,22 @@ function authForm_GetProxy() {
 }
 
 
-function Use_Proxy_Check(){
-    // Пишем на jQuery
-    if($('#ProxyUse').is(':checked')) {
-        $('#proxy-settings').slideDown();
-    } else {
-        $('#proxy-settings').slideUp();
-    }
-}
 
-function Use_Proxypas_Check(){
-    if($('#ProxyAnonymous').is(':checked')) {
-        $('#proxy-auth').slideDown();
-    } else {
-        $('#proxy-auth').slideUp();
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //	Параметри функціонування плагіну відображення малюнку очікування завершення операції.
 //	Не працює належним чином.

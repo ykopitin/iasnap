@@ -1,5 +1,6 @@
 <div class="oneguide">
 <?php $this->beginWidget('zii.widgets.CPortlet',array("title"=>$data->description));
+    echo $form->hiddenField($modelff,$data->name);
     $v_FFModel=new fieldlist_FFModel;
     $v_FFModel->registry=1;
     $v_FFModel->refreshMetaData();
@@ -53,11 +54,11 @@
             'pager'=>true,
             'itemView'=>'_ff_field',
             'itemsTagName'=>'tbody',
+            'tagName'=>'table',
             'viewData'=>array(
                 "form"=>$formview,
                 "modelff"=>$v_FFModel,
                 "htmlOptions"=>array("<name field>"=>array("style"=>"width:100%"))),
-            'tagName'=>'table',
             'template'=>'{items}',
             )
         );
@@ -72,6 +73,7 @@
     $this->widget('zii.widgets.grid.CGridView', 
         array('id'=>'storage-grid', 
             'dataProvider'=>$v_FFModel->search(), 
+            'ajaxUrl'=>$this->createUrl("findstorage"),
             'filter'=>$v_FFModel, 
             "enablePagination"=>TRUE,    
             "summaryText"=>"Пошук:",

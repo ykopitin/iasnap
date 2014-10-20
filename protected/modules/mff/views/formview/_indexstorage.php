@@ -2,7 +2,7 @@
     <td><?= $data->id ?></td>
     <td><?php 
     $data->tableName();
-    $data->refreshMetaData();
+    $data->refreshMetaData();  
     $data->refresh();
     echo isset($data->name)?$data->name:"";
     
@@ -16,6 +16,12 @@
             "idstorage"=>$idstorage, 
             "idregistry"=>$idregistry,
             "scenario"=>"update")));
+        echo "&nbsp;";
+        echo CHtml::link("Просмотр",$this->createUrl("save",array(
+            "idform"=>$data->id,
+            "idstorage"=>$idstorage, 
+            "idregistry"=>$idregistry,
+            "scenario"=>"view")));
         ?>
     </td>    
 </tr>

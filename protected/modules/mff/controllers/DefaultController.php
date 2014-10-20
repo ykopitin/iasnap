@@ -11,7 +11,9 @@ class DefaultController extends Controller
     }
     
     public function actionGetimage($image) {
-        $file=$_SERVER['DOCUMENT_ROOT']."/protected/modules/mff/img/".$image.".png";
+        
+//        $file=Yii::getPathOfAlias('webroot')."/protected/modules/mff/img/".$image.".png";
+        $file=Yii::getPathOfAlias('mff.img').DIRECTORY_SEPARATOR.$image.".png";
 //        echo $file;
         header("Content-Type: application/png");
         header("Accept-Ranges: bytes");

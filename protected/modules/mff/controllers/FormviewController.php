@@ -16,8 +16,19 @@ class FormviewController extends Controller
         $this->render("indexstorage",array("storagemodel"=>$storagemodel));
     }
     
-    public function actionSave($idregistry,$idstorage,$idform=null,$scenario="insert")
+    public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null)
     {        
+//        $handle=fopen("test.txt", "a");
+//        fwrite($handle, "P=". serialize($_POST)."\n");
+//        fwrite($handle, "G=". serialize($_GET)."\n");
+//        fclose($handle);
+//        echo '<pre>';
+//        var_dump($_POST);
+//        echo '</pre>';
+//        echo '<pre>';
+//        var_dump($_GET);
+//        echo '</pre>';
+//        return;
 //        if (isset($_POST["ajax"]) && $_POST["ajax"]=="formff" ){
 //            if ($scenario=="insert") {
 //                $datamodel=new FFModel("insert");               
@@ -36,34 +47,54 @@ class FormviewController extends Controller
                 $datamodel=new FFModel("insert");               
             }
             if ($scenario=="update" && $idform!=null){
-                $datamodel=  FFModel::model()->findByPk($idform);
+                $datamodel=FFModel::model()->findByPk($idform);
             }  
             $datamodel->registry=$idregistry;
             $datamodel->refreshMetaData();
-            $datamodel->unsetAttributes();
+//            $datamodel->unsetAttributes();
+            $dataold=$datamodel->attributes;           
             $datamodel->setAttributes($_POST["FFModel"], FALSE);
+     
             $datamodel->storage=$idstorage;
             $datamodel->registry=$idregistry;
-           
+            
+            if (isset($_FILES) && isset($_FILES[get_class($datamodel)]) && isset($_FILES[get_class($datamodel)]["tmp_name"])) {
+                foreach ($_FILES[get_class($datamodel)]["tmp_name"] as $key => $value) {
+                    echo $_FILES[get_class($datamodel)]["size"][$key];
+                    if ($_FILES[get_class($datamodel)]["size"][$key]!=0 || file_exists($value) ) {
+                        $datamodel->$key=file_get_contents($value);                        
+                        $field=FFField::model()->find("`formid`=:formid and `name`=:name",array(":formid"=>$idregistry,":name"=>$key)) ;
+                        if (isset($field) && $field!=null) {
+                            switch ($field->type) {
+                                case 10:
+                                    $datamodel->setAttribute($key."_filename", $_FILES[get_class($datamodel)]["name"][$key]);
+                                    $datamodel->setAttribute($key."_filetype", $_FILES[get_class($datamodel)]["type"][$key]);
+                                break;
+                            }
+                        }
+                    }
+                    else $datamodel->$key=$dataold[$key];
+                }          
+            }
             if ($datamodel->validate() && $datamodel->save()) {
-//                $this->render("indexstorage",
-//                        array(
-//                            "idregistry"=>$idregistry,
-//                            "idstorage"=>$idstorage,
-//                            "storagemodel"=>$storagemodel,
-//                            "scenario"=>"update",
-//                            "datamodel"=>$datamodel,
-//                            ));
                 $this->redirect(array("indexstorage","id"=>$idstorage));
                 return;
             }
         
         }
-        $this->render("indexstorage",array("idregistry"=>$idregistry,"idstorage"=>$idstorage,"storagemodel"=>$storagemodel));
+        $this->render("indexstorage",
+                array(
+                    "idregistry"=>$idregistry,
+                    "idstorage"=>$idstorage,
+                    "storagemodel"=>$storagemodel,
+                    "scenario"=>$scenario,
+                    "idform"=>$idform,
+                    )
+                );
     }
     
     public function actionDelete($idform,$idstorage){
-        $datamodel=  FFModel::model()->findByPk($idform);
+        $datamodel=FFModel::model()->findByPk($idform);        
         $datamodel->delete();
         $this->redirect(array("indexstorage","id"=>$idstorage));
     }
@@ -106,4 +137,26 @@ class FormviewController extends Controller
         $drawing->finish(BCGDrawing::IMG_FORMAT_PNG);
     }
     
+    public function actionGetImage($id,$name) {
+        $model=FFModel::model()->findByPk($id);
+        $model->refreshMetaData();
+        $model->refresh();
+        echo $model->getAttribute($name);
+    }
+    
+    public function actionGetFile($id,$name) {
+        $model=FFModel::model()->findByPk($id);
+        $model->refreshMetaData();
+        $model->refresh();
+        header("Content-Type: ".$model->getAttribute($name."_filetype"));
+        header("Content-Disposition: attachment; filename=".$model->getAttribute($name."_filename"));
+        echo $model->getAttribute($name);
+    }
+    
+    public function actionFindStorage() {
+        $handle=fopen("test.txt", "a");
+        fwrite($handle, "P=". serialize($_POST)."\n");
+        fwrite($handle, "G=". serialize($_GET)."\n");
+        fclose($handle);    
+    }
 }

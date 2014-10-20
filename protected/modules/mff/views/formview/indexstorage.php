@@ -52,6 +52,9 @@ if ($this->action->id=="save") {
     if(isset($scenario)) {
         $urlparam=array_merge($urlparam,array("scenario"=>$scenario));
     }
+    if(isset($idform)) {
+        $urlparam=array_merge($urlparam,array("idform"=>$idform));
+    }
     if (isset($datamodel)) {
         $urlparam=array_merge($urlparam,array("datamodel"=>$datamodel));
     }

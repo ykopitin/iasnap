@@ -2,7 +2,19 @@
 try{
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));
-    $listdata=array();       
+    if ($scenario=="view") {
+        $id=$modelff->getAttribute(strtolower($data->name));
+        if ($id!=null) {
+            $modelclassif = fieldlist_FFModel::model()->findByPk($id);
+            if (isset($modelclassif) && $modelclassif!=null) {
+                $modelclassif->refreshMetaData();
+                $modelclassif->refresh();
+                echo CHtml::label($modelclassif->name,"") ;
+            }
+        }
+        return;      
+    }
+    $listdata=array(""=>"");       
     foreach ($storageitem->registryItems as $registryItem) {
         $v_FFModel=new fieldlist_FFModel;
         $v_FFModel->registry=$registryItem->id;

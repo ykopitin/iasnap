@@ -30,10 +30,11 @@ class FFTypes extends CActiveRecord
 		return array(
 			array('typename, systemtype', 'required'),
 			array('typename, systemtype, view', 'length', 'max'=>255),
+                        array('visible', 'numerical', 'integerOnly'=>true),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, typename, systemtype, view, descripton', 'safe', 'on'=>'search'),
+			array('id, typename, systemtype, view, descripton,visible', 'safe', 'on'=>'search'),
 		);
 	}
 

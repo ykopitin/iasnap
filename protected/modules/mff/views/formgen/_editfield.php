@@ -1,3 +1,4 @@
+<tr><td colspan="5">        
 <?php
 CActiveForm::validate($data);
 $formaddfield=$this->beginWidget("CActiveForm", array(
@@ -9,11 +10,12 @@ $formaddfield=$this->beginWidget("CActiveForm", array(
             ),
         )
     );
-?>
-<tr>
-<?php
 echo $formaddfield->hiddenField($data,"id");
 echo $formaddfield->hiddenField($data,"formid");
+?>
+<table style="width: 100%">
+<tr>
+<?php
 $readonly=array();
 if ($data->isProtected() == TRUE) $readonly=array("readonly"=>"readonly");
 echo "<td style='vertical-align: top;'>". $formaddfield->textField($data,"name", array_merge(array("size"=>16),$readonly))."<br>".
@@ -39,5 +41,8 @@ echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"descrip
         ?>        
     </td>
 </tr>
+</table>
 <?php
 $this->endWidget("CActiveForm");
+?>
+</td></tr>

@@ -15,20 +15,28 @@ if ($this->action->id=="index") {
             )
      );
 }
-$dp=new CActiveDataProvider("FFStorage", 
+
+$criteria=new CDbCriteria;
+//$criteria->compare('id',$model->id);
+$criteria->compare('name',$model->name,true);
+$criteria->compare('description',$model->description,true);
+$dp=new CActiveDataProvider($model, 
                     array(
+                        'criteria'=>$criteria,
                         'pagination' => array(
-                            'pageSize' => 25,
+                            'pageSize' => 20,
                             )
                         )
                     );
+
 $this->widget('zii.widgets.grid.CGridView', 
-        array('id'=>'storage-grid', 
+        array(
+            'id'=>'storage-grid', 
             'dataProvider'=>$dp, 
-            //'filter'=>$model, 
+            'filter'=>$model, 
             "enablePagination"=>TRUE,
             'columns'=>array( 
-                array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px")), 
+                array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''), 
                 array('name'=>"name",), 
                 array('name'=>"description",), 
                 array('class'=>'CButtonColumn', 

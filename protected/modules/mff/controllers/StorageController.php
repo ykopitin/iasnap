@@ -9,6 +9,7 @@ class StorageController extends Controller
     public function actionIndex()
     {        
         $model = new FFStorage();
+        if (isset($_GET["FFStorage"])) $model->attributes=$_GET["FFStorage"];
         $this->render("index",array("model"=>$model));
     }
     

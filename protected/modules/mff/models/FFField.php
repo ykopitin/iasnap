@@ -118,13 +118,38 @@ class FFField extends CActiveRecord
             }
         }
         
-        protected function afterSave() {
+        public function save($runValidation = true, $attributes = null) {
+            try{
+                $trans=Yii::app()->getDb()->beginTransaction();
+                $result= parent::save($runValidation, $attributes);
+                $trans->commit();
+                return $result;
+            } catch (Exception $e) {
+                $trans->rollback();
+                return false;
+            }
+        }
+
+        public function delete() {
+            try{
+                $trans=Yii::app()->getDb()->beginTransaction();
+                $result= parent::delete();
+                $trans->commit();
+                return $result;
+            } catch (Exception $e) {
+                $trans->rollback();
+                return false;
+            }
+        }
+
+        
+        protected function afterSave() {           
             if ($this->isNewRecord) {
                 Yii::app()->getDb()->createCommand("call `FF_AI_FIELD`(:id)")->execute(array(":id"=>$this->id));
             } else {
                 Yii::app()->getDb()->createCommand("call `FF_AU_FIELD`(:id)")->execute(array(":id"=>$this->id));
             }            
-            Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)")->execute(array(":idregistry"=>$this->formid)); 
+            Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry)")->execute(array(":idregistry"=>$this->formid));                         
         }
         
         protected function afterDelete() {

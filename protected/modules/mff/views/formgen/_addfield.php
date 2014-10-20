@@ -43,7 +43,7 @@
     <tr>
         <td><?php echo $formaddfield->labelEx($fieldmodel,"type"); ?></td>
         <td><?php 
-            $listdata = array(""=>"") + CHtml::listData(FFTypes::model()->findAll(), "id", "typename") ;
+            $listdata = array(""=>"") + CHtml::listData(FFTypes::model()->findAll("`visible`=1"), "id", "typename") ;
             echo $formaddfield->dropDownList($fieldmodel, "type", $listdata);
         ?></td>
     </tr>

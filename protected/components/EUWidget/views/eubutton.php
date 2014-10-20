@@ -91,7 +91,7 @@ echo '<label><input id="ProxyUse" type="checkbox" onclick="Use_Proxy_Check()"/>�
 </div>
 <div id="proxy-auth" style="display: none;" >
 <input id="ProxyUser" type="text" value="" placeholder="Ім'я користувача" /><br>
-<input id="ProxyPassword" type="password" value="" placeholder="Пароль" /><br>
+<input id="ProxyPass" type="password" value="" placeholder="Пароль" /><br>
 <input id="OwnCertPath" type="hidden" value="" /><br>
 </div>
 </div>
