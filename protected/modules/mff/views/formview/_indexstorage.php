@@ -1,12 +1,14 @@
 <tr>
     <td><?= $data->id ?></td>
-    <td><?php 
+    <?php 
     $data->tableName();
     $data->refreshMetaData();  
     $data->refresh();
-    echo isset($data->name)?$data->name:"";
-    
-    ?></td>
+    foreach ($columnnames as $columnname) {
+        
+     ?>
+    <td><?= ($data->hasAttribute($columnname)?$data->getAttribute($columnname):"") ?></td>
+    <?php } ?>
     <td>
         <?php 
         echo CHtml::link("Удалить",$this->createUrl("delete",array("idform"=>$data->id,"idstorage"=>$idstorage))); 

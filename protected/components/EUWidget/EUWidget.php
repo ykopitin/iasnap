@@ -26,5 +26,7 @@ class EUWidget extends CWidget {
     public function run() {
         $this->render('eubutton', $this->model);
     }
+    
+    
 }
 ?>

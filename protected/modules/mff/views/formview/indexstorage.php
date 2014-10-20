@@ -37,15 +37,29 @@ $dataProvider=new CActiveDataProvider("FFModel", array(
         )
     )
 );
-$this->widget("zii.widgets.CListView", array(
-    'dataProvider'=>$dataProvider,
-    'itemView'=>'_indexstorage',
-    'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$registrymodel->id),
-    'tagName'=>'table',
-    'template'=>'<caption>{summary}</caption><thead><th>ID</th><th>Name</th>'.
-    '<th>Действия</th></thead><tbody>{items}</tbody>',
-    )
-);
+$registrylist=array();
+foreach ($storagemodel->registryItems as $registryItem) {
+    $registrylist= array_merge($registrylist,array($registryItem->id));
+}
+$vidregistry=FFModel::commonParent($registrylist); 
+$columns="";
+$columnnames=array();
+if ($vidregistry!=null){
+    $fields=FFField::model()->findAll("`formid`=$vidregistry and `type`<8 and `order`>0");  
+    foreach ($fields as $field){
+        $columns.="<th>$field->description</th>";
+        $columnnames=  array_merge($columnnames , array($field->name));
+    }
+    $this->widget("zii.widgets.CListView", array(
+        'dataProvider'=>$dataProvider,
+        'itemView'=>'_indexstorage',
+        'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$registrymodel->id,"columnnames"=>$columnnames),
+        'tagName'=>'table',
+        'template'=>'<caption>{summary}</caption><thead><th>ID</th>'.$columns.
+        '<th>Действия</th></thead><tbody>{items}</tbody>',
+        )
+    );
+}
 
 if ($this->action->id=="save") {
     $urlparam=array("idregistry"=>$idregistry,"idstorage"=>$idstorage);

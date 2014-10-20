@@ -55,6 +55,7 @@
             'itemView'=>'_ff_field',
             'itemsTagName'=>'tbody',
             'tagName'=>'table',
+            'summaryText'=>'',       
             'viewData'=>array(
                 "form"=>$formview,
                 "modelff"=>$v_FFModel,

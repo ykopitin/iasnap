@@ -174,7 +174,7 @@ class FFModel extends CActiveRecord
     }
 
     public static function commonParent($registrys) {
-        if (is_array($registrys)) {
+        if (is_array($registrys) && count($registrys)>0) {
             $commonP=$registrys[0];
             for ($i=1;$i<count($registrys);$i++){
                 $ip = self::isParent($registrys[i-1],$registrys[i]);

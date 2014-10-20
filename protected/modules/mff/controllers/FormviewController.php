@@ -18,31 +18,37 @@ class FormviewController extends Controller
     
     public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null)
     {        
-//        $handle=fopen("test.txt", "a");
-//        fwrite($handle, "P=". serialize($_POST)."\n");
-//        fwrite($handle, "G=". serialize($_GET)."\n");
-//        fclose($handle);
-//        echo '<pre>';
-//        var_dump($_POST);
-//        echo '</pre>';
-//        echo '<pre>';
-//        var_dump($_GET);
-//        echo '</pre>';
-//        return;
-//        if (isset($_POST["ajax"]) && $_POST["ajax"]=="formff" ){
-//            if ($scenario=="insert") {
-//                $datamodel=new FFModel("insert");               
-//            }
-//            if ($scenario=="update" && $idform!=null){
-//                $datamodel=  FFModel::model()->findByPk($idform);
-//            }  
-//            echo CActiveForm::validate($datamodel);
-//            Yii::app()->end();
-//        }
         $storagemodel = FFStorage::model()->findByPk($idstorage);
         $registrymodel = FFRegistry::model()->findByPk($idregistry);
         if (isset($_POST["FFModel"])) {
-            
+            $idguide=array();
+            foreach ($_POST as $key => $value) {
+                if (strpos($key, "FFModel_") !== false) {
+                    $fieldname=substr($key,strlen("FFModel_"));
+                    eval("class $key extends FFModel {}");
+                    $vFFModel=new $key;
+                    if ($scenario=="insert") {
+                        $vFFModel->registry=$_POST[$key]["registry"];
+                        $vFFModel->refreshMetaData();
+                        $vFFModel->setAttributes($_POST[$key], FALSE);
+                        if ($vFFModel->validate() && $vFFModel->save()){
+                            $idguide=array_merge($idguide,array($fieldname=>$vFFModel->id));
+                        }
+                    }
+                    if ($scenario=="update") {
+                         $vFFModel->registry=1;
+                         $vFFModel->tablename();
+                         $vFFModel->refreshMetaData();
+                         $vFFModel=$vFFModel->findByPk($_POST["FFModel"][$fieldname]);
+                         $vFFModel->refreshMetaData();
+                         $vFFModel->refresh();
+                         $vFFModel->setAttributes($_POST[$key], FALSE);
+                         if ($vFFModel->validate() && $vFFModel->save()){
+                            $idguide=array_merge($idguide,array($fieldname=>$vFFModel->id));
+                         }
+                    }
+                }
+            }
             if ($scenario=="insert") {
                 $datamodel=new FFModel("insert");               
             }
@@ -58,9 +64,9 @@ class FormviewController extends Controller
             $datamodel->storage=$idstorage;
             $datamodel->registry=$idregistry;
             
+            // Загрузка картинок, файлов
             if (isset($_FILES) && isset($_FILES[get_class($datamodel)]) && isset($_FILES[get_class($datamodel)]["tmp_name"])) {
-                foreach ($_FILES[get_class($datamodel)]["tmp_name"] as $key => $value) {
-                    echo $_FILES[get_class($datamodel)]["size"][$key];
+                foreach ($_FILES[get_class($datamodel)]["tmp_name"] as $key => $value) {                    
                     if ($_FILES[get_class($datamodel)]["size"][$key]!=0 || file_exists($value) ) {
                         $datamodel->$key=file_get_contents($value);                        
                         $field=FFField::model()->find("`formid`=:formid and `name`=:name",array(":formid"=>$idregistry,":name"=>$key)) ;
@@ -76,7 +82,12 @@ class FormviewController extends Controller
                     else $datamodel->$key=$dataold[$key];
                 }          
             }
-            if ($datamodel->validate() && $datamodel->save()) {
+            
+            foreach ($idguide as $key => $value) {
+                $datamodel->$key=$value;
+            }
+
+           if ($datamodel->validate() && $datamodel->save()) {
                 $this->redirect(array("indexstorage","id"=>$idstorage));
                 return;
             }
@@ -93,6 +104,7 @@ class FormviewController extends Controller
                 );
     }
     
+    /// Добавить удаление встраиваемых справочников
     public function actionDelete($idform,$idstorage){
         $datamodel=FFModel::model()->findByPk($idform);        
         $datamodel->delete();

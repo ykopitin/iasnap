@@ -79,6 +79,8 @@ echo $form->hiddenField($modelff,"id");
 $this->widget("zii.widgets.CListView", array(
     'dataProvider'=>$dataProvider,
     'pager'=>true,
+    'summaryText'=>'',
+    'emptyText'=>'',
     'itemView'=>'_ff_field',
     'tagName'=>'table',
     'template'=>'{items}',
@@ -100,12 +102,15 @@ if ($scenario!="view") {
 
     $dataProvider2=new CActiveDataProvider("FFField", array(
             'criteria' => $criteria2,
-        )
+            'pagination' => array('pageSize' => 3000,)
+            )   
     );
 
     $this->widget("zii.widgets.CListView", array(
         'dataProvider'=>$dataProvider2,
         'itemView'=>"view/_hidden",
+        'summaryText'=>'',
+        'emptyText'=>'',
         'viewData'=>array(
             "form"=>$form,
             "modelff"=>$modelff,
