@@ -169,20 +169,16 @@ class FFModel extends CActiveRecord
 
     public static function isParent($registry1,$registry2) {
         return Yii::app()->getDb()->
-                createCommand("select `FF_isParent`(:idregistry1,^idregistry2)")->
-                execute(array(":idregistry1"=>$registry1,":idregistry2"=>$registry2));
+                createCommand("select `FF_isParent`(:idregistry1,:idregistry2)")->
+                queryScalar(array(":idregistry1"=>$registry1,":idregistry2"=>$registry2));
     }
 
+    // Bcghfdbnm 
     public static function commonParent($registrys) {
         if (is_array($registrys) && count($registrys)>0) {
             $commonP=$registrys[0];
             for ($i=1;$i<count($registrys);$i++){
-                $ip = self::isParent($registrys[i-1],$registrys[i]);
-                if ($ip==0) {
-                    return 1;
-                } else if ($ip>0) {
-                    $commonP=$registrys[i];
-                }                  
+                $commonP = self::isParent($commonP,$registrys[$i]);            
             }
             return $commonP;
         }
