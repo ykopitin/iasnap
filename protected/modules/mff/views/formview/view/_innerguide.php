@@ -28,7 +28,7 @@ try {
     }
     $vFFModel->storage = $data->typeItem->storageItem->id;
     //echo $form->hiddenField($vFFModel,"id");
-
+    
     $criteria = new CDbCriteria();
     $criteria->params[":formid"] = $vFFModel->registry;
     $criteria->addCondition("`formid` = :formid");
