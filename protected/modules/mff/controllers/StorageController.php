@@ -38,24 +38,14 @@ class StorageController extends Controller
     
     public function actionUpdate($id)
     {             
-//        $handle=fopen("test.txt", "a");
-//        fwrite($handle, "P=". serialize($_POST)."\n");
-//        fwrite($handle, "G=". serialize($_GET)."\n");
-//        fclose($handle);
-//        echo '<pre>';
-//        var_dump($_POST);
-//        echo '</pre>';
-//        echo '<pre>';
-//        var_dump($_GET);
-//        echo '</pre>';
-//        return;
         $modelstorage = FFStorage::model()->findByPk($id);
         if (isset($_POST["ajax"]) && ($_POST["ajax"]=="formeditstorage")) {  
             echo CActiveForm::validate($modelstorage);
             Yii::app()->end();                           
         }      
         if (isset($_POST["FFStorage"])) {
-            if (isset($_POST["storage-registry-grid_c0"])) {
+            if (isset($_POST["storage-registry-grid_c0"])) {  
+                Yii::app()->db->createCommand('call FF_RSCLEAR('.$id.')')->execute();
                 foreach ($_POST["storage-registry-grid_c0"] as $value) {
                     Yii::app()->db->createCommand('call FF_RSINIT('.$value.','.$id.')')->execute();
                 }
