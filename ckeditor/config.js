@@ -44,7 +44,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.resize_enabled = false;
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	////////////////
-	
+	config.enterMode = CKEDITOR.ENTER_BR; 
         config.width =640;
 		config.height = 150;
 	};

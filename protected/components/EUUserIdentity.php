@@ -4,15 +4,17 @@ class EUUserIdentity extends CUserIdentity
 {
     private $_id;
     public $Signature;
+    public $type_of_user = "user";
 
     /**
      * Constructor.
      * @param string $username username
      * @param string $password password
      */
-    public function __construct($Signature)
+    public function __construct($Signature, $type_of_user = "user")
     {
         $this->Signature=base64_decode($Signature);
+	$this->type_of_user = $type_of_user;
     }
 
     public function authenticate()
@@ -73,12 +75,13 @@ class EUUserIdentity extends CUserIdentity
 error_log("step01");
 	if($iErrorCode!=0)
 	{
-error_log("step01a");
+error_log("step01a,err:".$iErrorCode);
 	    $this->errorCode=self::ERROR_USERNAME_INVALID;
             return !$this->errorCode;
 	}
 error_log("step02");
 $sResultData = iconv($in_charset = 'UTF-16LE' , $out_charset = 'UTF-8' , $sResultData);
+$sIssuer = iconv($in_charset = 'windows-1251' , $out_charset = 'UTF-8' , $sIssuer);
 
 // Якщо довжина даних, які підписав користувач (рядок автентифікації), не дорівнює 40 символів,
 // то зупинити процедуру автентифікації користувача. Довжина даних, які підписує користувач,
@@ -101,14 +104,18 @@ $sResultData = iconv($in_charset = 'UTF-16LE' , $out_charset = 'UTF-8' , $sResul
 		return !$this->errorCode; }
 //	CabUserGenStr::model()->deleteByPk('sauth=:sauth', array(':sauth'=>$sResultData));
 
-        $record=CabUserExternCerts::model()->findByAttributes(array('certType'=>"0"));
-//var_dump($record);
-error_log("step03");
+error_log("step2b,certiss:".$sIssuer);
+
+        $record=CabUserExternCerts::model()->findByAttributes(array('certType'=>"0", 'certissuer'=>$sIssuer, 'certserial'=>$sSerial));
+//error_log("step2d,certser:".$sSerial);
+
         if($record===null) {
-error_log("step04");
+error_log("step03 error empty certs external");
             $this->errorCode=self::ERROR_USERNAME_INVALID;
             return !$this->errorCode;
-	}
+		}
+//var_dump($record);
+error_log("step04");
 //	$record2=$record->CabUserExternal;
 	$record2=$record->extUser;
 error_log("cab_state:".$record2->cab_state);
@@ -119,6 +126,12 @@ error_log("errors:".$this->errorCode);
         else
         {
 error_log("step06");
+	    if (($record2->user_roles_id < 4) && ($this->type_of_user != "admin")) 	// Адміністративний користувач
+	    {
+		$this->errorCode=self::ERROR_USERNAME_INVALID;
+		return !$this->errorCode;
+	    }
+
             $this->_id=$record2->id;
             $this->setState('title', $record2->email);
             $this->errorCode=self::ERROR_NONE;

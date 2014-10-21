@@ -1,6 +1,6 @@
 <?php
 
-/**1
+/**
  * This is the model class for table "gen_serv_categories".
  *
  * The followings are the available columns in table 'gen_serv_categories':
@@ -99,12 +99,14 @@ class GenServCategories extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-     
-     
-     public function getOrgMenu() {
+    
+    
+    
+    
+    public function getOrgMenu() {
          $t=array();
          $m=array();
-$pam='';
+         $pam='';
        $rows1=GenCatClasses::model()->findAllByAttributes(array('class_id'=>2));
                  
         foreach($rows1 as $row) 
@@ -112,18 +114,19 @@ $pam='';
               
              $t=GenCatClasses::model()->getMenuOrg($row['id']);
              $m=$row['id'];
-  if (isset($_GET['servid'])) {$pam=$_GET['servid'];} 
+            if (isset($_GET['servid'])) {$pam=$_GET['servid'];} 
              $rows3=$this->findAllByPk($t);   
                 foreach($rows3 as $row) {
- $c=GenServCatClass::model()->getcountService($m);
+                    if ($row['visability']=='так'){
+                 $c=GenServCatClass::model()->getcountService($m);
                 $menu[]=array(
-               'label'=>$row['name'].' <font size=1 color=#808080>('.$c.')</font>',
+                'label'=>'<div>'.$row['name'].' <font size=1 color=#808080>('.$c.')</font></div>',
                 'url'=>array('/serv/?class=2&&servid='.$m),
-               'active'=>$pam==$m,
-'encodeLabel'=>false,)
+                'active'=>$pam==$m,
+                 'encodeLabel'=>false,
                 //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
-            ;
-        }  }
+            );
+        }  }}
         return $menu;
     }
     
@@ -133,27 +136,28 @@ $pam='';
     
         public function getGromMenu() {
               $t=array();
-              $m=array();
-$pam='';
+              $m=array(); $pam='';
        $rows1=GenCatClasses::model()->findAllByAttributes(array('class_id'=>1));  
             
         foreach($rows1 as $row) 
         {
-           
+           $k='';
              $t=GenCatClasses::model()->getMenuGrom($row['id']);
              $m=$row['id'];
-  if (isset($_GET['servid'])) {$pam=$_GET['servid'];} 
+             if (isset($_GET['servid'])) {$pam=$_GET['servid'];} 
              $rows3=$this->findAllByPk($t);   
                 foreach($rows3 as $row) {
- $c=GenServCatClass::model()->getcountService($m);
+                     if ($row['visability']=='так'){
+               $c=GenServCatClass::model()->getcountService($m);
                 $menu[]=array(
-               'label'=>$row['name'].' <font size=1 color=#808080>('.$c.')</font>',
+                 'label'=>'<div>'.$row['name'].' <font size=1 color=#808080>('.$c.')</font></div>',
                 'url'=>array('/serv/?class=1&&servid='.$m),
                 'active'=>$pam==$m,
-'encodeLabel'=>false,)
+               
                 //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
-            ;
-        }  }
+           ) ;
+        }  }}
         return $menu;
     }
-  }
+  
+}

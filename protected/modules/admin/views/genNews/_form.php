@@ -78,7 +78,7 @@ $cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
 <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
-                CKEDITOR.replace( 'GenNews[title]' );
+               // CKEDITOR.replace( 'GenNews[title]' );
 				CKEDITOR.replace( 'GenNews[summary]' );
 				CKEDITOR.replace( 'GenNews[text]' );
 				CKEDITOR.replace( 'GenNews[img]' );

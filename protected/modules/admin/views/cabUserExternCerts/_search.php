@@ -47,8 +47,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
+		<?php echo $form->label($model,'certType'); ?>
+		<?php echo $form->textField($model,'certType'); ?>
 	</div>
 
 	<div class="row">

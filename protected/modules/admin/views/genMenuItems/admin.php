@@ -1,56 +1,39 @@
+<BR>
+<h3>Пункти меню</h3>
+
 <?php
-/* @var $this GenMenuItemsController */
-/* @var $model GenMenuItems */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління загальним інтерфейсом порталу'=>array('default/id1'),
-	'Таблиця «Пункти меню»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-menu-items-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+$this->widget('zii.widgets.jui.CJuiButton',array(
+    'name'=>'cjui-link',
+    'caption'=>'Додати пункти меню',
+    'buttonType'=>'link',
+    'url'=>Yii::app()->createUrl('/admin/genMenuItems/create'),
+    'htmlOptions'=>array(
+        'style'=>'color:#ffffff;background: #0064cd;'
+    ),
+    //'onclick'=>new CJavaScriptExpression('function(){alert("Enter User Name"); this.blur(); return false;}'),
+    
+));
 ?>
 
-<h1>Управляти даними Таблиця «Пункти меню»</h1>
-
-
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-menu-items-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'content',
+		array(
+		'name'=>'id',
+		'htmlOptions'=>array('width'=>'30px'),),
+		array(
+		'name'=>'content',
+		'htmlOptions'=>array('width'=>'400px'),),
 		'paderntid',
 		'url',
 		'ref',
 		'visability',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}{update}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -61,10 +44,7 @@ $('.search-form form').submit(function(){
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
+				 
              ),
 		),
 	),

@@ -3,12 +3,12 @@
 ?>
 
 <style type="text/css">
-label {
+label .eusign{
     display: block;
     padding-left: 15px;
     text-indent: -15px;
 }
-checkbox {
+checkbox .eusign{
     width: 13px;
     height: 13px;
     padding: 0;
@@ -82,7 +82,7 @@ echo '</div><!-- form -->';
 echo '<label><input id="ProxyUse" type="checkbox" onclick="Use_Proxy_Check()"/>Проксі-сервер</label><br>';
 ?>
 
-<div id="proxy-settings" style="display: none;" >
+<div class="eusign" id="proxy-settings" style="display: none;" >
 <input id="ProxyName" type="text" value="" placeholder="Адреса проксі-сервера" /><br>
 <input id="ProxyPort" type="text" value="" placeholder="Порт проксі-сервера" /><br>
 

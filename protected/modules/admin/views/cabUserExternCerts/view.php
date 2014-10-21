@@ -30,7 +30,7 @@ $this->menu=array(
 		'certSubjDRFOCode',
 		'certSubjEDRPOUCode',
 		'certData',
-		'type',
+		'certType',
 		'ext_user_id',
 	),
 )); ?>

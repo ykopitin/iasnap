@@ -1,8 +1,7 @@
 .yiiTab ul.tabs
 {
-   
-    font: 12px Arial, sans-serif;
-    
+ font: 18px "Arial" Narrow;
+ border: none;
 }
 
 .yiiTab ul.tabs li
@@ -10,89 +9,83 @@
     list-style: none;
     margin: 0;
     display: inline;
-    
 }
 
 .yiiTab ul.tabs a
 {
-	-moz-border-radius-topleft:5px;
-	-moz-border-radius-topright:5px;
-      text-decoration:none;
-      font-size: 15px;
-      font-weight: normal;
-   
-    border: 1px solid #a2d507;
-    border-bottom: none;
-    background: #d3dfee;
-     letter-spacing: 0.05em ;
-    line-height: 1.5;
+    text-decoration:none;
+    font-size: 18px;
 }
 
 .yiiTab ul.tabs a:link
 {
 	color: #667;
-
+    background: #fcfcfc;
+    border-radius: 8px;
+    padding-top: 5px;
+    border: 1px solid #ccc;
 }
 
 .yiiTab ul.tabs a:visited
 {
 	color: #667;
+    
+    border: 1px solid #ededed;
 }
 
 .yiiTab ul.tabs a:hover
 {
     color: #000;
-    background: #fff;
-     border-radius: 8px;
+    background: #fcfcfc;
+    border-radius: 8px;
 }
 
 .yiiTab ul.tabs a.active
 {
-    background: #a2d507;
+
+    background-color: #a2d507;
     color: #000;
-    border-radius: 8px;
-     font-weight: 500;
+    border-radius:8px ;
+    border: 1px solid #a2d507;
 }
 
 .yiiTab div.view
 {
-    border-left: 1px solid #4F81BD;
-    border-right: 1px solid #4F81BD;
-    
-    padding: 8px;
+
+    min-height:250px;
+    padding: 0px;
     margin: 0;
 }
 
 .yiiTab ul.tabs a{
-    border: 0px;
+  
     background: none;
+   margin-bottom: 0px;
 }
 .yiiTab ul.tabs a.active{
-    border: 1px solid #a2d507;
    
-    margin-top: -3px;    
-    border-bottom: 0px;
-    padding-bottom: 4px;    
+    
+    margin-top: 0px;    
+   
+    padding-bottom: 3px;    
         
 }
 .yiiTab ul.tabs  li a{
-    padding: 10px 10px 2px 10px;    
+    padding: 10px 10px 3px 10px;    
 }
+
 .yiiTab div.view {
-border-left: 1px solid #a2d507;
-border-right: 1px solid #a2d507;
-border-bottom: 1px solid #a2d507;
-padding: 15px;
-border-radius: 8px;
-margin: 0;
+border: 1px solid #fff;
 }
-div.view {background-color: #fff;
-padding: 10px 10px 10px 10px;
-margin: 10px 10px 10px 10px;
-border: 1px solid #a2d507;
+
+div.view {
+background-color: #fff;
+
+
 }
+
 .yiiTab ul.tabs {
-padding: 0px 0 12px 0;
-margin: 0;
+padding: 0px 0 0px 0;
+margin: 0 0 30px 0;
 
 }

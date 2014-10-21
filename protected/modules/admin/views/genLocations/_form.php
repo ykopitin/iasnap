@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->DropDownList( $model,'type', ZHtml::enumItem($model,'type'),array('empty' => '(Select a category')); ?>
+		<?php echo $form->DropDownList( $model,'type', ZHtml::enumItem($model,'type'),array('empty' => '(Оберіть тип)')); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 

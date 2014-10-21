@@ -17,6 +17,7 @@
  */
 class GenOtherInfo extends CActiveRecord
 {
+	 public $k_publication;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,7 +39,7 @@ class GenOtherInfo extends CActiveRecord
 			array('title, img', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, publicationDate, title, summary, text, img, kind_of_publication', 'safe', 'on'=>'search'),
+			array('id, publicationDate, title, summary, text, img, kind_of_publication, k_publication', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,17 +88,48 @@ class GenOtherInfo extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('publicationDate',$this->publicationDate,true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('summary',$this->summary,true);
-		$criteria->compare('text',$this->text,true);
-		$criteria->compare('img',$this->img,true);
-		$criteria->compare('kind_of_publication',$this->kind_of_publication);
-
+$criteria->with = array( 'kindOfPublication'); 
+		$criteria->compare('t.id', $this->id);
+		$criteria->compare('t.publicationDate',$this->publicationDate,true);
+		$criteria->compare('t.title',$this->title,true);
+		$criteria->compare('t.summary',$this->summary,true);
+		$criteria->compare('t.text',$this->text,true);
+		$criteria->compare('t.img',$this->img,true);
+		//$criteria->compare('kind_of_publication',$this->kind_of_publication);
+        //$criteria->compare('kindOfPublication.content',$this->k_publication);
+		$criteria->addSearchCondition('kindOfPublication.content',$this->k_publication);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+        'attributes'=>array(
+            'id'=>array(
+                'asc'=>'t.id',
+                'desc'=>'t.id DESC',
+            ),
+			'publicationDate'=>array(
+                'asc'=>'t.publicationDate',
+                'desc'=>'t.publicationDate DESC',
+            ),
+			'title'=>array(
+                'asc'=>'t.title',
+                'desc'=>'t.title DESC',
+            ),
+			'summary'=>array(
+                'asc'=>'t.summary',
+                'desc'=>'t.summary DESC',
+            ),
+			'id'=>array(
+                'asc'=>'t.id',
+                'desc'=>'t.id DESC',
+            ),
+		   'k_publication'=>array(
+                'asc'=>'kindOfPublication.content',
+                'desc'=>'kindOfPublication.content DESC',
+            ),
+			
+           ),
+          ),
 		));
 
 /*

@@ -50,21 +50,24 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'certData'); ?>
-		<?php echo $form->textField($model,'certData'); ?>
-		<?php echo $form->error($model,'certData'); ?>
+		<?php echo $form->labelEx($model,'certType'); ?>
+		<?php echo $form->textField($model,'certType'); ?>
+		<?php echo $form->error($model,'certType'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
-		<?php echo $form->error($model,'type'); ?>
+		<?php echo $form->labelEx($model,'signedData'); ?>
+		<?php echo $form->textField($model,'signedData',array('size'=>40,'maxlength'=>40)); ?>
+		<?php echo $form->error($model,'signedData'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'int_user_id'); ?>
-		<?php echo $form->textField($model,'int_user_id'); ?>
-		<?php echo $form->error($model,'int_user_id'); ?>
+		<?php echo $form->labelEx($model,'new_user'); ?>
+		<?php //echo $form->textField($model,'authorities_id'); ?>
+		<?php echo $form->dropDownList($model, 'new_user', CHtml::listData(CabUser::model()->findAll(array(
+			'condition'=>'user_roles_id < 4 AND cab_state = "не активований"')), 'id', 'id'),
+			array('empty' => "Прив'язати сертифікат до користувача")); ?>
+		<?php echo $form->error($model,'new_user'); ?>
 	</div>
 
 	<div class="row buttons">

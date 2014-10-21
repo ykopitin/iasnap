@@ -41,17 +41,7 @@ class GenServConController extends Controller
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->layout='//layouts/column1';
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+
 
 	/**
 	 * Creates a new model.
@@ -68,7 +58,7 @@ class GenServConController extends Controller
 		{
 			$model->attributes=$_POST['GenServCon'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
         $this->layout='//layouts/column1';
@@ -93,7 +83,7 @@ class GenServConController extends Controller
 		{
 			$model->attributes=$_POST['GenServCon'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->layout='//layouts/column1';
@@ -116,18 +106,7 @@ class GenServConController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('GenServCon');
-		$this->layout='//layouts/column1';
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
+	
 	/**
 	 * Manages all models.
 	 */

@@ -1,22 +1,4 @@
-<?php
-/* @var $this GenServicesController */
-/* @var $dataProvider CActiveDataProvider */
+<BR>
+<h3>Відомості про послугу № <?php echo $model->id; ?></h3>
 
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління послугами'=>array('default/id2'),
-	'Таблиця «Відомості про послуги»',
-);
-
-$this->menu=array(
-	array('label'=>'Додати', 'url'=>array('create')),
-	array('label'=>'Управляти', 'url'=>array('admin')),
-);
-?>
-
-<h1>Таблиця «Відомості про послуги»</h1>
-
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php $this->renderPartial('_view', array('model'=>$model)); ?>

@@ -66,24 +66,11 @@ if(strUser!='(Оберіть категорію)')return strUser;
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'service_id'); ?>
+		<?php //echo "Оберіть послугу"; ?>
 		<?php //echo $form->textField($model,'service_id'); ?>
-		<?php echo $form->dropDownList($model, 'service_id', CHtml::listData(GenServices::model()->findAll(), 'id', 'name'),array('empty' => '(Оберіть послугу)')); ?>
+		<?php echo $form->dropDownList($model, 'service_id', CHtml::listData(GenServices::model()->findAll(), 'id', 'name'),array('empty' => '(Оберіть послугу)','style'=>'max-width:650px')); ?>
 		<?php echo $form->error($model,'service_id'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cat_class_id'); ?>
-		<?php echo $form->textField($model,'cat_class_id'); ?>
-		<?php echo $form->error($model,'cat_class_id'); ?>
-	</div>
-
-		<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
 
 <?php 
 		//categories
@@ -138,4 +125,20 @@ echo CHtml::ajaxSubmitButton('Натисність для заповнення �
 array(
     'type' => 'submit'
 ));
-echo CHtml::endForm();?>
+echo CHtml::endForm();?>	
+	
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'cat_class_id'); ?>
+		<?php echo $form->textField($model,'cat_class_id'); ?>
+		<?php echo $form->error($model,'cat_class_id'); ?>
+	</div>
+
+		<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+ 
+</div><!-- form -->
+

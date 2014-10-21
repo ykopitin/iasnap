@@ -1,70 +1,61 @@
+<BR>
+<h3>Відомості про послуги</h3>
 <?php
-/* @var $this GenServicesController */
-/* @var $model GenServices */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління послугами'=>array('default/id2'),
-	'Таблиця «Відомості про послуги»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-services-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+$this->widget('zii.widgets.jui.CJuiButton',array(
+    'name'=>'cjui-link',
+    'caption'=>'Додати нову послугу',
+    'buttonType'=>'link',
+    'url'=>Yii::app()->createUrl('/admin/genServices/create'),
+    'htmlOptions'=>array(
+        'style'=>'color:#ffffff;background: #0064cd;'
+    ),
+    //'onclick'=>new CJavaScriptExpression('function(){alert("Enter User Name"); this.blur(); return false;}'),
+    
+));
 ?>
 
-<h1>Управляти даними Таблиця «Відомості про послуги»</h1>
-
-
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-services-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'name',
-		//'subjnap_id',
-		//'subwork_id',
+	//'id',
+	array(
+          'header' => '№ з/п',
+		  'name' => 'idi',
+          'value' => '$data->id',
+		  'htmlOptions'=>array('width'=>'30px'),
+      ),
+	array(
+	'name'=>'name',
+	'htmlOptions'=>array('width'=>'400px'),
+	),
+	array(
+          'header' => 'Місце подання',
+		  'name' => 'author_search',
+          'value' => '$data->subjnap->name',
+		  'htmlOptions'=>array('width'=>'200px'),
+	 ),
+	array(
+          'header' => 'Суб\'єкт надання',
+		  'name' => 'author_search1',
+          'value' => '$data->subjnapw->name',
+		  'htmlOptions'=>array('width'=>'200px'),
+      ),
+	  array(
+          'header' => 'Надання в електронному вигляді',
+		  'name' => 'is_online',
+          'value' => '$data->is_online',
+		  'htmlOptions'=>array('width'=>'30px'),
+      ),
+	  //'is_online',
+
+	
 		
-		'regulations',
-		'reason',
-		'submission_proc',
-		
-		/*'docums',
-		'is_payed',
-		'payed_regulations',
-		'payed_rate',
-		'bank_info',
-		'deadline',
-		'denail_grounds',
-		'result',
-		'answer',
-		'is_online',
-		*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -78,8 +69,11 @@ $('.search-form form').submit(function(){
 				  'view' => array
                   (
                    'label'=>'Відобразити',
+				   'url'=>'Yii::app()->createUrl("admin/genServices/index/id/$data->id")',
                   ),
+				  
              ),
 		),
 	),
+	//'sort'=>array('attributes'=>array('name')),
 )); ?>

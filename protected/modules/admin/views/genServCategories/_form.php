@@ -3,7 +3,14 @@
 /* @var $model GenServCategories */
 /* @var $form CActiveForm */
 ?>
-
+<?php
+$baseUrl = Yii::app()->baseUrl;
+//echo $baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
+$cs->registerScriptFile($baseUrl.'/js/jquery.js');
+$cs->registerScriptFile($baseUrl.'/js/ShowHide.js');
+?>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -32,6 +39,13 @@
 		<?php echo $form->error($model,'visability'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'icon'); ?>
+		<?php //echo $form->textField($model,'icon',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->textArea($model,'icon',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'icon'); ?>
+	</div>	
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>
@@ -39,3 +53,8 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+				CKEDITOR.replace( 'GenServCategories[icon]' );
+</script>

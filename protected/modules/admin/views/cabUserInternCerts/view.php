@@ -29,7 +29,8 @@ $this->menu=array(
 		'certSubjDRFOCode',
 		'certSubjEDRPOUCode',
 		'certData',
-		'type',
-		'int_user_id',
+		'certType',
+		'signedData',
 	),
 )); ?>
+

@@ -8,10 +8,10 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Інформаційно-аналітична система надання адміністративних послуг',
-        'sourceLanguage'=>'en',
-        'language'=>'uk',
+'sourceLanguage'=>'en',
+'language'=>'uk', 
 	// preloading 'log' component
-        'preload'=>array('log'),
+	'preload'=>array('log'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -24,13 +24,14 @@ return array(
 		'admin',
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'iasnap',
+			'password'=>'iasnap/idex.php',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
 		),
-                'mff'=>array( // Модуль свободных форм
-//                    'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
-                )
+		  'mff'=>array( // Модуль свободных форм
+              //      'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
+                ),
+		
 		/**/
 	),
 
@@ -44,7 +45,7 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
-                        'baseUrl'=>'',
+			//'baseUrl'=>'',
 			'urlFormat'=>'path',
 			'rules'=>array(
 				'1'=>'site/contact',
@@ -66,37 +67,31 @@ return array(
 			'username' => 'iasnap',
 			'password' => 'iasnap98',
 			'charset' => 'utf8',
-//                    'enableProfiling'=>true, // показываем значения параметров 
-//                    'enableParamLogging' => true, 
 		),
 		/**/
+		'authManager'=>array(
+			'class'=>'CDbAuthManager',
+			'connectionID'=>'db',
+		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
-//		'log'=>array(
-//			'class'=>'CLogRouter',
-//			'routes'=>array(
-//				array(
-//					'class'=>'CFileLogRoute',                                       
-//					'levels'=>'error, warning, trace, log, vardump',
-//				),
-//                                array(
-//                                        'class'=>'CProfileLogRoute',
-//                                        'levels' => 'error, warning, trace, profile, info',
-//                                        'report'=>'callstack',
-//                                        'enabled'=>true,
-//                                ),				
-//                                array(
-//					'class'=>'CWebLogRoute',
-//                                        'enabled' => true,
-//                                        'levels' => 'error, warning, trace, notice',
-//                                        'categories' => 'application',
-//                                        'showInFireBug' => false,
-//				),
-//				
-//			),
-//		),
+		'log'=>array(
+			'class'=>'CLogRouter',
+			'routes'=>array(
+				array(
+					'class'=>'CFileLogRoute',
+					'levels'=>'error, warning',
+				),
+				// uncomment the following to show log messages on web pages
+				/*
+				array(
+					'class'=>'CWebLogRoute',
+				),
+				*/
+			),
+		),
 	),
 
 	// application-level parameters that can be accessed

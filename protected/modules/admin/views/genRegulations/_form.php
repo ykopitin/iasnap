@@ -3,7 +3,14 @@
 /* @var $model GenRegulations */
 /* @var $form CActiveForm */
 ?>
-
+<?php
+$baseUrl = Yii::app()->baseUrl;
+//echo $baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
+$cs->registerScriptFile($baseUrl.'/js/jquery.js');
+$cs->registerScriptFile($baseUrl.'/js/ShowHide.js');
+?>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -27,13 +34,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php //echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'hyperlink'); ?>
-		<?php echo $form->textField($model,'hyperlink',array('size'=>60,'maxlength'=>255)); ?>
+		<?php //echo $form->textField($model,'hyperlink',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textArea($model,'hyperlink',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'hyperlink'); ?>
 	</div>
 
@@ -44,3 +53,9 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+				CKEDITOR.replace( 'GenRegulations[name]' );
+                CKEDITOR.replace( 'GenRegulations[hyperlink]' );
+</script>

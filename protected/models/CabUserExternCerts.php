@@ -10,8 +10,8 @@
  * @property string $certserial
  * @property string $certSubjDRFOCode
  * @property string $certSubjEDRPOUCode
- * @property integer $certType
  * @property string $certData
+ * @property integer $certType
  * @property string $ext_user_id
  *
  * The followings are the available model relations:
@@ -35,13 +35,13 @@ class CabUserExternCerts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_of_user, certissuer, certserial, certType, certData', 'required'),
+			array('type_of_user, certissuer, certserial, certData, certType, ext_user_id', 'required'),
 			array('type_of_user, certType', 'numerical', 'integerOnly'=>true),
 			array('id, certSubjDRFOCode, certSubjEDRPOUCode, ext_user_id', 'length', 'max'=>10),
 			array('certserial', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type_of_user, certissuer, certserial, certSubjDRFOCode, certSubjEDRPOUCode, certType, certData, ext_user_id', 'safe', 'on'=>'search'),
+			array('id, type_of_user, certissuer, certserial, certSubjDRFOCode, certSubjEDRPOUCode, certData, certType, ext_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,7 +53,7 @@ class CabUserExternCerts extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'extUser' => array(self::BELONGS_TO, 'CabUserExternal', 'ext_user_id'),
+			'extUser' => array(self::BELONGS_TO, 'CabUser', 'ext_user_id'),
 		);
 	}
 
@@ -63,14 +63,14 @@ class CabUserExternCerts extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'type_of_user' => 'Тип користувача 0-фіз.особа 1-організація',
+			'id' => '№ з/п',
+			'type_of_user' => 'Тип користувача (0-фіз.особа 1-організація)',
 			'certissuer' => 'Власник сертифікату',
 			'certserial' => 'Серійний номер сертифікату',
 			'certSubjDRFOCode' => 'Код ДРФО',
 			'certSubjEDRPOUCode' => 'Код ЄДРПОУ',
-			'certType' => 'Тип сертифікату (0-ЕЦП,1-Шифр)',
 			'certData' => 'Вміст сертифікату',
+			'certType' => 'Тип ЕЦП/шифрування',
 			'ext_user_id' => 'ID зовнішнього користувача',
 		);
 	}
@@ -99,8 +99,8 @@ class CabUserExternCerts extends CActiveRecord
 		$criteria->compare('certserial',$this->certserial,true);
 		$criteria->compare('certSubjDRFOCode',$this->certSubjDRFOCode,true);
 		$criteria->compare('certSubjEDRPOUCode',$this->certSubjEDRPOUCode,true);
-		$criteria->compare('certType',$this->certType);
 		$criteria->compare('certData',$this->certData,true);
+		$criteria->compare('certType',$this->certType);
 		$criteria->compare('ext_user_id',$this->ext_user_id,true);
 
 		return new CActiveDataProvider($this, array(

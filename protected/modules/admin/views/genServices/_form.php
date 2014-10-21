@@ -56,7 +56,8 @@ $( document ).ready(function() {
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255,'visibility'=>'hidden')); ?>
+		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
+		<?php //echo $form->textField($model,'name',array('size'=>60,'maxlength'=>500,'visibility'=>'hidden')); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
  
@@ -64,7 +65,7 @@ $( document ).ready(function() {
 		<?php echo $form->labelEx($model,'subjnap_id'); ?>
 		<?php //echo $form->textField($model,'subjnap_id'); ?>
 		<?php //echo $form->dropDownList($model, 'subjnap_id', CHtml::listData(GenAuthorities::model()->findAllBySQL('SELECT * FROM gen_authorities WHERE is_cnap="СНАП"'), 'id', 'name'),array('empty' => '(Оберіть суб\'єкта надання)')); ?>
-	    <?php echo $form->dropDownList($model, 'subjnap_id', CHtml::listData(GenAuthorities::model()->findAll(), 'id', 'name'),array('empty' => '(Оберіть місце подачі документів)')); ?>
+	    <?php echo $form->dropDownList($model, 'subjnap_id', CHtml::listData(GenAuthorities::model()->findAll(), 'id', 'name'),array('empty' => '(Оберіть місце подачі документів)','style'=>'max-width:640px')); ?>
 	    <?php echo $form->error($model,'subjnap_id'); ?>
 	</div>
 
@@ -72,7 +73,7 @@ $( document ).ready(function() {
 		<?php echo $form->labelEx($model,'subjwork_id'); ?>
 		<?php //echo $form->textField($model,'subjwork_id'); ?>
 		<?php //echo $form->dropDownList($model, 'subjnap_id', CHtml::listData(GenAuthorities::model()->findAllBySQL('SELECT * FROM gen_authorities WHERE is_cnap="СНАП"'), 'id', 'name'),array('empty' => '(Оберіть суб\'єкта надання)')); ?>
-	    <?php echo $form->dropDownList($model, 'subjwork_id', CHtml::listData(GenAuthorities::model()->findAll(), 'id', 'name'),array('empty' => '(Оберіть виконавця)')); ?>
+	    <?php echo $form->dropDownList($model, 'subjwork_id', CHtml::listData(GenAuthorities::model()->findAll(), 'id', 'name'),array('empty' => '(Оберіть виконавця)','style'=>'max-width:640px')); ?>
 	    <?php echo $form->error($model,'subjwork_id'); ?>
 	</div>	
 	
@@ -154,12 +155,60 @@ $( document ).ready(function() {
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'have_expertise'); ?>
+		<?php //echo $form->textField($model,'is_payed'); ?>
+		<?php echo $form->checkBox($model,'have_expertise'); echo "   Експертиза необхідна"; ?>
+		<?php echo $form->error($model,'have_expertise'); ?>
+	</div>
+
+<div id="qwe1">	
+	<div class="row">
+		<?php echo $form->labelEx($model,'nes_expertise'); ?>
+		<?php echo $form->textArea($model,'nes_expertise',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'nes_expertise'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'is_payed_expertise'); ?>
+		<?php //echo $form->textField($model,'is_payed'); ?>
+		<?php echo $form->checkBox($model,'is_payed_expertise'); echo "   Експертиза платна"; ?>
+		<?php echo $form->error($model,'is_payed_expertise'); ?>
+	</div>
+
+<div id="qwe2">	
+	<div class="row">
+		<?php echo $form->labelEx($model,'payed_expertise'); ?>
+		<?php echo $form->textArea($model,'payed_expertise',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'payed_expertise'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'regul_expertise'); ?>
+		<?php echo $form->textArea($model,'regul_expertise',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'regul_expertise'); ?>
+	</div>	
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'rate_expertise'); ?>
+		<?php echo $form->textArea($model,'rate_expertise',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'rate_expertise'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'bank_info_expertise'); ?>
+		<?php echo $form->textArea($model,'bank_info_expertise',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'bank_info_expertise'); ?>
+	</div>
+  </div>
+</div>	
+	<div class="row">
 		<?php echo $form->labelEx($model,'is_online'); ?>
 		<?php //echo $form->textField($model,'is_online',array('size'=>6,'maxlength'=>6)); ?>
 		<?php echo $form->DropDownList( $model,'is_online', ZHtml::enumItem($model,'is_online'),array('empty' => '(Оберіть режим надання)')); ?>
 		<?php echo $form->error($model,'is_online'); ?>
 	</div>
-
+	
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>
@@ -168,6 +217,7 @@ $( document ).ready(function() {
 <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
+				CKEDITOR.replace( 'GenServices[name]' );
                 CKEDITOR.replace( 'GenServices[regulations]' );
 	     		CKEDITOR.replace( 'GenServices[docums]' );
 				CKEDITOR.replace( 'GenServices[reason]' );
@@ -179,6 +229,11 @@ $( document ).ready(function() {
 				CKEDITOR.replace( 'GenServices[denail_grounds]' );
 				CKEDITOR.replace( 'GenServices[result]' );
 				CKEDITOR.replace('GenServices[answer]'  );
+				CKEDITOR.replace('GenServices[nes_expertise]'  );
+				CKEDITOR.replace('GenServices[payed_expertise]'  );
+				CKEDITOR.replace('GenServices[regul_expertise]'  );
+				CKEDITOR.replace('GenServices[rate_expertise]'  );
+				CKEDITOR.replace('GenServices[bank_info_expertise]'  );
 				//if(typeof CKEDITOR.instances['GenServices[answer]'] != 'undefined') {
                 //CKEDITOR.instances['GenServices[answer]'].updateElement();
               //  CKEDITOR.instances['GenServices[answer]'].destroy();
@@ -203,6 +258,50 @@ $("#GenServices_is_payed").click(function() {
 	document.getElementById('qwe').style.display = "none";
 	}
 });	
-	
+
+///
+if ($("#GenServices_have_expertise").prop("checked")!=true){
+//	CKEDITOR.instances.GenServices_payed_regulations.destroy();
+//	CKEDITOR.instances.GenServices_payed_rate.destroy();
+//	CKEDITOR.instances.GenServices_bank_info.destroy();
+	document.getElementById('qwe1').style.display = "none";
+//alert("1");
+	}
+
+$("#GenServices_have_expertise").click(function() {
+    // this function will get executed every time the #home element is clicked (or tab-spacebar changed)
+    if($(this).is(":checked")) // "this" refers to the element that fired the event
+    {
+      // CKEDITOR.replace( 'GenAuthorities[working_time]' );
+	   document.getElementById('qwe1').style.display = "block";
+    }
+	else{
+	//CKEDITOR.instances.GenAuthorities_working_time.destroy();
+	document.getElementById('qwe1').style.display = "none";
+	}
+});
+
+///
+
+if ($("#GenServices_is_payed_expertise").prop("checked")!=true){
+//	CKEDITOR.instances.GenServices_payed_regulations.destroy();
+//	CKEDITOR.instances.GenServices_payed_rate.destroy();
+//	CKEDITOR.instances.GenServices_bank_info.destroy();
+	document.getElementById('qwe2').style.display = "none";
+//alert("1");
+	}
+
+$("#GenServices_is_payed_expertise").click(function() {
+    // this function will get executed every time the #home element is clicked (or tab-spacebar changed)
+    if($(this).is(":checked")) // "this" refers to the element that fired the event
+    {
+      // CKEDITOR.replace( 'GenAuthorities[working_time]' );
+	   document.getElementById('qwe2').style.display = "block";
+    }
+	else{
+	//CKEDITOR.instances.GenAuthorities_working_time.destroy();
+	document.getElementById('qwe2').style.display = "none";
+	}
+});	
 </script>
 </div><!-- form -->

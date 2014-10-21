@@ -62,9 +62,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
-		<?php echo $form->error($model,'type'); ?>
+		<?php echo $form->labelEx($model,'certType'); ?>
+		<?php echo $form->textField($model,'certType'); ?>
+		<?php echo $form->error($model,'certType'); ?>
 	</div>
 
 	<div class="row">

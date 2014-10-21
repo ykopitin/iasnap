@@ -32,6 +32,7 @@ class GenServCategories extends CActiveRecord
 			array('name, visability', 'required'),
 			array('name', 'length', 'max'=>60),
 			array('visability', 'length', 'max'=>6),
+			array('icon', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, visability', 'safe', 'on'=>'search'),
@@ -59,6 +60,7 @@ class GenServCategories extends CActiveRecord
 			'id' => '№ з/п',
 			'name' => 'Назва категорії',
 			'visability' => 'Видимість (0/1)',
+			'icon'=>'Піктограма',
 		);
 	}
 

@@ -1,5 +1,6 @@
 <?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main2'); ?>
+<?php //$this->beginContent('//layouts/main1'); ?>
+<?php $this->beginContent('//layouts/column1'); ?>
 <table style="width: 90%;" align="left">
     <tr>
         <td style="width:  720px; padding: 27px 0 10px 140px; vertical-align: top;"><?php echo $content; ?></td>

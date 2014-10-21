@@ -22,10 +22,10 @@
                 array('label'=>'Користувачі',
 				       'items'=>array(
                           array('label'=>'Ролі користувачів'),
-                          array('label'=>'Внутрішні користувачі порталу'),
-						  array('label'=>'Сертифікати внутрішніх користувачів'),
-						  array('label'=>'Зовнішні користувачі порталу', 'url'=>array('/admin/CabUserExternal/admin')),
-						  array('label'=>'Сертифікати зовнішніх користувачів'),
+                          array('label'=>'Внутрішні користувачі порталу', 'url'=>array('/admin/CabUser/adminint')),
+						  array('label'=>'Сертифікати на реєстрацію', 'url'=>array('/admin/CabUserInternCerts/admin')),
+						  array('label'=>'Зовнішні користувачі порталу', 'url'=>array('/admin/CabUser/admin')),
+						  array('label'=>'Сертифікати користувачів', 'url'=>array('/admin/CabUserExternCerts/admin')),
 						  array('label'=>'Активність користувачів'),
 						),
                 ),
@@ -37,7 +37,14 @@
 						  array('label'=>'Відомості про населені пункти','url'=>array('/admin/genLocations/admin')),
                    ),
 				),
-				array('label'=>'Вільні форми','url'=>array('/mff')),
+				array('label'=>'Вільні форми',
+				'items'=>array(
+                          array('label'=>'Генератор вільних форм','url'=>array('/mff/formgen/index')),
+                          array('label'=>'Управління сховищами','url'=>array('/mff/storage/index')),
+						  array('label'=>'Тестування документів на звітних формах','url'=>array('/mff/formview/index')),
+						  array('label'=>'Тестування кабінетів','url'=>array('/mff/cabinet/index')),
+                   ),
+				),
             ),
     )); ?>
     </div><!-- mainmenu --> 

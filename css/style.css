@@ -1,0 +1,16 @@
+#wrapper { width:720px; position: relative; margin: -20px 0 0 0; padding-bottom: 70px;}
+
+.sliderbutton {float:left; width:32px; padding-top:145px; color:#ededed;}
+.sliderbutton img {cursor:pointer}
+.sliderbutton img:hover {background:#666}
+#slider {float:left; position:relative; overflow:auto; width:610px; height:300px; border:2px solid #fff; background:#fff}
+#slider ul {position:absolute; list-style:none; top:0; left:0}
+#slider li {float:left; width:610px; height:300px; padding-right:10px}
+
+.pagination {position:relative; float:left; list-style:none; height:25px; margin:-40px 0 0 42px}
+.pagination li {float:left; cursor:pointer; padding:5px 8px; background:#eee; border:1px solid #999; border-radius:100px; margin:0 4px 0 0; text-align:center; color:#222}
+.pagination li:hover {background:#777; border:1px solid #bbb; color:#000}
+li.current {border:1px solid #ccc; background:#a2d507}
+
+li#content {width:464px; height:270px; padding:15px 0px 15px 0px}
+#content h1 {font:22px Georgia,Verdana; margin-bottom:15px; color:#036}

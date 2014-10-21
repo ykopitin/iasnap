@@ -7,10 +7,10 @@ class EUWidget extends CWidget {
 //        $this->model = $model;
         $assetsDir = dirname(__FILE__).DIRECTORY_SEPARATOR;
 	$baseUrl = Yii::app()->assetManager->publish($assetsDir.'/assets');
-//        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js');
 	if ($this->WidgetType == "Login") {
 	        Yii::app()->clientScript->registerScriptFile($baseUrl.'/EULoginMini.js');
-		$this->WidgetAction = "sign/login";
+		if ($this->WidgetAction == "") $this->WidgetAction = "sign/login";
 	}
 	else if ($this->WidgetType == "Sign") {
 	        Yii::app()->clientScript->registerScriptFile($baseUrl.'/EUSignMini.js');
@@ -26,7 +26,5 @@ class EUWidget extends CWidget {
     public function run() {
         $this->render('eubutton', $this->model);
     }
-    
-    
 }
 ?>

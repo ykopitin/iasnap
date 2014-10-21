@@ -42,13 +42,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
+		<?php echo $form->label($model,'certType'); ?>
+		<?php echo $form->textField($model,'certType'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'int_user_id'); ?>
-		<?php echo $form->textField($model,'int_user_id'); ?>
+		<?php echo $form->label($model,'signedData'); ?>
+		<?php echo $form->textField($model,'signedData',array('size'=>40,'maxlength'=>40)); ?>
 	</div>
 
 	<div class="row buttons">

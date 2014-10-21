@@ -1,42 +1,7 @@
-<?php
-/* @var $this GenServConController */
-/* @var $model GenServCon */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління послугами'=>array('default/id2'),
-	'Таблиця «Звязок послуг з класами»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-serv-con-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
-
-<h1>Управляти даними Таблиця «Звязок послуг з класами»</h1>
+<BR>
+<h3>Управляти даними Таблиця «Звязок послуг з класами»</h3>
 
 
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-serv-con-grid',
@@ -48,6 +13,7 @@ $('.search-form form').submit(function(){
 		'class_id',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}{update}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -58,11 +24,7 @@ $('.search-form form').submit(function(){
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
-             ),
+				),
 		),
 	),
 )); ?>

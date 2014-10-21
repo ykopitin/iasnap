@@ -1,42 +1,19 @@
+<BR>
+<h3>Відомості про населені пункти</h3>
+
 <?php
-/* @var $this GenLocationsController */
-/* @var $model GenLocations */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління довідниками'=>array('default/id4'),
-	'Таблиця «Відомості про населені пункти»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-locations-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+$this->widget('zii.widgets.jui.CJuiButton',array(
+    'name'=>'cjui-link',
+    'caption'=>'Додати населений пункт',
+    'buttonType'=>'link',
+    'url'=>Yii::app()->createUrl('/admin/genLocations/create'),
+    'htmlOptions'=>array(
+        'style'=>'color:#ffffff;background: #0064cd;'
+    ),
+    //'onclick'=>new CJavaScriptExpression('function(){alert("Enter User Name"); this.blur(); return false;}'),
+    
+));
 ?>
-
-<h1>Управляти даними Таблиця «Відомості про населені пункти»</h1>
-
-
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-locations-grid',
@@ -48,6 +25,7 @@ $('.search-form form').submit(function(){
 		'name',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}{update}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -58,11 +36,7 @@ $('.search-form form').submit(function(){
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
-             ),
+				              ),
 		),
 	),
 )); ?>

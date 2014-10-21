@@ -30,6 +30,7 @@
  */
 class GenAuthorities extends CActiveRecord
 {
+	public $locat;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -61,7 +62,7 @@ class GenAuthorities extends CActiveRecord
 			array('gpscoordinates', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, is_cnap, type, name, locations_id, index, street, building, office, working_time, phone, fax, email, web, transport, gpscoordinates, photo', 'safe', 'on'=>'search'),
+			array('id, is_cnap, type, name, index, street, building, office, working_time, phone, fax, email, web, transport, gpscoordinates, photo,locat', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,7 +89,7 @@ class GenAuthorities extends CActiveRecord
 	{
 		return array(
 			'id' => '№ з/п',
-			'is_cnap' => 'Тип обєкта',
+			'is_cnap' => 'Тип об\'єкта',
 			'type' => 'Приналежність',
 			'name' => 'Назва органу',
 			'locations_id' => 'ID населеного пункту',
@@ -124,12 +125,12 @@ class GenAuthorities extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+        $criteria->with = array( 'locations' );
 		$criteria->compare('id',$this->id);
 		$criteria->compare('is_cnap',$this->is_cnap,true);
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('locations_id',$this->locations_id);
+		//$criteria->compare('locations_id',$this->locations_id);
 		$criteria->compare('index',$this->index,true);
 		$criteria->compare('street',$this->street,true);
 		$criteria->compare('building',$this->building,true);
@@ -142,10 +143,49 @@ class GenAuthorities extends CActiveRecord
 		$criteria->compare('transport',$this->transport,true);
 		$criteria->compare('gpscoordinates',$this->gpscoordinates,true);
 		$criteria->compare('photo',$this->photo,true);
-
+        //$criteria->compare('locations.name',$this->locat,true);
+		$criteria->addSearchCondition('locations.name',$this->locat);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			
+			 'sort'=>array(
+        'attributes'=>array(
+           'id'=>array(
+                'asc'=>'t.id',
+                'desc'=>'t.id DESC',
+            ),
+			'is_cnap'=>array(
+                'asc'=>'t.is_cnap',
+                'desc'=>'t.is_cnap DESC',
+            ),
+			'type'=>array(
+                'asc'=>'t.type',
+                'desc'=>'t.type DESC',
+            ),
+			'name'=>array(
+                'asc'=>'t.name',
+                'desc'=>'t.name DESC',
+            ),
+		   'locat'=>array(
+                'asc'=>'locations.name',
+                'desc'=>'locations.name DESC',
+            ),
+			),
+          ),
 		));
+		
+	/*	$users=GenAuthorities::model()->with(array(
+        'genServices'=>array(
+        'select'=>array('subjnap.id'),
+        'joinType'=>'INNER JOIN',
+        ),
+        ))->findAll();
+
+	    return new CActiveDataProvider($this, array(
+        'data'=>$users,
+        ));
+	*/	
 	}
 
 	/**

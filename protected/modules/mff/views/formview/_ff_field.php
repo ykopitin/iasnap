@@ -1,4 +1,5 @@
 <tr>
+    <?php // if (isset($data->typeItem->systemtype) && $data->typeItem->systemtype!=null) {?>
     <td><?= CHtml::label($data->description,"") ?></td>
     <td>
         <?php       
@@ -10,4 +11,9 @@
             }
         ?>
     </td>
+    <?php // } else { ?>
+    <!-- <td colspan="2" height="0"> -->
+         <?php //  $this->renderPartial("view/_".$data->typeItem->view,array("data"=>$data,"form"=>$form,"modelff"=>$modelff,"scenario"=>$scenario)) ; ?>
+        <!--</td>-->
+    <?php //  } ?>
 </tr>

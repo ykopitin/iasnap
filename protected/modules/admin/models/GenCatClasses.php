@@ -15,6 +15,8 @@
  */
 class GenCatClasses extends CActiveRecord
 {
+     public $author_search;
+	 public $author_search1;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -36,6 +38,8 @@ class GenCatClasses extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, categorie_id, class_id', 'safe', 'on'=>'search'),
+			array('author_search', 'safe', 'on'=>'search'),
+			array('author_search1', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,13 +86,33 @@ class GenCatClasses extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+        $criteria->with = array( 'categorie','class');
 		$criteria->compare('id',$this->id);
 		$criteria->compare('categorie_id',$this->categorie_id);
 		$criteria->compare('class_id',$this->class_id);
-
+        //$criteria->compare( 'categorie.name', $this->author_search, true );
+		//$criteria->compare( 'class.item_name', $this->author_search1, true );
+		$criteria->addSearchCondition('categorie.name', $this->author_search);
+		$criteria->addSearchCondition('class.item_name', $this->author_search1);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+        'attributes'=>array(
+           'id'=>array(
+                'asc'=>'t.id',
+                'desc'=>'t.id DESC',
+            ),
+		   'author_search'=>array(
+                'asc'=>'categorie.name',
+                'desc'=>'categorie.name DESC',
+            ),
+			'author_search1'=>array(
+                'asc'=>'class.item_name',
+                'desc'=>'class.item_name DESC',
+            ),
+           ),
+          ),
 		));
 	}
 

@@ -29,13 +29,13 @@
 	<?php echo CHtml::encode($data->certData); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
-	<?php echo CHtml::encode($data->type); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('certType')); ?>:</b>
+	<?php echo CHtml::encode($data->certType); ?>
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('int_user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->int_user_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('signedData')); ?>:</b>
+	<?php echo CHtml::encode($data->signedData); ?>
 	<br />
 
 	*/ ?>

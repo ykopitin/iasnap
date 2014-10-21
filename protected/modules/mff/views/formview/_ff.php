@@ -99,7 +99,9 @@ if ($scenario!="view") {
         $criteria2->addCondition("`formid` = :formid");
         $criteria2->addCondition("`order` = 0");
         $criteria2->order="`order`";
-
+        $criteria2->with=array("typeItem");
+        $criteria2->addCondition("`systemtype` is not null");
+                
     $dataProvider2=new CActiveDataProvider("FFField", array(
             'criteria' => $criteria2,
             'pagination' => array('pageSize' => 3000,)

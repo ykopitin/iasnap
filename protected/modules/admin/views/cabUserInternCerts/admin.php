@@ -5,7 +5,7 @@
 $this->breadcrumbs=array(
 	'Адміністративна панель'=>array('default/index'),
 	'Управління користувачами'=>array('default/id3'),
-	'Таблиця «Сертифікати внутрішніх користувачів»'=>array('index'),
+	'Таблиця «Сертифікати на реєстрацію»'=>array('index'),
 	'Управління',
 );
 
@@ -48,11 +48,10 @@ $('.search-form form').submit(function(){
 		'certserial',
 		'certSubjDRFOCode',
 		'certSubjEDRPOUCode',
-		'certData',
+//		'certData',
 		/*
-		'type',
-		'int_user_id',
-		*/
+		'certType',*/
+		'signedData',
 		array(
 			'class'=>'CButtonColumn',
 			'buttons'=>array
@@ -60,10 +59,6 @@ $('.search-form form').submit(function(){
                    'delete' => array
                   (
                    'label'=>'Вилучити',
-                  ),
-				  'update' => array
-                  (
-                   'label'=>'Оновити',
                   ),
 				  'view' => array
                   (

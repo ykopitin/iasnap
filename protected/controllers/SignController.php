@@ -111,6 +111,13 @@ class SignController extends Controller
 		$this->render('index', array('model'=>$model));
 	}
 
+        public function actionLogout()
+        {
+                Yii::app()->user->logout();
+                $this->redirect(Yii::app()->homeUrl);
+        }
+
+
 	public function actionGetCertificates()
 	{
 		$certdir = Yii::app()->basePath."/../certificates";
@@ -155,12 +162,14 @@ error_log("reg001");
 				if($model->verify_sign()) {
 //error_log("reg002");
 					if ($model->Email != $model->Email2) {$this->addError('Email', 'Введені адреси електронної пошти не співпадають'); return false;}
-					$user_model = new CabUserExternal();
+					$user_model = new CabUser();
 //error_log("reg003");
 					$user_model->email = $model->Email;
 					$user_model->phone = $model->Phone;
 					$user_model->type_of_user = 0;
 					$user_model->cab_state = "активований"; //need working email to send activation requests
+					$user_model->authorities_id = 1;
+					$user_model->user_roles_id = 4;
 //error_log("reg004");
 					if($user_model->validate()){
 						$user_model->save();
@@ -199,7 +208,8 @@ error_log("reg008");
 //				$this->redirect(Yii::app()->baseUrl.'/auth/regconfirm');
 			if($model->validate() && $model->verify_sign())
 //				$this->render('regconfirm');
-				$this->redirect(Yii::app()->createUrl('auth/regconfirm'));
+//				$this->redirect(Yii::app()->createUrl('auth/regconfirm'));
+				Yii::app()->end;
 		}
 		$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
 
@@ -220,6 +230,85 @@ error_log("reg008");
 			} else { echo "Помилка при перевірці підпису"; }
 		}
 		$this->render('regconfirm', array('model'=>$model));
+	}
+
+	public function actionSignform() {
+		$model = new AuthForm;
+		if(isset($_POST['Signform']))
+		{
+			$sig = new EUSignature($_POST['Signform']);
+			$er = $sig->check();
+			if ($er == 0){
+				echo $sig->sResultData;
+				Yii::app()->end;
+			}
+		}
+		$this->render('signform', array('model'=>$model));
+	}
+	
+	public function actionUserid() {
+		echo Yii::app()->user->id;
+		echo "<br>";
+		$auth = Yii::app()->authManager;
+		var_dump($auth->getRoles(Yii::app()->user->id));
+	}
+	
+	public function actionTest() {
+		$model = new AuthForm;
+		$this->render('test', array('model'=>$model));
+	}
+
+	
+	public function actionRegister2()
+	{
+		$countFreeIntUsers = CabUser::model()->count(new CDbCriteria(array
+		(
+			'condition' => 'user_roles_id < 4 and cab_state = "не активований"' //Пошук неактивований внутрішніх користувачів
+//			'params' => array(':people_id'=>$people->id)
+		)));
+		if ($countFreeIntUsers < 1) {	// Немає необхідності подавати запити на реєстрацію з кодом активації
+//			$this->render('regrequestconfirm', array('model'=>'deny'));
+			throw new CHttpException(404,'Системі не вдалося знайти запитувану дію "register2".');
+//			Yii::app()->end;
+		}
+		$model = new RegrequestForm;
+		if(isset($_POST['Signature']))
+		{
+			$model->Signature = $_POST['Signature'];
+			if ($model->verify_sign()) {
+				$user_model_cert = new CabUserInternCerts();
+				$user_model_cert->certissuer = $model->SigData->sIssuer;
+				$user_model_cert->certserial = $model->SigData->sSerial;
+				$user_model_cert->certSubjDRFOCode = $model->SigData->sSubjDRFOCode;
+				$user_model_cert->certSubjEDRPOUCode = $model->SigData->sSubjEDRPOUCode;
+				$user_model_cert->certType = 0;
+				$user_model_cert->certData = base64_decode($model->CertSign);
+				$user_model_cert->signedData = $model->activ_code;
+				if($user_model_cert->validate()){
+					$user_model_cert->save();
+					$this->render('regrequestconfirm', array('model'=>'allow'));
+				}else{
+					print_r($user_model_cert->getErrors());
+					Yii::app()->end();
+				}				
+			}
+			
+		}
+		$this->render('regrequest', array('model'=>$model));
+	}
+	
+
+	public function actionCreateRBAC(){
+		$auth=Yii::app()->authManager;
+		$auth->createRole('siteadmin');
+
+		$users = CabUser::model()->findAll();
+		foreach($users as $u) {
+			error_log("u role:".$u->id." rol:".$u->user_roles_id);
+			if ($u->user_roles_id <= 2)
+				$auth->assign('siteadmin', $u->id);
+		}
+
 	}
 
 	// Uncomment the following methods and override them if needed

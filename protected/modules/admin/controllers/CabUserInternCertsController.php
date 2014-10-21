@@ -90,8 +90,37 @@ class CabUserInternCertsController extends Controller
 		if(isset($_POST['CabUserInternCerts']))
 		{
 			$model->attributes=$_POST['CabUserInternCerts'];
-			if($model->save())
+			if($model->save()) {
+				if (isset($_POST['CabUserInternCerts']['new_user'])){
+				    $new_user = $_POST['CabUserInternCerts']['new_user'];
+				    if (is_numeric($new_user)) {
+					$user_model = CabUser::model()->findByPk($new_user);
+					if($user_model===null)
+						throw new CHttpException(404,'Задана сторінка не знайдена.');
+					$user_model_cert = new CabUserExternCerts();
+					$user_model_cert->type_of_user = $user_model->type_of_user;
+					$user_model_cert->certissuer = $model->certissuer;
+					$user_model_cert->certserial = $model->certserial;
+					$user_model_cert->certSubjDRFOCode = $model->certSubjDRFOCode;
+					$user_model_cert->certSubjEDRPOUCode = $model->certSubjEDRPOUCode;
+					$user_model_cert->certType = $model->certType;
+					$user_model_cert->certData = $model->certData;
+//error_log("reg006 CertSign:".$user_model_cert->certData);
+					$user_model_cert->ext_user_id = $user_model->id;
+//error_log("reg007");
+					if($user_model_cert->validate()){
+						$user_model_cert->save();
+						$model->delete();
+						$this->redirect(array('/admin/CabUser/update', 'id'=>$user_model_cert->ext_user_id));
+					}else{
+						print_r($user_model_cert->getErrors());
+						Yii::app()->end();
+					}
+					
+				    }
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

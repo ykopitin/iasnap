@@ -5,7 +5,7 @@
 
 
 //echo ;
-        $this->widget('zii.widgets.jui.CJuiAccordion',array(
+        $this->widget('zii.widgets.jui.CJuiAccordion',array('id'=>'opys3',
     'panels'=>array(
         'Перелік документів, необхідних для отримання адміністративної послуги'=>GenServices::model()->findByPk($_GET['param'])->docums,
            ),

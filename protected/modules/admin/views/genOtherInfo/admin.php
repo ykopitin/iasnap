@@ -1,66 +1,58 @@
+<BR>
+<h3>Посилання на статті до категорій сайту</h3>
+
 <?php
-/* @var $this GenOtherInfoController */
-/* @var $model GenOtherInfo */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління загальним інтерфейсом порталу'=>array('default/id1'),
-	'Таблиця «Посилання на статті до категорій сайту»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-other-info-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+$this->widget('zii.widgets.jui.CJuiButton',array(
+    'name'=>'cjui-link',
+    'caption'=>'Додати посилання',
+    'buttonType'=>'link',
+    'url'=>Yii::app()->createUrl('/admin/genOtherInfo/create'),
+    'htmlOptions'=>array(
+        'style'=>'color:#ffffff;background: #0064cd;'
+    ),
+    //'onclick'=>new CJavaScriptExpression('function(){alert("Enter User Name"); this.blur(); return false;}'),
+    
+));
 ?>
-
-<h1>Управляти даними Таблиця «Посилання на статті до категорій сайту»</h1>
-
-
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-other-info-grid',
 	'dataProvider'=>$model->search(),
-	//'filter'=>$model,
+	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'publicationDate',
-		'title',
-		'summary',
-		'text',
-		'img',
-		
 		array(
-        	'name'=>'Розділ',
-	        'value'=>'$data->kindOfPublication->content',
-	        'type'=>'text',
-	    ),
+		'name'=>'id',
+		'htmlOptions'=>array('width'=>'30px'),
+		),
+		array(
+		'name'=>'publicationDate',
+		'htmlOptions'=>array('width'=>'60px'),
+		),
+		array(
+		'name'=>'title',
+		'htmlOptions'=>array('width'=>'250px'),
+		),
+		array(
+		'name'=>'summary',
+		'htmlOptions'=>array('width'=>'600px'),
+		),
+		//'text',
+		//'img',
+		array(
+          'header' => 'Розділ',
+		  'name' => 'kindOfPublication.content',
+          'value' => '$data->kindOfPublication->content',
+		  'filter'=> CHtml::activeTextField($model, 'k_publication'),
+		  'htmlOptions'=>array('width'=>'200px'),
+	 ),
+		
 		
 		/*
 		'kind_of_publication',
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}{update}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -71,11 +63,10 @@ $('.search-form form').submit(function(){
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
+				  
              ),
+			 'htmlOptions'=>array('width'=>'80px'),
 		),
 	),
+	
 )); ?>

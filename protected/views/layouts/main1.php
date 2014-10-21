@@ -27,7 +27,6 @@
 
  $this->widget('ext.cssmenu.CssMenu',array(
 			'items'=>array(	
-            array('label'=>'До головного меню', 'url'=>'http://allium2.soborka.net/iasnap/index.php/admin/default/index'),
             array('label'=>'Перейти на сайт', 'url'=>'http://allium2.soborka.net/iasnap/'),
             	),
 				));
@@ -37,18 +36,20 @@
              ?>  </div>
 	<!-- mainmenu --> 
              </td> <td width="35%" bgcolor="#18262A" align="left">   <div id="loginmenu"> 
-             <?php
+             <?
            // echo CHtml::image(Yii::app()->request->baseUrl.'/images/zm.jpg'); 
              $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(	
-            array('label'=>'Увійти', 'url'=>Yii::app()->createUrl('site/login')),
-            array('label'=>'Реєстрація', 'url'=>'#'),
+            //array('label'=>'Кабінет', 'url'=>array('/cabinet'), 'visible'=>!Yii::app()->user->isGuest),
+            array('label'=>'Увійти', 'url'=>Yii::app()->CreateUrl('sign/login'), 'visible'=>Yii::app()->user->isGuest),
+            array('label'=>'Вийти', 'url'=>Yii::app()->CreateUrl('site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+            //array('label'=>'Реєстрація', 'url'=>Yii::app()->CreateUrl('#'), 'visible'=>Yii::app()->user->isGuest),
             	),
 		));
 	?> </div>
   	</td>
 	</tr>
-</table>  
+</table> 
 
 <div class="container" id="logo">
           	<table align="center" border="0" width="1259"  cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
@@ -86,6 +87,7 @@
 
 
 <!-- mainmenu --> 
+
 
 <div id="footer">
 		<table background="<?php echo Yii::app()->baseUrl; ?>/images/but_z.jpg" width="100%" height="20"><tr><td ></td></tr></table>

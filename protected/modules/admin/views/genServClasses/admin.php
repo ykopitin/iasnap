@@ -1,42 +1,19 @@
+<BR>
+<h3>Каталог класів послуг</h3>
+
 <?php
-/* @var $this GenServClassesController */
-/* @var $model GenServClasses */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління довідниками'=>array('default/id4'),
-	'Таблиця «Каталог класів послуг»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-serv-classes-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+$this->widget('zii.widgets.jui.CJuiButton',array(
+    'name'=>'cjui-link',
+    'caption'=>'Додати клас',
+    'buttonType'=>'link',
+    'url'=>Yii::app()->createUrl('/admin/genServClasses/create'),
+    'htmlOptions'=>array(
+        'style'=>'color:#ffffff;background: #0064cd;'
+    ),
+    //'onclick'=>new CJavaScriptExpression('function(){alert("Enter User Name"); this.blur(); return false;}'),
+    
+));
 ?>
-
-<h1>Управляти даними Таблиця «Каталог класів послуг»</h1>
-
-
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-serv-classes-grid',
@@ -48,6 +25,7 @@ $('.search-form form').submit(function(){
 		'visability',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}{update}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -58,10 +36,7 @@ $('.search-form form').submit(function(){
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
+				  
              ),
 		),
 	),

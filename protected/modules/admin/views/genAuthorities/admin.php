@@ -1,59 +1,40 @@
+<BR>
+<h3>Відомості про центри та суб'єкти</h3>
+
 <?php
-/* @var $this GenAuthoritiesController */
-/* @var $model GenAuthorities */
-
-$this->breadcrumbs=array(
-	'Адміністративна панель'=>array('default/index'),
-	'Управління послугами'=>array('default/id2'),
-	'Таблиця «Відомості про центри та субєкти»'=>array('index'),
-	'Управління',
-);
-
-$this->menu=array(
-	array('label'=>'Відобразити', 'url'=>array('index')),
-	array('label'=>'Додати', 'url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#gen-authorities-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+$this->widget('zii.widgets.jui.CJuiButton',array(
+    'name'=>'cjui-link',
+    'caption'=>'Додати суб\'єкта',
+    'buttonType'=>'link',
+    'url'=>Yii::app()->createUrl('/admin/genAuthorities/create'),
+    'htmlOptions'=>array(
+        'style'=>'color:#ffffff;background: #0064cd;'
+    ),
+    //'onclick'=>new CJavaScriptExpression('function(){alert("Enter User Name"); this.blur(); return false;}'),
+    
+));
 ?>
-
-<h1>Управляти даними Таблиця «Відомості про центри та субєкти»</h1>
-
-
-<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-authorities-grid',
 	'dataProvider'=>$model->search(),
-	//'filter'=>$model,
+	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		array(
+		'name'=>'id',
+		'htmlOptions'=>array('width'=>'30px'),
+		),
 		'is_cnap',
 		'type',
 		'name',
 		//'locations_id',
 		array(
-        	'name'=>'Назва населеного пункту',
+        	'header' => 'Населений пункт',
+			'name'=>'locations.name',
 	        'value'=>'$data->locations->name',
-	        'type'=>'text',
+			'filter'=> CHtml::activeTextField($model, 'locat'),
 	    ),
-		'index',
+		//'index',
 		/*
 		'street',
 		'building',
@@ -69,6 +50,7 @@ $('.search-form form').submit(function(){
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}{update}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -79,10 +61,7 @@ $('.search-form form').submit(function(){
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
+				  
              ),
 		),
 	),

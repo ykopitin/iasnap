@@ -5,7 +5,7 @@
 
 if (GenServices::model()->findByPk($_GET['param'])->is_payed==1){
 //echo ;
-        $this->widget('zii.widgets.jui.CJuiAccordion',array(
+        $this->widget('zii.widgets.jui.CJuiAccordion',array('id'=>'opys1', 
     'panels'=>array(
         'Платність (безоплатність) надання адміністративної послуги'=>'Платно',
         'Нормативно-правові акти, на підставі яких стягується плата'=>GenServices::model()->findByPk($_GET['param'])->payed_regulations,
@@ -23,7 +23,7 @@ if (GenServices::model()->findByPk($_GET['param'])->is_payed==1){
 }
 else
 {
-      $this->widget('zii.widgets.jui.CJuiAccordion',array(
+      $this->widget('zii.widgets.jui.CJuiAccordion',array('id'=>'opys1', 
     'panels'=>array(
         'Платність (безоплатність) надання адміністративної послуги'=>'Безоплатно',
                   ),
