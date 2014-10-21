@@ -55,7 +55,7 @@ function func(n) {
 	min-height: 100%;
     margin-top: -20px;
 	margin-bottom: 0px;
-	<?php if (!isset($_GET['param'])) {?><?}?>
+	<?php if (!isset($_GET['param'])) {?><?php } ?>
 	width: 100%;
 }
 </style>
@@ -98,12 +98,13 @@ function func(n) {
  
  
 
-  $this->widget('ext.cssmenu.CssMenu',array('items'=>$dat));
+  Yii::import("application.extensions.cssmenu.*");       
+  $this->widget('CssMenu',array('items'=>$dat));
            ?>  
 	<!-- mainmenu --> 
              </td> <td width="22%" bgcolor="#18262A" >   <div id="loginmenu"> 
              <img src="<?php echo Yii::app()->baseUrl; ?>/images/login.png" >
-             <?
+             <?php
            // echo CHtml::image(Yii::app()->request->baseUrl.'/images/zm.jpg'); 
              $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(	
@@ -165,7 +166,7 @@ echo CHtml::link('Головна', array('/'));
         
                ?>
 
-    <?
+    <?php
      if (isset($_GET['param'])){  
  
     echo '<div id="posnamebg"><div id=posname>'.GenServices::model()->findByPk($_GET['param'])->name.'</div></div>';

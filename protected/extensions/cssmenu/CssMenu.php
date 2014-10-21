@@ -1,4 +1,4 @@
-<?
+<?php
 
 class CssMenu extends CWidget
 {
