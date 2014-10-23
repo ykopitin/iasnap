@@ -105,10 +105,11 @@ class FormgenController extends Controller
         
         if (isset($_POST["FFField"])) {
             $field = FFField::model()->findByPk($_POST["FFField"]["id"]);
-            $field->name = $_POST["FFField"]["name"];
-            $field->type = $_POST["FFField"]["type"];
-            $field->order = $_POST["FFField"]["order"];
-            $field->description = $_POST["FFField"]["description"];
+//            $field->name = $_POST["FFField"]["name"];
+//            $field->type = $_POST["FFField"]["type"];
+//            $field->order = $_POST["FFField"]["order"];
+//            $field->description = $_POST["FFField"]["description"];
+            $field->attributes=$_POST["FFField"];
             $formid = $field->formid;
             $parentid = ($formid==null)?null:$field->registryItem->parent; 
             if ($field->validate()) {      

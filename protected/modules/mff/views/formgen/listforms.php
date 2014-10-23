@@ -37,11 +37,10 @@ $headlabel = $dataProvider->model->attributeLabels();
 $this->widget("zii.widgets.CListView", array(
     'dataProvider'=>$dataProvider,
     'itemView'=>'_view',
+    'itemsTagName'=>'tbody',
     'tagName'=>'table',
-    'template'=>'<caption>{summary}</caption><thead><th>ID</th><th>'.
-    $headlabel["tablename"].'</th><th>'.$headlabel["description"].'</th><th>Действия</th></thead><tbody>{items}</tbody>',
-    //'itemsTagName'=>'tr',
-    //'separator'=>'</tr>',
+    'template'=>'<caption>{summary}</caption><thead><tr><th>ID</th><th>'.
+    $headlabel["tablename"].'</th><th>'.$headlabel["description"].'</th><th>Действия</th></tr></thead>{items}',
     )
 );
 if ($this->action->id=="edit") {

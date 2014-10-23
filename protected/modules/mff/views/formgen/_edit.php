@@ -89,10 +89,11 @@ echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
         'enablePagination' => true,
         'itemsTagName'=>'tbody',
         'tagName'=>'table',
+        'summaryText'=>'',
         'template'=>'<caption>{summary}</caption>'.
-            '<thead><th>'.$headlabel["name"].'</th><th>'.$headlabel["type"].
+            '<thead><tr><th>'.$headlabel["name"].'</th><th>'.$headlabel["type"].
             '</th><th>'.$headlabel["order"].'</th><th>'.
-            $headlabel["description"].'</th><th>Действия</th></thead>'.
+            $headlabel["description"].'</th><th>Действия</th></tr></thead>'.
             '<tfoot><tr><td colspan="5">{pager}</td></tr></tfoot>'.
             '{items}',
         )

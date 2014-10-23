@@ -26,18 +26,18 @@ if ($data->isProtected() == TRUE) {
     $listdata=  CHtml::listData(FFTypes::model()->findAll(), "id", "typename");
     echo "<td style='vertical-align: top;'>". $formaddfield->dropDownList($data,"type", $listdata)."</td>";
 }
-echo "<td style='vertical-align: top;'>". $formaddfield->textField($data,"order",array_merge(array("size"=>5),$readonly))."<br>".
+echo "<td style='vertical-align: top;'>". $formaddfield->textField($data,"order",array("size"=>5))."<br>".
         $formaddfield->error($data,"order")."</td>";
-echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"description",$readonly)."</td>";
+echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"description")."</td>";
 ?>
     <td  style='vertical-align: top;'>
         <?php 
         if ($data->isProtected() == FALSE) {
-            $del_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_delete")),"Удалить",array("width"=>24,"height"=>24));
+            $del_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Minus")),"Видалити",array("width"=>24,"height"=>24,"title"=>"Видалити"));
             echo CHtml::link($del_img,$this->createUrl($this->id."/fielddelete",array("idfield"=>$data->id)));         
-            $upd_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"data_edit")),"Изменить",array("width"=>24,"height"=>24));
-            echo CHtml::link($upd_img,"javascript: fieldedit".$data->id.".submit();");         
         }
+        $upd_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Pencil")),"Змінити",array("width"=>24,"height"=>24,"title"=>"Змінити"));
+        echo CHtml::link($upd_img,"#fieldedit".$data->id,array("onclick"=>"javascript: fieldedit".$data->id.".submit();"));         
         ?>        
     </td>
 </tr>
