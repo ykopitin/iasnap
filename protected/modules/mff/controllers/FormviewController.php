@@ -160,11 +160,21 @@ class FormviewController extends Controller
         $model=FFModel::model()->findByPk($id);
         $model->refreshMetaData();
         $model->refresh();
-        header("Content-Type: ".$model->getAttribute($name."_filetype"));
+        if ($model->hasAttribute($name."_filetype")) {
+            header("Content-Type: ".$model->getAttribute($name."_filetype"));
+        }
         header("Content-Disposition: attachment; filename=".$model->getAttribute($name."_filename"));
         echo $model->getAttribute($name);
     }
     
+    public function actionGetFileSigned($id,$name) {
+        $model=FFModel::model()->findByPk($id);
+        $model->refreshMetaData();
+        $model->refresh();
+        header("Content-Disposition: attachment; filename=".$model->getAttribute($name."_fileedsname"));
+        echo $model->getAttribute($name);
+    }
+     
     public function actionFindStorage() {
         $handle=fopen("test.txt", "a");
         fwrite($handle, "P=". serialize($_POST)."\n");

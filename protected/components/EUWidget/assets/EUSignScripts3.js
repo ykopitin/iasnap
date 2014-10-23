@@ -105,7 +105,7 @@ function(frameHeight, frameWidth, formHeight, formWidth, selectMultiple) {
 	this.DOMElement = this._constructForm();
 	this.DOMElement.style.width = this.formWidth + 'px';
 	this.DOMElement.style.left = Math.floor(document.body.clientWidth/2) - this.formWidth / 2 + 'px';
-	this.DOMElement.style.zIndex = 12;
+	this.DOMElement.style.zIndex = 12000;
 	document.body.appendChild(this.DOMElement);
 	
 	this.CertTable.CreateHeader('Власник','ЦСК','Серійний номер',
@@ -368,7 +368,7 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	this.DOMElement = this._constructForm();
 	this.DOMElement.style.width = this.formWidth + 'px';
 	this.DOMElement.style.left = Math.floor(document.body.clientWidth/2) - this.formWidth / 2 + 'px';
-	this.DOMElement.style.zIndex = 12;
+	this.DOMElement.style.zIndex = 12000;
 	document.body.appendChild(this.DOMElement);
 	
 	this.CRLsTable.CreateHeader('ЦСК','Серійний номер',
@@ -566,7 +566,7 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	this.DOMElement.style.width = this.formWidth + 'px';
 	this.DOMElement.style.minHeight = this.formHeight + 'px';
 	this.DOMElement.style.left = Math.floor(document.body.clientWidth/2) - this.formWidth / 2 + 'px';
-	this.DOMElement.style.zIndex = 13;
+	this.DOMElement.style.zIndex = 13000;
 	document.body.appendChild(this.DOMElement);
 
 	this._getDeviceNames();
@@ -1462,7 +1462,7 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	this.DOMElement.style.width = this.formWidth + 'px';
 	this.DOMElement.style.minHeight = this.formHeight + 'px';
 	this.DOMElement.style.left = Math.floor(document.body.clientWidth/2) - this.formWidth / 2 + 'px';
-	this.DOMElement.style.zIndex = 11;
+	this.DOMElement.style.zIndex = 11000;
 	document.body.appendChild(this.DOMElement);
 
 	this._attachEvents();
@@ -2470,7 +2470,7 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	this.DOMElement.style.width = this.formWidth + 'px';
 	this.DOMElement.style.minHeight = this.formHeight + 'px';
 	this.DOMElement.style.left = Math.floor(document.body.clientWidth/2) - this.formWidth / 2 + 'px';
-	this.DOMElement.style.zIndex = 12;
+	this.DOMElement.style.zIndex = 12000;
 	document.body.appendChild(this.DOMElement);
 
 	this._attachEvents();

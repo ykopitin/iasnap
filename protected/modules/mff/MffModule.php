@@ -3,6 +3,7 @@
 class MffModule extends CWebModule
 {
     public $enableprotected=TRUE;
+    public $cryptfile=TRUE;
     public $label="Модуль свободных форм";
     
     public function init()

@@ -94,18 +94,20 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 		euSign.Initialize();
 		euSign.width = "1px";
 		euSign.SetUIMode(false);
-	} catch(e) {
-		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
-			window.open("http://www.java.com/ru/download/testjava.jsp");
-			
-		}
-		try {euSign.Finalize();} catch(e1) {};
-		if (callback_error != "") {
-			callback_error("eu_initialize", 1);
-			return false;
-		}
-		return false;
-	}
+	} 
+    catch(e) {
+            if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
+                    window.open("http://www.java.com/ru/download/testjava.jsp");
+
+            }
+            try {euSign.Finalize();} 
+            catch(e1) {};
+            if (callback_error != "") {
+                    callback_error("eu_initialize", 1);
+                    return false;
+            }
+            return false;
+    }
 //	Отримання комплекту сертифікатів основних центрів сертифікації та їх серверів
 	jQuery.ajax({
 	  type: 'GET',

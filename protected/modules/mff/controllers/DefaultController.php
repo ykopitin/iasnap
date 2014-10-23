@@ -21,4 +21,23 @@ class DefaultController extends Controller
         header("Content-Disposition: attachment; filename=".basename($file));
         readfile($file);
     }
+    
+    public function actionGetScript($script) {       
+        $file=Yii::getPathOfAlias('mff.scripts').DIRECTORY_SEPARATOR.$script.".js";
+        header("Content-Type: text/javascript");
+        header("Accept-Ranges: bytes");
+        header("Content-Length: " . filesize($file));
+        header("Content-Disposition: attachment; filename=".basename($file));
+        readfile($file);
+    }
+ 
+    public function actionGetCSS($css) {       
+        $file=Yii::getPathOfAlias('mff.css').DIRECTORY_SEPARATOR.$css.".css";
+        header("Content-Type: text/css");
+        header("Accept-Ranges: bytes");
+        header("Content-Length: " . filesize($file));
+        header("Content-Disposition: attachment; filename=".basename($file));
+        readfile($file);
+    }
+
 }

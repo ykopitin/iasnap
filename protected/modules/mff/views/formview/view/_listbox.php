@@ -25,7 +25,10 @@ try{
         $v_FFModel->registry=1;
         $v_FFModel->refreshMetaData();
     }
-    echo $form->dropDownList($modelff,$data->name,$listdata,array("style"=>"width:100%", "size"=>"10"));
+    $sizecount=count($listdata);
+    $sizecount=($sizecount>10)?10:$sizecount;
+    $sizecount=($sizecount<2)?2:$sizecount;
+    echo $form->dropDownList($modelff,$data->name,$listdata,array("style"=>"width:100%", "size"=>$sizecount));
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }
