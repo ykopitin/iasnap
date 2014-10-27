@@ -18,6 +18,10 @@ class FormviewController extends Controller
     
     public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null)
     {        
+//        echo '<pre>';
+//        var_dump($_POST);
+//        echo '</pre>';
+//        return;
         $storagemodel = FFStorage::model()->findByPk($idstorage);
         $registrymodel = FFRegistry::model()->findByPk($idregistry);
         if (isset($_POST["FFModel"])) {
@@ -88,6 +92,25 @@ class FormviewController extends Controller
             }
 
            if ($datamodel->validate() && $datamodel->save()) {
+                foreach ($_POST as $key => $value) {
+                    $partkey=explode("_",$key);
+                    if ($partkey[0]=="multiguide") {
+                        $classnamefiled="FFModel_".$key;
+                        eval("class $classnamefiled extends FFModel {}");
+                        Yii::app()->db->createCommand("DELETE FROM `ff_ref_multiguide` WHERE `owner`=".$datamodel->id)->execute();
+                        $multi_value=$_POST[$key];
+                        foreach ($multi_value as $itemid) {
+                            $vf2FFModel=new $classnamefiled;
+                            $vf2FFModel->registry=FFModel::ref_multiguide;
+                            $vf2FFModel->storage=FFModel::ref_multiguide_storage;
+                            $vf2FFModel->tableName();
+                            $vf2FFModel->refreshMetaData();
+                            $vf2FFModel->setAttribute("owner",$datamodel->id);
+                            $vf2FFModel->setAttribute("reference",$itemid);
+                            $vf2FFModel->save();
+                        }
+                    }
+                }
                 $this->redirect(array("indexstorage","id"=>$idstorage));
                 return;
             }

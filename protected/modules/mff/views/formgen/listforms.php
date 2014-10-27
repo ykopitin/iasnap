@@ -55,4 +55,4 @@ else if ($this->action->id=="fieldnew") {
 else if ($this->action->id=="registry") {
     $this->renderPartial("registry",array("parentid"=>$parentid,"modelregistry"=>$modelregistry));
 }
-?>
+

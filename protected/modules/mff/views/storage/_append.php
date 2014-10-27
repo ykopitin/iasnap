@@ -46,9 +46,10 @@ $form=$this->beginWidget("CActiveForm", array(
         <td><?= $form->dropDownList($modelstorage,"subtype",
                 array(
                     "Выпадающий список",
-                    "Список нескольких значений",
+                    "Линейный список",
                     "Встраиваемый справочник",
                     "Переключатель",
+                    "Список нескольких значений",
                     )
                 ) 
         ?></td>

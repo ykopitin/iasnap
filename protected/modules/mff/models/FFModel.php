@@ -14,6 +14,9 @@
  */
 class FFModel extends CActiveRecord
 {
+    const ref_multiguide = 12;          
+    const ref_multiguide_storage = 8;          
+
     private $_ff_tablename = 'ff_default';
 //    private $_registry = 1;
       
@@ -75,8 +78,7 @@ class FFModel extends CActiveRecord
                     'storageItem' => array(self::BELONGS_TO, 'FFStorage', 'storage'),
                     'registryItem' => array(self::BELONGS_TO, 'FFRegistry', 'registry'),                   
             );
-        
-        return $result;
+         return $result;
     }
 
     /**
