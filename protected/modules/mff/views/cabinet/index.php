@@ -6,5 +6,6 @@ $this->breadcrumbs=array(
     $this->label => array("/".$this->module->id."/".$this->id),
     );
 
-
-
+    echo 'Пользователь: <pre>';
+    var_dump(Yii::app()->user);
+    echo '</pre>';

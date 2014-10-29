@@ -56,7 +56,7 @@ if ($vidregistry!=null){
         'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$registrymodel->id,"columnnames"=>$columnnames),
         'tagName'=>'table',
         'template'=>'<caption>{summary}</caption><thead><th>ID</th>'.$columns.
-        '<th>Действия</th></thead><tbody>{items}</tbody>',
+        '<th>Действия</th></thead>{items}',
         )
     );
 }

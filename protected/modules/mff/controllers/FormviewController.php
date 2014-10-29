@@ -1,5 +1,4 @@
 <?php
-
 class FormviewController extends Controller
 {
     public $layout='//layouts/main1';
@@ -16,7 +15,7 @@ class FormviewController extends Controller
         $this->render("indexstorage",array("storagemodel"=>$storagemodel));
     }
     
-    public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null)
+    public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null,$layouts="indexstorage")
     {        
 //        echo '<pre>';
 //        var_dump($_POST);
@@ -111,12 +110,11 @@ class FormviewController extends Controller
                         }
                     }
                 }
-                $this->redirect(array("indexstorage","id"=>$idstorage));
+                $this->redirect(array($layouts,"id"=>$idstorage));
                 return;
-            }
-        
+            }       
         }
-        $this->render("indexstorage",
+        $this->render($layouts,
                 array(
                     "idregistry"=>$idregistry,
                     "idstorage"=>$idstorage,
