@@ -32,7 +32,7 @@ try{
         "style"=>"width:100%", 
         "size"=>$sizecount, 
         "multiple"=>"multiple", 
-        "onkeypress"=>"listbox_multi_keypress(event,this);");
+        "onkeypress"=>"listbox_keypress(event,this);");
     if ($scenario=="view") $dropDownListOptions=array_merge($dropDownListOptions,array("disabled"=>"disabled"));
     echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,$dropDownListOptions);
 } catch (Exception $e){
