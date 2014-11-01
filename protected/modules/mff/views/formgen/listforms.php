@@ -1,10 +1,10 @@
 <?php
-$this->breadcrumbs=array(
-    "Головна"=>array("/"),
-    "Админка"=>array("/admin"),
-    $this->module->label => array("/".$this->module->id),
-    $this->label => array("/".$this->module->id."/".$this->id),
-);
+//$this->breadcrumbs=array(
+//    "Головна"=>array("/"),
+//    "Админка"=>array("/admin"),
+//    $this->module->label => array("/".$this->module->id),
+//    $this->label => array("/".$this->module->id."/".$this->id),
+//);
 $root_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Home")),"Корень",array("width"=>24,"height"=>24));
 $parent_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Arrow_up")),"Родители",array("width"=>24,"height"=>24));
 $add_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Plus")),"Зар.таблицу",array("width"=>24,"height"=>24));

@@ -42,7 +42,6 @@ if(isset($idform)) {
 }
 $modelff->storage=$idstorage;
 $modelff->registry=$idregistry;
-$modelff->tableName();
 $modelff->refreshMetaData();
 
 CActiveForm::validate($modelff);

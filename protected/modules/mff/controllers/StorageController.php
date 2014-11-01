@@ -2,7 +2,7 @@
 
 class StorageController extends Controller
 {
-    public $layout='//layouts/main1';
+    public $layout='//layouts/column1';
     public $label='Хранилища свободных форм';
     
     /// Отображает перечень хранилищ

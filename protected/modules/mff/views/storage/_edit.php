@@ -47,7 +47,7 @@ $form=$this->beginWidget("CActiveForm", array(
     <tr>
         <td style="width:30%"><?= $form->labelEx($modelstorage,"subtype") ?></td>
         <td><?= $form->dropDownList($modelstorage,"subtype",
-                array(
+                array("",
                     "Выпадающий список",
                     "Линейный список",
                     "Встраиваемый справочник",

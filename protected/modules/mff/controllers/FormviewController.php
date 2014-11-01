@@ -1,8 +1,8 @@
 <?php
 class FormviewController extends Controller
 {
-    public $layout='//layouts/main1';
-    public $label='Тестирование свободных форм';
+    public $layout='//layouts/column1';
+    public $label='Наполнение хранилищ';
     /// 
     public function actionIndex()
     {        
@@ -96,15 +96,17 @@ class FormviewController extends Controller
                     if ($partkey[0]=="multiguide") {
                         $classnamefiled="FFModel_".$key;
                         eval("class $classnamefiled extends FFModel {}");
-                        Yii::app()->db->createCommand("DELETE FROM `ff_ref_multiguide` WHERE `owner`=".$datamodel->id)->execute();
-                        $multi_value=$_POST[$key];
-                        foreach ($multi_value as $itemid) {
+                        Yii::app()->db->createCommand("DELETE FROM `ff_ref_multiguide` WHERE `owner_field`=:owner_field and `owner`=".$datamodel->id)->execute(array(":owner_field"=>$partkey[1]));
+                        $multi_value=$_POST[$key];                       
+                        foreach ($multi_value as $index => $itemid) {
                             $vf2FFModel=new $classnamefiled;
                             $vf2FFModel->registry=FFModel::ref_multiguide;
                             $vf2FFModel->storage=FFModel::ref_multiguide_storage;
                             $vf2FFModel->tableName();
                             $vf2FFModel->refreshMetaData();
+                            $vf2FFModel->setAttribute("order",$index);
                             $vf2FFModel->setAttribute("owner",$datamodel->id);
+                            $vf2FFModel->setAttribute("owner_field",$partkey[1]);
                             $vf2FFModel->setAttribute("reference",$itemid);
                             $vf2FFModel->save();
                         }

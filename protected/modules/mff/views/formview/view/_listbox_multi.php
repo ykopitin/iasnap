@@ -1,5 +1,6 @@
 <?php
 try{
+    Yii::app()->clientScript->registerScriptFile($this->createUrl("default/getscript",array("script"=>basename(__FILE__,".php"))));
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));    
     $listdata=array();
@@ -25,8 +26,8 @@ try{
             $criteria->alias="ffm";
             $criteria->addCondition("ffm.`storage`=:storage");
             $criteria->addCondition("ffm.`registry`=:registry");
-            $criteria->join = 'INNER JOIN ff_ref_multiguide as ffrm ON ((ffrm.`owner`='.$modelff->id.') and (ffrm.`reference`=ffm.id))';
-            $criteria->params = array(":storage"=>$storageitem->id,":registry"=>$registryItem->id);
+            $criteria->join = 'INNER JOIN ff_ref_multiguide as ffrm ON ((ffrm.`owner`='.$modelff->id.') and (ffrm.`owner_field`=:owner_field) and (ffrm.`reference`=ffm.id))';
+            $criteria->params = array(":storage"=>$storageitem->id,":registry"=>$registryItem->id, ":owner_field"=>$data->id);
             $criteria->order = "ffrm.`order`";
             $modelclassif = $v_FFModel->findAll($criteria);
             foreach ($modelclassif as $value) {
@@ -38,7 +39,7 @@ try{
     $sizecount=count($listdata);
     $sizecount=($sizecount>10)?10:$sizecount;
     $sizecount=($sizecount<2)?2:$sizecount;
-    echo CHtml::dropDownList("multiguide_".$data->name, $selectdata,$listdata,array("style"=>"width:100%", "size"=>$sizecount, "multiple"=>"multiple"));
+    echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,array("style"=>"width:100%", "size"=>$sizecount, "multiple"=>"multiple", "onkeypress"=>"listbox_multi_keypress(event,this);"));
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }

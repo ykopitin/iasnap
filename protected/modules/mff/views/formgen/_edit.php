@@ -12,7 +12,7 @@ $this->beginWidget("zii.widgets.jui.CJuiDialog",
                 'title' => 'Изменить форму ID:'.$id,
                 'modal' => true,
                 'resizable'=> true,
-                'width'=>"65%",
+                'width'=>"85%",
                 'buttons' => array(
                     array('text'=>'Сохранить','click'=> 'js:function(){formedit.submit();}', 'visible'=>!$formregistry->isProtected($this)),
                     array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
@@ -92,7 +92,7 @@ echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
         'summaryText'=>'',
         'template'=>'<caption>{summary}</caption>'.
             '<thead><tr><th>'.$headlabel["name"].'</th><th>'.$headlabel["type"].
-            '</th><th>'.$headlabel["order"].'</th><th>'.
+            '</th><th>'.$headlabel["order"].'</th><th>'.$headlabel["default"].'</th><th>'.
             $headlabel["description"].'</th><th>Действия</th></tr></thead>'.
             '<tfoot><tr><td colspan="5">{pager}</td></tr></tfoot>'.
             '{items}',

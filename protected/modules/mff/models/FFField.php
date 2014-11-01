@@ -32,7 +32,7 @@ class FFField extends CActiveRecord
 			array('formid, type, order, protected', 'numerical', 'integerOnly'=>true,'allowEmpty'=>false,'message'=>'Поле: {attribute} должно содержать целое число'),
 			array('name', 'length', 'min'=>1,'max'=>45,'allowEmpty'=>false, 'message'=>'Поле: {attribute} - не правильной длины. Необходимо 1-45 символов'),
                         array('name', 'match', 'pattern' => '/^[A-Za-z][A-Za-z0-9_]*$/u','message'  => 'Название поля содержит недопустимые символы.'),
-			array('description', 'safe'),
+			array('default,description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, formid, name, type, description, order, protected', 'safe', 'on'=>'search'),
@@ -62,6 +62,7 @@ class FFField extends CActiveRecord
 			'formid' => 'Formid',
 			'name' => 'Имя',
 			'type' => 'Тип',
+			'default' => 'Умолчание',
 			'description' => 'Описание',
 			'order' => 'Порядок',
                         'protected' => 'Защищеный',
@@ -156,6 +157,7 @@ class FFField extends CActiveRecord
             parent::afterDelete();
             Yii::app()->getDb()->createCommand("call FF_ALTTBL(:idregistry);")->execute(array(":idregistry"=>$this->formid)); 
         }
+        
         protected function beforeDelete() {
             Yii::app()->getDb()->createCommand("call `FF_BD_FIELD`(:id)")->execute(array(":id"=>$this->id));
             return parent::beforeDelete();

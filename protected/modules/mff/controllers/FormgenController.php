@@ -73,7 +73,7 @@ class FormgenController extends Controller
             Yii::app()->end();
         }
         if (isset($_POST["FFField"])) {
-            $field->attributes = $_POST["FFField"];
+            $field->attributes = $_POST["FFField"];           
             $registry = FFRegistry::model()->findByPk($formid);
             $parentid = ($registry->parent===null)?null:$registry->parentItem->id;
             if ($field->validate()) {

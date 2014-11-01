@@ -28,6 +28,7 @@ if ($data->isProtected() == TRUE) {
 }
 echo "<td style='vertical-align: top;'>". $formaddfield->textField($data,"order",array("size"=>5))."<br>".
         $formaddfield->error($data,"order")."</td>";
+echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"default")."</td>";
 echo "<td style='vertical-align: top;'>". $formaddfield->textArea($data,"description")."</td>";
 ?>
     <td  style='vertical-align: top;'>

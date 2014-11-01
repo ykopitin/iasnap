@@ -1,11 +1,11 @@
 <tr>
     <td><?= $data->id ?></td>
-    <?php 
-    $data->tableName();
-    $data->refreshMetaData();  
-    $data->refresh();
+    <?php     
     foreach ($columnnames as $columnname) {
-        
+//        echo '<td>';
+//        echo isset($data->attributes[$columnname])?$data->attributes[$columnname]:"";
+//        var_dump($data->attributes);
+//        echo '</td>';
      ?>
     <td><?= ($data->hasAttribute($columnname)?$data->getAttribute($columnname):"") ?></td>
     <?php } ?>
@@ -13,6 +13,7 @@
         <?php 
         echo CHtml::link("Удалить",$this->createUrl("delete",array("idform"=>$data->id,"idstorage"=>$idstorage))); 
         echo "&nbsp;";
+        if ($attaching==0) {
         echo CHtml::link("Изменить",$this->createUrl("save",array(
             "idform"=>$data->id,
             "idstorage"=>$idstorage, 
@@ -24,6 +25,7 @@
             "idstorage"=>$idstorage, 
             "idregistry"=>$idregistry,
             "scenario"=>"view")));
+        }
         ?>
     </td>    
 </tr>

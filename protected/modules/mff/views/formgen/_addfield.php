@@ -58,6 +58,13 @@
         <td colspan="2"><?php echo $formaddfield->error($fieldmodel,'order'); ?></td>
     </tr>
     <tr>
+        <td><?php echo $formaddfield->labelEx($fieldmodel,"default"); ?></td>
+        <td><?php echo $formaddfield->textArea($fieldmodel,"default"); ?></td>
+    </tr>
+    <tr>
+        <td colspan="2"><?php echo $formaddfield->error($fieldmodel,'default'); ?></td>
+    </tr>
+    <tr>
         <td><?php echo $formaddfield->labelEx($fieldmodel,"description"); ?></td>
         <td><?php echo $formaddfield->textArea($fieldmodel,"description"); ?></td>
     </tr>

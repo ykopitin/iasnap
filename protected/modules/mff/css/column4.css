@@ -1,0 +1,43 @@
+.portlet-mff
+{
+
+}
+
+.portlet-decoration-mff
+{
+	padding: 3px 8px;
+	background: #666E73;
+	border-left: 5px solid #6FACCF;
+}
+
+.portlet-title-mff
+{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	color: #298dcd;
+}
+
+.portlet-content-mff
+{
+	font-size:0.9em;
+	margin: 0 0 15px 0;
+	padding: 5px 8px;
+	background:#EFFDFF;
+}
+
+.portlet-content-mff ul
+{
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-content-mff li
+{
+	padding: 2px 0 4px 0px;
+}
+

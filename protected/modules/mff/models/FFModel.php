@@ -14,16 +14,36 @@
  */
 class FFModel extends CActiveRecord
 {
-    const ref_multiguide = 12;          
-    const ref_multiguide_storage = 8;          
+    const ref_multiguide = 2;          
+    const ref_multiguide_storage = 2;          
 
     private $_ff_tablename = 'ff_default';
-//    private $_registry = 1;
-      
+    private $_registry=1;
+    private $_attaching=0;
+    
+    public function __set($name, $value) {
+        if ($name=="registry") {
+            $this->_registry=$value;
+        }
+        if ($this->hasAttribute($name)) {
+            parent::__set($name, $value);   
+        }
+    }
+
+    public function __get($name) {
+        $result=parent::__get($name);
+        if ($name=="registry" && !$this->hasAttribute($name)) {
+            $result=$this->_registry;
+        }
+        return $result;
+    }
+   
     protected function _gettablename(){
-        $cmd =  $this->getDbConnection()->createCommand("select concat('ff_',tablename) from `ff_registry` where (id=:idregistry) and (attaching=0)");
+        $cmd =  $this->getDbConnection()->createCommand("select tablename, attaching from `ff_registry` where (id=:idregistry)");
         $cmd->params[":idregistry"]=$this->registry;
-        return $cmd->queryScalar();
+        $result=$cmd->queryRow();
+        $this->_attaching=$result["attaching"];
+        return $result["attaching"]?$result["tablename"]:"ff_".$result["tablename"];
     }
 
     /**
@@ -31,15 +51,11 @@ class FFModel extends CActiveRecord
      */
     public function tableName()
     {
-        try {
-            if (isset($this->registry) && $this->registry) {
-                $this->_ff_tablename=$this->_gettablename();     
-                if (!$this->_ff_tablename) {
-                    $this->_ff_tablename = 'ff_default';
-                }                    
-            } else {
+        try {           
+            $this->_ff_tablename=$this->_gettablename();     
+            if (!$this->_ff_tablename) {
                 $this->_ff_tablename = 'ff_default';
-            }
+            }                                
         } catch (Exception $e) {
              $this->_ff_tablename = 'ff_default';
         }
@@ -130,24 +146,29 @@ class FFModel extends CActiveRecord
     {
         $model=new FFModel();
         $model->refreshMetaData();
-        $model->refresh();
+//        $model->refresh();
         $model->attachBehaviors($model->behaviors());
         return $model;
     }
 
-    public function save($runValidation = true, $attributes = null) {
+    public function save($runValidation = true, $attributes = null) {       
         $trans=Yii::app()->getDb()->beginTransaction();
-        foreach ($this->attributes as $key => $value) {
-            // ОбNULLяем пустую строку (проблема с датой)
-            if ($value=="") $this->setAttribute($key, NULL);
+        if ($this->_attaching==0) {
+            if ($this->isNewRecord) {
+                $cmd=Yii::app()->getDb()->createCommand("call `FF_INITID`(:idregistry,:idstorage, @id)");
+                $cmd->execute(array(":idregistry"=> $this->registry,":idstorage"=>  $this->storage));
+                $this->id=Yii::app()->getDb()->createCommand('select @id')->queryScalar();
+                $this->setIsNewRecord(FALSE);               
+                $this->setScenario("update");
+            }
+            // сброс даты для значений по умолчанию (проблема с датой)
+            foreach ($this->attributes as $key => $value) {
+                unset($field);
+                $field=FFField::model()->find("(`formid`=".$this->registry.") and (`type` in (3,7)) and `name`=:name",array(":name"=>$key));
+                if ($value=="" || (isset($field) && ($value==$field->default) || ($value=="CURRENT_TIMESTAMP"))) $this->setAttribute($key, NULL);
+            }      
         }
-        if ($this->isNewRecord) {
-            $cmd=Yii::app()->getDb()->createCommand("call `FF_INITID`(:idregistry,:idstorage, @id)");
-            $cmd->execute(array(":idregistry"=> $this->registry,":idstorage"=>  $this->storage));
-            $this->id=Yii::app()->getDb()->createCommand('select @id')->queryScalar();
-            $this->setIsNewRecord(FALSE);               
-            $this->setScenario("update");
-        }
+        // сохранение
         $result=parent::save($runValidation, $attributes);
         if ($result) {
             $trans->commit();
@@ -159,17 +180,17 @@ class FFModel extends CActiveRecord
 
     protected function afterSave() {
         parent::afterSave();
-        Yii::app()->getDb()->createCommand("call `FF_SYNCDATA`(:ID)")->execute(array(":ID"=>  $this->id));
+         if ($this->_attaching==0) Yii::app()->getDb()->createCommand("call `FF_SYNCDATA`(:ID)")->execute(array(":ID"=>  $this->id));
     }
 
     protected function beforeDelete() {
         parent::afterDelete();
-        Yii::app()->getDb()->createCommand("call `FF_HELPER_SYNCDATA_DELETE`(:ID)")->execute(array(":ID"=>  $this->id));
+         if ($this->_attaching==0) Yii::app()->getDb()->createCommand("call `FF_HELPER_SYNCDATA_DELETE`(:ID)")->execute(array(":ID"=>  $this->id));
     }
 
 
 
-    public static function isParent($registry1,$registry2) {
+    public static function isParent($registry1,$registry2) {       
         return Yii::app()->getDb()->
                 createCommand("select `FF_isParent`(:idregistry1,:idregistry2)")->
                 queryScalar(array(":idregistry1"=>$registry1,":idregistry2"=>$registry2));
@@ -207,23 +228,18 @@ class FFModel extends CActiveRecord
 //        }
 //    }
 
-//    private static $_md=array();
-//	public function getMetaData()
-//	{         
-//		$className= isset($this->registry)?$this->registry:1;
-//		if(!array_key_exists($className,self::$_md))
-//		{
-//			self::$_md[$className]=null; // preventing recursive invokes of {@link getMetaData()} via {@link __get()}
-//			self::$_md[$className]=new CActiveRecordMetaData($this);
-//		}
-//		return self::$_md[$className];
-//	}
-//	public function refreshMetaData()
-//	{
-//		$className=isset($this->registry)?$this->registry:1;
-//		if(array_key_exists($className,self::$_md))
-//			unset(self::$_md[$className]);
-//	}    
+	
+    public function refresh() {
+        $this->refreshMetaData();
+        $result=parent::refresh();
+    }
+
+    public function refreshMetaData() {
+        $registrysave=$this->registry;
+        $this->tableName();
+        parent::refreshMetaData();
+        $this->registry=$registrysave;
+    }
 
 }
 

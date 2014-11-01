@@ -2,7 +2,7 @@
 
 class CabinetController extends Controller
 {
-    public $layout='//layouts/main1';
+    public $layout='//layouts/column1';
     public $label='Кабинет';
     
     public function actionIndex()
