@@ -37,12 +37,13 @@ if(isset($scenario)) {
 if(isset($idform)) {
     $urlparam=array_merge($urlparam,array("idform"=>$idform));
     $modelff=FFModel::model()->findByPk($idform);
+    $modelff->refresh();
 } else {
     $modelff=new FFModel();
+    $modelff->registry=$idregistry;
+    $modelff->refreshMetaData();
+    $modelff->storage=$idstorage;
 }
-$modelff->storage=$idstorage;
-$modelff->registry=$idregistry;
-$modelff->refreshMetaData();
 
 CActiveForm::validate($modelff);
 $form=$this->beginWidget("CActiveForm", array(
@@ -59,7 +60,7 @@ $form=$this->beginWidget("CActiveForm", array(
 );
 
 $criteria=new CDbCriteria();
-    $criteria->params[":formid"] = $idregistry;
+    $criteria->params[":formid"] = $modelff->registry;
     $criteria->addCondition("`formid` = :formid");
     $criteria->addCondition("`order` > 0");
     $criteria->order="`order`";

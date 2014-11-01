@@ -38,15 +38,15 @@ $dataProvider=new CActiveDataProvider("FFModel", array(
         )
     )
 );
-// Необходимые операции для внешних таблиц
-$dataProvider->model->registry=$registrymodel->id;
-$dataProvider->model->refresh();
 
 $registrylist=array();
 foreach ($storagemodel->registryItems as $registryItem) {
     $registrylist= array_merge($registrylist,array($registryItem->id));
 }
 $vidregistry=FFModel::commonParent($registrylist); 
+// Необходимые операции для внешних таблиц
+$dataProvider->model->registry=$vidregistry;
+$dataProvider->model->refresh();
 $columns="";
 $columnnames=array();
 if ($vidregistry!=null){
@@ -67,7 +67,7 @@ if ($vidregistry!=null){
     $this->widget("zii.widgets.CListView", array(
         'dataProvider'=>$dataProvider,
         'itemView'=>'_indexstorage',
-        'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$registrymodel->id,"columnnames"=>$columnnames,"attaching"=>$registrymodel->attaching),
+        'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$vidregistry,"columnnames"=>$columnnames,"attaching"=>$registrymodel->attaching),
         'tagName'=>'table',
         'template'=>'<caption>{summary}</caption><thead><th>ID</th>'.$columns.
         '<th>Действия</th></thead>{items}',

@@ -20,7 +20,10 @@ class FFModel extends CActiveRecord
     private $_ff_tablename = 'ff_default';
     private $_registry=1;
     private $_attaching=0;
-    
+    public function getAttaching(){
+        return $this->_attaching;
+    }
+
     public function __set($name, $value) {
         if ($name=="registry") {
             $this->_registry=$value;
@@ -30,10 +33,11 @@ class FFModel extends CActiveRecord
         }
     }
 
-    public function __get($name) {
-        $result=parent::__get($name);
+    public function __get($name) {       
         if ($name=="registry" && !$this->hasAttribute($name)) {
             $result=$this->_registry;
+        } else {
+            $result=parent::__get($name);
         }
         return $result;
     }
@@ -145,8 +149,8 @@ class FFModel extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         $model=new FFModel();
+        $model->registry=1;
         $model->refreshMetaData();
-//        $model->refresh();
         $model->attachBehaviors($model->behaviors());
         return $model;
     }
@@ -185,7 +189,9 @@ class FFModel extends CActiveRecord
 
     protected function beforeDelete() {
         parent::afterDelete();
-         if ($this->_attaching==0) Yii::app()->getDb()->createCommand("call `FF_HELPER_SYNCDATA_DELETE`(:ID)")->execute(array(":ID"=>  $this->id));
+         if ($this->_attaching==0) {
+             Yii::app()->getDb()->createCommand("call `FF_HELPER_SYNCDATA_DELETE`(:ID)")->execute(array(":ID"=>  $this->id));
+         }
     }
 
 
@@ -207,27 +213,6 @@ class FFModel extends CActiveRecord
         }
         return $registrys;
     }
-
-//   public static $_md=array();
-//   public function getMetaData() {
-//        if (!array_key_exists($this->_registry,self::$_md)) {
-//            self::$_md[$this->_registry]=null;
-//            self::$_md[$this->_registry]=new CActiveRecordMetaData($this);  
-//        }           
-//        return self::$_md[$this->_registry];
-////        echo '<pre>';
-////        var_dump(new CActiveRecordMetaData($this));
-////        echo '</pre>';
-////        Yii::app()->end();
-////        return new CActiveRecordMetaData($this);
-//    }
-//
-//    public function refreshMetaData() {
-//        if (array_key_exists($this->_registry,self::$_md)) {
-//            unset(self::$_md[$this->_registry]);
-//        }
-//    }
-
 	
     public function refresh() {
         $this->refreshMetaData();
@@ -236,9 +221,11 @@ class FFModel extends CActiveRecord
 
     public function refreshMetaData() {
         $registrysave=$this->registry;
+//        $storagesave=$this->storage;
         $this->tableName();
         parent::refreshMetaData();
         $this->registry=$registrysave;
+//        $this->storage=$storagesave;
     }
 
 }

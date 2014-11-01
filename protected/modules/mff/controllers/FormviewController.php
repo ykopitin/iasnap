@@ -101,8 +101,7 @@ class FormviewController extends Controller
                         foreach ($multi_value as $index => $itemid) {
                             $vf2FFModel=new $classnamefiled;
                             $vf2FFModel->registry=FFModel::ref_multiguide;
-                            $vf2FFModel->storage=FFModel::ref_multiguide_storage;
-                            $vf2FFModel->tableName();
+                            $vf2FFModel->storage=FFModel::ref_multiguide_storage;                            
                             $vf2FFModel->refreshMetaData();
                             $vf2FFModel->setAttribute("order",$index);
                             $vf2FFModel->setAttribute("owner",$datamodel->id);

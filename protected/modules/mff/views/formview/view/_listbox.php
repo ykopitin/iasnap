@@ -28,7 +28,13 @@ try{
     $sizecount=count($listdata);
     $sizecount=($sizecount>10)?10:$sizecount;
     $sizecount=($sizecount<2)?2:$sizecount;
-    echo $form->dropDownList($modelff,$data->name,$listdata,array("style"=>"width:100%", "size"=>$sizecount));
+    $dropDownListOptions=array(
+        "style"=>"width:100%", 
+        "size"=>$sizecount, 
+        "multiple"=>"multiple", 
+        "onkeypress"=>"listbox_multi_keypress(event,this);");
+    if ($scenario=="view") $dropDownListOptions=array_merge($dropDownListOptions,array("disabled"=>"disabled"));
+    echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,$dropDownListOptions);
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }
