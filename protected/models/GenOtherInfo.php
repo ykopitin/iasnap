@@ -1,23 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "form_storage".
+ * This is the model class for table "gen_other_info".
  *
- * The followings are the available columns in table 'form_storage':
+ * The followings are the available columns in table 'gen_other_info':
  * @property integer $id
- * @property string $name
+ * @property string $publicationDate
+ * @property string $title
+ * @property string $summary
+ * @property string $text
+ * @property string $img
+ * @property integer $kind_of_publication
  *
  * The followings are the available model relations:
- * @property FormDefault[] $formDefaults
+ * @property GenMenuItems $kindOfPublication
  */
-class FFStorage extends CActiveRecord
+class GenOtherInfo extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'ff_storage';
+		return 'gen_other_info';
 	}
 
 	/**
@@ -28,12 +33,12 @@ class FFStorage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-                        array('subtype, type', 'numerical', 'integerOnly'=>true),
-                        array('name', 'length', 'max'=>255),
-                        array('description', 'safe'),
-
-                        array('id, name, description, subtype, type', 'safe', 'on'=>'search'),
+			array('publicationDate, title, summary, text, img, kind_of_publication', 'required'),
+			array('kind_of_publication', 'numerical', 'integerOnly'=>true),
+			array('title, img', 'length', 'max'=>255),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('id, publicationDate, title, summary, text, img, kind_of_publication', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,9 +50,7 @@ class FFStorage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'records' => array(self::HAS_MANY, 'FFModel', 'storage'),
-			'typeItem' => array(self::BELONGS_TO, 'FFType', 'type'),
-                        'registryItems' => array(self::MANY_MANY, 'FFRegistry', 'ff_registry_storage(storage, registry)'),
+			'kindOfPublication' => array(self::BELONGS_TO, 'GenMenuItems', 'kind_of_publication'),
 		);
 	}
 
@@ -58,10 +61,12 @@ class FFStorage extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Имя хранилища',
-			'description' => 'Описание',
-                        'subtype' => 'Подтип',
-                        'type' => 'Тип данных',
+			'publicationDate' => 'Publication Date',
+			'title' => 'Title',
+			'summary' => 'Summary',
+			'text' => 'Text',
+			'img' => 'Img',
+			'kind_of_publication' => 'Kind Of Publication',
 		);
 	}
 
@@ -84,10 +89,12 @@ class FFStorage extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('subtype',$this->subtype);
-		$criteria->compare('type',$this->type);
+		$criteria->compare('publicationDate',$this->publicationDate,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('summary',$this->summary,true);
+		$criteria->compare('text',$this->text,true);
+		$criteria->compare('img',$this->img,true);
+		$criteria->compare('kind_of_publication',$this->kind_of_publication);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -98,12 +105,10 @@ class FFStorage extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return FormStorage the static model class
+	 * @return GenOtherInfo the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-        
-
 }

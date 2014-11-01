@@ -28,12 +28,14 @@ class RegForm extends CFormModel
 	{
 	        Yii::import('ext.MyValidators.stringIsBase64');
 		return array(
-			array('Signature', 'required'),
+			array('Signature, Email, Email2, Phone', 'required'),
 			array('Signature', 'stringIsBase64'),
 //			array('Signature', 'authenticate'),
-//			array('Email', 'Email'),
-        		// Почта должна быть в пределах от 6 до 50 символов
-//        		array('Email', 'length', 'min'=>6, 'max'=>50),
+			array('Email, Email2', 'email'),
+			array('Email, Email2', 'length', 'max'=>45),
+       		array('Email, Email2', 'length', 'min'=>6, 'max'=>50),
+			array('Email2', 'compare', 'compareAttribute'=>'Email'),
+			array('Phone', 'numerical', 'integerOnly'=>true),
         		// Почта должна быть уникальной
 //        		array('Email', 'unique'),
         		// Почта должна быть написана в нижнем регистре
@@ -47,6 +49,9 @@ class RegForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			'Email'=>'Електронна пошта',
+			'Email2'=>'Підтвердження електронної пошти',
+			'Phone'=>'Номер телефону',
 //			'rememberMe'=>'Remember me next time',
 		);
 	}

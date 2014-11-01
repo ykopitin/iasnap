@@ -10,7 +10,7 @@ $rows=CabUserBidsConnect::model()->findAll($criteria);
 $i=1;
 
 if (isset($_POST['mail']) || isset($_POST['fone'])){
-$em = CabUserExternal::model()->findByPk($usid);
+$em = CabUser::model()->findByPk($usid);
 $em->email = $_POST['mail'];
 $em->phone = $_POST['fone'];
 $em->update(); 

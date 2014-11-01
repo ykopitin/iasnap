@@ -4,7 +4,7 @@
 {
 ?>
 <table><tr><td><div id="otonline"><a href="#">ОТРИМАТИ ПОСЛУГУ ></a></div></td></tr></table>
-<?php
+<?
 }
 ?><div id="shortblock">
 
@@ -34,4 +34,3 @@
 </div>
 
 </div>
-

@@ -19,22 +19,15 @@
     	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/leftacc.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/acc.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/path.css" />
-     	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/li-scroller.css" />
+  
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.li-scroller.1.0.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/packed.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js"></script>
+
 
 <script type="text/javascript" src="//yastatic.net/share/share.js"
 charset="utf-8"></script>
 
-<script type="text/javascript">
-$(function(){
-	$("ul#ticker01").liScroll();
-//Syntax
-});
-</script>
+
 
     <script> 
 function func(n) { 
@@ -50,18 +43,11 @@ function func(n) {
 </script>
 
 <style>
-#page
-{
-	min-height: 100%;
-    margin-top: -20px;
-	margin-bottom: 0px;
-	<?php if (!isset($_GET['param'])) {?><?php } ?>
-	width: 100%;
-}
+
 </style>
 </head>
 <body>
-
+<div id="allpage">
 <div id="topik">
 <div id="topmenu">
 	<table border="0" height="20" cellspacing="0" cellpadding="0">
@@ -98,13 +84,12 @@ function func(n) {
  
  
 
-  Yii::import("application.extensions.cssmenu.*");       
-  $this->widget('CssMenu',array('items'=>$dat));
+  $this->widget('ext.cssmenu.CssMenu',array('items'=>$dat));
            ?>  
 	<!-- mainmenu --> 
              </td> <td width="22%" bgcolor="#18262A" >   <div id="loginmenu"> 
              <img src="<?php echo Yii::app()->baseUrl; ?>/images/login.png" >
-             <?php
+             <?
            // echo CHtml::image(Yii::app()->request->baseUrl.'/images/zm.jpg'); 
              $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(	
@@ -129,7 +114,7 @@ function func(n) {
 				</td>
                 
                 
-				<td background="<?php echo Yii::app()->baseUrl; ?>/images/search.jpg" width="458" height="97">
+				<td style="background: url('<?php echo Yii::app()->baseUrl; ?>/images/search.jpg')  no-repeat left top;" width="458" height="97">
              <form action="<?php echo Yii::app()->baseUrl; ?>/index.php/search" method="post">
                 <input type="text" name="searchstr" id="search" ></form>
 				</td>
@@ -142,7 +127,7 @@ function func(n) {
 
 
 
- <hr /><br />
+ <span id="anchor1"> </span><hr /><br />
   <div class="container" id="page">
 
 		<?php 
@@ -160,16 +145,61 @@ function func(n) {
 echo CHtml::link('Головна', array('/'));
  echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbspПошук';
         } 
-        echo	'</div></div>';
+         echo	'</div></div>';
         } 
       
-        
-               ?>
+       
+        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/ecnap')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array('/'));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;e-ЦНАП';
+          echo	'</div></div>';
+        }     
 
-    <?php
+
+        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/contacts')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array('/'));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Контакти центрів';
+          echo	'</div></div>';
+        }   
+        
+                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/regulations')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array('/'));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Законодавство';
+          echo	'</div></div>';
+        }   
+        
+                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/instructions')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array('/'));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Текстові інструкції';
+          echo	'</div></div>';
+        }   
+
+
      if (isset($_GET['param'])){  
  
     echo '<div id="posnamebg"><div id=posname>'.GenServices::model()->findByPk($_GET['param'])->name.'</div></div>';
+   
+  if (isset($_GET['class']) && isset($_GET['servid']) ) {$tempclass=$_GET['class']; $tempcat=$_GET['servid'];} else {
+    
+    $rr=GenServCatClass::model()->findAllByAttributes(array('service_id'=>$_GET['param']));
+     foreach($rr as $row) 
+        {
+            $temp=$row['cat_class_id'];
+    }
+    $tempclass=GenCatClasses::model()->findByPk($temp)->class_id;
+      $tempcat=GenCatClasses::model()->findByPk($temp)->categorie_id;
+    }
+    echo '<div id=printbg><div id=print><table><tr><td><a href='.Yii::app()->request->baseUrl.'/index.php/print?class='.$tempclass.'&&param='.$_GET['param'].'&&servid='.$tempcat.' target=_blank>Версія для друку</a></td><td width=6px><img src='.Yii::app()->baseUrl.'/images/print.jpeg></td></tr></table></div></div>';
+
+   
     }
    
     
@@ -178,9 +208,9 @@ echo CHtml::link('Головна', array('/'));
     
     
     
-    
+//    echo Yii::app()->baseUrl.'/index.php/ecnap<br>';
 
-   // echo $_SERVER['REQUEST_URI'];
+ //  echo $_SERVER['REQUEST_URI'];
     
   //  echo Yii::app()->baseUrl;
      ?>
@@ -192,22 +222,23 @@ echo CHtml::link('Головна', array('/'));
   <div id="cat"> 
   
   	<?php echo $content;?>
-    </div></div>
+    </div>
 
-	<div class="clear"></div>
+
 
 <?php 
-if (!isset($_GET['param']) && !isset($_POST['searchstr']) && !isset($_GET['servid'])){
-if (!isset($_GET['idn'])) {echo "<br />";include 'banners.php';}
+if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/' || $_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php' ) {
+//echo "<br />";
+//include 'banners.php';
 echo "<hr />";
 include 'news.php';echo "<hr />";
-if (!isset($_GET['idn'])) {include 'derzh.php';}
+include 'derzh.php';
 ;
 }?>
-
+</div>
 
 <!-- mainmenu --> 
-
+<div class="page-buffer"></div></div>
 <div id="footer">
 		<table background="<?php echo Yii::app()->baseUrl; ?>/images/bz.png" width="100%" height="20"><tr><td ></td></tr></table>
 <div id="topmenu">	<table ><tr><td width="86%"><div id="mainmenu">

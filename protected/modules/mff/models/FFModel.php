@@ -16,7 +16,7 @@ class FFModel extends CActiveRecord
 {
     const ref_multiguide = 2;          
     const ref_multiguide_storage = 2;          
-
+    
     private $_ff_tablename = 'ff_default';
     private $_registry=1;
     private $_attaching=0;
@@ -65,13 +65,6 @@ class FFModel extends CActiveRecord
         }
         return $this->_ff_tablename;
     }
-
-//    public function __set($name, $value) {
-//        if (strtolower($name)=="registry") {
-//            $this->_registry=$value;   
-//        }
-//        parent::__set($name, $value);
-//    }
 
     /**
      * @return array validation rules for model attributes.
@@ -194,8 +187,6 @@ class FFModel extends CActiveRecord
          }
     }
 
-
-
     public static function isParent($registry1,$registry2) {       
         return Yii::app()->getDb()->
                 createCommand("select `FF_isParent`(:idregistry1,:idregistry2)")->
@@ -221,13 +212,33 @@ class FFModel extends CActiveRecord
 
     public function refreshMetaData() {
         $registrysave=$this->registry;
-//        $storagesave=$this->storage;
         $this->tableName();
         parent::refreshMetaData();
         $this->registry=$registrysave;
-//        $this->storage=$storagesave;
     }
 
+    public function getItems($name) {
+        $field=FFField::model()->find("`formid`=:formid and `name`=:name",
+                array(":formid"=>$this->registry, ":name"=>$name ));
+        $multilink=new FFModel;
+        $multilink->registry=self::ref_multiguide;
+        $multilink->refreshMetaData();
+        $criteria=new CDbCriteria();
+        $criteria->select="`reference`";
+        $criteria->addCondition("`registry`=".self::ref_multiguide);
+        $criteria->addCondition("`owner`=".$this->id);
+        $criteria->addCondition("`owner_field`=:owner_field");
+        $criteria->params[":owner_field"]=$field->id;
+        $criteria->order="`order`";
+        $list=$multilink->findAll($criteria);
+        $result=array();
+        foreach ($list as $listitem) {
+            $item=FFModel::model()->findByPk($listitem->reference);
+            $item->refresh();
+            $result=array_merge($result,array($item));           
+        }
+        return $result;
+    }
 }
 
 /// Временый класс для справочников

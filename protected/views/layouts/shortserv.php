@@ -14,10 +14,10 @@
         
         <?php
         if ($_GET['class']=='1'){
-        $this->renderPartial('/serv/grom');
+        $this->renderPartial('/serv/grom1');
         }
                 if ($_GET['class']=='2'){
-        $this->renderPartial('/serv/org');
+        $this->renderPartial('/serv/org1');
         }
         ?>
         
