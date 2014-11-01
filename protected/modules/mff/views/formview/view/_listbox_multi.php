@@ -9,10 +9,29 @@ try{
         $v_FFModel->registry=$registryItem->id;
         $v_FFModel->storage=$storageitem->id;
         $v_FFModel->refreshMetaData();
-        $modelclassif = $v_FFModel->findAll("storage=:storage and registry=:registry",array(":storage"=>$storageitem->id,":registry"=>$registryItem->id));
-        $listdata = $listdata+CHtml::listData($modelclassif, "id", "name");  
-        $v_FFModel->registry=1;
-        $v_FFModel->refreshMetaData();
+        if ($v_FFModel->getAttaching()==0) {
+            $modelclassif = $v_FFModel->findAll("storage=:storage and registry=:registry",array(":storage"=>$storageitem->id,":registry"=>$registryItem->id));
+            $listdata = $listdata+CHtml::listData($modelclassif, "id", "name");         
+            $v_FFModel->registry=1;
+            $v_FFModel->refreshMetaData();
+        } else {
+            $columns=$v_FFModel->getTableSchema()->columns; 
+            $modelclassif = $v_FFModel->findAll();
+            foreach ($modelclassif as $model) { 
+                $listdatavalue="";
+                foreach ($columns as $column) {                     
+                    if ($column->type=="string") {
+                        if ($listdatavalue=="") {
+                            $listdatavalue=$column->name.": ".$model->getAttribute($column->name); 
+                        } else {
+                            $listdatavalue.="; ".$column->name.": ".$model->getAttribute($column->name); 
+                        }
+                    }
+                }
+                $listdata[$model->id]=$listdatavalue;
+            }           
+            
+        }
     }
     $selectdata=array();
     
