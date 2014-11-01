@@ -1,5 +1,5 @@
 <?php
-//try{
+try{
     Yii::app()->clientScript->registerScriptFile($this->createUrl("default/getscript",array("script"=>basename(__FILE__,".php"))));
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));    
@@ -66,6 +66,6 @@
         "onkeypress"=>"listbox_multi_keypress(event,this);");
     if ($scenario=="view") $dropDownListOptions=array_merge($dropDownListOptions,array("disabled"=>"disabled"));
     echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,$dropDownListOptions);
-//} catch (Exception $e){
-//     echo 'Не удалось загрузить поле:\n'.$e->getMessage();
-//}
+} catch (Exception $e){
+     echo 'Не удалось загрузить поле:\n'.$e->getMessage();
+}
