@@ -86,6 +86,8 @@ $sIssuer = iconv($in_charset = 'windows-1251' , $out_charset = 'UTF-8' , $sIssue
 // Якщо довжина даних, які підписав користувач (рядок автентифікації), не дорівнює 40 символів,
 // то зупинити процедуру автентифікації користувача. Довжина даних, які підписує користувач,
 // задається у файлі auth/genstr.php (псевдовипадковий рядок)
+	$sResultData = ltrim($sResultData, ';');
+error_log("sResultData at login:".$sResultData);
 	if (strlen($sResultData) != 40) {
 		error_log("Auth: Error: Signed data has no valid auth string length");
 		$this->errorCode=self::ERROR_USERNAME_INVALID;

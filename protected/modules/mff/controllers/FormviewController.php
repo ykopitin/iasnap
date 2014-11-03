@@ -15,16 +15,19 @@ class FormviewController extends Controller
         $this->render("indexstorage",array("storagemodel"=>$storagemodel));
     }
     
-    public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null,$layouts="indexstorage")
+    public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null,$layouts="",$addons="")
     {        
 //        echo '<pre>';
 //        var_dump($_POST);
 //        echo '</pre>';
 //        return;
+        if ($layouts=="") $layouts="indexstorage";
+        else $layouts=base64_decode($layouts);
         $storagemodel = FFStorage::model()->findByPk($idstorage);
         $registrymodel = FFRegistry::model()->findByPk($idregistry);
         if (isset($_POST["FFModel"])) {
             $idguide=array();
+            // Похоже для работы со встраиваимыми справочниками
             foreach ($_POST as $key => $value) {
                 if (strpos($key, "FFModel_") !== false) {
                     $fieldname=substr($key,strlen("FFModel_"));
@@ -54,16 +57,17 @@ class FormviewController extends Controller
             }
             if ($scenario=="insert") {
                 $datamodel=new FFModel("insert");               
+                $datamodel->registry=$idregistry;
+                $datamodel->refreshMetaData();
             }
             if ($scenario=="update" && $idform!=null){
                 $datamodel=FFModel::model()->findByPk($idform);
+                $datamodel->registry=$idregistry;
+                $datamodel->refresh();
             }  
-            $datamodel->registry=$idregistry;
-            $datamodel->refreshMetaData();
-//            $datamodel->unsetAttributes();
             $dataold=$datamodel->attributes;           
             $datamodel->setAttributes($_POST["FFModel"], FALSE);
-     
+
             $datamodel->storage=$idstorage;
             $datamodel->registry=$idregistry;
             
@@ -91,8 +95,13 @@ class FormviewController extends Controller
             }
 
            if ($datamodel->validate() && $datamodel->save()) {
+                if ($scenario=="insert") {
+                     // Маршрутизация
+                     $datamodel->applyRoute();
+                }                
                 foreach ($_POST as $key => $value) {
                     $partkey=explode("_",$key);
+                    // Работает, но требуется поправить на setMultiGuide
                     if ($partkey[0]=="multiguide") {
                         $classnamefiled="FFModel_".$key;
                         eval("class $classnamefiled extends FFModel {}");
@@ -111,10 +120,17 @@ class FormviewController extends Controller
                         }
                     }
                 }
-                $this->redirect(array($layouts,"id"=>$idstorage));
+                if ($addons=="") $this->redirect(array("indexstorage","id"=>$idstorage));
+                else {
+                    // только для кабинета
+                    $addons_decode=base64_decode($addons);
+                    eval('$addons_decode='.$addons_decode.";");
+                    $cabinetid=$addons_decode["cabinetid"];
+                    $this->redirect(array("/mff".$layouts,"id"=>$cabinetid));  
+                }
                 return;
             }       
-        }
+        }       
         $this->render($layouts,
                 array(
                     "idregistry"=>$idregistry,
@@ -122,15 +138,24 @@ class FormviewController extends Controller
                     "storagemodel"=>$storagemodel,
                     "scenario"=>$scenario,
                     "idform"=>$idform,
+                    "addons"=>$addons,
                     )
                 );
     }
     
     /// Добавить удаление встраиваемых справочников
-    public function actionDelete($idform,$idstorage){
+    public function actionDelete($idform,$idstorage,$layouts="",$addons=""){
         $datamodel=FFModel::model()->findByPk($idform);        
         $datamodel->delete();
-        $this->redirect(array("indexstorage","id"=>$idstorage));
+        if ($layouts=="") $this->redirect(array("indexstorage","id"=>$idstorage));
+        else {
+            // только для кабинета
+            $layouts=base64_decode($layouts);
+            $addons_decode=base64_decode($addons);
+            eval('$addons_decode='.$addons_decode.";");
+            $cabinetid=$addons_decode["cabinetid"];
+            $this->redirect(array("/mff".$layouts,"id"=>$cabinetid));  
+        }
     }
     
     public function actionBarcode($id="0",$code="BCGean13"){

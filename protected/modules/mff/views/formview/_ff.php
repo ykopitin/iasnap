@@ -18,19 +18,30 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
                 'title' => $title,
                 'modal' => true,
                 'resizable'=> true,
-                'width'=>"65%",
+                'width'=>"75%",
                 'buttons' => $buttons,
             )
        )
 );
-
-$url=$this->createUrl('indexstorage',array("id"=>$idstorage));
+if (!isset($layouts)) $layouts2='indexstorage';
+else $layouts2=base64_decode($layouts);
+if (!isset($addons)) {
+    $url=$this->createUrl($layouts2,  array_merge(array("id"=>$idstorage)));
+    $addons=array();
+} else {
+    $addons_decode=base64_decode($addons);
+    eval('$addons_decode='.$addons_decode.";");
+    $cabinetid=$addons_decode["cabinetid"];
+    $url=$this->createUrl("/mff".$layouts2,array("id"=>$cabinetid));
+    $addons=array("addons"=>$addons);
+}
 Yii::app()->clientScript->registerScript(
         "dialogclose_dialogffform",
         '$("#dialogffform").dialog({close:function(){window.location="'.$url.'"}})'
         );
-
-$urlparam=array("idregistry"=>$idregistry,"idstorage"=>$idstorage);
+$urlparam=array();
+if (isset($layouts)) $urlparam=array("layouts"=>  base64_encode($layouts2));
+$urlparam=array_merge($urlparam, $addons, array("idregistry"=>$idregistry,"idstorage"=>$idstorage));
 if(isset($scenario)) {
     $urlparam=array_merge($urlparam,array("scenario"=>$scenario));
 }

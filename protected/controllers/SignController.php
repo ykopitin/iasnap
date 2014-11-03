@@ -94,19 +94,22 @@ class SignController extends Controller
 
 	public function actionLogin()
 	{
+	  $cs = Yii::app()->clientScript;
+      $cs->registerCoreScript('yiiactiveform');
 		$model = new AuthForm;
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUAuthMini.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUSignScripts3.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/auth/EUStyles2.css');
 //var_dump($_POST);
-		if(isset($_POST['AuthForm']))
+		if(isset($_POST['Signature']))
 		{
-			$model->attributes=$_POST['AuthForm'];
+			$model->Signature = $_POST['Signature'];
+//			$model->attributes=$_POST['AuthForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 //				$this->redirect(Yii::app()->user->returnUrl);
-				$this->redirect(Yii::app()->baseUrl);
+				$this->redirect(Yii::app()->createUrl('cabinet'));
 		}
 		$this->render('index', array('model'=>$model));
 	}
@@ -147,12 +150,25 @@ error_log("getcertificates 3");
 
 	public function actionRegister()
 	{
+      $cs = Yii::app()->clientScript;
+      $cs->registerCoreScript('yiiactiveform');
 		$model = new RegForm;
-		if(isset($_POST['regform']))
+		if(isset($_POST['Signature']) && isset($_POST['Email']))
 		{
 			//$sig = new EUSignature($_POST['RegForm[Signature]']);
-//			$model->attributes=$_POST['RegForm'];
-			$model->Signature = $_POST['regform'];
+//			$model->attributes=$_POST['regform'];
+//print_r($_POST);
+
+//Yii::app()->end();
+			$model->Signature = $_POST['Signature'];
+			$model->Email = $_POST['Email'];
+			
+			// if it is ajax validation request
+			if(isset($_POST['ajax']) && $_POST['ajax']==='reg-form')
+			{
+				echo CActiveForm::validate($model);
+				Yii::app()->end();
+			}
 //			$model->Email = $_POST['RegForm[Email]'];
 //			$model->Email2 = $_POST['RegForm[Email2]'];
 //			$model->Phone = $_POST['RegForm[Phone]'];
@@ -211,6 +227,7 @@ error_log("reg008");
 //				$this->redirect(Yii::app()->createUrl('auth/regconfirm'));
 				Yii::app()->end;
 		}
+		Yii::app()->clientScript->corePackages = array();
 		$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
 
 	}

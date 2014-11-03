@@ -89,7 +89,7 @@ function func(n) {
 	<!-- mainmenu --> 
              </td> <td width="22%" bgcolor="#18262A" >   <div id="loginmenu"> 
              <img src="<?php echo Yii::app()->baseUrl; ?>/images/login.png" >
-             <?
+             <?php
            // echo CHtml::image(Yii::app()->request->baseUrl.'/images/zm.jpg'); 
              $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(	
