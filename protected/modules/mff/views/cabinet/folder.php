@@ -1,5 +1,8 @@
 <p style="font-style: italic"><?= $folder->comment ?></p>
 <?php
+$storageItems_new=$folder->getItems("allow_new");
+$storageItems_edit=$folder->getItems("allow_edit");
+$storageItems_delete=$folder->getItems("allow_delete");
 $buttons=array(
     'view'=>
         array(
@@ -42,16 +45,16 @@ $buttons=array(
                     )'          
             ),
     ); 
-if ($folder->getItems("allow_edit")>0) {
+    
+if (count($storageItems_edit)>0) {
     $buttons["update"]["visible"]="true";
 }
-if ($folder->getItems("allow_delete")>0) {
+if (count($storageItems_delete)>0) {
     $buttons["delete"]["visible"]="true";
 }
-$storageItems=$folder->getItems("allow_new");
-if (count($storageItems)>0) {
+if (count($storageItems_new)>0) {
     $items=array();
-    foreach ($storageItems as $storageItem) {
+    foreach ($storageItems_new as $storageItem) {
         $storageItem=FFStorage::model()->findByPk($storageItem->id);
         foreach ($storageItem->registryItems as $registryItem) {
             $label = "Новый: ".$registryItem->getAttribute("description")." (".$storageItem->getAttribute("description").")";
@@ -119,6 +122,52 @@ for ($index = 0; $index < count($documents); $index++) {
 }
 $registryDocuments=array_unique($registryDocuments,SORT_NUMERIC);
 echo CHtml::hiddenField("folder_".$folder->id,count($idDocuments));
+
+// Определение списка действий
+// отбираем все действия
+$templateButton=" {view} {update} {delete}";
+$ActionItem= new FFModel();
+$ActionItem->registry=FFModel::route_action;
+$ActionItem->refreshMetaData();
+$ActionList=$ActionItem->findAll("storage=".FFModel::route_action_storage);
+foreach ($ActionList as $ActionItem) {
+    $ActionItem->refresh();
+    $buttonItem=array(
+    'action'.$ActionItem->id=>array(
+            'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.')',
+            'label'=>$ActionItem->name,
+            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Flag16")),
+//            "options"=>array("style"=>"width:8px"),
+            'url'=>'Yii::app()->createUrl("/mff/cabinet/doaction",
+                    array(                    
+                        "cabinetid"=>'.$cabinet->id.',
+                        "actionid"=>'.$ActionItem->id.',
+                        "documentid"=>$data->id,
+                        "folderid"=>'.$folder->id.'
+                        )
+                    )'          
+            )
+        );
+    $templateButton = ' {action'.$ActionItem->id.'}'.$templateButton;
+    $buttons = array_merge($buttonItem,$buttons);
+}
+// Определение колонок
+$columns = array(array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));
+if (strlen($folder->getAttribute("visual_names"))>0) {
+   $columnVisualNames = explode(";",$folder->visual_names);
+   foreach ($columnVisualNames as $columnVisual) {
+       if (trim($columnVisual)=="") continue;
+       $columnVisualList=explode(":", $columnVisual);
+       if (count($columnVisualList)==0) continue;
+       $columnVisualName=$columnVisualList[0];
+       if (count($columnVisualList)>1) $columnVisualTitle=$columnVisualList[1];
+       else $columnVisualTitle=$columnVisualName;
+       $columns = array_merge($columns,array(array('name'=>$columnVisualName,"header"=>$columnVisualTitle)));
+   }
+}
+$columns = array_merge($columns, array(array('class'=>'CButtonColumn', "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Действия", 'buttons'=>$buttons)));
+
+// Отображение грида
 $documentCriteria = new CDbCriteria();
 $documentCriteria->addInCondition("id", $idDocuments);
 $model=new FFModel();
@@ -133,25 +182,7 @@ $dp=new CActiveDataProvider($model,
                             )
                         )
                     );
-$columns = array(array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));
-if (strlen($folder->getAttribute("visual_names"))>0) {
-   $columnVisualNames = explode(";",$folder->visual_names);
-   foreach ($columnVisualNames as $columnVisual) {
-       if (trim($columnVisual)=="") continue;
-       $columnVisualList=explode(":", $columnVisual);
-       if (count($columnVisualList)==0) continue;
-       $columnVisualName=$columnVisualList[0];
-       if (count($columnVisualList)>1) $columnVisualTitle=$columnVisualList[1];
-       else $columnVisualTitle=$columnVisualName;
-       $columns = array_merge($columns,array(array('name'=>$columnVisualName,"header"=>$columnVisualTitle)));
-   }
-}
 
-$columns = array_merge($columns, array(array('class'=>'CButtonColumn', "header"=>"Действия", 'buttons'=>$buttons)));
-//echo '<pre>';
-//var_dump($columns);
-//echo '</pre>';
-//return;
 $this->widget("zii.widgets.grid.CGridView",
         array(
             "dataProvider"=>$dp, 

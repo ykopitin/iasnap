@@ -21,6 +21,7 @@ if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstora
 if (isset($storagemodel)) $urldata=array_merge($urldata,array("storagemodel"=>$storagemodel,));
 if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
 if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
+if (!isset($folderid) || $folderid==NULL) $folderid=$folders[0]->id;
 foreach ($folders as $folder) {
     $tab=array("tab".$folder->id=>
             array(
@@ -36,7 +37,7 @@ foreach ($folders as $folder) {
         );
     $tabs=array_merge($tabs,$tab);
 }
-$this->widget("CTabView", array('tabs'=>$tabs,
+$this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 //    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
     )
 );

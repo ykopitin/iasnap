@@ -11,13 +11,22 @@ class CabinetController extends Controller
         $this->render('index');
     }
     
-    public function actionCabinet($id=null)
+    public function actionCabinet($id=null, $folderid=null)
     {
         $cabinetmodel=FFModel::model()->findByPk($id);
         $cabinetmodel->refresh();
-        $this->render('cabinet',array("cabinetmodel"=>$cabinetmodel));
+        $this->render('cabinet',array("cabinetmodel"=>$cabinetmodel,"folderid"=>$folderid));
     }
 
+    public function actionDoAction($documentid,$cabinetid,$actionid,$folderid=null) {
+        $document=FFModel::model()->findByPk($documentid);
+        $document->refresh();
+        $document->applyAction($actionid);
+        $cabinetmodel=FFModel::model()->findByPk($cabinetid);
+        $cabinetmodel->refresh();
+        $this->render('cabinet',array("cabinetmodel"=>$cabinetmodel,"folderid"=>$folderid));
+    }
+    
     // Uncomment the following methods and override them if needed
     /*
     public function filters()

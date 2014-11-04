@@ -34,7 +34,7 @@ if ($registrymodel->attaching==0){
 $dataProvider=new CActiveDataProvider("FFModel", array(
         'criteria' => $criteria,
         'pagination' => array(
-            'pageSize' => 30,
+            'pageSize' => 300,
         )
     )
 );
@@ -67,6 +67,7 @@ if ($vidregistry!=null){
     $this->widget("zii.widgets.CListView", array(
         'dataProvider'=>$dataProvider,
         'itemView'=>'_indexstorage',
+        'enablePagination'=>TRUE,
         'viewData'=>array("idstorage"=>$storagemodel->id,"idregistry"=>$vidregistry,"columnnames"=>$columnnames,"attaching"=>$registrymodel->attaching),
         'tagName'=>'table',
         'template'=>'<caption>{summary}</caption><thead><th>ID</th>'.$columns.
