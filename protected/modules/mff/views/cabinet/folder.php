@@ -120,7 +120,7 @@ for ($index = 0; $index < count($documents); $index++) {
         $registryDocuments=  array_merge($registryDocuments, array($documents[$index]->registry));
     }   
 }
-$registryDocuments=array_unique($registryDocuments,SORT_NUMERIC);
+//$registryDocuments=array_unique($registryDocuments,SORT_NUMERIC);
 echo CHtml::hiddenField("folder_".$folder->id,count($idDocuments));
 
 // Определение списка действий
@@ -133,10 +133,11 @@ $ActionList=$ActionItem->findAll("storage=".FFModel::route_action_storage);
 foreach ($ActionList as $ActionItem) {
     $ActionItem->refresh();
     $buttonItem=array(
-    'action'.$ActionItem->id=>array(
+       'action'.$ActionItem->id=>array(
             'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.')',
             'label'=>$ActionItem->name,
-            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Flag16")),
+            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Flag")),
+//            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Gears")),
 //            "options"=>array("style"=>"width:8px"),
             'url'=>'Yii::app()->createUrl("/mff/cabinet/doaction",
                     array(                    
@@ -165,7 +166,7 @@ if (strlen($folder->getAttribute("visual_names"))>0) {
        $columns = array_merge($columns,array(array('name'=>$columnVisualName,"header"=>$columnVisualTitle)));
    }
 }
-$columns = array_merge($columns, array(array('class'=>'CButtonColumn', "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Действия", 'buttons'=>$buttons)));
+$columns = array_merge($columns, array(array('class'=>'mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Действия", 'buttons'=>$buttons)));
 
 // Отображение грида
 $documentCriteria = new CDbCriteria();
@@ -178,12 +179,11 @@ $dp=new CActiveDataProvider($model,
                     array(
                         'criteria'=>$documentCriteria,
                         'pagination' => array(
-                            'pageSize' => 50,
+                            'pageSize' => 20,
                             )
                         )
                     );
-
-$this->widget("zii.widgets.grid.CGridView",
+$this->widget("mffGridView",
         array(
             "dataProvider"=>$dp, 
             "enablePagination"=>TRUE,
