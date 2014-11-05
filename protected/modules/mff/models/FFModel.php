@@ -568,7 +568,7 @@ class FFModel extends CActiveRecord
     }
     
     // Применяет действие к документу
-    public function applyAction($actionId) {   
+    public function applyAction($actionId, $user=NULL) {   
         // Разрешенные узлы
         $available_nodes=$this->getItems("available_nodes");
         if (!isset($available_nodes) || $available_nodes==null) return $available_nodes=array();
