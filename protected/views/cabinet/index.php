@@ -2,6 +2,11 @@
 if (isset(Yii::app()->user->id)) {
 $usid=Yii::app()->user->id;
 
+/// Вставка перехода в кабинет
+
+$this->widget('mff.components.CabinetWidget',array("cabinetId"=>85));
+return; // ОТКЛЮЧИЛ ИЗ-ЗА ТОГО ЧТО ЛОКАЛЬНО ТЕСТИРОВАТЬ НЕЛЬЗЯ (НЕ ПРОХОДИТ АВТОРИЗАЦИЯ)
+/// Конец вставки
 
 $criteria = new CDbCriteria;
 $criteria->compare('user_id', $usid);

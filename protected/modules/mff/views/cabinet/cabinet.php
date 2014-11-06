@@ -1,14 +1,24 @@
 <?php
 if (!isset($cabinetmodel)) {
-    $addons=base64_decode($addons);
-    eval('$addons='.$addons.";");
-    $cabinetid=$addons["cabinetid"];
+    if (isset($addons)) {
+        $addons=base64_decode($addons);
+        eval('$addons='.$addons.";");
+        $cabinetid=$addons["cabinetid"];
+    }
     $cabinetmodel=FFModel::model()->findByPk($cabinetid);
     $cabinetmodel->refresh();
 }
 echo "<b>".$cabinetmodel->name."</b><br />";
 echo "<i>".$cabinetmodel->comment."</i><br />";
-echo "<span>Пользователь:".Yii::app()->User->id."</span><br /><br />";
+$userId=Yii::app()->User->id;
+if (is_numeric($userId)){
+    $user=new FFModel();
+    $user->registry=  FFModel::user;
+    $user->refreshMetaData();
+    $user=$user->findByPk($userId);
+    echo "<span>Пользователь:".$user->getAttribute("fio")."</span><br /><br />";
+}
+
 $folders=$cabinetmodel->getItems("folders");
 if (!is_array($folders)) {
     echo "Проблема с отображением папок в кабинете";
@@ -26,7 +36,7 @@ foreach ($folders as $folder) {
     $tab=array("tab".$folder->id=>
             array(
                 'title'=>$folder->name." (<span class='countdocuments' id='counter".$folder->id."'>0</span>)",
-                "view"=>"/cabinet/folder",
+                "view"=>"mff.views.cabinet.folder",
                 "data"=>array_merge(
                         array(
                             "folder"=>$folder,

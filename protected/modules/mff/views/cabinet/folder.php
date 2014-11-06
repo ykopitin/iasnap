@@ -166,7 +166,7 @@ if (strlen($folder->getAttribute("visual_names"))>0) {
        $columns = array_merge($columns,array(array('name'=>$columnVisualName,"header"=>$columnVisualTitle)));
    }
 }
-$columns = array_merge($columns, array(array('class'=>'mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Действия", 'buttons'=>$buttons)));
+$columns = array_merge($columns, array(array('class'=>'mff.components.mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Действия", 'buttons'=>$buttons)));
 
 // Отображение грида
 $documentCriteria = new CDbCriteria();
@@ -183,7 +183,7 @@ $dp=new CActiveDataProvider($model,
                             )
                         )
                     );
-$this->widget("mffGridView",
+$this->widget("mff.components.mffGridView",
         array(
             "dataProvider"=>$dp, 
             "enablePagination"=>TRUE,

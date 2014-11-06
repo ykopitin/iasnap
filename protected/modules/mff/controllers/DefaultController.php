@@ -4,17 +4,20 @@ class DefaultController extends Controller
 {
     public $layout='//layouts/main1';
     public $label='Меню свободных форм';
+    
     /// Формирует список сободных форм
     public function actionIndex()
     {        
         $this->render("index");
     }
     
-    public function actionGetimage($image) {
-        
-//        $file=Yii::getPathOfAlias('webroot')."/protected/modules/mff/img/".$image.".png";
+    /// Тестирование одиночных СФ
+    public function actionTestFF() {
+        $this->render("testff");
+    }
+    
+    public function actionGetimage($image) {        
         $file=Yii::getPathOfAlias('mff.img').DIRECTORY_SEPARATOR.$image.".png";
-//        echo $file;
         header("Content-Type: application/png");
         header("Accept-Ranges: bytes");
         header("Content-Length: " . filesize($file));

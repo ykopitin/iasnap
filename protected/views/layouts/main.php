@@ -63,6 +63,7 @@ function func(n) {
  foreach ($result as $value){
  $data[$value['id']]=array('paderntid'=>$value['paderntid'],'label'=>$value['content'], 'url'=>$value['url']);
  }
+
  function ddmenu($dataset) {
  $tree = array();
  foreach ($dataset as $id=>&$node) {

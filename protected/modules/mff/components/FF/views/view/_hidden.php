@@ -1,0 +1,1 @@
+<?= $form->hiddenField($modelff,strtolower($data->name)) ?>
