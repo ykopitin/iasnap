@@ -41,10 +41,11 @@ try {
         )
             )
     );
+    if (empty($htmlOptions) || $htmlOptions==NULL) $htmlOptions=array(); 
     $this->widget("zii.widgets.CListView", array(
         'dataProvider' => $dataProvider,
         'pager' => true,
-        'itemView' => '_ff_field',
+        'itemView' => 'ff_field',
         'summaryText' => '',
         'emptyText' => '',
         'itemsTagName' => 'tbody',
@@ -53,7 +54,7 @@ try {
             "form" => $form,
             "modelff" => $vFFModel,
             "scenario" => $scenario,
-            "htmlOptions" => array("<name field>" => array("style" => "width:100%"))),
+            "htmlOptions" => array_key_exists($data->name, $htmlOptions)?$htmlOptions[$data->name]:NULL),
         'template' => '{items}',
             )
     );

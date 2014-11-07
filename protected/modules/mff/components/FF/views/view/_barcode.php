@@ -1,1 +1,1 @@
-<?= CHtml::image($this->createUrl("barcode",array("id"=>$modelff->id))) ?>
+<?= CHtml::image(Yii::app()->createUrl("/mff/formview/barcode",array("id"=>$modelff->id))) ?>

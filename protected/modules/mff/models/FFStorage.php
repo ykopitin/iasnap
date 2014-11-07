@@ -31,9 +31,9 @@ class FFStorage extends CActiveRecord
 			array('name', 'required'),
                         array('subtype, type', 'numerical', 'integerOnly'=>true),
                         array('name', 'length', 'max'=>255),
-                        array('description', 'safe'),
+                        array('description, fields', 'safe'),
 
-                        array('id, name, description, subtype, type', 'safe', 'on'=>'search'),
+                        array('id, name, description, subtype, type, fields', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +62,7 @@ class FFStorage extends CActiveRecord
 			'description' => 'Описание',
                         'subtype' => 'Подтип',
                         'type' => 'Тип данных',
+                        'fields' =>'Отображемые поля',
 		);
 	}
 

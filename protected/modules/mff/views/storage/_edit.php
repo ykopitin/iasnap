@@ -61,6 +61,12 @@ $form=$this->beginWidget("CActiveForm", array(
         <td colspan="2"><?= $form->error($modelstorage,"multiselect") ?></td>
     </tr>
     <tr>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"fields") ?></td>
+        <td><?= $form->textArea($modelstorage,"fields",array("style"=>"width:100%")) ?></td>
+    <tr>
+        <td colspan="2"><?= $form->error($modelstorage,"fields") ?></td>
+    </tr>    
+    <tr>
         <td colspan="2">Подключенные формы к хранилищу</td>
     </tr>
     <tr>

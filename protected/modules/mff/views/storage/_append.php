@@ -57,6 +57,12 @@ $form=$this->beginWidget("CActiveForm", array(
     <tr>
         <td colspan="2"><?= $form->error($modelstorage,"multiselect") ?></td>
     </tr>
+    <tr>
+        <td style="width:30%"><?= $form->labelEx($modelstorage,"fields") ?></td>
+        <td><?= $form->textArea($modelstorage,"fields",array("style"=>"width:100%")) ?></td>
+    <tr>
+        <td colspan="2"><?= $form->error($modelstorage,"fields") ?></td>
+    </tr>
 </table>
 <?php
 $this->endWidget("CActiveForm"); 
