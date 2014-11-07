@@ -27,15 +27,11 @@ class FFWidget extends CWidget {
         $genid++;
         if (!isset($this->name) || $this->name==NULL || $this->name=="") $this->name="FFIND".$genid;
         if (!isset($this->backurl) || $this->backurl==NULL || $this->backurl=="") $this->backurl=Yii::app()->getRequest()->getUrl();
+        
     }
 
-    public function run() {
-        echo 'GET<pre>';
-        var_dump($_GET);
-        echo '</pre>POST<pre>';
-        var_dump($_POST);
-        echo '</pre>';
-        $this->render("ff",array("idregistry"=>$this->idregistry, "idstorage"=>$this->idstorage, "scenario"=>$this->scenario));
+    public function run() {      
+        $this->render("ff",array("idregistry"=>$this->idregistry, "idstorage"=>$this->idstorage, "scenario"=>$this->scenario, "idform"=>$this->idform));
     }    
     
 }

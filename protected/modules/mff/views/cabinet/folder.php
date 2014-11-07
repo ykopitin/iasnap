@@ -13,9 +13,9 @@ $buttons=array(
                         "idstorage"=>$data->storage,
                         "idform"=>$data->id,
                         "scenario"=>"view",
-                        "layouts"=>"'.base64_encode("/cabinet/cabinet").'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').
-                        '")
+                        "thisrender"=>"'.base64_encode("mff.views.cabinet.cabinet").'",
+                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').'",'.    
+                        ')
                     )'          
             ),
     'update'=>
@@ -27,9 +27,9 @@ $buttons=array(
                         "idstorage"=>$data->storage,
                         "idform"=>$data->id,
                         "scenario"=>"update",
-                        "layouts"=>"'.base64_encode("/cabinet/cabinet").'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').
-                        '")
+                        "thisrender"=>"'.base64_encode("mff.views.cabinet.cabinet").'",
+                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').'",'.
+                        ')
                     )'          
             ),
     'delete'=>
@@ -37,11 +37,9 @@ $buttons=array(
             'visible'=>'false',
             'url'=>'Yii::app()->createUrl("/mff/formview/delete", 
                     array(
-                        "idstorage"=>$data->storage,
                         "idform"=>$data->id,
-                        "layouts"=>"'.base64_encode("/cabinet/cabinet").'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').
-                        '")
+                        "backurl"=>"'.base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id))).'",'.
+                        ')
                     )'          
             ),
     ); 
@@ -58,18 +56,29 @@ if (count($storageItems_new)>0) {
         $storageItem=FFStorage::model()->findByPk($storageItem->id);
         foreach ($storageItem->registryItems as $registryItem) {
             $label = "Новый: ".$registryItem->getAttribute("description")." (".$storageItem->getAttribute("description").")";
-            $url=$this->createUrl("/mff/formview/save", array("idregistry"=>$registryItem->id,"idstorage"=>$storageItem->id,"layouts"=>base64_encode("/cabinet/cabinet"),"addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.')')));
+            $url=$this->createUrl(
+                    "/mff/formview/save", 
+                    array(
+                        "idregistry"=>$registryItem->id,
+                        "idstorage"=>$storageItem->id,
+                        "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),
+//                        "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id))),
+                        "addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.')')));
             $items=array_merge($items,array(array("label"=>$label,"url"=>$url)));                    
         }
     }
     $this->widget("zii.widgets.CMenu",array("items"=>$items,"htmlOptions"=>array("id"=>"menucreate")));
-    $urldata=array();
-    if (isset($idregistry)) $urldata=array_merge($urldata,array("idregistry"=>$idregistry,));
-    if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
-    if (isset($storagemodel)) $urldata=array_merge($urldata,array("storagemodel"=>$storagemodel,));
-    if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
-    if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
-    if (count($urldata)>1) $this->renderPartial("/formview/_ff",array_merge($urldata,array("layouts"=>base64_encode("/cabinet/cabinet"),"addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.')'))));
+    if ($this->action->id=="save") {
+        $urldata=array(
+            "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id))),
+            "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),
+            "addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.')'));
+        if (isset($idregistry)) $urldata=array_merge($urldata,array("idregistry"=>$idregistry,));
+        if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
+        if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
+        if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
+        $this->renderPartial("/formview/_ff",$urldata);
+    }
 }
 // Узлы папки
 $nodes=$folder->getItems("nodes");
@@ -81,6 +90,7 @@ foreach ($nodes as $node) {
     $nodeIds=array_merge($nodeIds,array($node->id));
 }
 // Узлы формы (ИД допустимых узлов)
+
 $availableNode=new FFModel;
 $availableNode->registry=  FFModel::available_nodes;
 $availableNode->refreshMetaData();
@@ -94,7 +104,6 @@ $nodeIds=array();
 foreach ($availableNodes as $node) {
     $nodeIds=array_merge($nodeIds,array($node->id));
 }
-
 // Определение форм
 $refDocument=new FFModel;
 $refDocument->registry=  FFModel::ref_multiguide;
@@ -131,7 +140,7 @@ $ActionItem->registry=FFModel::route_action;
 $ActionItem->refreshMetaData();
 $ActionList=$ActionItem->findAll("storage=".FFModel::route_action_storage);
 foreach ($ActionList as $ActionItem) {
-    $ActionItem->refresh();
+//    $ActionItem->refresh();
     $buttonItem=array(
        'action'.$ActionItem->id=>array(
             'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.')',
@@ -179,16 +188,18 @@ $dp=new CActiveDataProvider($model,
                     array(
                         'criteria'=>$documentCriteria,
                         'pagination' => array(
-                            'pageSize' => 20,
+                            'pageSize' => 10,
                             )
                         )
                     );
+
 $this->widget("mff.components.mffGridView",
         array(
             "dataProvider"=>$dp, 
             "enablePagination"=>TRUE,
             'columns'=>$columns,
         ));
+
 ?>
 <script type="text/javascript">
     $.ready($("#counter<?= $folder->id?>").html($("#folder_<?= $folder->id?>").val()));

@@ -15,12 +15,11 @@ class FormviewController extends Controller
         $this->render("indexstorage",array("storagemodel"=>$storagemodel));
     }
     
-    public function actionSave($idregistry,$idstorage,$scenario="insert",$idform=null,$layouts="",$addons="")
+   
+    public function actionSave($idregistry=null,$idstorage=null,$scenario="insert",$idform=null,$thisrender=null,$backurl=null,$addons=null)
     {        
-        if ($layouts=="") $layouts="indexstorage";
-        else $layouts=base64_decode($layouts);
-        $storagemodel = FFStorage::model()->findByPk($idstorage);
-        $registrymodel = FFRegistry::model()->findByPk($idregistry);
+        if ($backurl!=null) $backurl=base64_decode($backurl);
+        if ($thisrender!=null) $thisrender=base64_decode($thisrender);
         if (isset($_POST["FFModel"])) {
             $idguide=array();
             // Похоже для работы со встраиваимыми справочниками
@@ -38,11 +37,9 @@ class FormviewController extends Controller
                         }
                     }
                     if ($scenario=="update") {
-                         $vFFModel->registry=1;
-                         $vFFModel->tablename();
+                         $vFFModel->registry=1;                         
                          $vFFModel->refreshMetaData();
                          $vFFModel=$vFFModel->findByPk($_POST["FFModel"][$fieldname]);
-                         $vFFModel->refreshMetaData();
                          $vFFModel->refresh();
                          $vFFModel->setAttributes($_POST[$key], FALSE);
                          if ($vFFModel->validate() && $vFFModel->save()){
@@ -57,10 +54,11 @@ class FormviewController extends Controller
                 $datamodel->refreshMetaData();
             }
             if ($scenario=="update" && $idform!=null){
-                $datamodel=FFModel::model()->findByPk($idform);
-                $datamodel->registry=$idregistry;
+                $datamodel=FFModel::model()->findByPk($idform);                
                 $datamodel->refresh();
+                $idregistry=$datamodel->registry;
             }  
+                        
             $dataold=$datamodel->attributes;           
             $datamodel->setAttributes($_POST["FFModel"], FALSE);
 
@@ -115,43 +113,37 @@ class FormviewController extends Controller
                             $vf2FFModel->save();
                         }
                     }
-                }
-                if ($addons=="") $this->redirect(array("indexstorage","id"=>$idstorage));
-                else {
-                    // только для кабинета
-                    $addons_decode=base64_decode($addons);
-                    eval('$addons_decode='.$addons_decode.";");
-                    $cabinetid=$addons_decode["cabinetid"];
-                    $this->redirect(array("/mff".$layouts,"id"=>$cabinetid));  
+                }       
+                try {
+                    @$backurlparams=  unserialize($backurl);
+                    if(!$backurlparams) {
+                        $this->redirect($backurl);
+                    } else {
+                        switch (count($backurlparams)) {
+                        case 1:
+                            $this->redirect($backurlparams[0]);
+                            break;
+                         case 2:
+                            $this->redirect($backurlparams[0],$backurlparams[1]);
+                            break;
+                        }
+                    }
+                } catch (Exception $e) {
+                    $this->redirect($backurl);
                 }
                 return;
             }       
-        }       
-        $this->render($layouts,
-                array(
-                    "idregistry"=>$idregistry,
-                    "idstorage"=>$idstorage,
-                    "storagemodel"=>$storagemodel,
-                    "scenario"=>$scenario,
-                    "idform"=>$idform,
-                    "addons"=>$addons,
-                    )
-                );
+        }    
+        $data=array("idregistry"=>$idregistry,"idstorage"=>$idstorage,"scenario"=>$scenario,"idform"=>$idform,"backurl"=>base64_encode($backurl),"thisrender"=>base64_encode($thisrender),"addons"=>$addons);    
+        $this->render($thisrender,$data);
     }
     
     /// Добавить удаление встраиваемых справочников
-    public function actionDelete($idform,$idstorage,$layouts="",$addons=""){
+    public function actionDelete($idform,$backurl){
+        $backurl=base64_decode($backurl);
         $datamodel=FFModel::model()->findByPk($idform);        
         $datamodel->delete();
-        if ($layouts=="") $this->redirect(array("indexstorage","id"=>$idstorage));
-        else {
-            // только для кабинета
-            $layouts=base64_decode($layouts);
-            $addons_decode=base64_decode($addons);
-            eval('$addons_decode='.$addons_decode.";");
-            $cabinetid=$addons_decode["cabinetid"];
-            $this->redirect(array("/mff".$layouts,"id"=>$cabinetid));  
-        }
+        $this->redirect($backurl);  
     }
     
     public function actionBarcode($id="0",$code="BCGean13"){

@@ -1,30 +1,26 @@
 <div id="<?= $this->name ?>">
 <?php
 $urlparam=array();
-if ($this->scenario!=null) $scenario=$this->scenario;
-if ($this->idregistry!=null) $idregistry=$this->idregistry;
-if ($this->idstorage!=null) $idstorage=$this->idstorage;
-if ($this->idform!=null) $idstorage=$this->idform;
-if(isset($scenario)) {    
-    $urlparam=array_merge($urlparam,array("scenario"=>$scenario));
+if($this->scenario!=null) {    
+    $urlparam=array_merge($urlparam,array("scenario"=>$this->scenario));
 }
-if(isset($idregistry)) {
-    $urlparam=array_merge($urlparam,array("idregistry"=>$idregistry));
+if($this->idregistry!=null) {
+    $urlparam=array_merge($urlparam,array("idregistry"=>$this->idregistry));
 }
-if(isset($idstorage)) {
-    $urlparam=array_merge($urlparam,array("idstorage"=>$idstorage));
+if($this->idstorage!=null) {
+    $urlparam=array_merge($urlparam,array("idstorage"=>$this->idstorage));
 }
-if(isset($idform)) {
-    $urlparam=array_merge($urlparam,array("idform"=>$idform));
-    $modelff=FFModel::model()->findByPk($idform);
+if($this->idform!=null) {
+    $urlparam=array_merge($urlparam,array("idform"=>$this->idform));
+    $modelff=FFModel::model()->findByPk($this->idform);
     $modelff->refresh();
 } else {
     $modelff=new FFModel();
-    $modelff->registry=$idregistry;
+    $modelff->registry=$this->idregistry;
     $modelff->refreshMetaData();
-    $modelff->storage=$idstorage;
+    $modelff->storage=$this->idstorage;
 }
-$urlparam=array_merge($urlparam,array("backurl"=>  base64_encode($this->backurl)));
+$urlparam=array_merge($urlparam,array("backurl"=>  base64_encode($this->backurl) ));
 CActiveForm::validate($modelff);
 $form=$this->beginWidget("CActiveForm", array(
         'id'=>$this->name."_form",
@@ -57,7 +53,6 @@ $dataProvider=new CActiveDataProvider("FFField", array(
 echo $form->hiddenField($modelff,"id");
 $this->widget("zii.widgets.CListView", array(
     'dataProvider'=>$dataProvider,
-    'pager'=>true,
     'summaryText'=>'',
     'emptyText'=>'',
     'itemView'=>'ff_field',
@@ -65,7 +60,7 @@ $this->widget("zii.widgets.CListView", array(
     'enablePagination'=>TRUE,
     'viewData'=>array("form"=>$form,
         "modelff"=>$modelff,
-        "scenario"=>$scenario,
+        "scenario"=>$this->scenario,
         "htmlOptions"=>$this->fieldOptions,
         ),
     )
@@ -73,7 +68,7 @@ $this->widget("zii.widgets.CListView", array(
 
 if ($scenario!="view") {
     $criteria2=new CDbCriteria();
-        $criteria2->params[":formid"] = $idregistry;
+        $criteria2->params[":formid"] = $this->idregistry;
         $criteria2->addCondition("`formid` = :formid");
         $criteria2->addCondition("`order` = 0");
         $criteria2->order="`order`";
