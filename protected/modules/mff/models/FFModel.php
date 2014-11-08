@@ -262,8 +262,7 @@ class FFModel extends CActiveRecord
     }
 
     public function getItems($name) {
-        $field=FFField::model()->find("`formid`=:formid and `name`=:name",
-                array(":formid"=>$this->registry, ":name"=>$name ));
+        $field=$this->getField($name);
         if (!isset($field) || $field==null) return null;
         $storage=FFStorage::model()->find("`type`=:type",array(":type"=>$field->type));
         if ($storage==NULL) return NULL;
@@ -275,7 +274,7 @@ class FFModel extends CActiveRecord
         $criteria->addCondition("`registry`=".self::ref_multiguide);
         $criteria->addCondition("`owner`=".$this->id);
         $criteria->addCondition("`owner_field`=:owner_field");
-        $criteria->params[":owner_field"]=$field->id;
+        $criteria->params[":owner_field"]=$field->name;
         $criteria->order="`order`";
         $list=$multilink->findAll($criteria);
         $result=array();        
@@ -296,42 +295,10 @@ class FFModel extends CActiveRecord
             }
         }
         return $result;
-    }
+    }    
     
-//    public function getBackItems($name="") {
-//        $field=FFField::model()->find("`formid`=:formid and `name`=:name",
-//                array(":formid"=>$this->registry, ":name"=>$name ));
-//        $multilink=new FFModel;
-//        $multilink->registry=self::ref_multiguide;
-//        $multilink->refreshMetaData();
-//        $criteria=new CDbCriteria();
-//        $criteria->select="`owner`";
-//        $criteria->addCondition("`registry`=".self::ref_multiguide);
-//        $criteria->addCondition("`reference`=".$this->id);
-//        if ($name!=""){
-//            $criteria->addCondition("`owner_field`=:owner_field");
-//            $criteria->params[":owner_field"]=$field->id;
-//        }
-//        $list=$multilink->findAll($criteria);
-//        $result=array();
-//        foreach ($list as $listitem) {
-//            $item=subguide_FFModel::model()->findByPk($listitem->owner);
-//            if ($item!=NULL) {
-//                $item->refresh();
-//                $result=array_merge($result,array($item));    
-//            }
-//        }
-//        return $result;
-//    }    
-    
-    public function setMultiGuide($name,$value) {
-//        if ($this->getScenario()=="insert") return;
-        if (is_int($name)) {
-            $field=FFField::model()->findByPk($name);            
-        } else {
-            $field=FFField::model()->find("`formid`=:formid and `name`=:name",
-                    array(":formid"=>$this->registry, ":name"=>$name ));            
-        }
+    public function setMultiGuide($name,$value) {      
+        $field=$this->getField($name);            
         Yii::app()->db->createCommand("DELETE FROM `ff_ref_multiguide` WHERE `owner_field`=:owner_field and `owner`=".$this->id)->execute(array(":owner_field"=>$field->id));
         foreach ($value as $index => $itemid) {
             $vf2FFModel=new ref_multiguide_FFModel();
@@ -340,15 +307,19 @@ class FFModel extends CActiveRecord
             $vf2FFModel->refreshMetaData();
             $vf2FFModel->setAttribute("order",$index);
             $vf2FFModel->setAttribute("owner",$this->id);
-            $vf2FFModel->setAttribute("owner_field",$field->id);
+            $vf2FFModel->setAttribute("owner_field",$field->name);
             $vf2FFModel->setAttribute("reference",$itemid);
             $vf2FFModel->save();
        }
     }
 
      public function getField($name) {
-        $field=FFField::model()->find("`formid`=:formid and `name`=:name",
-                array(":formid"=>$this->registry, ":name"=>$name ));
+        if (is_numeric($name)) {
+            $field=FFField::model()->findByPk($name);            
+        } else {
+            $field=FFField::model()->find("`formid`=:formid and `name`=:name",
+                    array(":formid"=>$this->registry, ":name"=>$name ));            
+        }        
         return $field;
     }  
     

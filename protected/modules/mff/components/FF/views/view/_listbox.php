@@ -1,8 +1,5 @@
 <?php
 try{
-    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
-    else $_htmlOptions=$htmlOptions[$data->name];
-
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));
     if ($scenario=="view") {
@@ -12,7 +9,7 @@ try{
         if (isset($modelclassif) && $modelclassif!=null) {
             $modelclassif->refreshMetaData();
             $modelclassif->refresh();
-            echo CHtml::label($modelclassif->name,"",$_htmlOptions) ;
+            echo CHtml::label($modelclassif->name,"",$htmlOptions) ;
         }
     }
     return;      
@@ -32,13 +29,12 @@ try{
     $sizecount=($sizecount>10)?10:$sizecount;
     $sizecount=($sizecount<2)?2:$sizecount;
     $dropDownListOptions=array(
-        "style"=>"width:100%", 
         "size"=>$sizecount, 
         "multiple"=>"multiple", 
         "onkeypress"=>"listbox_keypress(event,this);");
-    $dropDownListOptions = array_merge($dropDownListOptions, $_htmlOptions);
+    $dropDownListOptions = array_merge($dropDownListOptions, $htmlOptions);
     if ($scenario=="view") $dropDownListOptions=array_merge($dropDownListOptions,array("disabled"=>"disabled"));
-    echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,$dropDownListOptions);
+    echo $form->dropDownList($modelff,$data->name,$listdata,$htmlOptions);
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }

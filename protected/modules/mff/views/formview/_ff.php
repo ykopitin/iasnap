@@ -35,7 +35,7 @@ $widgetparams=array(
             "idstorage"=>$idstorage,    
             "scenario"=>$scenario,
             "backurl"=>$backurl,
-            "cssOptions"=>"/css/mff/test.css",
+//            "cssOptions"=>"/css/mff/test.css",
             );
 if (isset($idform)) $widgetparams=array_merge($widgetparams,array("idform"=>$idform));
 //Yii::app()->clientScript->registerCoreScript("maskedinput");

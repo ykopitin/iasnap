@@ -1,8 +1,5 @@
 <?php
 try{
-    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
-    else $_htmlOptions=$htmlOptions[$data->name];
-    
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));
     if ($scenario=="view") {
         $id=$modelff->getAttribute(strtolower($data->name));
@@ -11,7 +8,7 @@ try{
             if (isset($modelclassif) && $modelclassif!=null) {
                 $modelclassif->refreshMetaData();
                 $modelclassif->refresh();
-                echo CHtml::label($modelclassif->name,"",$_htmlOptions) ;
+                echo CHtml::label($modelclassif->name,"",$htmlOptions) ;
             }
         }
         return;      
@@ -28,7 +25,7 @@ try{
         $v_FFModel->registry=1;
         $v_FFModel->refreshMetaData();
     }
-    echo $form->radioButtonList($modelff,$data->name,$listdata, $_htmlOptions);
+    echo $form->radioButtonList($modelff,$data->name,$listdata, $htmlOptions);
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }

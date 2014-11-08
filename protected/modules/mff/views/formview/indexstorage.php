@@ -15,8 +15,14 @@ $this->breadcrumbs=array(
 Доступные свободные формы:
 <table>
     <?php
-        
-    foreach ($storagemodel->registryItems as $registrymodel) {
+    $registryItems=$storagemodel->registryItems;
+    if (count($registryItems)==0) {
+        echo "К хранилищу не прикрепленно ни одной свободной формы";
+        return;
+    }
+    $attaching=0;
+    foreach ($registryItems as $registrymodel) {
+        $attaching=$attaching+$registrymodel->attaching;
         $urlparam=array("idregistry"=>$registrymodel->id,"idstorage"=>$storagemodel->id, "scenario"=>"insert");
         $thisrender=base64_encode("mff.views.formview.indexstorage");        
         ?>
@@ -28,11 +34,15 @@ $this->breadcrumbs=array(
     </tr>
     <?php
     }
+    if (($attaching>0 && $attaching<count($registryItems))) {
+        echo "Не возможно отобразить хранилище с внешними и нутреними таблицами в перемешку";
+        return;
+    }
     ?>
 </table>
 <?php
 $criteria=new CDbCriteria();
-if ($registrymodel->attaching==0){
+if ($attaching==0){
     $criteria->params[":storage"] = $storagemodel->id;
     $criteria->addCondition("storage = :storage");
 }

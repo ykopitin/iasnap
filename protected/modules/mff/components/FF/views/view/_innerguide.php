@@ -2,9 +2,6 @@
 
 // ИД подгруженого справочника
 try {
-    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
-    else $_htmlOptions=$htmlOptions[$data->name];
-
     echo $form->hiddenField($modelff, $data->name);
     // Генерируем класс для справочника
     $classname_guide = "FFModel_" . $data->name;
@@ -57,9 +54,9 @@ try {
             "form" => $form,
             "modelff" => $vFFModel,
             "scenario" => $scenario,
-            "htmlOptions" => $_htmlOptions),
+            "htmlOptions" => $htmlOptions),
         'template' => '{items}',
-        'htmlOptions' =>$_htmlOptions,
+        'htmlOptions' =>$htmlOptions,
             )
     );
     if ($scenario != "view") {

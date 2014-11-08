@@ -25,8 +25,9 @@ class DefaultController extends Controller
         readfile($file);
     }
     
-    public function actionGetScript($script) {       
-        $file=Yii::getPathOfAlias('mff.scripts').DIRECTORY_SEPARATOR.$script.".js";
+    public function actionGetScript($script, $fullAlias=false) {       
+        if ($fullAlias) $file=Yii::getPathOfAlias($script).".js";
+        else $file=Yii::getPathOfAlias('mff.scripts').DIRECTORY_SEPARATOR.$script.".js";        
         header("Content-Type: text/javascript");
         header("Accept-Ranges: bytes");
         header("Content-Length: " . filesize($file));
@@ -34,8 +35,9 @@ class DefaultController extends Controller
         readfile($file);
     }
  
-    public function actionGetCSS($css) {       
-        $file=Yii::getPathOfAlias('mff.css').DIRECTORY_SEPARATOR.$css.".css";
+    public function actionGetCSS($css, $fullAlias=false) {       
+        if ($fullAlias) $file=Yii::getPathOfAlias($css).".css";
+        else $file=Yii::getPathOfAlias('mff.css').DIRECTORY_SEPARATOR.$css.".css";        
         header("Content-Type: text/css");
         header("Accept-Ranges: bytes");
         header("Content-Length: " . filesize($file));

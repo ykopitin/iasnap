@@ -96,22 +96,9 @@ class FormviewController extends Controller
                 foreach ($_POST as $key => $value) {
                     $partkey=explode("_",$key);
                     // Работает, но требуется поправить на setMultiGuide
-                    if ($partkey[0]=="multiguide") {
-                        $classnamefiled="FFModel_".$key;
-                        eval("class $classnamefiled extends FFModel {}");
-                        Yii::app()->db->createCommand("DELETE FROM `ff_ref_multiguide` WHERE `owner_field`=:owner_field and `owner`=".$datamodel->id)->execute(array(":owner_field"=>$partkey[1]));
-                        $multi_value=$_POST[$key];                       
-                        foreach ($multi_value as $index => $itemid) {
-                            $vf2FFModel=new $classnamefiled;
-                            $vf2FFModel->registry=FFModel::ref_multiguide;
-                            $vf2FFModel->storage=FFModel::ref_multiguide_storage;                            
-                            $vf2FFModel->refreshMetaData();
-                            $vf2FFModel->setAttribute("order",$index);
-                            $vf2FFModel->setAttribute("owner",$datamodel->id);
-                            $vf2FFModel->setAttribute("owner_field",$partkey[1]);
-                            $vf2FFModel->setAttribute("reference",$itemid);
-                            $vf2FFModel->save();
-                        }
+                    if ($partkey[0]=="multiguide") {                     
+                        $multi_value=$_POST[$key];     
+                        $datamodel->setMultiGuide($partkey[1], $multi_value);
                     }
                 }       
                 try {

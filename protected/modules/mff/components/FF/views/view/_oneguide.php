@@ -1,8 +1,5 @@
 <div class="oneguide">
 <?php 
-if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
-else $_htmlOptions=$htmlOptions[$data->name];
-
 $this->beginWidget('zii.widgets.CPortlet',array("title"=>$data->description));
     echo $form->hiddenField($modelff,$data->name);
     $v_FFModel=new fieldlist_FFModel;
@@ -63,7 +60,7 @@ $this->beginWidget('zii.widgets.CPortlet',array("title"=>$data->description));
             'viewData'=>array(
                 "form"=>$formview,
                 "modelff"=>$v_FFModel,
-                "htmlOptions"=>array("<name field>"=>array("style"=>"width:100%"))),
+                "htmlOptions"=>$htmlOptions),
             'template'=>'{items}',
             )
         );
