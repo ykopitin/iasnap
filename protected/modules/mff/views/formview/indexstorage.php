@@ -56,7 +56,7 @@ $columns="";
 $columnnames=array();
 if ($vidregistry!=null){
     if ($registrymodel->attaching==0){
-        $fields=FFField::model()->findAll("`formid`=$vidregistry and `type` in (1,2,3,4,5,6,7,12,15,16,17) and `order`>0 ");  
+        $fields=FFField::model()->findAll("`formid`=$vidregistry and `type` in (1,2,3,4,5,6,7,12,15,16,17,18) and `order`>0 ");  
         foreach ($fields as $field){
             $columns.="<th>$field->description</th>";
             $columnnames=  array_merge($columnnames , array($field->name));
@@ -82,10 +82,15 @@ if ($vidregistry!=null){
         'dataProvider'=>$dataProvider,
         'itemView'=>'_indexstorage',
         'enablePagination'=>TRUE,
-        'viewData'=>array("columnnames"=>$columnnames,"attaching"=>$registrymodel->attaching,"currentpage"=>$dataProvider->pagination->currentPage),
+        'viewData'=>array(
+            "columnnames"=>$columnnames,
+            "attaching"=>$registrymodel->attaching,
+            "currentpage"=>$dataProvider->pagination->currentPage,
+            "idstorage"=>$storagemodel->id,
+            ),
         'tagName'=>'table',
         'template'=>'<caption>{summary}</caption><thead><th>ID</th>'.$columns.
-        '<th>Действия</th></thead><tfoot><tr><td colspan="0">{pager}<td><tr></tfoot>{items}',
+        '<th>Действия</th></thead><tfoot><tr><td colspan="100">{pager}<td><tr></tfoot>{items}',
         )
     );
 }

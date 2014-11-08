@@ -72,10 +72,10 @@ class FFModel extends CActiveRecord
         try {
             $cmd =  $this->getDbConnection()->createCommand("select tablename, attaching from `ff_registry` where (id=:idregistry)");
             $cmd->params[":idregistry"]=$this->registry;
-            $result=$cmd->queryRow();
-            $this->_attaching=$result["attaching"];
-            if (!isset($result)) return null;
+            @$result=$cmd->queryRow();
+            if (!isset($result) || $result==null) return null;
             if (!isset($result["tablename"])) return null;
+            $this->_attaching=$result["attaching"];
             return ($result["attaching"]==1)?$result["tablename"]:"ff_".$result["tablename"];
         } catch (Exception $e) {
             return null;

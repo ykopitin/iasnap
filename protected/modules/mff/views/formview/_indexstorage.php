@@ -13,7 +13,7 @@
                         "delete",
                         array(
                             "idform"=>$data->id,
-                            "backurl"=>  base64_encode($this->createUrl("indexstorage",array("id"=>$data->storage)))
+                            "backurl"=>  base64_encode($this->createUrl("indexstorage",array("id"=>$idstorage)))
                             )
                         )
                 ); 
@@ -32,7 +32,7 @@
         echo "&nbsp;";
         echo CHtml::link("Просмотр",$this->createUrl("save",array(
             "idform"=>$data->id,
-            "idstorage"=>$data->storage, 
+            "idstorage"=>$idstorage, 
             "idregistry"=>$data->registry,
             "scenario"=>"view",
             "thisrender"=>base64_encode("mff.views.formview.indexstorage"),

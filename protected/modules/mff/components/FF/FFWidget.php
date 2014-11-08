@@ -26,8 +26,8 @@ class FFWidget extends CWidget {
     public function init() {    
         static $genid=0;       
         Yii::import("mff.models.*");
-        if ($this->cssOptions!=null) Yii::app()->clientScript->registerCSSFile($this->cssOptions);
-        if ($this->jsOptions!=null) Yii::app()->clientScript->registerScriptFile($this->jsOptions);
+        if (isset($this->cssOptions) && $this->cssOptions!=null) Yii::app()->clientScript->registerCSSFile($this->cssOptions);
+        if (isset($this->jsOptions) && $this->jsOptions!=null) Yii::app()->clientScript->registerScriptFile($this->jsOptions);
         $genid++;
         if (!isset($this->name) || $this->name==NULL || $this->name=="") $this->name="FFIND".$genid;
         if (!isset($this->backurl) || $this->backurl==NULL || $this->backurl=="") $this->backurl=Yii::app()->getRequest()->getUrl();

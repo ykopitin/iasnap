@@ -6,6 +6,10 @@ if (!isset($cabinetmodel)) {
         $cabinetid=$addons["cabinetid"];
     }
     $cabinetmodel=FFModel::model()->findByPk($cabinetid);
+    if (empty($cabinetmodel) || $cabinetmodel==NULL) {
+        echo "Такой кабинет отсутствует";
+        return;
+    }
     $cabinetmodel->refresh();
 }
 echo "<b>".$cabinetmodel->name."</b><br />";
@@ -16,6 +20,10 @@ if (is_numeric($userId)){
     $user->registry=  FFModel::user;
     $user->refreshMetaData();
     $user=$user->findByPk($userId);
+    if (empty($cabinetmodel) || $cabinetmodel==NULL) {
+        echo "Такой пользователь отсутствует";
+        return;
+    }    
     echo "<span>Пользователь:".$user->getAttribute("fio")."</span><br /><br />";
 }
 

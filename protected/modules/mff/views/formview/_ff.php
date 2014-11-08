@@ -18,7 +18,7 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
                 'title' => $title,
                 'modal' => true,
                 'resizable'=> true,
-                'width'=>"75%",
+                'width'=>"65%",
                 'buttons' => $buttons,
             )
        )
@@ -35,10 +35,11 @@ $widgetparams=array(
             "idstorage"=>$idstorage,    
             "scenario"=>$scenario,
             "backurl"=>$backurl,
-            "CSSOptions"=>"/css/mff/test.css",
+            "cssOptions"=>"/css/mff/test.css",
             );
 if (isset($idform)) $widgetparams=array_merge($widgetparams,array("idform"=>$idform));
-$widget=$this->widget("mff.components.FF.FFWidget",$widgetparams);
-
+//Yii::app()->clientScript->registerCoreScript("maskedinput");
+$widget=$this->widget("mff.components.FF.FFWidget",$widgetparams,false);
+//echo $widget;
 $this->endWidget("zii.widgets.jui.CJuiDialog");
 
