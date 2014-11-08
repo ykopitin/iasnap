@@ -34,7 +34,8 @@ $widgetparams=array(
             "idregistry"=>$idregistry,
             "idstorage"=>$idstorage,    
             "scenario"=>$scenario,
-            "backurl"=>$backurl
+            "backurl"=>$backurl,
+            "CSSOptions"=>"/css/mff/test.css",
             );
 if (isset($idform)) $widgetparams=array_merge($widgetparams,array("idform"=>$idform));
 $widget=$this->widget("mff.components.FF.FFWidget",$widgetparams);

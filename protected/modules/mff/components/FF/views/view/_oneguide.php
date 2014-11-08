@@ -1,5 +1,9 @@
 <div class="oneguide">
-<?php $this->beginWidget('zii.widgets.CPortlet',array("title"=>$data->description));
+<?php 
+if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
+else $_htmlOptions=$htmlOptions[$data->name];
+
+$this->beginWidget('zii.widgets.CPortlet',array("title"=>$data->description));
     echo $form->hiddenField($modelff,$data->name);
     $v_FFModel=new fieldlist_FFModel;
     $v_FFModel->registry=1;
@@ -52,7 +56,7 @@
         $this->widget("zii.widgets.CListView", array(
             'dataProvider'=>$dataProvider,
             'pager'=>true,
-            'itemView'=>'_ff_field',
+            'itemView'=>'ff_field',
             'itemsTagName'=>'tbody',
             'tagName'=>'table',
             'summaryText'=>'',       

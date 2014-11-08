@@ -1,5 +1,8 @@
 <?php
-//try{
+try{
+    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
+    else $_htmlOptions=$htmlOptions[$data->name];
+    
     Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("/mff/default/getscript",array("script"=>basename(__FILE__,".php"))));
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));    
@@ -91,8 +94,9 @@
         "size"=>$sizecount, 
         "multiple"=>"multiple", 
         "onkeypress"=>"listbox_multi_keypress(event,this);");
+    $dropDownListOptions=array_merge($dropDownListOptions,$_htmlOptions);
     if ($scenario=="view") $dropDownListOptions=array_merge($dropDownListOptions,array("disabled"=>"disabled"));
     echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,$dropDownListOptions);
-//} catch (Exception $e){
-//     echo 'Не удалось загрузить поле:\n'.$e->getMessage();
-//}
+} catch (Exception $e){
+     echo 'Не удалось загрузить поле:\n'.$e->getMessage();
+}

@@ -2,6 +2,9 @@
 
 // ИД подгруженого справочника
 try {
+    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
+    else $_htmlOptions=$htmlOptions[$data->name];
+
     echo $form->hiddenField($modelff, $data->name);
     // Генерируем класс для справочника
     $classname_guide = "FFModel_" . $data->name;
@@ -41,7 +44,7 @@ try {
         )
             )
     );
-    if (empty($htmlOptions) || $htmlOptions==NULL) $htmlOptions=array(); 
+    
     $this->widget("zii.widgets.CListView", array(
         'dataProvider' => $dataProvider,
         'pager' => true,
@@ -54,8 +57,9 @@ try {
             "form" => $form,
             "modelff" => $vFFModel,
             "scenario" => $scenario,
-            "htmlOptions" => array_key_exists($data->name, $htmlOptions)?$htmlOptions[$data->name]:NULL),
+            "htmlOptions" => $_htmlOptions),
         'template' => '{items}',
+        'htmlOptions' =>$_htmlOptions,
             )
     );
     if ($scenario != "view") {

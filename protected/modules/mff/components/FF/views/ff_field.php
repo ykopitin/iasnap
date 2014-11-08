@@ -17,5 +17,5 @@
             }
         ?>
     </div> 
-    <div id="<?=$this->name?>_fielderror_<?=$data->id?>"><?= CHtml::error($data,"description") ?></div>    
+    <div id="<?=$this->name?>_fielderror_<?=$data->name?>"><?= CHtml::error($data,"description") ?></div>    
 </div>

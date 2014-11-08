@@ -1,5 +1,8 @@
 <?php
 try{
+    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
+    else $_htmlOptions=$htmlOptions[$data->name];
+
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));
     if ($scenario=="view") {
@@ -9,7 +12,7 @@ try{
         if (isset($modelclassif) && $modelclassif!=null) {
             $modelclassif->refreshMetaData();
             $modelclassif->refresh();
-            echo CHtml::label($modelclassif->name,"") ;
+            echo CHtml::label($modelclassif->name,"",$_htmlOptions) ;
         }
     }
     return;      
@@ -33,6 +36,7 @@ try{
         "size"=>$sizecount, 
         "multiple"=>"multiple", 
         "onkeypress"=>"listbox_keypress(event,this);");
+    $dropDownListOptions = array_merge($dropDownListOptions, $_htmlOptions);
     if ($scenario=="view") $dropDownListOptions=array_merge($dropDownListOptions,array("disabled"=>"disabled"));
     echo CHtml::dropDownList("multiguide_".$data->id, $selectdata,$listdata,$dropDownListOptions);
 } catch (Exception $e){

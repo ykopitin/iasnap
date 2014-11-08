@@ -1,5 +1,7 @@
 <?php
 try{
+    if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
+    else $_htmlOptions=$htmlOptions[$data->name];
     // вычисляем хранилище в зависимости от типа данных
     $storageitem=FFStorage::model()->find("type=:type", array(":type"=>$data->typeItem->id));
     if ($scenario=="view") {
@@ -8,7 +10,7 @@ try{
             $modelclassif = fieldlist_FFModel::model()->findByPk($id);
             if (isset($modelclassif) && $modelclassif!=null) {
                 $modelclassif->refresh();
-                echo CHtml::label($modelclassif->name,"") ;
+                echo CHtml::label($modelclassif->name,"",$_htmlOptions) ;
             }
         }
         return;      
@@ -79,7 +81,7 @@ try{
             }
         }   
     }
-    echo $form->dropDownList($modelff,$data->name,$listdata,array("style"=>"width:100%"));
+    echo $form->dropDownList($modelff,$data->name,$listdata,$_htmlOptions);
 } catch (Exception $e){
      echo 'Не удалось загрузить поле:\n'.$e->getMessage();
 }

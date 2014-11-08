@@ -1,4 +1,7 @@
 <?php
+if (empty($htmlOptions) || !array_key_exists($data->name,$htmlOptions) || $htmlOptions[$data->name]==NULL) $_htmlOptions=array();
+else $_htmlOptions=$htmlOptions[$data->name];
+
 $filepathname=get_class($modelff).strtolower($data->name)."_fileedspath";
 $signimage=get_class($modelff).strtolower($data->name)."_signimage";
 $contextTagId=get_class($modelff).'_'.strtolower($data->name);
@@ -6,14 +9,14 @@ $filename=$modelff->getAttribute(strtolower($data->name)."_fileedsname");
 echo $form->hiddenField($modelff,strtolower($data->name)); // Содержимое файла 
 if ($scenario=="update" || $scenario=="insert") {       
     $crypt=Yii::app()->findModule("mff")->cryptfile;
-    echo CHtml::textField($filepathname,'',array("readonly"=>"readonly","size"=>40)); // Путь к файлу
+    echo CHtml::textField($filepathname,'',  array_merge(array("readonly"=>"readonly"),$_htmlOptions)); // Путь к файлу
     $imgclick="ff_loadFile('$filepathname','$contextTagId',$crypt,'$signimage');";
     echo " <img title='Прикріпити документ' alt='Переглянути' src='".Yii::app()->createUrl("/mff/default/getimage",array("image"=>"Folder"))."' class='fileedsbutton' onclick=\"$imgclick\" />";   
 }
 if (($scenario=="update" || $scenario=="view") &&  ($modelff->getAttribute(strtolower($data->name))!=null)) {
     $linkid=get_class($modelff).strtolower($data->name)."_link";
     $linkclick="ff_saveFile('".$contextTagId."','$filename','$signimage')";
-    echo CHtml::link($filename,"#$linkid",array("onclick"=>$linkclick,"id"=>$linkid));
+    echo CHtml::link($filename,"#$linkid",array("onclick"=>$linkclick,"id"=>$linkid),$_htmlOptions);
 }
 $imgclick='ff_certInfo("'.$contextTagId.'","'.$signimage.'");';
 echo " ";
