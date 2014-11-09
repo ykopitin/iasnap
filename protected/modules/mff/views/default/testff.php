@@ -3,9 +3,10 @@
 if ($this->action->id=="save") {
     $ff=$this->widget('mff.components.FF.FFWidget',
             array(
-                "idregistry"=>14,
-                "idstorage"=>8,      
+                "idregistry"=>38,
+                "idstorage"=>16,      
                 "backurl"=>$this->createUrl("/mff/formview/index",array("id"=>8)),
+                "name"=>"formff",
                 )
             );
     echo CHtml::button("Сохранить",array("onclick"=>$ff->name."_form.submit()"));
@@ -13,8 +14,8 @@ if ($this->action->id=="save") {
     $url=$this->createUrl(
                     "/mff/formview/save", 
                     array(
-                        "idregistry"=>14,
-                        "idstorage"=>8,
+                        "idregistry"=>38,
+                        "idstorage"=>16,
                         "thisrender"=>base64_encode("mff.views.default.testff"),));
     echo "Для проверки регистрации документа нажмите ".CHtml::link("Зарегистрировать",$url);
 }

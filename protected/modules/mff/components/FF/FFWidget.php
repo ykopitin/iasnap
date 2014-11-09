@@ -70,7 +70,8 @@ class FFWidget extends CWidget {
                 $this->fieldOptions=  array_merge($this->fieldOptions,$_data);
             }
             // Добавить в зависимости от узла
-        }    }
+        }           
+    }
         
     protected function applyCSSOptions($profile="default") {
         if (empty($this->cssOptions) || $this->cssOptions==NULL) {

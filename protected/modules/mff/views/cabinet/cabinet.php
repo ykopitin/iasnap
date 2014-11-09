@@ -59,4 +59,14 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 //    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
     )
 );
-
+if ($this->action->id=="save") {
+    $urldata=array(
+        "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id))),
+        "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),
+        "addons"=>base64_encode('array("cabinetid"=>'.$cabinetmodel->id.')'));
+    if (isset($idregistry)) $urldata=array_merge($urldata,array("idregistry"=>$idregistry,));
+    if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
+    if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
+    if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
+    $this->renderPartial("/formview/_ff",$urldata);
+}

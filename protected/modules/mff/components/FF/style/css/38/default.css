@@ -1,0 +1,176 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08.11.2014, 0:59:45
+    Author     : prk
+*/
+#formff {
+    height: 930px;
+}
+
+#formff_field_regnum {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    width: 200px;
+}
+
+#formff_field_regdate {
+    position: absolute;
+    left: 300px;
+    top: 10px;
+    width: 200px;
+}
+
+#formff_field_initeds {
+    position: absolute;
+    left: 550px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+#formff_field_legal_personality {
+    position: absolute;
+    left: 15px;
+    top: 70px;
+    width: 50%;
+    
+}
+
+#formff_field_organization {
+    position: absolute;
+    left: 300px;
+    top: 70px;
+    width: 50%;
+}
+
+#formff_field_person_name {
+    position: absolute;
+    left: 300px;
+    top: 180px;
+    width: 50%;
+}
+
+#formff_field_person_drfo {
+    position: absolute;
+    left: 300px;
+    top: 240px;
+    width: 50%;
+}
+
+#formff_field_address {
+    position: absolute;
+    left: 300px;
+    top: 300px;
+    width: 50%;
+}
+
+#formff_field_phone1 {
+    position: absolute;
+    left: 300px;
+    top: 380px;
+    width: 200px;
+}
+
+#formff_field_phone2 {
+    position: absolute;
+    left: 520px;
+    top: 380px;
+    width: 200px;
+}
+
+#formff_field_delivery_reply {
+    position: absolute;
+    left: 300px;
+    top: 430px;
+    width: 420px;
+}
+
+#formff_field_email {
+    position: absolute;
+    left: 15px;
+    top: 380px;
+    width: 200px;
+}
+
+#formff_field_service {
+    position: absolute;
+    left: 15px;
+    top: 460px;
+    width: 90%;
+}
+
+#formff_field_tracknumber {
+    position: absolute;
+    left: 15px;
+    top: 170px;    
+}
+
+#formff_field_plandate {
+    position: absolute;
+    left: 15px;
+    top: 240px;    
+}
+
+#formff_field_factdate {
+    position: absolute;
+    left: 15px;
+    top: 300px;    
+}
+
+#formff_field_context {
+    position: absolute;
+    left: 15px;
+    top: 510px;  
+    width: 90%;
+}
+
+#formff_field_reply {
+    position: absolute;
+    left: 15px;
+    top: 600px;  
+    width: 90%;
+}
+
+#formff_field_reason {
+    position: absolute;
+    left: 15px;
+    top: 650px;  
+    width: 90%;
+}
+
+#formff_field_administrator {
+    position: absolute;
+    left: 15px;
+    top: 740px;  
+    width: 300px;
+}
+
+#formff_field_executor {
+    position: absolute;
+    left: 380px;
+    top: 740px;  
+    width: 300px;
+}
+
+#formff_field_file_petition {
+    position: absolute;
+    left: 15px;
+    top: 800px;  
+    width: 470px;
+}
+
+#formff_field_file_result {
+    position: absolute;
+    left: 380px;
+    top: 800px;  
+    width: 470px;
+}
+
+#FFModel_service {
+    width: 600px;
+}

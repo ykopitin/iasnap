@@ -1,14 +1,17 @@
 <?php
-$title="Новая запись";
+$title="Новый";
 if (isset($scenario) && $scenario=="update"){
-    $title="Изменить запись";
+    $title="Видредагувати";
+}
+if (isset($scenario) && $scenario=="view"){
+    $title="Перегляд";
 }
 if ($scenario!="view") $buttons=array(
-            array('text'=>'Сохранить','click'=> ('js:function(){formff_form.submit();}'),"visibility"=>($scenario!="view")),
-            array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
+            array('text'=>'Зберігти','click'=> ('js:function(){formff_form.submit();}'),"visibility"=>($scenario!="view")),
+            array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
         );
 else $buttons=array(
-            array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
+            array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
         );
 $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
         array( 

@@ -18,7 +18,7 @@ try{
                 $modelclassif = $v_FFModel->findAll();
                 foreach ($modelclassif as $model) { 
                     $listdatavalue="";
-                    foreach ($columns as $column) {                     
+                    foreach ($columns as $column) {                            
                         if ($column->type=="string") {
                             if ($listdatavalue=="") {
                                 $listdatavalue=$column->name.": ".$model->getAttribute($column->name); 
@@ -30,10 +30,11 @@ try{
                     $listdata[$model->id]=$listdatavalue;
                 }           
             } else {
+                
                 $columns=explode(";", $storageitem->fields);                
                 $modelclassif = $v_FFModel->findAll();
                 foreach ($modelclassif as $model) { 
-                     $listdatavalue="";
+                    $listdatavalue="";
                     foreach ($columns as $column) {
                         $column=explode(":", $column);
                         switch (count($column)) {

@@ -21,6 +21,7 @@ class FormviewController extends Controller
         if ($backurl!=null) $backurl=base64_decode($backurl);
         if ($thisrender!=null) $thisrender=base64_decode($thisrender);
         if (isset($_POST["FFModel"])) {
+//            $transaction=  Yii::app()->db->beginTransaction();
             $idguide=array();
             // Похоже для работы со встраиваимыми справочниками
             foreach ($_POST as $key => $value) {
@@ -96,11 +97,13 @@ class FormviewController extends Controller
                 foreach ($_POST as $key => $value) {
                     $partkey=explode("_",$key);
                     // Работает, но требуется поправить на setMultiGuide
-                    if ($partkey[0]=="multiguide") {                     
+                    if ($partkey[0]=="multiguide") {
+                        $fieldname=substr($key, 11);
                         $multi_value=$_POST[$key];     
-                        $datamodel->setMultiGuide($partkey[1], $multi_value);
+                        $datamodel->setMultiGuide($fieldname, $multi_value);
                     }
-                }       
+                }    
+//                $transaction->commit();
                 try {
                     @$backurlparams=  unserialize($backurl);
                     if(!$backurlparams) {
@@ -119,7 +122,8 @@ class FormviewController extends Controller
                     $this->redirect($backurl);
                 }
                 return;
-            }       
+            }      
+//            $transaction->rollback();
         }    
         $data=array("idregistry"=>$idregistry,"idstorage"=>$idstorage,"scenario"=>$scenario,"idform"=>$idform,"backurl"=>base64_encode($backurl),"thisrender"=>base64_encode($thisrender),"addons"=>$addons);    
         $this->render($thisrender,$data);

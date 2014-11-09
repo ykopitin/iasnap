@@ -1,6 +1,8 @@
 <p style="font-style: italic"><?= $folder->comment ?></p>
 <?php
 $storageItems_new=$folder->getItems("allow_new");
+$storageItems_new_deny=$folder->getItems("deny_new");
+
 $storageItems_edit=$folder->getItems("allow_edit");
 $storageItems_delete=$folder->getItems("allow_delete");
 $buttons=array(
@@ -52,9 +54,20 @@ if (count($storageItems_delete)>0) {
 }
 if (count($storageItems_new)>0) {
     $items=array();
+    $storageItemIds=array();
     foreach ($storageItems_new as $storageItem) {
-        $storageItem=FFStorage::model()->findByPk($storageItem->id);
+        $storageItem=FFStorage::model()->findByPk($storageItem->id); // Чтобы не терять
         foreach ($storageItem->registryItems as $registryItem) {
+            if (in_array($registryItem->id, $storageItemIds)) continue;;
+            $storageItemIds=  array_merge($storageItemIds,array($registryItem->id));
+            $skip=FALSE;
+            foreach ($storageItems_new_deny as $storageItem_new_deny) {
+                if ($storageItem_new_deny->id==$registryItem->id) {
+                    $skip=TRUE;
+                    break;
+                }
+            }
+            if ($skip) continue;
             $label = "Новый: ".$registryItem->getAttribute("description")." (".$storageItem->getAttribute("description").")";
             $url=$this->createUrl(
                     "/mff/formview/save", 
@@ -68,17 +81,6 @@ if (count($storageItems_new)>0) {
         }
     }
     $this->widget("zii.widgets.CMenu",array("items"=>$items,"htmlOptions"=>array("id"=>"menucreate")));
-    if ($this->action->id=="save") {
-        $urldata=array(
-            "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id))),
-            "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),
-            "addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.')'));
-        if (isset($idregistry)) $urldata=array_merge($urldata,array("idregistry"=>$idregistry,));
-        if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
-        if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
-        if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
-        $this->renderPartial("/formview/_ff",$urldata);
-    }
 }
 // Узлы папки
 $nodes=$folder->getItems("nodes");
