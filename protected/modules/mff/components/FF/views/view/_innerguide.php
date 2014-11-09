@@ -12,8 +12,6 @@ try {
         $id_vFFModel = $modelff->getAttribute($data->name);
         $vFFModel->registry = 1;
         $vFFModel = $vFFModel->findByPk($id_vFFModel);
-        $vFFModel->tableName();
-        $vFFModel->refreshMetaData();
         $vFFModel->refresh();
     }
     // Создаем новый элемент если документ новый
@@ -23,7 +21,6 @@ try {
             $registrylist = array_merge($registrylist, array($registryItem->id));
         }
         $vFFModel->registry = FFModel::commonParent($registrylist);
-        $vFFModel->tableName();
         $vFFModel->refreshMetaData();
     }
     $vFFModel->storage = $data->typeItem->storageItem->id;

@@ -4,7 +4,8 @@ $usid=Yii::app()->user->id;
 
 /// Вставка перехода в кабинет
 
-$this->widget('mff.components.CabinetWidget',array("cabinetId"=>1));
+$this->widget('mff.components.CabinetWidget');
+//$this->widget('mff.components.CabinetWidget',array("cabinetId"=>1));
 return; // ОТКЛЮЧИЛ ИЗ-ЗА ТОГО ЧТО ЛОКАЛЬНО ТЕСТИРОВАТЬ НЕЛЬЗЯ (НЕ ПРОХОДИТ АВТОРИЗАЦИЯ)
 /// Конец вставки
 
