@@ -1,4 +1,3 @@
-<BR>
 <h3>Відомості про населені пункти</h3>
 
 <?php
@@ -25,7 +24,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		'name',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

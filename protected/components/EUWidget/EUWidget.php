@@ -7,7 +7,7 @@ class EUWidget extends CWidget {
 //        $this->model = $model;
         $assetsDir = dirname(__FILE__).DIRECTORY_SEPARATOR;
 	$baseUrl = Yii::app()->assetManager->publish($assetsDir.'/assets');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js');
+//        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js');
 	if ($this->WidgetType == "Login") {
 	        Yii::app()->clientScript->registerScriptFile($baseUrl.'/EULoginMini.js');
 		if ($this->WidgetAction == "") $this->WidgetAction = "sign/login";

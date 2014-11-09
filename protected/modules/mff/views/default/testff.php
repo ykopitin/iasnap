@@ -6,7 +6,7 @@ if ($this->action->id=="save") {
                 "idregistry"=>38,
                 "idstorage"=>16,      
                 "backurl"=>$this->createUrl("/mff/formview/index",array("id"=>8)),
-                "name"=>"formff",
+//                "name"=>"formff",
                 )
             );
     echo CHtml::button("Сохранить",array("onclick"=>$ff->name."_form.submit()"));

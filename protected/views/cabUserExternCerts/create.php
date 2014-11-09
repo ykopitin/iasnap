@@ -3,16 +3,18 @@
 /* @var $model CabUserExternCerts */
 
 $this->breadcrumbs=array(
-	'Cab User Extern Certs'=>array('index'),
-	'Create',
+	'Адміністративна панель'=>array('default/index'),
+	'Управління користувачами'=>array('default/id3'),
+	'Таблиця «Сертифікати зовнішніх користувачів»'=>array('index'),
+	'Додавання',
 );
 
 $this->menu=array(
-	array('label'=>'List CabUserExternCerts', 'url'=>array('index')),
-	array('label'=>'Manage CabUserExternCerts', 'url'=>array('admin')),
+	array('label'=>'Відобразити', 'url'=>array('index')),
+	array('label'=>'Управляти', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create CabUserExternCerts</h1>
+<h1>Додати дані Таблиця «Сертифікати зовнішніх користувачів»</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

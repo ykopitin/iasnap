@@ -48,8 +48,8 @@ try {
         'itemView' => 'ff_field',
         'summaryText' => '',
         'emptyText' => '',
-        'itemsTagName' => 'tbody',
-        'tagName' => 'table',
+//        'itemsTagName' => 'tbody',
+//        'tagName' => 'table',
         'viewData' => array(
             "form" => $form,
             "modelff" => $vFFModel,

@@ -207,11 +207,11 @@ function(frameHeight, frameWidth, formHeight, formWidth, selectMultiple) {
 },
 "_constructForm": function() {
 	var  container = document.createElement('div')
-	var formContent = '<div class="Form" id="CertificatesForm">'; 
+	var formContent = '<div class="Form eusign" id="CertificatesForm">'; 
 	formContent += "<form name=\"Certificates\" action=\"#\" class=\"FormCertificates\">"; 
-	formContent += '<div align="center"><h2 class="FormHeader">' + this.header + '</h2></div>'; 
+	formContent += '<div align="center"><h2 class="FormHeader eusign">' + this.header + '</h2></div>'; 
 		
-	formContent += '<table height=90% width=100% border="1" class="border" bordercolor="#C0C0C0">';
+	formContent += '<table height=90% width=100% border="1" class="border eusign" bordercolor="#C0C0C0">';
 	
 	formContent += '<tr>';
 	formContent += '<th scope="col" align="left" style="padding: 4px 0px 10px 10px"><div id=NumberLabel></div></th>';
@@ -402,11 +402,11 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 },
 "_constructForm": function() {
 	var  container = document.createElement('div')
-	var formContent = "<div class=\"Form\">"; 
+	var formContent = "<div class=\"Form eusign\">"; 
 	formContent += "<form name=\"CRLs\" action=\"#\" class=\"formCRLs\">"; 
-	formContent += '<div align="center"><h2 class="FormHeader">' + this.header + '</h2></div>'; 
+	formContent += '<div align="center"><h2 class="FormHeader eusign">' + this.header + '</h2></div>'; 
 		
-	formContent += '<table height=90% width=100% border="1" class="border" bordercolor="#C0C0C0">';
+	formContent += '<table height=90% width=100% border="1" class="border eusign" bordercolor="#C0C0C0">';
 	
 	formContent += '<tr>';
 	formContent += '<th id="NumberLabel" scope="col" align="left" style="padding: 4px 0px 10px 10px"><pre><div id=NumberLabel></div></pre></th>';
@@ -641,18 +641,18 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	var  container = document.createElement('div')
 	
 	var formContent = ""; 
-	formContent+= "<div class=\"Form\">"; 
+	formContent+= "<div class=\"Form eusign\">"; 
 	formContent+= "<form name=\"keyMedia\" action=\"#\" class=\"formKeyMedia\" autocomplete=\"off\">"; 
-	formContent+= '<div align="center"><h3 class="FormHeader">' + this.title + '</h3></div>'
-	formContent+= '<table height=90% width=100% border="1" class="border" bordercolor="#C0C0C0">'; 
+	formContent+= '<div align="center"><h3 class="FormHeader eusign">' + this.title + '</h3></div>'
+	formContent+= '<table height=90% width=100% border="1" class="border eusign" bordercolor="#C0C0C0">'; 
 	if(this.subTitle != null && this.subTitle != "") {
 		formContent+= '<tr><td align="center"><i>'+ this.subTitle + '</i></tr></td>';
 	}
-	formContent+= "<tr><td valign=\"top\" align=\"center\" class=\"form\">"; 
+	formContent+= "<tr><td valign=\"top\" align=\"center\" class=\"form eusign\">"; 
 	formContent+= "   <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"; 
 	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Тип носія:</td></tr>"; 
 	formContent+= "   <tr><td valign=\"top\" align=\"center\">"; 
-	formContent+= "   <select id = " + DeviceTypeSelectID + " class=\"select\">"; 
+	formContent+= "   <select id = " + DeviceTypeSelectID + " class=\"select eusign\">"; 
 	var result = "";
 	var typeIndex = 0; 
 	while(true) {
@@ -667,12 +667,12 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Назва носія:</td></tr>"; 
 	formContent+= "   <tr><td valign=\"top\" align=\"center\"><div id=" + DivDeviceNamesID + " ></div></td></tr>"; 
 	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Пароль:</td></tr>"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"center\"><input type=\"Password\" id = " + PasswordEditID + " class=\"edit\" maxlength=\"20\" onkeydown=\"if(event.keyCode==13){GetKeyMediaButton.onclick();}\"></td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"center\"><input type=\"Password\" id = " + PasswordEditID + " class=\"edit eusign\" maxlength=\"20\" onkeydown=\"if(event.keyCode==13){GetKeyMediaButton.onclick();}\"></td></tr>"; 
 
 	switch(this.formType) {
 		case GetPrivateKeyFormType.ChangePassword: {
 			formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Новий пароль:</td></tr>"; 
-			formContent+= "   <tr><td valign=\"top\" align=\"center\"><input type=\"Password\" id = " + NewPasswordEditID + " class=\"edit\" maxlength=\"20\"></td></tr>"; 
+			formContent+= "   <tr><td valign=\"top\" align=\"center\"><input type=\"Password\" id = " + NewPasswordEditID + " class=\"edit eusign\" maxlength=\"20\"></td></tr>"; 
 			break;
 		}
 		case GetPrivateKeyFormType.GenPrivateKey: {
@@ -700,7 +700,7 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 
 	typeIndex = document.getElementById(DeviceTypeSelectID).value;
 	
-	formContent += "   <select id=" + DeviceNameSelectID + " class=\"select\">"; 
+	formContent += "   <select id=" + DeviceNameSelectID + " class=\"select eusign\">"; 
 	while(true) {
 	
 		var result = euSign.EnumKeyMediaDevices(parseInt(typeIndex, 10), parseInt(deviceIndex, 10)); 
@@ -879,42 +879,42 @@ function(TabID, ServerType, onChange) {
 {
 "GetContent": function() {
 	var content = "";
-	content = '<div id=' + this.TabID + ' style="display: none;" class="SettingsTab">\
-			<h3 class="SettingsTabHeader">' + this.ServerType.name + '</h3>';
+	content = '<div id=' + this.TabID + ' style="display: none;" class="SettingsTab eusign">\
+			<h3 class="SettingsTabHeader eusign">' + this.ServerType.name + '</h3>';
 		
 	//Add use checkbox
-	content += '<p class="SettingsParameter"><input type="checkbox" id=' + 
+	content += '<p class="SettingsParameter eusign"><input type="checkbox" id=' + 
 		this.TabID + UseCheckBoxID + ' />' + this.ServerType.useTitle + '</p>';
 	
 	//Add server content
 	content += '<div id=' + this.TabID + HiddenFormElementsID + '>';
 	
 	//Add IP/DNS + port fields
-	content += '<div>DNS ім`я чи ip-адреса сервера:  <input type="text" id=' + this.TabID + AddressTextEditID + ' class="edit" style="width:45%;"/></div>\
-				<div>TSP порт: <input type="text" id=' + this.TabID + PortTextEditID + ' class="edit" style="width: 10%; margin-left: 141px;" /></div>';
+	content += '<div>DNS ім`я чи ip-адреса сервера:  <input type="text" id=' + this.TabID + AddressTextEditID + ' class="edit eusign" style="width:45%;"/></div>\
+				<div>TSP порт: <input type="text" id=' + this.TabID + PortTextEditID + ' class="edit eusign" style="width: 10%; margin-left: 141px;" /></div>';
 	if(this.ServerType == ServerType.ServerTypeTSP ||
 		this.ServerType == ServerType.ServerTypeOCSP ||
 		this.ServerType == ServerType.ServerTypeLDAP ||
 		this.ServerType == ServerType.ServerTypeCMP) {
 		content += '<div align="right" style="padding: 0px 10px 0px 0px"><input type="button" value="Змінити",\
-								id=' + this.TabID + FromCertButtonID + ' style="width:185px;" class="button" disabled="disabled"/></div>';
+								id=' + this.TabID + FromCertButtonID + ' style="width:185px;" class="button eusign" disabled="disabled"/></div>';
 	}
 		
 	//Add auth/Anonymous fields
 	if(this.ServerType == ServerType.ServerTypeProxy) {
-		content += '<p class="SettingsParameter"><input type="checkbox" id=' + this.TabID + 
+		content += '<p class="SettingsParameter eusign"><input type="checkbox" id=' + this.TabID + 
 					AuthCheckBoxID + ' /> Автентифікуватися на ' + this.ServerType.name + '</p>';
 	}
 	if(this.ServerType == ServerType.ServerTypeLDAP) {
-		content += '<p class="SettingsParameter"><input type="checkbox" id=' +
+		content += '<p class="SettingsParameter eusign"><input type="checkbox" id=' +
 			this.TabID + AnonymousCheckBoxID + ' /> Анонімний доступ</p>';
 	}
 	
 	if(this.ServerType == ServerType.ServerTypeProxy || 
 		this.ServerType == ServerType.ServerTypeLDAP) {
 		content += '<div id=' + this.TabID + AuthElementID + '>' +
-					'<div>Ім\'я користувача:  <input type="text" id=' + this.TabID + UserTextEditID + ' class="edit" style="width:45%;"/></div>\
-					<div>Пароль:  <input type="password" id=' + this.TabID + PasswordTextEditID + ' class="edit" style="width:45%; margin-left: 62px;"/></div>';
+					'<div>Ім\'я користувача:  <input type="text" id=' + this.TabID + UserTextEditID + ' class="edit eusign" style="width:45%;"/></div>\
+					<div>Пароль:  <input type="password" id=' + this.TabID + PasswordTextEditID + ' class="edit eusign" style="width:45%; margin-left: 62px;"/></div>';
 	}
 	
 	if(this.ServerType == ServerType.ServerTypeProxy) {
@@ -1200,20 +1200,20 @@ function(TabID, onChange) {
 {
 "GetContent": function() {
 	var content = "";
-	content = '<div id=' + this.TabID + ' style="display: none;" class="SettingsTab">\
-			<h3 class="SettingsTabHeader">Файлове сховище сертифікатів та СВС</h3>';
+	content = '<div id=' + this.TabID + ' style="display: none;" class="SettingsTab eusign">\
+			<h3 class="SettingsTabHeader eusign">Файлове сховище сертифікатів та СВС</h3>';
 	
-	content +=	'<p class="SettingsParameter">Параметри файлового сховища</p>\
+	content +=	'<p class="SettingsParameter eusign">Параметри файлового сховища</p>\
 		<div>Каталог з сертифікатами та СВС:</div>\
-		<div><input type="text" id=' + CertCatalogTextEditID + ' class="edit" style="width:95%;"/></div>\
+		<div><input type="text" id=' + CertCatalogTextEditID + ' class="edit eusign" style="width:95%;"/></div>\
 		<div align="right" style="padding: 0px 10px 0px 0px"><input type="button" value="Змінити",\
-								id=' + ChangeCertCatalogButtonID + ' style="width:185px;" class="button"/></div>\
+								id=' + ChangeCertCatalogButtonID + ' style="width:185px;" class="button eusign"/></div>\
 		\
 		<div><input type="checkbox" id=' + AutoReadChangesCheckBoxID + ' />Автоматично перечитувати при виявленні змін</div>\
 		<div><input type="checkbox" id=' + SaveCertFromOCSPCheckBoxID + ' />Зберігати сертифікати, що отримані з OCSP- чи LDAP-серверів</div>\
-		<div>Час зберігання стану перевіреного сертифікату, с: <input type="text" id=' + ExpireTimeTextEditID + ' class="edit" style="width:12%;"/></div>\
+		<div>Час зберігання стану перевіреного сертифікату, с: <input type="text" id=' + ExpireTimeTextEditID + ' class="edit eusign" style="width:12%;"/></div>\
 		\
-		<p class="SettingsParameter"><input type="checkbox" id=' + CheckCRLsCheckBoxID + ' />Перевіряти СВС</p>';
+		<p class="SettingsParameter eusign"><input type="checkbox" id=' + CheckCRLsCheckBoxID + ' />Перевіряти СВС</p>';
 	content += '<div id=' + this.TabID + HiddenFormElementsID + '>';
 	content += '<div><input type="checkbox" id=' + OnlyOwnCACheckBoxID + ' />Тільки свого ЦСК</div>\
 		<div><input type="checkbox" id=' + FullAndDeltaCRLsCheckBoxID + ' />Повний та частковий</div>\
@@ -1598,22 +1598,22 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 },
 "_constructForm": function() {
 	var  container = document.createElement('div')
-	var formContent = '<div class="Form" id="SettingsForm">'; 
-	formContent += '<form name="Settings" action="#" class="FormSettings">'; 
-	formContent += '<div align="center"><h2 class="FormHeader">Параметри роботи</h2></div>'; 
+	var formContent = '<div class="Form eusign" id="SettingsForm">'; 
+	formContent += '<form name="Settings" action="#" class="FormSettings eusign">'; 
+	formContent += '<div align="center"><h2 class="FormHeader eusign">Параметри роботи</h2></div>'; 
 		
-	formContent += '<table height=90% width=100% border="1" class="border" bordercolor="#C0C0C0">';
+	formContent += '<table height=90% width=100% border="1" class="border eusign" bordercolor="#C0C0C0">';
 	
 	formContent += '<tr style="vertical-align: top;">';
 	formContent += '<td style="width:27%">'; 
 	
 	formContent += '<ul id="Tabs">\
-		<li id=' + FileStorageTabID + ' class="Tab"><a href="#FileStorage" return false;">Файлове сховище</a></li>\
-		<li id=' + ProxyServerTabID + ' class="Tab"><a href="#ProxyServer" return false;">Proxy-сервер</a></li>\
-		<li id=' + TSPServerTabID + ' class="Tab"><a href="#TSPServer" return false;">TSP-сервер</a></li>\
-		<li id=' + OCSPServerTabID + ' class="Tab"><a href="#OCSPServer" return false;">OCSP-сервер</a></li>\
-		<li id=' + LDAPServerTabID + ' class="Tab"><a href="#LDAPServer" return false;">LDAP-сервер</a></li>\
-		<li id=' + CMPServerTabID + ' class="Tab"><a href="#CMPServer" return false;">CMP-сервер</a></li>\
+		<li id=' + FileStorageTabID + ' class="Tab eusign"><a href="#FileStorage" return false;">Файлове сховище</a></li>\
+		<li id=' + ProxyServerTabID + ' class="Tab eusign"><a href="#ProxyServer" return false;">Proxy-сервер</a></li>\
+		<li id=' + TSPServerTabID + ' class="Tab eusign"><a href="#TSPServer" return false;">TSP-сервер</a></li>\
+		<li id=' + OCSPServerTabID + ' class="Tab eusign"><a href="#OCSPServer" return false;">OCSP-сервер</a></li>\
+		<li id=' + LDAPServerTabID + ' class="Tab eusign"><a href="#LDAPServer" return false;">LDAP-сервер</a></li>\
+		<li id=' + CMPServerTabID + ' class="Tab eusign"><a href="#CMPServer" return false;">CMP-сервер</a></li>\
 	</ul>';
 	formContent += '</td>';
 	formContent += '<td style="padding: 10px 10px 10px 10px">' + 
@@ -1630,9 +1630,9 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	formContent += '</table></br>';
 
 	formContent += '<div align="right" style="padding: 0px 10px 10px 0px"><input type="button" value="Зберегти",\
-								id=\"' + SaveSettingsButtonID + '\" style="width:185px;" class="button" />';
+								id=\"' + SaveSettingsButtonID + '\" style="width:185px;" class="button eusign" />';
 	formContent += '<input type="button" value="Закрити",\
-								id=\"' + CloseSettingsButtonID + '\" style="width:185px;" class="button" /></div>';
+								id=\"' + CloseSettingsButtonID + '\" style="width:185px;" class="button eusign" /></div>';
 	
 	formContent += "</form>"; 
 	formContent += "</div>"; 
@@ -1645,10 +1645,10 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 
 	if (tabToShowID == this.ShowingTabID)
 		return;
-	document.getElementById(tabToShowID).className = 'SelectedTab';
+	document.getElementById(tabToShowID).className = 'SelectedTab eusign';
 	document.getElementById(tabToShowID).href = 'Tab';
 	if(this.ShowingTabID != "null")
-		document.getElementById(this.ShowingTabID).className = 'Tab';
+		document.getElementById(this.ShowingTabID).className = 'Tab eusign';
 
 	document.getElementById(tabToShowID + ContentSuffix).style.display = 'block';
 	if(this.ShowingTabID != "null")
@@ -2407,7 +2407,7 @@ function ChangeFolder(editID) {
 //-----------------------------------------------------------------------------
 
 function MakeSelect(selectID, selectWidth, items) {
-	var content = '<select id=' + selectID + ' class="select" style="width:' + selectWidth +';">';
+	var content = '<select id=' + selectID + ' class="select eusign" style="width:' + selectWidth +';">';
 	
 	for(var i = 0; i < items.length; i++)
 		content += '<option value=' + i + ' >' + items[i] + '</option>';
@@ -2421,9 +2421,9 @@ function MakeSelect(selectID, selectWidth, items) {
 function MakeChangeEdit(text, editID, editWidth, buttonID, onclick) {
 	var content = '<tr><td colspan=2>' + text + '</td></tr>\
 	   <tr>\
-			<td align="left" class="text" style="padding:0px 0px 0px 0px"><input type="edit" id=' + editID + ' size="58" class="edit" style="width:'+ editWidth + ';"/></td>\
-			<td align="left" class="text" style="padding:0px 0px 0px 0px"><input type="button" id=' + buttonID +
-				' value="Змінити" class="button" style="width:60px; height:18px; margin:0px;" onclick=' + onclick  + ' /></td>\
+			<td align="left" class="text eusign" style="padding:0px 0px 0px 0px"><input type="edit" id=' + editID + ' size="58" class="edit eusign" style="width:'+ editWidth + ';"/></td>\
+			<td align="left" class="text eusign" style="padding:0px 0px 0px 0px"><input type="button" id=' + buttonID +
+				' value="Змінити" class="button eusign" style="width:60px; height:18px; margin:0px;" onclick=' + onclick  + ' /></td>\
 	   </tr>';
 	return content;
 }
@@ -2520,10 +2520,10 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	var  container = document.createElement('div')
 	
 	var formContent = ""; 
-	formContent+= '<div class="Form" id="' + GenPrivateKeyFormID + '">'; 
+	formContent+= '<div class="Form eusign" id="' + GenPrivateKeyFormID + '">'; 
 	formContent+= '<form name="genPrivKey" action="#" class="privKeyForm">'; 
-	formContent+= '<div align="center"><h3 class="FormHeader">Генерація ключів</h3></div>'
-	formContent+= '<table height=90% width=100% border="1" class="border" bordercolor="#C0C0C0">'; 
+	formContent+= '<div align="center"><h3 class="FormHeader eusign">Генерація ключів</h3></div>'
+	formContent+= '<table height=90% width=100% border="1" class="border eusign" bordercolor="#C0C0C0">'; 
 	formContent+= '<tr>';
 	
 	formContent += '<td style="padding: 0px 10px 10px 10px">' + 
@@ -2535,9 +2535,9 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	formContent+= '</tr>'; 
 	formContent+= "</table>"; 
 
-	formContent += '<div align="right" style="padding: 0px 10px 10px 0px"><input type="button" id = ' + PrevButtonID + ' value=\"Назад\" class="button" />';
-	formContent += '<input type="button" id = ' + NextButtonID + ' value=\"Далі\" class="button" />';
-	formContent += '<input type="button" id = ' + CloseGenKeyButtonID + ' value=\"Відміна\" class="button" /></div>';
+	formContent += '<div align="right" style="padding: 0px 10px 10px 0px"><input type="button" id = ' + PrevButtonID + ' value=\"Назад\" class="button eusign" />';
+	formContent += '<input type="button" id = ' + NextButtonID + ' value=\"Далі\" class="button eusibn" />';
+	formContent += '<input type="button" id = ' + CloseGenKeyButtonID + ' value=\"Відміна\" class="button eusign" /></div>';
 	formContent+= "</form>"; 
 	formContent+= "</div>"; 
 	
@@ -2562,7 +2562,7 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 		PrivKeyBlobFileEditID, "340px", PrivKeyBlobFileButtonID);
 	content += '<tr><td> Пароль доступу до особистого ключа: </td></tr>\
 				<tr>\
-					<td align="left" colspan=2><input type="password" id='+ PrivKeyBlobPasswordEditID + ' size="58" class="edit" style="width:340px;"/></td>\
+					<td align="left" colspan=2><input type="password" id='+ PrivKeyBlobPasswordEditID + ' size="58" class="edit eusign" style="width:340px;"/></td>\
 				</tr>\
 				</table>';
 	content +=  '</div>';
@@ -2644,9 +2644,9 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	content += MakeChangeEdit(changeText, RequestPathID, "340px", RequestPathID + "Button", changeFolderFunc);
 	content += '<tr><td colspan=2 style="padding: 10px 0px" align="right">\
 				<input type="button" id="' + ShowRequestsButtonID +'" value="Переглянути"\
-						style="width:125px" class="button" />' +
+						style="width:125px" class="button eusign" />' +
 			   '<input type="button" id="' + SaveRequestsButtonID + '" value="Зберегти"\
-						style="width:125px" class="button" />' +
+						style="width:125px" class="button eusign" />' +
 				'</td></tr>';
 	content += "</table>";
 	content += "</div>";	

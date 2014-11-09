@@ -29,7 +29,7 @@ class GenAuthoritiesController extends Controller
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('create','update','admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->checkAccess('siteadmin')||Yii::app()->user->id=='admin'",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -45,7 +45,7 @@ class GenAuthoritiesController extends Controller
 	public function actionCreate()
 	{
 		$model=new GenAuthorities;
-
+$_SESSION['KCFINDER']['disabled'] = false;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -69,7 +69,7 @@ class GenAuthoritiesController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+$_SESSION['KCFINDER']['disabled'] = false;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

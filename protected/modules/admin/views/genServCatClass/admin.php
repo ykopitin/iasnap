@@ -1,4 +1,3 @@
-<BR>
 <h3>Зв'язок послуг з категоріями та класами</h3>
 <?php
 $this->widget('zii.widgets.jui.CJuiButton',array(
@@ -22,27 +21,27 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		'id',
 		array(
           'header' => 'Послуги',
-		  'name' => 'service.name',
+		  'name' => 'srv_name',
 		  'value' => '$data->service->name',
-		  'filter'=> CHtml::activeTextField($model, 'srv_name'),
+		  //'filter'=> CHtml::activeTextField($model, 'srv_name'),
 		),
 		array(
           'header' => 'Класи',
-		  'name' => 'catClass.class.item_name',
+		  'name' => 'class_name',
 		  'value' => '$data->catClass->class->item_name',
-		  'filter'=> CHtml::activeTextField($model, 'class_name'),
+		  //'filter'=> CHtml::activeTextField($model, 'class_name'),
 		),
 		array(
           'header' => 'Категорії',
-		  'name' => 'catClass.categorie.name',
+		  'name' => 'cat_name',
 		  'value' => '$data->catClass->categorie->name',
-		  'filter'=> CHtml::activeTextField($model, 'cat_name'),
+		  //'filter'=> CHtml::activeTextField($model, 'cat_name'),
 		),
 		
 		
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

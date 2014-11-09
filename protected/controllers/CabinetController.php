@@ -3,23 +3,22 @@
 class CabinetController extends Controller
 {
     
-//    public function accessRules()
-//{
-//    return array(
-//       
-//        array('allow',
-//            'users'=>array('index'),
-//        ),
-//        array('deny', 
-//            'users'=>array('*'),
-//        ),
-//    );
-//}
+    public function accessRules()
+{
+    return array(
+       
+        array('allow',
+            'users'=>array('index'),
+        ),
+        array('deny', 
+            'users'=>array('*'),
+        ),
+    );
+}
 	
     
     public function actionIndex()
 	{
-//            $this->redirect(array("/mff/cabinet/cabinet","id"=>85,"layout"=>  $this->layout));
 		$this->render('index');
 	}
 

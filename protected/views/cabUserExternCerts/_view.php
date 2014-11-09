@@ -29,13 +29,13 @@
 	<?php echo CHtml::encode($data->certSubjEDRPOUCode); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('certType')); ?>:</b>
-	<?php echo CHtml::encode($data->certType); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('certData')); ?>:</b>
+	<?php echo CHtml::encode($data->certData); ?>
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('certData')); ?>:</b>
-	<?php echo CHtml::encode($data->certData); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
+	<?php echo CHtml::encode($data->type); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ext_user_id')); ?>:</b>

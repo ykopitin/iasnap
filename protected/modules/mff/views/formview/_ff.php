@@ -1,7 +1,7 @@
 <?php
 $title="Новый";
 if (isset($scenario) && $scenario=="update"){
-    $title="Видредагувати";
+    $title="Відредагувати";
 }
 if (isset($scenario) && $scenario=="view"){
     $title="Перегляд";

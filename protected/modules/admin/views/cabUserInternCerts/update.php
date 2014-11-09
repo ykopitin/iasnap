@@ -27,7 +27,7 @@ $this->menu=array(
 <?php 
 $criteria=new CDbCriteria;
 $criteria->compare('user_roles_id','<4',true);
-$criteria->compare('str_tdata',$model->signedData,true);
+$criteria->compare('str_activcode',$model->signedData,true);
 $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>new CActiveDataProvider('CabUser', array('criteria'=>$criteria)),
 	'itemView'=>'application.modules.admin.views.cabUser._view',

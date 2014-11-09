@@ -43,6 +43,7 @@ class RegrequestForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			'activ_code'=>'Спеціальний код',
 //			'rememberMe'=>'Remember me next time',
 		);
 	}

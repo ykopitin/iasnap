@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Адміністративна панель'=>array('default/index'),
-	'Управління користувачами'=>array('default/id3'),
+	'Управління довідниками'=>array('default/id4'),
 	'Таблиця «Сертифікати зовнішніх користувачів»'=>array('index'),
 	'Управління',
 );
@@ -51,8 +51,24 @@ $('.search-form form').submit(function(){
 		'certSubjEDRPOUCode',
 		/*
 		'certData',
-		'type',
+		'certType',
 		'ext_user_id',
+		'certSignTime',
+		'certUseTSP',
+		'certIssuerCN',
+		'certSubject',
+		'certSubjCN',
+		'certSubjOrg',
+		'certSubjOrgUnit',
+		'certSubjTitle',
+		'certSubjState',
+		'certSubjLocality',
+		'certSubjFullName',
+		'certSubjAddress',
+		'certSubjPhone',
+		'certSubjEMail',
+		'certSubjDNS',
+		'certExpireEndTime',
 		*/
 		array(
 			'class'=>'CButtonColumn',

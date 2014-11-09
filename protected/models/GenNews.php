@@ -119,7 +119,7 @@ class GenNews extends CActiveRecord
     {
         $rows = $this->findAll(array(
             'order'=>'publicationDate DESC',
-            'limit'=>'3',
+            'limit'=>'2',
         ));
        // $this->render('LastPosts/' . $this->tpl, array('posts'=>$posts,      ));
            

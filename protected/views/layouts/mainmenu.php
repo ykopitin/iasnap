@@ -1,3 +1,4 @@
+
 <div id="classtitle">
 <table>
 <tr><td><span id="n0" style="background-color: #a2d507;"><a href="#" onclick="func(0)">ОРГАНІЗАЦІЯМ</a> </span></td>
@@ -26,30 +27,32 @@
 
 
 <div id="leftpos">
-<table><tr><td><img src="<?php echo Yii::app()->baseUrl; ?>/images/life.png"></td><td><a href="#">Послуги за життєвими ситуаціями</a></td></tr>
-<tr><td style="text-align: center;"><img src="<?php echo Yii::app()->baseUrl; ?>/images/office.png"></td><td><a href="#">Послуги за суб'єктами надання</a></td></tr>
+<table><tr><td><img src="<?php echo Yii::app()->baseUrl; ?>/images/life.png"></td><td><a href="/life">Послуги за життєвими ситуаціями</a></td></tr>
+<tr><td style="text-align: center;"><img src="<?php echo Yii::app()->baseUrl; ?>/images/office.png"></td><td><a href="<?php echo Yii::app()->baseUrl; ?>/sub">Послуги за суб'єктами надання</a></td></tr>
 </table></div>
 
 
 
-
+<div id="leftecp">
+<table>
+<tr><td style="text-align: center;"><img src="<?php echo Yii::app()->baseUrl; ?>/images/search.png"></td><td><a href="#">Відстежити статус заявки</a></td></tr>
+</table>
+</div>
 
 <div id="lefthelp">
-<table><tr><td><img src="<?php echo Yii::app()->baseUrl; ?>/images/computer.png"></td><td><a href="#">Технічні вимоги до комп'ютеру користувача порталу</a></td></tr>
+<table>
+<tr><td><img src="<?php echo Yii::app()->baseUrl; ?>/images/computer.png"></td><td><a href="#">Технічні вимоги до комп'ютеру користувача порталу</a></td></tr>
 
 <tr><td><img src="<?php echo Yii::app()->baseUrl; ?>/images/video.png"></td><td><a href="#">Відео урок роботи з порталом</a></td></tr>
-<tr><td style="text-align: center;"><img src="<?php echo Yii::app()->baseUrl; ?>/images/search.png"></td><td><a href="#">Відстежити статус заявки</a></td></tr>
+
+<tr><td width="0%"><img src="<?php echo Yii::app()->baseUrl; ?>/images/signature.png"></td><td width="100%"><a href="#">Як отримати ЕЦП?</a></td></tr>
+
 
 </table>
 </div>
 
 
-<div id="leftecp">
-<table width="70%"><tr><td width="0%"><img src="<?php echo Yii::app()->baseUrl; ?>/images/signature.png"></td><td width="100%"><a href="#">Як отримати ЕЦП?</a></td></tr></table>
-</div>
 </div></td></tr></table>
-
-
 
 
 

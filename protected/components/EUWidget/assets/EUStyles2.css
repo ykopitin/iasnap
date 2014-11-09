@@ -5,7 +5,7 @@ td.content {
 /*	input.button	{border:1px solid #808080; background:#EEEEEE; color:#000000;
 						height:22px; font-size:12px; cursor:pointer; 
 						font-family:Arial,sans-serif,Helvetica;}	*/
-input.edit {
+input.edit.eusign {
     border: 1px solid #808080;
     background: #FFFFFF;
     color: #000000;
@@ -56,7 +56,7 @@ textarea.textarea {
     font-weight: bold;
 }
 
-.text {
+.text.eusign {
     font-size: 12px;
 }
 
@@ -149,7 +149,7 @@ a.link:hover {
     padding: 15px;
 }
 
-#popup .button {
+#popup .button.eusign {
     border: 1px solid #808080;
     background: #EEEEEE;
     color: #000000;
@@ -161,14 +161,14 @@ a.link:hover {
     margin: 10px 0px 5px 5px;
 }
 
-#popup .form {
+#popup .form.eusign {
     background: #FFFFFF;
     color: #000000;
     font-size: 12px;
     padding: 15px;
 }
 
-#popup .edit {
+#popup .edit.eusign {
     border: 1px solid #808080;
     background: #FFFFFF;
     color: #000000;
@@ -179,7 +179,7 @@ a.link:hover {
     margin: 1px 0px 0px 0px;
 }
 
-#popup .select {
+#popup .select.eusign {
     border: 1px solid #808080;
     background: #FFFFFF;
     color: #000000;
@@ -189,12 +189,13 @@ a.link:hover {
     font-family: Arial, sans-serif, Helvetica;
 }
 
-.Form {
+.Form.eusign {
     top: 30px;
     position: fixed;
     display: block;
     border: 2px solid #0E0E0E;
     background-color: #F7F7F7;
+	border-radius: 15px
     /*box-shadow:3px 3px 7px 3px #000;*/
 }
 
@@ -202,18 +203,19 @@ a.link:hover {
 					height:20px; width:72px; font-size:12px; cursor:pointer; 
 					font-family:Arial,sans-serif,Helvetica; 
 					margin: 10px 0px 5px 5px; }	*/
-.Form  .edit {
+.Form  .edit.eusign {
     border: 1px solid #808080;
     background: #FFFFFF;
     color: #000000;
-    width: 260px;
-    height: 16px;
+    width: 270px;
+    height: 30px;
     font-size: 11px;
     font-family: Arial, sans-serif, Helvetica;
     margin: 1px 0px 0px 0px;
+	border-radius: 5px
 }
 
-.Form .select {
+.Form .select.eusign {
     border: 1px solid #808080;
     background: #FFFFFF;
     color: #000000;
@@ -221,16 +223,17 @@ a.link:hover {
     height: 30px;
     font-size: 14px;
     font-family: Arial, sans-serif, Helvetica;
+	border-radius: 5px
 }
 
-.FormHeader {
+.FormHeader.eusign {
     color: #000000;
     text-align: center;
     font-size: 16pt;
     font-family: Verdana, Arial;
 }
 
-.SettingsTabHeader {
+.SettingsTabHeader.eusign {
     color: #000000;
     text-align: center;
     font-size: 13pt;
@@ -239,12 +242,12 @@ a.link:hover {
     text-indent: 0px;
 }
 
-.SettingsParameter {
+.SettingsParameter.eusign {
     border-bottom: 1px solid #06185C;
     text-indent: 0px;
 }
 
-.SettingsTab {
+.SettingsTab.eusign {
     font-family: Verdana, Arial;
     font-size: 12px;
     line-height: 20px;
@@ -260,7 +263,7 @@ ul#Tabs {
     padding-right: 5px;
 }
 
-#Tabs li.Tab {
+#Tabs li.Tab.eusign {
     height: 25px;
     border: 1px solid #808080;
     background: #EEEEEE;
@@ -269,18 +272,18 @@ ul#Tabs {
     font-family: Arial, sans-serif, Helvetica;
 }
 
-#Tabs li.Tab a {
+#Tabs li.Tab.eusign a {
     display: block;
     color: #666666;
     text-decoration: none;
     padding: 5px;
 }
 
-#Tabs li.Tab a:hover {
+#Tabs li.Tab.eusign a:hover {
     background-color: #bfe0fe;
 }
 
-#Tabs li.SelectedTab {
+#Tabs li.SelectedTab.eusign {
     height: 25px;
     background-color: #fafafa;
     margin: 2px 0px 0px 0px;
@@ -290,7 +293,7 @@ ul#Tabs {
     border-left: 1px solid #a2b6cb;
 }
 
-#Tabs li.SelectedTab A {
+#Tabs li.SelectedTab.eusign A {
     display: block;
     color: #666666;
     text-decoration: none;

@@ -44,8 +44,8 @@
 
 	*/ ?>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('str_tdata')); ?>:</b>
-	<?php echo CHtml::encode($data->str_tdata); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('str_activcode')); ?>:</b>
+	<?php echo CHtml::encode($data->str_activcode); ?>
 	<br />
 
 </div>

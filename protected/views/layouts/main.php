@@ -20,6 +20,10 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/acc.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/path.css" />
   
+
+  
+  
+  
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 
@@ -29,15 +33,16 @@ charset="utf-8"></script>
 
 
 
+
     <script> 
 function func(n) { 
     document.getElementById("m"+(n^1)).style.display = "none"; 
     document.getElementById("m"+n).style.display = "block"; 
     
-        document.getElementById("n"+(n^1)).style.backgroundColor = "#fff"; 
+    document.getElementById("n"+(n^1)).style.backgroundColor = "#ededed"; 
     document.getElementById("n"+n).style.backgroundColor = "#a2d507"; 
     
-            document.getElementById("p"+(n^1)).style.background = "url('')"; 
+    document.getElementById("p"+(n^1)).style.background = "url('')"; 
     document.getElementById("p"+n).style.background = "url('<?php echo Yii::app()->baseUrl; ?>/images/strelka.png') no-repeat center top"; 
 } 
 </script>
@@ -47,7 +52,11 @@ function func(n) {
 </style>
 </head>
 <body>
+
 <div id="allpage">
+
+
+
 <div id="topik">
 <div id="topmenu">
 	<table border="0" height="20" cellspacing="0" cellpadding="0">
@@ -63,7 +72,6 @@ function func(n) {
  foreach ($result as $value){
  $data[$value['id']]=array('paderntid'=>$value['paderntid'],'label'=>$value['content'], 'url'=>$value['url']);
  }
-
  function ddmenu($dataset) {
  $tree = array();
  foreach ($dataset as $id=>&$node) {
@@ -78,12 +86,6 @@ function func(n) {
  }
  
  $dat = ddmenu($data);
- 
- 
-
- 
- 
- 
 
   $this->widget('ext.cssmenu.CssMenu',array('items'=>$dat));
            ?>  
@@ -110,32 +112,36 @@ function func(n) {
 			<tr>
 				
                 <td width="138">
-				<a href="<?php echo Yii::app()->baseUrl; ?>"><img src="<?php echo Yii::app()->baseUrl; ?>/images/logo.jpg" ></a></td>
+				<a href="/"><img src="<?php echo Yii::app()->baseUrl; ?>/images/logo.jpg" ></a></td>
                 <td width="130"><p>Центр надання адміністративних послуг в Одеській області</p>
 				</td>
                 
                 
 				<td style="background: url('<?php echo Yii::app()->baseUrl; ?>/images/search.jpg')  no-repeat left top;" width="458" height="97">
-             <form action="<?php echo Yii::app()->baseUrl; ?>/index.php/search" method="post">
+             <form action="<?php echo Yii::app()->baseUrl; ?>/search" method="post">
                 <input type="text" name="searchstr" id="search" ></form>
 				</td>
 				<td  align="center">Гаряча лінія:<br>
 				<br>
 				<h1>(048) 705-45-74</h1></td>
 			</tr>
+ <tr><td colspan="4"><span id="anchor1"> </span><font color=gray size=1>Сайт центру надання адміністративних послуг працює у тестовому режимі.</font></td></tr>
+		
 		</table>
- </div>
+ </div> 
 
-
-
- <span id="anchor1"> </span><hr /><br />
+ <?php 
+if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/' || $_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php' ) {
+    ?>
+	<table background="/images/zz.jpg" width="100%" height="18px" ><tr><td ></td></tr></table>
+<?php } ?>
   <div class="container" id="page">
 
 		<?php 
           
         if (isset($_GET['servid']) || isset($_POST['searchstr'])){ 
             echo '<div id="navigbg"><div id="navig">';
-          if (isset($_GET['class'])){ echo CHtml::link('Головна', array('/'));
+          if (isset($_GET['class'])){ echo CHtml::link('Головна', array('..'));
           echo ' <img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;'.CHtml::link(GenServClasses::model()->findByPk($_GET['class'])->item_name, array('serv/?class='.$_GET['class']));
          if (isset($_GET['servid'])) { 
             echo ' <img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;'.CHtml::link(GenServCategories::model()->findByPk(GenCatClasses::model()->findByPk($_GET['servid'])->categorie_id)->name, array('serv/?class='.$_GET['class'].'&&servid='.$_GET['servid']));}
@@ -143,46 +149,89 @@ function func(n) {
             echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp';}
         }
          if (isset($_POST['searchstr'])){ 
-echo CHtml::link('Головна', array('/'));
- echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbspПошук';
+         echo CHtml::link('Головна', array('Yii::app()->baseUrl'));
+         echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbspПошук';
         } 
          echo	'</div></div>';
         } 
       
+      
+      if (isset($_GET['sub'])){
+        echo '<div id="navigbg"><div id="navig">';
+         echo CHtml::link('Головна', array('..'));
+         echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;<a href='.Yii::app()->baseUrl.'/sub>Послуги за суб&#39єктами надання</a>';
+         echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;<a href='.Yii::app()->baseUrl.'/serv/?sub='.$_GET['sub'].'>'.GenAuthorities::model()->findByPk($_GET['sub'])->name.'</a>';
+  
+          echo	'</div></div>';
+      } 
+      
+            if (isset($_GET['life'])){
+        echo '<div id="navigbg"><div id="navig">';
+         echo CHtml::link('Головна', array('..'));
+         echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;<a href='.Yii::app()->baseUrl.'/life>Послуги за життєвими ситуаціями</a>';
+         echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;<a href='.Yii::app()->baseUrl.'/serv/?life='.$_GET['life'].'>'.GenLifeSituation::model()->findByPk($_GET['life'])->name.'</a>';
+  
+          echo	'</div></div>';
+      } 
+      
        
-        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/ecnap')
+        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/ecnap')
         {
           echo '<div id="navigbg"><div id="navig">';
-          echo CHtml::link('Головна', array('/'));
+          echo CHtml::link('Головна', array('..'));
           echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;e-ЦНАП';
           echo	'</div></div>';
         }     
 
 
-        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/contacts')
+
+        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/contacts')
         {
           echo '<div id="navigbg"><div id="navig">';
-          echo CHtml::link('Головна', array('/'));
+          echo CHtml::link('Головна', array('..'));
           echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Контакти центрів';
           echo	'</div></div>';
         }   
         
-                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/regulations')
+                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/regulations')
         {
           echo '<div id="navigbg"><div id="navig">';
-          echo CHtml::link('Головна', array('/'));
+          echo CHtml::link('Головна', array('..'));
           echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Законодавство';
           echo	'</div></div>';
         }   
         
-                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php/instructions')
+                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/instructions')
         {
           echo '<div id="navigbg"><div id="navig">';
-          echo CHtml::link('Головна', array('/'));
+          echo CHtml::link('Головна', array('..'));
           echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Текстові інструкції';
           echo	'</div></div>';
         }   
 
+                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/video')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array('..'));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Відео інструкції';
+          echo	'</div></div>';
+        }   
+
+        if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/sub')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array($this->createUrl('..')));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Послуги за суб&#39єктами надання';
+          echo	'</div></div>';
+        } 
+        
+                if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/life')
+        {
+          echo '<div id="navigbg"><div id="navig">';
+          echo CHtml::link('Головна', array('..'));
+          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Послуги за життєвими ситуаціями';
+          echo	'</div></div>';
+        } 
 
      if (isset($_GET['param'])){  
  
@@ -190,20 +239,25 @@ echo CHtml::link('Головна', array('/'));
    
   if (isset($_GET['class']) && isset($_GET['servid']) ) {$tempclass=$_GET['class']; $tempcat=$_GET['servid'];} else {
     
-    $rr=GenServCatClass::model()->findAllByAttributes(array('service_id'=>$_GET['param']));
+
+
+   $rr=GenServCatClass::model()->findAllByAttributes(array('service_id'=>$_GET['param'])); 
+
+$countrr=count($rr) ;
+if ($countrr>0){
      foreach($rr as $row) 
         {
             $temp=$row['cat_class_id'];
     }
     $tempclass=GenCatClasses::model()->findByPk($temp)->class_id;
-      $tempcat=GenCatClasses::model()->findByPk($temp)->categorie_id;
-    }
-    echo '<div id=printbg><div id=print><table><tr><td><a href='.Yii::app()->request->baseUrl.'/index.php/print?class='.$tempclass.'&&param='.$_GET['param'].'&&servid='.$tempcat.' target=_blank>Версія для друку</a></td><td width=6px><img src='.Yii::app()->baseUrl.'/images/print.jpeg></td></tr></table></div></div>';
+   $tempcat=GenCatClasses::model()->findByPk($temp)->categorie_id;
+    }else {$tempclass=0;$tempcat=0;}
+    echo '<br><div id=printbg><div id=print><table><tr><td><a href='.Yii::app()->request->baseUrl.'/print?class='.$tempclass.'&&param='.$_GET['param'].'&&servid='.$tempcat.' target=_blank>Версія для друку</a></td><td width=6px><img src='.Yii::app()->baseUrl.'/images/print.jpeg></td></tr></table></div></div>';
 
    
     }
    
-    
+    }
     
     
     
@@ -214,34 +268,51 @@ echo CHtml::link('Головна', array('/'));
  //  echo $_SERVER['REQUEST_URI'];
     
   //  echo Yii::app()->baseUrl;
-     ?>
+   
     
     
     
-    
-    
+  if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/'  || (isset($_GET['class']) && !isset($_GET['param']) && !isset($_GET['servid']))){
+  echo  '<div id="mainbg">';}
+  else {echo  '<div id="allbg">';}
+   ?>   
   <div id="cat"> 
-  
+
   	<?php echo $content;?>
     </div>
 
 
+</div>
 
 <?php 
 if ($_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/' || $_SERVER['REQUEST_URI']==Yii::app()->baseUrl.'/index.php' ) {
-//echo "<br />";
-//include 'banners.php';
-echo "<hr />";
-include 'news.php';echo "<hr />";
+
+include 'news.php';
+echo '<div id="mainbg">';
 include 'derzh.php';
-;
-}?>
+echo '</div>';
+
+}
+
+
+
+?>
+
+
+
+
 </div>
 
+<!-- mibew button -->
+<div id="consultantbg"><div id="consultant">
+<a href="/mibew/client.php?locale=ua&amp;style=default" target="_blank" onclick="if(navigator.userAgent.toLowerCase().indexOf('opera') != -1 &amp;&amp; window.event.preventDefault) window.event.preventDefault();this.newWindow = window.open(&#039;/mibew/client.php?locale=ua&amp;style=default&amp;url=&#039;+escape(document.location.href)+&#039;&amp;referrer=&#039;+escape(document.referrer), 'mibew', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');this.newWindow.focus();this.newWindow.opener=window;return false;" class="smright"><img src="/images/cons.png"></a></div></div>
+<!-- / mibew button -->
 <!-- mainmenu --> 
 <div class="page-buffer"></div></div>
+	<table background="<?php echo Yii::app()->baseUrl; ?>/images/bz.png" width="100%" height="20px" style="margin-bottom: -10px;"><tr><td ></td></tr></table>
+
+
 <div id="footer">
-		<table background="<?php echo Yii::app()->baseUrl; ?>/images/bz.png" width="100%" height="20"><tr><td ></td></tr></table>
 <div id="topmenu">	<table ><tr><td width="86%"><div id="mainmenu">
 
 		<?php      

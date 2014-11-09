@@ -21,8 +21,9 @@ return array(
 
 // GENERAL SETTINGS
 
-    'disabled' => false,
-    'uploadURL' => "upload",
+    'disabled' => true,
+    //'uploadURL' => "upload",
+	'uploadURL' => "/images",
     'uploadDir' => "",
     'theme' => "default",
 
@@ -32,6 +33,9 @@ return array(
         'files'   =>  "doc docx xls xlsx",
         'flash'   =>  "swf",
         'images'  =>  "*img",
+		'life_icons'=>"*img",
+		'icons'=>"*img",
+		'news'=>"*img",
 
     // TinyMCE types
         'file'    =>  "",

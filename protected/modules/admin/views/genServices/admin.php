@@ -1,4 +1,3 @@
-<BR>
 <h3>Відомості про послуги</h3>
 <?php
 $this->widget('zii.widgets.jui.CJuiButton',array(
@@ -69,8 +68,9 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 				  'view' => array
                   (
                    'label'=>'Відобразити',
-				   'url'=>'Yii::app()->createUrl("admin/genServices/index/id/$data->id")',
-                  ),
+				 //  'url'=>'Yii::app()->createUrl("admin/genServices/index/id/$data->id")',
+                  'url'=>'Yii::app()->createUrl("/service?param=$data->id")',
+				  ),
 				  
              ),
 		),

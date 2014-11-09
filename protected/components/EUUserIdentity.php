@@ -99,12 +99,12 @@ error_log("sResultData at login:".$sResultData);
 		error_log("Auth: Error: Auth string has incorrect symbols");
 		$this->errorCode=self::ERROR_USERNAME_INVALID;
 		return !$this->errorCode; }
-	GenStr::model()->deleteAll("itime < :itime", array('itime' => time()-120));
+	GenStr::model()->deleteAll("itime < :itime", array(':itime' => time()-120));
 	if (GenStr::model()->count('sauth=:sauth', array(':sauth'=>$sResultData)) <= 0) {
 		error_log("Auth: Error: Auth string has expired 120s");
 		$this->errorCode=self::ERROR_USERNAME_INVALID;
 		return !$this->errorCode; }
-//	CabUserGenStr::model()->deleteByPk('sauth=:sauth', array(':sauth'=>$sResultData));
+	GenStr::model()->find('sauth=:sauth', array(':sauth'=>$sResultData))->delete();
 
 error_log("step2b,certiss:".$sIssuer);
 
@@ -127,12 +127,14 @@ error_log("errors:".$this->errorCode);
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         else
         {
-error_log("step06");
-	    if (($record2->user_roles_id < 4) && ($this->type_of_user != "admin")) 	// Адміністративний користувач
-	    {
-		$this->errorCode=self::ERROR_USERNAME_INVALID;
-		return !$this->errorCode;
-	    }
+error_log("step06, user_roles_id:".$record2->user_roles_id."; type_of_user:".$this->type_of_user);
+// Disable (comment) restriction on admin logon with main login page
+//	    if (($record2->user_roles_id < 4) && ($this->type_of_user != "admin")) 	// Адміністративний користувач
+//	    	{
+//error_log("step06a, error - user is admin");
+//			$this->errorCode=self::ERROR_USERNAME_INVALID;
+//			return !$this->errorCode;
+//	    }
 
             $this->_id=$record2->id;
             $this->setState('title', $record2->email);

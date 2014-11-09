@@ -33,6 +33,8 @@ class GenServCategories extends CActiveRecord
 			array('name', 'length', 'max'=>60),
 			array('visability', 'length', 'max'=>6),
 			array('icon', 'length', 'max'=>255),
+			array('name','unique','message'=>'{attribute}:{value} вже існує у базі даних!'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, visability', 'safe', 'on'=>'search'),

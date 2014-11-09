@@ -32,6 +32,7 @@ class GenLocations extends CActiveRecord
 			array('type, name', 'required'),
 			array('type', 'length', 'max'=>12),
 			array('name', 'length', 'max'=>50),
+			array('name','unique','message'=>'{attribute}:{value} вже існує у базі даних!'),
 			//array('type', 'in', 'range' => array('1','2','3')),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

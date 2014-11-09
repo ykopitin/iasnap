@@ -101,19 +101,21 @@ class SignAdmController extends Controller
 
 	public function actionLogin()
 	{
+	  $cs = Yii::app()->clientScript;
+      $cs->registerCoreScript('yiiactiveform');
 		$model = new AuthForm;
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUAuthMini.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUSignScripts3.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/auth/EUStyles2.css');
 //var_dump($_POST);
-		if(isset($_POST['AuthForm']))
+		if(isset($_POST['Signature']))
 		{
-			$model->attributes=$_POST['AuthForm'];
+			$model->Signature=$_POST['Signature'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 //				$this->redirect(Yii::app()->user->returnUrl);
-				$this->redirect(Yii::app()->baseUrl);
+				$this->redirect(Yii::app()->createUrl('cabinet'));
 		}
 		$this->render('index', array('model'=>$model));
 	}
@@ -132,20 +134,20 @@ error_log($certdir);
 //		$certdir = "../../certificates";
 		$file_list = scandir($certdir);
 		$file_list2 = array();
-error_log("getcertificates 1");
+//error_log("getcertificates 1");
 //		$i=0;
 		foreach ($file_list as $file_name)
 		{
 			if (is_file($certdir."/".$file_name) && (substr($file_name, -4)==".cer"))
 			{
-error_log("getcertificates 2");
+//error_log("getcertificates 2");
 				$file_content=file_get_contents($certdir."/".$file_name);
 //				$file_content="0934287509384j5f234jf5";
 				$file_list2[$file_name] = base64_encode($file_content);
 //				$file_list2[$i++] = $file_content;
 			}
 		}
-error_log("getcertificates 3");
+//error_log("getcertificates 3");
 		echo json_encode($file_list2);
 //		return $file_list2;
 	}

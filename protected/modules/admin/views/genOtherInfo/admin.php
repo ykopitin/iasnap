@@ -1,4 +1,3 @@
-<BR>
 <h3>Посилання на статті до категорій сайту</h3>
 
 <?php
@@ -40,9 +39,9 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		//'img',
 		array(
           'header' => 'Розділ',
-		  'name' => 'kindOfPublication.content',
+		  'name' => 'k_publication',
           'value' => '$data->kindOfPublication->content',
-		  'filter'=> CHtml::activeTextField($model, 'k_publication'),
+		 // 'filter'=> CHtml::activeTextField($model, 'k_publication'),
 		  'htmlOptions'=>array('width'=>'200px'),
 	 ),
 		
@@ -52,7 +51,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		*/
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

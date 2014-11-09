@@ -27,16 +27,16 @@ class CabUserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','createint','update'),
-				'users'=>array('@'),
-			),
+//			array('allow',  // allow all users to perform 'index' and 'view' actions
+//				'actions'=>array('index','view'),
+//				'users'=>array('@'),
+//			),
+//			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+//				'actions'=>array('create','createint','update'),
+//				'users'=>array('@'),
+//			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','adminint','delete'),
+				'actions'=>array('index','view','admin','adminint','create','createint','update','delete'),
 //				'users'=>array('admin'),
 				'expression' => "Yii::app()->user->checkAccess('siteadmin')||Yii::app()->user->id=='admin'",
 			),
@@ -92,6 +92,7 @@ class CabUserController extends Controller
 		$model=new CabUser;
 		$model->type_of_user=0;
 		$model->cab_state="не активований";
+		$model->time_registered = time();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

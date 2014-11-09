@@ -115,14 +115,15 @@ class GenServCatClass extends CActiveRecord
            // $Orgid[]=$row['id'];
                       }              
          return $id;}
-     
-
- public function getcountService($ids) {
+         
+   // $this->getIdService($_GET['servid']);
+    public function getcountService($ids) {
          
        $rows=$this->findAllByAttributes(array('cat_class_id'=>$ids));      
                           $id=count($rows);
            // $Orgid[]=$row['id'];
                                   
          return $id;} 
-    
+
+
 }

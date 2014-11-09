@@ -208,7 +208,11 @@ $( document ).ready(function() {
 		<?php echo $form->error($model,'is_online'); ?>
 	</div>
 	
-	
+	<div class="row">
+		<?php echo $form->labelEx($model,'ff_link'); ?>
+		<?php echo $form->textField($model,'ff_link',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'ff_link'); ?>
+	</div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>

@@ -45,6 +45,11 @@ input[type=checkbox].eusign {
 	.container {
 		width: 100%;
 	}
+	
+	.errorMessage {
+		width: 270px;
+		text-align: justify;
+	}
 </style>
 <style>
 .hidescreen,
@@ -75,6 +80,29 @@ input[type=checkbox].eusign {
  width: 250px;
 }
 </style>
+<style>
+.person-type {
+	width: 130px;
+	display: inline-block;
+	padding: 15px 0;
+	text-align: center;
+	text-decoration: none;
+	color: #717171;
+	font-size: 14px;
+	background: #f3f3f3;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+.person-type.active {
+	color: #000;
+	background-color: #a2d507;
+}
+</style>
+
 
 <div id="div_loading" class='load_page'>
 <p></p>
@@ -138,7 +166,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                 <input id="OwnCertPath" type="hidden" value=""/><br>
             </div>
         </div>
-    </div>
+    </div><br>
     <div style="width: 100%; text-align: center;">
         <input type="button" style="width: 35%;" value="Зберегти налаштування"
                onclick="proxy_window_SetProxy(); $('#proxy_window').dialog('close');"/>
@@ -149,16 +177,6 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 <?php
 $this->endWidget('zii.widgets.jui.CJuiDialog');
 ?>
-
-<div id="classtitle">
-<table>
-<tr><td><span id="n0"><a href="<?php echo Yii::app()->CreateUrl('sign/login'); ?>">АВТОРИЗАЦІЯ</a> </span></td>
-
-<td><span id="n1" style="background-color: #a2d507;"> <a href="#">РЕЄСТРАЦІЯ</a></span></td>
-
-</tr>
-<tr><td><p id="p0"></p> </td><td><p  id="p1" style="background: url('/iasnap/images/strelka.png') no-repeat center top;"></p> </td></tr></table>
-</div>
 
 <div id="div_loading" class='load_page'>
 <p></p>
@@ -193,7 +211,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                                             <br></br>
                                         </div>
                                     </noscript>
-	<div id="divJavaHelp2" hidden="hidden">
+	<div id="divJavaHelp2" hidden="hidden" style="width:80%; margin-left: 200px;">
                                 <p align="justify">Шановні відвідувачі, для успішного подання документів в електронній формі, на Вашому комп’ютері повинен бути встановлений пакет (плагін) Java.
                                 </p>
 <input type="button" id="btnTestJavaNow" onclick="TestJavaNow()" value="Перевірити Java зараз" /><br><br>
@@ -209,18 +227,35 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                                     <li>У випадку використання браузеру GoogleChrome для появи спливаючого вікна необхідно
                                         натиснути «Запустить один раз».</li>
                                 </ol>
+								<p>
+									Також необхідно дозволити завантаження та запуск Java-модулю.
+								</p>
 </div></div><br>
-<div class="container">
-<div style="width:290px;">
-<div><table><tr><td><span align=left style="width:30%;">
+	                                <ul class="person-types unstyled" style="float:left; list-style: none; margin-top: 27px;">
+                                        <li style="margin-bottom: 20px;"><a href="#" class="person-type fiz-person active" style="padding-top: 10px; padding-bottom: 10px;">
+                                            <img src="/images/fizik.png" />
+                                            <p>Я - фіз. особа</p>
+                                            </a>
+                                        </li>
+                                        <li><a href="#" class="person-type ur-person" style="padding-top: 10px; padding-bottom: 10px;">
+                                            <img src="/images/urik.png" />
+                                            <p>Я - юр. особа</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+<input type="hidden" id="type_of_user" name="type_of_user" value="0"></input>									
+<div class="container" style="margin-left:170px;">
+<div style="float:left;">
 <?php //$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Login', 'model'=>$model));
 	$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden', 'model'=>$model));
 	?>
+
+<div id="divMainRegForm" ><table><tr><td style="width:50%;"><span align=left style="width:30%;">
 	
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'reg-form',
-	'action' => Yii::app()->createUrl('sign/register'),
+	'action' => '#',//Yii::app()->createUrl('sign/register'),
 	'enableClientValidation'=>true,
 	'enableAjaxValidation'=>false,
 	'clientOptions'=>array(
@@ -229,10 +264,10 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 //		'afterValidate' => 'js:afterValidate',
 	),
 )); ?>
-
+  <div style="float:left; width:50%;">
 	<div class="row">
 		<?php echo $form->hiddenfield($model,'Signature'); ?>
-		<?php echo $form->error($model,'Signature'); ?>
+		<?php echo $form->error($model,'Signature',array('hideErrorMessage'=>'true')); ?>
 	</div>
 	
 	<div class="row eusign">
@@ -241,7 +276,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 		<?php echo $form->error($model,'Email'); ?>
 	</div>	
 
-	<div class="row eusign">
+	<div class="row usign">
 		<?php echo $form->labelEx($model,'Email2'); ?>
 		<?php echo $form->emailField($model, 'Email2',array('placeholder'=>'Підтвердження електронної пошти', 'class'=>'edit eusign')); ?>
 		<?php echo $form->error($model,'Email2'); ?>
@@ -253,26 +288,42 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 		<?php echo $form->error($model,'Phone'); ?>
 	</div>
 
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Реєстрація',array('onclick'=>'return signd(); return false;', 'class'=>'eusign')); ?>
 	</div>
+  </div>
+  <div style="float:right; width:50%;">
+	<div class="eusign" style="text-align:justify; position:relative; top:5px;">
+		<?php echo $form->labelEx($model, 'Acceptance'); ?>
+		<?php echo $form->checkBox($model, 'Acceptance', array('uncheckValue')); ?>
+		<?php echo $form->error($model, 'Acceptance'); ?>
+	</div>
+  </div>
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->	
-	</span></td></tr>
+	</span></td>
+
+	</tr>
 	<tr><td><span align=left style="width:30%;">
 		<input type="button" class="eusign" value="Налаштування" onclick='$("#proxy_div").show(); $("#proxy_window").dialog("open");' />
-	</span></td></tr>
+	<?php
+		$countFreeIntUsers = CabUser::model()->count(new CDbCriteria(array
+		(
+			'condition' => 'user_roles_id < 4 and cab_state = "не активований"' //Пошук неактивованих внутрішніх користувачів
+//			'params' => array(':people_id'=>$people->id)
+		)));
+		if ($countFreeIntUsers > 0) {	// Є необхідність подавати запити на реєстрацію з кодом активації
+			echo '<input type="button" class="eusign" value="Спеціальний запит" onclick=\'window.location="'.Yii::app()->createAbsoluteUrl('sign/register2').'";\' style="float: right;" />';
+		}
+	?>
+	</span></td>
+	</tr>
 	
 	</table></div></a>
 
 
 </div>  
-<div id="m1">
-<ul id="yw1">
-</ul></div> 
-
 
 </div>
 
@@ -280,34 +331,12 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 <div id="servmenu" class="container">
 
 
-<div id="leftpos">
-<table><tr><td><img src="/iasnap/images/life.png"></td><td><a href="#">Послуги за життєвими ситуаціями</a></td></tr>
-<tr><td style="text-align: center;"><img src="/iasnap/images/office.png"></td><td><a href="#">Послуги за суб'єктами надання</a></td></tr>
-</table></div>
 
-
-
-
-
-<div id="lefthelp">
-<table><tr><td><img src="/iasnap/images/computer.png"></td><td><a href="#">Технічні вимоги до комп'ютеру користувача порталу</a></td></tr>
-
-<tr><td><img src="/iasnap/images/video.png"></td><td><a href="#">Відео урок роботи з порталом</a></td></tr>
-<tr><td style="text-align: center;"><img src="/iasnap/images/search.png"></td><td><a href="#">Відстежити статус заявки</a></td></tr>
-
-</table>
-</div>
-
-
-<div id="leftecp">
-<table width="70%"><tr><td width="0%"><img src="/iasnap/images/signature.png"></td><td width="100%"><a href="#">Як отримати ЕЦП?</a></td></tr></table>
-</div>
 </div></td></tr></table>
 
 
 
 
-<h1>Реєстрація</h1>
 <script type="text/javascript">
     $( window ).load(function() {
 		var euSign = document.getElementById("euSign");
@@ -317,16 +346,81 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 			euSign.Initialize();
 			euSign.width = "1px";
 			euSign.SetUIMode(false);
-//			authForm_GetProxy();
+			authForm_GetProxy();
 			euSign.Finalize();
+			document.getElementById("divMainRegForm").hidden = "";
 			document.getElementById("divJavaHelp").hidden = "hidden";
 		} catch(e) { 
 			document.getElementById("divJavaHelp").hidden = "";
 			document.getElementById("divJavaHelp2").hidden = "";
+			document.getElementById("divMainRegForm").hidden = "hidden";
 			alert("Помилка ініціалізації Java-аплету:"+euSign.GetLastErrorCode()); 
 		}
 		
     });
+	
+    function proxy_window_SetProxy() {
+        var euSign = document.getElementById("euSign");
+        try {
+            euSign.SetCharset("UTF-16LE");
+            euSign.SetUIMode(false);
+            euSign.Initialize();
+            euSign.width = "1px";
+            euSign.SetUIMode(false);
+            authForm_SetProxy();
+            euSign.Finalize();
+        } catch (e) {
+            try {
+                euSign.Finalize();
+            } catch (e) {
+            }
+        }
+    }
+
+    function proxy_window_GetProxy() {
+        var euSign = document.getElementById("euSign");
+        try {
+            euSign.SetCharset("UTF-16LE");
+            euSign.SetUIMode(false);
+            euSign.Initialize();
+            euSign.width = "1px";
+            euSign.SetUIMode(false);
+            authForm_GetProxy();
+            euSign.Finalize();
+        } catch (e) {
+            try {
+                euSign.Finalize();
+            } catch (e) {
+            }
+        }
+    }	
+function personTypesSwitcher() {
+    var personTypes = $('.person-types .person-type');
+    var fizPerson   = $('.person-types .fiz-person');
+    var urPerson    = $('.person-types .ur-person');
+//    var legalInput  = $('.legal-input');
+	var typeOfUser     = $('#type_of_user');
+
+    fizPerson.on('click', function(e){
+        e.preventDefault();
+        personTypes.removeClass('active');
+        $(this).addClass('active');
+//        legalInput.hide().find('#legal_person').removeClass('validate[required]');
+        typeOfUser.val(0);
+
+//        $('.formError').remove();
+    });
+    urPerson.on('click', function(e){
+        e.preventDefault();
+        personTypes.removeClass('active');
+        $(this).addClass('active');
+//        legalInput.show().find('#legal_person').addClass('validate[required]');
+        typeOfUser.val(1);
+
+//        $('.formError').remove();
+    });
+} 
+personTypesSwitcher();
 </script>
 
 <script language="javascript" type="text/javascript">
@@ -345,26 +439,23 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 		$('#divJavaHelp').slideUp();
 	    }
 	} catch (e) {
-	    alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
-	    euSign.Finalize();
+		try {
+			alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
+			euSign.Finalize();
+		} catch (e) {
+			alert("Необхідний Java-модуль не завантажений. Здійсніть оновлення сторінки. Якщо помилка залишається - виконайте інструкції, наведені у примітках.");
+		}
 	}
     }
 </script>
 
 <script>
-
-function afterValidate2(form, data, hasError) {
-	console.log(data);
-    if (!hasError) {    
-        $.fn.yiiGridView.update('carvw-grid', {
-            data: $(this).serialize()
-        });
-    }
-    return false;
-}
-
 	function signd() {
 // simple validation
+		if (document.getElementById("RegForm_Acceptance").checked == "") {
+			alert("Для продовження реєстрації Ви повинні надати згоду на обробку персональних даних");
+			return false;
+		}
 		if ((document.getElementById("RegForm_Email").value == "") || (document.getElementById("RegForm_Email2").value == "")) {
 			alert("Поле для поштової адреси не може бути порожнім");
 			return false;
@@ -381,65 +472,131 @@ function afterValidate2(form, data, hasError) {
 			return false;
 		}
 		
-var $form = $('#reg-form'), settings = $form.data('settings');
-settings.submitting = true;
-var errorsExist = false;
-$.fn.yiiactiveform.validate($form, function(mes) {
-hasError = false;
-$.each($('#reg-form').data('settings').attributes, function () {
-//				if(this.id != 'RegForm_Signature')	// this = attribute of form. Signature is hidden, so no need to show error, because it was not created yet
+		var $form = $('#reg-form'), settings = $form.data('settings');
+		settings.submitting = true;
+		var errorsExist = false;
+		$.fn.yiiactiveform.validate($form, function(mes) {
+			delete mes.RegForm_Signature;
+			hasError = false;
+			$.each($('#reg-form').data('settings').attributes, function () {
+				if(this.id != 'RegForm_Signature') {	// this = attribute of form. Signature is hidden, so no need to show error, because it was not created yet
 					hasError = $.fn.yiiactiveform.updateInput(this, mes, $('#reg-form')) || hasError;
+				}
             });
 //			alert(hasError);
 //            $.fn.yiiactiveform.updateSummary($('#reg-form'), mes);
-	delete mes.RegForm_Signature;
-    if($.isEmptyObject(mes)) { // valid        
-        
-    } else {  // invalid        
-//        alert('invalid data');
-		console.log(mes);
-		errorsExits = true;
-		return false;
-    }
-});
-//return false;
-		if (errorsExist = true) {return false;}
-	
-		var euSign = document.getElementById("euSign");
-		euSign.SetCharset("UTF-16LE");
-		euSign.SetUIMode(false);
-		euSign.Initialize();
-		euSign.width = "1px";
-		euSign.SetUIMode(false);
-		var tosign = document.getElementById("RegForm_Email").value+";"+document.getElementById("RegForm_Email2").value+";"+document.getElementById("RegForm_Phone").value;
+			if($.isEmptyObject(mes)) { // valid
+//  Variable sign scenario, depending on type of user	
+				var typeOfUser = document.getElementById("type_of_user");
+				if (typeOfUser.value == 1) {	// 0-Fiz osoba; 1-Ur osoba
+					alert("Підключіть носій з ключом ЕЦП керівника установи");
+				}
+				
+				var euSign = document.getElementById("euSign");
+//		euSign.SetCharset("UTF-16LE");
+//		euSign.SetUIMode(false);
+//		euSign.Initialize();
+//		euSign.width = "1px";
+//		euSign.SetUIMode(false);
+// Agreement text
+				text1=$("[for=RegForm_Acceptance]").text();
+				text1 = text1.substring(0, text1.length - 2);
+				var tosign = document.getElementById("RegForm_Email").value+";"+document.getElementById("RegForm_Email2").value+";"+document.getElementById("RegForm_Phone").value+";"+text1;
 //		tosign="123321"+"";
-		var DataToSign = tosign;
-		EUWidgetSign(DataToSign, false, "", false, aftersign, ";", "", aftersign_waitfunction);
-		return false;
+				var DataToSign = tosign;
+				EUWidgetSign(DataToSign, false, ";", false, aftersign, ";", "", aftersign_waitfunction);
+				return false;
+			} else {  // invalid        
+//        alert('invalid data');
+				errorsExist = true;
+				return false;
+			}
+		});
 	}
 	
 	function aftersign($signed_data, $original_data64) {
+		try {
+			var typeOfUser = document.getElementById("type_of_user");
+			if(typeOfUser.value == 1) {
+//				document.getElementById("first_sign").value = signed_data;
+				alert("Тепер необхідно підключити носій з ключом електронної печатки та підписати заявку з використанням цього ключа. Після підключення носія натисніть кнопку ОК");
+				EUWidgetSign($signed_data, false, ";", false, aftersign2, ";", "", aftersign_waitfunction);
+			} else {
+				euSign.SetCharset("UTF-16LE");
+				euSign.SetUIMode(false);
+				euSign.Initialize();
+				euSign.width = "1px";
+				euSign.SetUIMode(false);
+//				var pd = euSign.BASE64Decode($original_data64);
+				var truevalid=$signed_data;
+//				euSign.WriteFile("C:\\Users\\Dencom\\0002.p7s", euSign.BASE64Decode(truevalid));
+//				var SignInfo = euSign.VerifyInternal($signed_data);
+				var SignInfo = euSign.VerifyInternal(truevalid);
+//				alert(euSign.BytesToString(SignInfo.GetData()));
+				euSign.Finalize();
+				$(".hidescreen,.load_page").fadeOut(600);
+				document.getElementById("RegForm_Signature").value = $signed_data;
+				var em = document.getElementById("RegForm_Email").value;
+				var params = new Array(); params["Signature"] = $signed_data; params["Email"] = em;
+				params["Email2"] = document.getElementById("RegForm_Email2").value;
+				params["Phone"] = document.getElementById("RegForm_Phone").value;
+				params["Acceptance"] = document.getElementById("RegForm_Acceptance").value;
+				params["TypeOfUser"] = document.getElementById("type_of_user").value;
+				post('register', params);
+			}
+		} catch(e) { alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize();}
+	}
+
+	function aftersign2($signed_data, $original_data64) {
 		try {
 			euSign.SetCharset("UTF-16LE");
 			euSign.SetUIMode(false);
 			euSign.Initialize();
 			euSign.width = "1px";
 			euSign.SetUIMode(false);
-//			var pd = euSign.BASE64Decode($original_data64);
+//				var pd = euSign.BASE64Decode($original_data64);
 			var truevalid=$signed_data;
-//			euSign.WriteFile("C:\\Users\\Dencom\\0002.p7s", euSign.BASE64Decode(truevalid));
-//			var SignInfo = euSign.VerifyInternal($signed_data);
-			var SignInfo = euSign.VerifyInternal(truevalid);
-//			alert(euSign.BytesToString(SignInfo.GetData()));
+//			var Cert2ExpireBeginTime = "";
+//			var Cert2ExpireEndTime = "";
+//console.log("signed_data:"+truevalid);
+//			if(truevalid.indexOf(';') > 0) {
+//				Cert2ExpireBeginTime = truevalid.substr(truevalid.indexOf(';')+1);
+//				Cert2ExpireEndTime = Cert2ExpireBeginTime.substr(Cert2ExpireBeginTime.indexOf(';')+1);
+//				Cert2ExpireBeginTime = Cert2ExpireBeginTime.substr(0, Cert2ExpireBeginTime.indexOf(';'));
+//				truevalid = truevalid.substr(0, truevalid.indexOf(';'));
+//			}
+//console.log("signed_data_cutted:"+truevalid);
+//				euSign.WriteFile("C:\\Users\\Dencom\\0002.p7s", euSign.BASE64Decode(truevalid));
+//				var SignInfo = euSign.VerifyInternal($signed_data);
+//			if (euSign.GetSignsCount(truevalid) == 2) {
+//				alert(truevalid);
+				var SignInfo1 = euSign.VerifyInternal(truevalid);
+				var SignedData1 = SignInfo1.GetDataString("UTF-16LE");
+				SignedData1 = SignedData1.substr(0, SignedData1.indexOf(';'));
+				var SignInfo2 = euSign.VerifyInternal(SignedData1);
+//				var SignedData2 = SignInfo2.GetDataString("UTF-16LE");
+//				var OwnerInfo1 = SignInfo1.GetOwnerInfo();
+//				var OwnerInfo2 = SignInfo2.GetOwnerInfo();
+//				alert(OwnerInfo1.GetSubjCN());
+//				alert(OwnerInfo2.GetSubjCN());
+
+//			} else {alert("Виникла помилка при накладанні додаткових ЕЦП. Будь-ласка, виконайте процедуру з дотриманням інструкцій, що з'являються на екрані."); return false;}
+//				alert(euSign.BytesToString(SignInfo.GetData()));
 			euSign.Finalize();
 			$(".hidescreen,.load_page").fadeOut(600);
 			document.getElementById("RegForm_Signature").value = $signed_data;
 			var em = document.getElementById("RegForm_Email").value;
-			var params = new Array(); params["Signature"] = $signed_data; params["Email"] = em;
+			var params = new Array(); params["Signature"] = truevalid; params["Email"] = em;
+			params["Email2"] = document.getElementById("RegForm_Email2").value;
+			params["Phone"] = document.getElementById("RegForm_Phone").value;
+			params["Acceptance"] = document.getElementById("RegForm_Acceptance").value;
+			params["TypeOfUser"] = document.getElementById("type_of_user").value;
+//			params["Cert2ExpireBeginTime"] = Cert2ExpireBeginTime;
+//			params["Cert2ExpireEndTime"] = Cert2ExpireEndTime;
 			post('register', params);
-		} catch(e) { alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize();}
+		} catch(e) { alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize(); $(".hidescreen,.load_page").fadeOut(600);}
 	}
-
+	
 	function aftersign_waitfunction(wait_state) {
 		if (wait_state == "wait_on") {
 	        $(".hidescreen,.load_page").fadeIn(10);

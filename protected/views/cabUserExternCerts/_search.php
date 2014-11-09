@@ -42,13 +42,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'certType'); ?>
-		<?php echo $form->textField($model,'certType'); ?>
+		<?php echo $form->label($model,'certData'); ?>
+		<?php echo $form->textField($model,'certData'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'certData'); ?>
-		<?php echo $form->textField($model,'certData'); ?>
+		<?php echo $form->label($model,'certType'); ?>
+		<?php echo $form->textField($model,'certType'); ?>
 	</div>
 
 	<div class="row">

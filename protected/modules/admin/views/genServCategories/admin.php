@@ -1,4 +1,3 @@
-<BR>
 <h3>Каталог категорій послуг</h3>
 
 <?php
@@ -25,7 +24,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		'visability',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

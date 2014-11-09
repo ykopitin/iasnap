@@ -16,6 +16,6 @@ $this->menu=array(
 <h1>Create CabUser</h1>
 
 <?php 
-	$model->str_tdata = sprintf("%08d", rand(0,99999999));
+	$model->str_activcode = sprintf("%08d", rand(0,99999999));
 	$this->renderPartial('_form', array('model'=>$model));
 ?>

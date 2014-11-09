@@ -22,12 +22,12 @@ return array(
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		'admin',
-		'gii'=>array(
+		/*'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'iasnap/idex.php',
+			'password'=>'iasnap08',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
-		),
+		),*/
 		  'mff'=>array( // Модуль свободных форм
               //      'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
                 ),
@@ -48,11 +48,19 @@ return array(
 			//'baseUrl'=>'',
 			'urlFormat'=>'path',
 			'rules'=>array(
-				'1'=>'site/contact',
+				'services/get-service/<id:\d+>'=>'site/getService',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+            'showScriptName'=>false,
+			//'showScriptName'=>false,
+			//'rules'=>array(
+			//	'1'=>'site/contact',
+			//	'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+			//	'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+			//	'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+			//),
 		),
 		
 		/*
@@ -92,6 +100,10 @@ return array(
 				*/
 			),
 		),
+		'swiftMailer'=>array(
+			'class'=>'ext.swiftMailer.SwiftMailer',
+		),
+		
 	),
 
 	// application-level parameters that can be accessed

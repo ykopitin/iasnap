@@ -10,6 +10,11 @@
  * @property string $phone
  * @property string $cab_state
  * @property string $authorities_id
+ * @property string $str_activcode
+ * @property int $time_activcode
+ * @property mediumblob $pd_agreement_signed
+ * @property int $time_registered
+ * @property int $time_last_login
  *
  * The followings are the available model relations:
  * @property CabOrgExternalCerts[] $cabOrgExternalCerts
@@ -18,6 +23,9 @@
  */
 class CabUser extends CActiveRecord
 {
+	public $author_search;
+	public $user_rol;
+	public $idi;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,13 +47,18 @@ class CabUser extends CActiveRecord
 			array('type_of_user, authorities_id, user_roles_id', 'numerical', 'integerOnly'=>true),
 			array('id', 'length', 'max'=>10),
 			array('email', 'length', 'max'=>45),
+			array('fio', 'length', 'max'=>250),
 			array('email', 'email'),
 			array('phone', 'length', 'max'=>12),
 			array('cab_state', 'length', 'max'=>27),
-			array('str_tdata', 'length', 'max'=>40),
+			array('str_activcode', 'length', 'max'=>40),
+			array('time_activcode, time_registered, time_last_login', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type_of_user, email, phone, cab_state, str_tdada', 'safe', 'on'=>'search'),
+			array('id, type_of_user, fio, email, phone, cab_state, str_activcode, time_registered, time_last_login', 'safe', 'on'=>'search'),
+		    array('author_search', 'safe', 'on'=>'search'),
+			array('user_rol', 'safe', 'on'=>'search'),
+			array('idi', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,12 +86,16 @@ class CabUser extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'type_of_user' => 'Тип користувача (0-фіз.особа, 1- ФОП, 2-юр.особа)',
+			'fio' => 'Прізвище, ім\'я та по-батькові користувача',
 			'email' => 'Електронна поштова скринька',
 			'phone' => 'Мобільний телефон',
 			'cab_state' => 'стан кабінету',
 			'authorities_id' => 'ID місця надання послуг',
 			'user_roles_id' => 'Роль користувача (0-адм.безп., 1-сист.адм., 2-адм.ЦНАП, 3-оп.НАП, 4-суб.зверн.)',
-			'str_tdata' => 'Дані для тимчасового використання при реєстрації (строка активації користувача та ін.)',
+			'str_activcode' => 'Дані для тимчасового використання при реєстрації (строка активації користувача та ін.)',
+			'time_activcode' => 'Час дії строки активації',
+			'time_registered' => 'Дата реєстрації користувача',
+			'time_last_login' => 'Дата останнього входу користувача',
 		);
 	}
 
@@ -108,7 +125,10 @@ class CabUser extends CActiveRecord
 		$criteria->compare('authorities_id',$this->authorities_id,true);
 //		$criteria->compare('user_roles_id',$this->user_roles_id,true);
 		$criteria->compare('user_roles_id','4',true);
-		$criteria->compare('str_tdata',$this->str_tdata,true);
+		$criteria->compare('str_activcode',$this->str_activcode,true);
+		$criteria->compare('time_activcode',$this->time_activcode,true);
+		$criteria->compare('time_registered',$this->time_registered,true);
+		$criteria->compare('time_last_login',$this->time_last_login,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -120,7 +140,7 @@ class CabUser extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array( 'cabUserRole', 'cabUserAuthorityId' );
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('type_of_user',$this->type_of_user);
 		$criteria->compare('email',$this->email,true);
@@ -129,10 +149,49 @@ class CabUser extends CActiveRecord
 		$criteria->compare('authorities_id',$this->authorities_id,true);
 //		$criteria->compare('user_roles_id',$this->user_roles_id,true);
 		$criteria->compare('user_roles_id','<4',true);
-		$criteria->compare('str_tdata',$this->str_tdata,true);
-
+		$criteria->compare('str_activcode',$this->str_activcode,true);
+		$criteria->compare('time_activcode',$this->time_activcode,true);
+		$criteria->compare('time_registered',$this->time_registered,true);
+		$criteria->compare('time_last_login',$this->time_last_login,true);
+		$criteria->addSearchCondition('cabUserRole.user_role', $this->user_rol);
+		$criteria->addSearchCondition('cabUserAuthorityId.name', $this->author_search);
+		$criteria->addSearchCondition('t.id', $this->idi);
+//		$criteria->alias = 'post';
+//		$criteria->join = 'INNER JOIN gen_authorities as user ON post.authorities_id=user.id';
+//		$criteria->join = 'INNER JOIN cab_user_roles as role ON post.user_roles_id=role.id';
+//		$criteria->order = 'post.id';
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			
+			 'sort'=>array(
+        'attributes'=>array(
+           'idi'=>array(
+                'asc'=>'t.id',
+                'desc'=>'t.id DESC',
+            ),
+			'fio'=>array(
+                'asc'=>'t.fio',
+                'desc'=>'t.fio DESC',
+            ),
+			'type_of_user'=>array(
+                'asc'=>'t.type_of_user',
+                'desc'=>'t.type_or_user DESC',
+            ),
+			'cab_state'=>array(
+                'asc'=>'t.cab_state',
+                'desc'=>'t.cab_state DESC',
+            ),
+		   'user_rol'=>array(
+                'asc'=>'cabUserRole.user_role',
+                'desc'=>'cabUserRole.user_role DESC',
+            ),
+		   'author_search'=>array(
+                'asc'=>'cabUserAuthorityId.name',
+                'desc'=>'cabUserAuthorityId.name DESC',
+            ),
+			
+			),
+          ),			
 		));
 	}
 	
@@ -145,10 +204,22 @@ class CabUser extends CActiveRecord
         foreach ($items as $item) {
             $auth->revoke($item->name, $this->id);
         }
-        
+//	0	secadmin
+//	1	siteadmin
+//	2	cnapadmin
+//	3	snapoperator
+//	4	customer
+//	5	guest
+		
         // assign new role to the user
-		if ($this->user_roles_id <= 1) {
-			$auth->assign('siteadmin', $this->id);
+		if ($this->cab_state == "активований") {
+			if ($this->user_roles_id <= 1) {
+				$auth->assign('siteadmin', $this->id);
+			} else
+			if ($this->user_roles_id == 4) {
+				$auth->assign('customer', $this->id);
+			} else
+				$auth->assign('guest', $this->id);
 		}
 		$auth->save();
 

@@ -56,6 +56,86 @@
 		<?php echo $form->textField($model,'ext_user_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
+		<div class="row">
+		<?php echo $form->label($model,'certSignTime'); ?>
+		<?php echo $form->textField($model,'certSignTime'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certUseTSP'); ?>
+		<?php echo $form->textField($model,'certUseTSP'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certIssuerCN'); ?>
+		<?php echo $form->textArea($model,'certIssuerCN',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubject'); ?>
+		<?php echo $form->textArea($model,'certSubject',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjCN'); ?>
+		<?php echo $form->textArea($model,'certSubjCN',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjOrg'); ?>
+		<?php echo $form->textArea($model,'certSubjOrg',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjOrgUnit'); ?>
+		<?php echo $form->textArea($model,'certSubjOrgUnit',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjTitle'); ?>
+		<?php echo $form->textArea($model,'certSubjTitle',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjState'); ?>
+		<?php echo $form->textArea($model,'certSubjState',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjLocality'); ?>
+		<?php echo $form->textArea($model,'certSubjLocality',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjFullName'); ?>
+		<?php echo $form->textArea($model,'certSubjFullName',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjAddress'); ?>
+		<?php echo $form->textArea($model,'certSubjAddress',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjPhone'); ?>
+		<?php echo $form->textArea($model,'certSubjPhone',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjEMail'); ?>
+		<?php echo $form->textArea($model,'certSubjEMail',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certSubjDNS'); ?>
+		<?php echo $form->textArea($model,'certSubjDNS',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'certExpireEndTime'); ?>
+		<?php echo $form->textField($model,'certExpireEndTime'); ?>
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

@@ -71,9 +71,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'str_tdata'); ?>
-		<?php echo $form->textField($model,'str_tdata',array('size'=>40,'maxlength'=>40)); ?>
-		<?php echo $form->error($model,'str_tdata'); ?>
+		<?php echo $form->labelEx($model,'str_activcode'); ?>
+		<?php echo $form->textField($model,'str_activcode',array('size'=>40,'maxlength'=>40)); ?>
+		<?php echo $form->error($model,'str_activcode'); ?>
 	</div>
 
 	<div class="row buttons">

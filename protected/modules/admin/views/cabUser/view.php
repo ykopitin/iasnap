@@ -30,6 +30,14 @@ $this->menu=array(
 		'cab_state',
 		'authorities_id',
 		'user_roles_id',
-		'str_tdata',
+		'str_activcode',
+		array(
+			'name'=>'time_registered',
+			'value'=>date('d.m.Y H:i:s', $model->time_registered),
+		),
+		array(
+			'name'=>'time_last_login',
+			'value'=>date('d.m.Y H:i:s', $model->time_last_login),
+		),
 	),
 )); ?>

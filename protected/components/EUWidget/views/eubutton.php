@@ -20,10 +20,8 @@ checkbox .eusign{
 }
 </style>
 
-<applet codebase="http://sign.eu.iit.com.ua"
+<applet codebase="https://cnaptest.pp.ua/auth"
 	code="com.iit.certificateAuthority.endUser.libraries.signJava.EndUser.class"
-	cache_archive="Java.jar"
-	cache_version="1.3.51"
 	archive="EUSignJava.jar"
 	id="euSign"
 	width="100%"
@@ -44,9 +42,9 @@ checkbox .eusign{
                 <!--	Елементи opaco та popup необхідні для коректного відображення форми вибору носія закритого ключа та форми параметрів	-->
                 <div id="opaco" class="hidden"></div>
                 <div id="popup" class="hidden"></div>
-<div>
 <?php //if ($this->WidgetType == 'Login') $act = 'sign/login'; else if ($this->WidgetType == 'Sign') $act = 'auth/regconfirm';
     if ($this->WidgetType != 'Hidden') {
+	echo '<div>';
 	$form=$this->beginWidget('CActiveForm', array(
 	'id'=>'AuthForm',
 	'action' => Yii::app()->createUrl($this->WidgetAction),
@@ -62,7 +60,7 @@ checkbox .eusign{
 	echo '<div class="row buttons">';
 		$url= "'".Yii::app()->baseUrl."'";
 		if ($this->WidgetType == 'Login')
-			echo CHtml::submitButton('Вхід за ЕЦП', array('onclick'=>'authForm_SetProxyAndSignIn(); return false;'));
+			echo CHtml::submitButton('Вхід за ЕЦП', array('onclick'=>'authForm_SetProxyAndSignIn(); return false;', 'class'=>'eusign'));
 		else 
 			echo CHtml::submitButton('Підписати', array('onclick'=>'return authForm_SignIn();'));
 error_log("WidgetType:".$this->WidgetType);	
@@ -78,22 +76,20 @@ echo '</div><!-- form -->';
 
 <input id="SignRandstr" type="hidden" value="" />
 
-<?php if ($this->WidgetType!="Hidden")
-echo '<label><input id="ProxyUse" type="checkbox" onclick="Use_Proxy_Check()"/>Проксі-сервер</label><br>';
+<?php if (($this->WidgetType!="Hidden") && ($this->WidgetType!="Login")) {
+echo '<label><input id="ProxyUse" type="checkbox" onclick="Use_Proxy_Check()"/>Використовувати проксі-сервер</label><br>';
+
+echo '<div id="proxy-settings" style="display: none;" >';
+echo '<input id="ProxyName" type="text" value="" placeholder="Адреса проксі-сервера" /><br>';
+echo '<input id="ProxyPort" type="text" value="" placeholder="Порт проксі-сервера" /><br>';
+echo '<div>';
+echo '<label><input id="ProxyAnonymous" type="checkbox" onclick="Use_Proxypas_Check()" />Авторизація на проксі-сервері</label><br>';
+echo '</div>';
+echo '<div id="proxy-auth" style="display: none;" >';
+echo '<input id="ProxyUser" type="text" value="" placeholder="Ім\'я користувача" /><br>';
+echo '<input id="ProxyPassword" type="password" value="" placeholder="Пароль" /><br>';
+echo '<input id="OwnCertPath" type="hidden" value="" /><br>';
+echo '</div>';
+echo '</div>';
+}
 ?>
-
-<div class="eusign" id="proxy-settings" style="display: none;" >
-<input id="ProxyName" type="text" value="" placeholder="Адреса проксі-сервера" /><br>
-<input id="ProxyPort" type="text" value="" placeholder="Порт проксі-сервера" /><br>
-
-<div>
-<label><input id="ProxyAnonymous" type="checkbox" onclick="Use_Proxypas_Check()" />Авторизація на проксі-сервері</label><br>
-</div>
-<div id="proxy-auth" style="display: none;" >
-<input id="ProxyUser" type="text" value="" placeholder="Ім'я користувача" /><br>
-<input id="ProxyPass" type="password" value="" placeholder="Пароль" /><br>
-<input id="OwnCertPath" type="hidden" value="" /><br>
-</div>
-</div>
-</div>
-

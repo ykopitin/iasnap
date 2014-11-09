@@ -4,7 +4,7 @@ $usid=Yii::app()->user->id;
 
 /// Вставка перехода в кабинет
 
-$this->widget('mff.components.CabinetWidget',array("cabinetId"=>85));
+$this->widget('mff.components.CabinetWidget',array("cabinetId"=>1));
 return; // ОТКЛЮЧИЛ ИЗ-ЗА ТОГО ЧТО ЛОКАЛЬНО ТЕСТИРОВАТЬ НЕЛЬЗЯ (НЕ ПРОХОДИТ АВТОРИЗАЦИЯ)
 /// Конец вставки
 
@@ -31,9 +31,9 @@ else {$ok=0;}
 Тут Ви можете продивитися статус та історію Ваших заяв, або переглянути та змінти Ваші персональні дані. </p>
  <form action="<?php echo Yii::app()->baseUrl; ?>/index.php/cabinet" method="post">
  Ваш e-mail:
- <input type="text" name="mail" id="cab" value="<?php echo CabUserExternal::model()->findByPk($usid)->email;?>">
+ <input type="text" name="mail" id="cab" value="<?php echo CabUser::model()->findByPk($usid)->email;?>">
                
-Ваш телефон:<input type="text" name="fone" id="cab" value="<?php echo CabUserExternal::model()->findByPk($usid)->phone;?>">
+Ваш телефон:<input type="text" name="fone" id="cab" value="<?php echo CabUser::model()->findByPk($usid)->phone;?>">
 <input type="submit" value="Зберегти зміни">
 <?php 
 if ($ok==1) {

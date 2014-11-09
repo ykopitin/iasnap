@@ -29,7 +29,8 @@ class GenServicesController extends Controller
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('index','create','update','admin','delete'),
-				'users'=>array('admin'),
+				//'users'=>array('admin'),
+				 'expression' => "Yii::app()->user->checkAccess('siteadmin')||Yii::app()->user->id=='admin'",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -55,7 +56,7 @@ class GenServicesController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+        $_SESSION['KCFINDER']['disabled'] = false;
 		if(isset($_POST['GenServices']))
 		{
 			$model->attributes=$_POST['GenServices'];
@@ -77,7 +78,7 @@ class GenServicesController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+        $_SESSION['KCFINDER']['disabled'] = false;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

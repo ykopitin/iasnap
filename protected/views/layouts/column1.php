@@ -16,12 +16,11 @@
                           array('label'=>'Відомості про центри та суб’єкти','url'=>array('/admin/genAuthorities/admin')),
                           array('label'=>'Відомості про послуги','url'=>array('/admin/genServices/admin')),
 						  array('label'=>'Зв\'язок послуг з категоріями та класами','url'=>array('/admin/genServCatClass/admin')),
-						  array('label'=>'Маршрути до послуг'),
+						  array('label'=>'Зв\'язок послуг з життєвими ситуаціями','url'=>array('/admin/genServLifeSituations/admin')),
 						),
                 ),
                 array('label'=>'Користувачі',
 				       'items'=>array(
-                          array('label'=>'Ролі користувачів'),
                           array('label'=>'Внутрішні користувачі порталу', 'url'=>array('/admin/CabUser/adminint')),
 						  array('label'=>'Сертифікати на реєстрацію', 'url'=>array('/admin/CabUserInternCerts/admin')),
 						  array('label'=>'Зовнішні користувачі порталу', 'url'=>array('/admin/CabUser/admin')),
@@ -33,6 +32,7 @@
 				'items'=>array(
                           array('label'=>'Класи послуг','url'=>array('/admin/genServClasses/admin')),
                           array('label'=>'Категорії послуг','url'=>array('/admin/genServCategories/admin')),
+						  array('label'=>'Життєві ситуації','url'=>array('/admin/genLifeSituation/admin')),
 						  array('label'=>'Зв\'язок категорій з класами','url'=>array('/admin/genCatClasses/admin')),
 						  array('label'=>'Відомості про населені пункти','url'=>array('/admin/genLocations/admin')),
                    ),
@@ -41,8 +41,8 @@
 				'items'=>array(
                           array('label'=>'Генератор вільних форм','url'=>array('/mff/formgen/index')),
                           array('label'=>'Управління сховищами','url'=>array('/mff/storage/index')),
-						  array('label'=>'Тестування документів на звітних формах','url'=>array('/mff/formview/index')),
-						  array('label'=>'Тестування кабінетів','url'=>array('/mff/cabinet/index')),
+						  array('label'=>'Внесення документів до сховища','url'=>array('/mff/formview/index')),
+						  array('label'=>'Перегляд кабінетів','url'=>array('/mff/cabinet/index')),
                    ),
 				),
             ),

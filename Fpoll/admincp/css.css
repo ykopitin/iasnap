@@ -1,0 +1,33 @@
+body {
+	color: #000000;
+	font-family: Arial, Trebuchet MS, Verdana, Tahoma, Sans-Serif;
+	font-size: 12px;
+	padding: 30px;
+	margin: 30px;
+
+	
+}
+a {
+	color: #0075BB;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;	
+}
+hr {
+	height: 0px;
+	border: 0px;
+	border-bottom: 1px solid #DADADA;
+	margin: 5px;
+	margin-left: 0px;
+	
+
+}
+.poll {
+	padding: 5px;
+	background-color: #F9F9F9;
+	width: 230px;	
+	font-family: Arial, Trebuchet MS, Verdana, Tahoma, Sans-Serif;
+	font-size: 12px;
+	
+}

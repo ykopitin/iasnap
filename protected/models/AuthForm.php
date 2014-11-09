@@ -50,7 +50,7 @@ class AuthForm extends CFormModel
 			error_log("AuthForm,authenticate,Signature:".$this->Signature);
 			$this->_identity=new EUUserIdentity($this->Signature);
 			if(!$this->_identity->authenticate())
-				$this->addError('Signature','Incorrect Signature.');
+				$this->addError('Signature','Не вдалось перевірити підпис.');
 		}
 	}
 
@@ -70,6 +70,9 @@ error_log("AuthForm model login");
 		{
 			$duration=0; //$this->rememberMe ? 3600*24*30 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
+			$cabuser = CabUser::model()->findByPk(Yii::app()->user->id);
+			$cabuser->time_last_login = time();
+			$cabuser->save();
 			return true;
 		}
 		else

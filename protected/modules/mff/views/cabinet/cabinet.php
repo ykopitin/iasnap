@@ -10,8 +10,8 @@ if (!isset($cabinetmodel)) {
         echo "Такой кабинет отсутствует";
         return;
     }
-    $cabinetmodel->refresh();
 }
+$cabinetmodel->refresh();
 echo "<b>".$cabinetmodel->name."</b><br />";
 echo "<i>".$cabinetmodel->comment."</i><br />";
 $userId=Yii::app()->User->id;
@@ -59,7 +59,7 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 //    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
     )
 );
-if ($this->action->id=="save") {
+if ($this->owner->action->id=="save") {
     $urldata=array(
         "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id))),
         "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),

@@ -1,5 +1,5 @@
 <BR>
-<h3>Зовнішні користувачі порталу</h3>
+<h3>Внутрішні користувачі порталу</h3>
 <?php
 $this->widget('zii.widgets.jui.CJuiButton',array(
     'name'=>'cjui-link',
@@ -49,12 +49,32 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->searchint(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+//		'id',
+		array(
+			'header'=>'№ з/п',
+			'name'=>'idi',
+			'value'=>'$data->id',
+//			'htmlOptions'=>array('width'=>'200px'),
+		),
 		'fio',
 		'type_of_user',
-		'email',
-		'phone',
+//		'email',
+//		'phone',
 		'cab_state',
+//		'user_roles_id',
+		array(
+			'header'=>'Роль користувача',
+			'name'=>'user_rol',
+			'value'=>'$data->cabUserRole->user_role',
+			'htmlOptions'=>array('width'=>'200px'),
+		),
+//		'authorities_id',
+		array(
+			'header'=>'Місце надання послуг',
+			'name'=>'author_search',
+			'value'=>'$data->cabUserAuthorityId->name',
+			'htmlOptions'=>array('width'=>'200px'),
+		),
 		array(
 			'class'=>'CButtonColumn',
 			'buttons'=>array

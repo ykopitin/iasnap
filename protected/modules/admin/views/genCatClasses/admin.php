@@ -1,4 +1,3 @@
-<BR>
 <h3>Зв'язок категорій з класами</h3>
 
 <?php
@@ -34,6 +33,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
       ),
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array
@@ -44,10 +44,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
                   (
                    'label'=>'Оновити',
                   ),
-				  'view' => array
-                  (
-                   'label'=>'Відобразити',
-                  ),
+				  
              ),
 		),
 	),

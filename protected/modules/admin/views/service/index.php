@@ -78,7 +78,7 @@
     )
 ));
   
-?> </div> <?php  
+?> </div> <?php
 //  Yii::app()->controller->renderPartial('//../modules/user/views/user/login'
   
   

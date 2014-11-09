@@ -52,6 +52,7 @@ class GenAuthorities extends CActiveRecord
 			array('is_cnap', 'length', 'max'=>8),
 			array('type', 'length', 'max'=>16),
 			array('name, transport, photo', 'length', 'max'=>255),
+			array('name','unique','message'=>'{attribute}:{value} вже існує у базі даних!'),
 			array('working_time', 'length', 'max'=>1500),
 			array('index, office', 'length', 'max'=>5),
 			array('street', 'length', 'max'=>50),

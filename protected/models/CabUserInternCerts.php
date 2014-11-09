@@ -37,7 +37,7 @@ class CabUserInternCerts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('certissuer, certserial, certSubjDRFOCode, certData, certType', 'required'),
+			array('certissuer, certserial, certData, certType', 'required'),
 			array('certType', 'numerical', 'integerOnly'=>true),
 			array('id, certSubjDRFOCode, certSubjEDRPOUCode', 'length', 'max'=>10),
 			array('certserial', 'length', 'max'=>40),

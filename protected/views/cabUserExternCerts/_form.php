@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Поля з символом "<span class="required">*</span>" є обов'язковими для заповнення.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -55,16 +55,16 @@
 		<?php echo $form->error($model,'certSubjEDRPOUCode'); ?>
 	</div>
 
+<!--	<div class="row"> -->
+		<?php /*echo $form->labelEx($model,'certData'); */?>
+		<?php /*echo $form->textField($model,'certData'); */?>
+		<?php /*echo $form->error($model,'certData'); */?>
+<!--	</div> -->
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'certType'); ?>
 		<?php echo $form->textField($model,'certType'); ?>
 		<?php echo $form->error($model,'certType'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'certData'); ?>
-		<?php echo $form->textField($model,'certData'); ?>
-		<?php echo $form->error($model,'certData'); ?>
 	</div>
 
 	<div class="row">
@@ -74,7 +74,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

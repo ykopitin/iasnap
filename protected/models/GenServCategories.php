@@ -199,7 +199,7 @@ class GenServCategories extends CActiveRecord
                  $c=GenServCatClass::model()->getcountService($m);
                 $menu[]=array(
                 'label'=>'<div>'.$row['name'].' <font size=1 color=#808080>('.$c.')</font></div>',
-                'url'=>array('/serv/?class=2&&servid='.$m),
+                'url'=>array('/serv/?class=2&&servid='.$m.'#anchor1'),
                 'active'=>$pam==$m,
                  'encodeLabel'=>false,
                 //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
@@ -227,7 +227,7 @@ class GenServCategories extends CActiveRecord
                $c=GenServCatClass::model()->getcountService($m);
                 $menu[]=array(
                  'label'=>'<div>'.$row['name'].' <font size=1 color=#808080>('.$c.')</font></div>',
-                'url'=>array('/serv/?class=1&&servid='.$m),
+                'url'=>array('/serv/?class=1&&servid='.$m.'#anchor1'),
                 'active'=>$pam==$m,
                
                 //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])

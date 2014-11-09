@@ -13,9 +13,26 @@
  * @property string $certData
  * @property integer $certType
  * @property string $ext_user_id
+ * @property integer $certSignTime
+ * @property integer $certUseTSP
+ * @property string $certIssuerCN
+ * @property string $certSubject
+ * @property string $certSubjCN
+ * @property string $certSubjOrg
+ * @property string $certSubjOrgUnit
+ * @property string $certSubjTitle
+ * @property string $certSubjState
+ * @property string $certSubjLocality
+ * @property string $certSubjFullName
+ * @property string $certSubjAddress
+ * @property string $certSubjPhone
+ * @property string $certSubjEMail
+ * @property string $certSubjDNS
+ * @property integer $certExpireBeginTime
+ * @property integer $certExpireEndTime
  *
  * The followings are the available model relations:
- * @property CabUserExternal $extUser
+ * @property CabUser $extUser
  */
 class CabUserExternCerts extends CActiveRecord
 {
@@ -35,13 +52,13 @@ class CabUserExternCerts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_of_user, certissuer, certserial, certData, certType, ext_user_id', 'required'),
-			array('type_of_user, certType', 'numerical', 'integerOnly'=>true),
+			array('type_of_user, certissuer, certserial, certType, ext_user_id', 'required'),
+			array('type_of_user, certType, certSignTime, certUseTSP, certExpireBeginTime, certExpireEndTime', 'numerical', 'integerOnly'=>true),
 			array('id, certSubjDRFOCode, certSubjEDRPOUCode, ext_user_id', 'length', 'max'=>10),
 			array('certserial', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type_of_user, certissuer, certserial, certSubjDRFOCode, certSubjEDRPOUCode, certData, certType, ext_user_id', 'safe', 'on'=>'search'),
+			array('id, type_of_user, certissuer, certserial, certSubjDRFOCode, certSubjEDRPOUCode, certData, certType, ext_user_id, certSignTime, certUseTSP, certIssuerCN, certSubject, certSubjCN, certSubjOrg, certSubjOrgUnit, certSubjTitle, certSubjState, certSubjLocality, certSubjFullName, certSubjAddress, certSubjPhone, certSubjEMail, certSubjDNS, certExpireBeginTime, certExpireEndTime', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +89,24 @@ class CabUserExternCerts extends CActiveRecord
 			'certData' => 'Вміст сертифікату',
 			'certType' => 'Тип ЕЦП/шифрування',
 			'ext_user_id' => 'ID зовнішнього користувача',
+			
+			'certSignTime' => 'Час підпису форми реєстрації',
+			'certUseTSP' => 'Присутність мітки часу',
+			'certIssuerCN' => 'Загальне ім\'я видавника',
+			'certSubject' => 'Власник сертифікату',
+			'certSubjCN' => 'Загальне ім\'я власника',
+			'certSubjOrg' => 'Організація',
+			'certSubjOrgUnit' => 'Підрозділ',
+			'certSubjTitle' => 'Посада',
+			'certSubjState' => 'Область',
+			'certSubjLocality' => 'Місто',
+			'certSubjFullName' => 'Повне ім\'я',
+			'certSubjAddress' => 'Адреса',
+			'certSubjPhone' => 'Телефон',
+			'certSubjEMail' => 'E-Mail',
+			'certSubjDNS' => 'DNS',
+			'certExpireBeginTime' => 'Дата початку дії сертифікату',
+			'certExpireEndTime' => 'Дата закінчення дії сертифікату',
 		);
 	}
 
@@ -102,7 +137,23 @@ class CabUserExternCerts extends CActiveRecord
 		$criteria->compare('certData',$this->certData,true);
 		$criteria->compare('certType',$this->certType);
 		$criteria->compare('ext_user_id',$this->ext_user_id,true);
-
+		$criteria->compare('certSignTime',$this->certSignTime);
+		$criteria->compare('certUseTSP',$this->certUseTSP);
+		$criteria->compare('certIssuerCN',$this->certIssuerCN,true);
+		$criteria->compare('certSubject',$this->certSubject,true);
+		$criteria->compare('certSubjCN',$this->certSubjCN,true);
+		$criteria->compare('certSubjOrg',$this->certSubjOrg,true);
+		$criteria->compare('certSubjOrgUnit',$this->certSubjOrgUnit,true);
+		$criteria->compare('certSubjTitle',$this->certSubjTitle,true);
+		$criteria->compare('certSubjState',$this->certSubjState,true);
+		$criteria->compare('certSubjLocality',$this->certSubjLocality,true);
+		$criteria->compare('certSubjFullName',$this->certSubjFullName,true);
+		$criteria->compare('certSubjAddress',$this->certSubjAddress,true);
+		$criteria->compare('certSubjPhone',$this->certSubjPhone,true);
+		$criteria->compare('certSubjEMail',$this->certSubjEMail,true);
+		$criteria->compare('certSubjDNS',$this->certSubjDNS,true);
+		$criteria->compare('certExpireBeginTime',$this->certExpireBeginTime);
+		$criteria->compare('certExpireEndTime',$this->certExpireEndTime);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

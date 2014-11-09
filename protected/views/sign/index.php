@@ -138,7 +138,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                 <input id="OwnCertPath" type="hidden" value=""/><br>
             </div>
         </div>
-    </div>
+    </div><br>
     <div style="width: 100%; text-align: center;">
         <input type="button" style="width: 35%;" value="Зберегти налаштування"
                onclick="proxy_window_SetProxy(); $('#proxy_window').dialog('close');"/>
@@ -150,21 +150,10 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 $this->endWidget('zii.widgets.jui.CJuiDialog');
 ?>
 
-<div id="classtitle">
-<table>
-<tr><td><span id="n0" style="background-color: #a2d507;"><a href="#">АВТОРИЗАЦІЯ</a> </span></td>
-
-<td><span id="n1"> <a href="<?php echo Yii::app()->CreateUrl('sign/register'); ?>">РЕЄСТРАЦІЯ</a></span></td>
-
-</tr>
-<tr><td><p  id="p0" style="background: url('/iasnap/images/strelka.png') no-repeat center top;"></p> </td><td><p  id="p1"></p> </td></tr></table>
-</div>
-
-<table width="900px"><tr><td width="650px" style="vertical-align: top;">
 
 <div class="container">
-<div style="width:290px;">
-<div><table><tr><td><span align=left style="width:30%;">
+<div style="width:290px; margin-left:312px;">
+<div id="divMainRegForm"><table><tr><td><span align=left style="width:30%;">
 <?php //$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Login', 'model'=>$model));
 	$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden', 'model'=>$model));
 	?>
@@ -191,6 +180,9 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 	</div>
 
 <?php $this->endWidget(); ?>
+<p>
+	<a href="<?php echo Yii::app()->createAbsoluteUrl('sign/register'); ?>">Бажаєте зареєструватися?</a>
+	</p>
 </div><!-- form -->	
 	</span></td></tr>
 	<tr><td><span align=left style="width:30%;">
@@ -201,40 +193,9 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 
 
 </div>  
-<div id="m1">
-<ul id="yw1">
-</ul></div> 
-
 
 </div>
 
-</td><td style="vertical-align: top; ">
-<div id="servmenu" class="container">
-
-
-<div id="leftpos">
-<table><tr><td><img src="/iasnap/images/life.png"></td><td><a href="#">Послуги за життєвими ситуаціями</a></td></tr>
-<tr><td style="text-align: center;"><img src="/iasnap/images/office.png"></td><td><a href="#">Послуги за суб'єктами надання</a></td></tr>
-</table></div>
-
-
-
-
-
-<div id="lefthelp">
-<table><tr><td><img src="/iasnap/images/computer.png"></td><td><a href="#">Технічні вимоги до комп'ютеру користувача порталу</a></td></tr>
-
-<tr><td><img src="/iasnap/images/video.png"></td><td><a href="#">Відео урок роботи з порталом</a></td></tr>
-<tr><td style="text-align: center;"><img src="/iasnap/images/search.png"></td><td><a href="#">Відстежити статус заявки</a></td></tr>
-
-</table>
-</div>
-
-
-<div id="leftecp">
-<table width="70%"><tr><td width="0%"><img src="/iasnap/images/signature.png"></td><td width="100%"><a href="#">Як отримати ЕЦП?</a></td></tr></table>
-</div>
-</div></td></tr></table>
 
 
 <script type="text/javascript">
@@ -246,11 +207,14 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 			euSign.Initialize();
 			euSign.width = "1px";
 			euSign.SetUIMode(false);
+			authForm_GetProxy();
 			euSign.Finalize();
+			document.getElementById("divMainRegForm").hidden = "";
 			document.getElementById("divJavaHelp").hidden = "hidden";
 		} catch(e) { 
 			document.getElementById("divJavaHelp").hidden = "";
 			document.getElementById("divJavaHelp2").hidden = "";
+			document.getElementById("divMainRegForm").hidden = "hidden";
 			alert("Помилка ініціалізації Java-аплету:"+euSign.GetLastErrorCode()); 
 		}
 		
@@ -346,8 +310,12 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 		$('#divJavaHelp').slideUp();
 	    }
 	} catch (e) {
-	    alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
-	    euSign.Finalize();
+		try {
+			alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
+			euSign.Finalize();
+		} catch (e) {
+			alert("Необхідний Java-модуль не завантажений. Здійсніть оновлення сторінки. Якщо помилка залишається - виконайте інструкції, наведені у примітках.");
+		}
 	}
     }
 	

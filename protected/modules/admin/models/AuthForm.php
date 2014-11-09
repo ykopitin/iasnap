@@ -50,7 +50,7 @@ class AuthForm extends CFormModel
 			error_log("AuthForm,authenticate,Signature:".$this->Signature);
 			$this->_identity=new EUUserIdentity($this->Signature, 'admin');
 			if(!$this->_identity->authenticate())
-				$this->addError('Signature','Incorrect Signature.');
+				$this->addError('Signature','Не вдалось перевірити підпис.');
 		}
 	}
 

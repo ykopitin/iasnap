@@ -9,9 +9,9 @@ $this->breadcrumbs=array(
 <div id="newsd">
 << <a href="#" onclick="history.back();">Назад</a><br /><br />
 <?
-echo '<h3>'.GenNews::model()->findByPk($_GET['idn'])->title.'</h3>';
-echo '<img src='.GenNews::model()->findByPk($_GET['idn'])->img.' class=newsimg>';
-echo GenNews::model()->findByPk($_GET['idn'])->text;
+echo '<div id="posnamebg"><div id=posname>'.GenNews::model()->findByPk($_GET['idn'])->title.'</div></div>';
+echo '<div id=allnewstext>'.GenNews::model()->findByPk($_GET['idn'])->img;
+echo GenNews::model()->findByPk($_GET['idn'])->text.'</div>';
 
 
 ?>

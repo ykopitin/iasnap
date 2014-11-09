@@ -39,6 +39,7 @@ class GenServCatClass extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, service_id, cat_class_id', 'safe', 'on'=>'search'),
 			array('srv_name, class_name, cat_name', 'safe', 'on'=>'search'),
+			array('service_id', 'ext.UniqueAttributesValidator.UniqueAttributesValidator', 'with'=>'cat_class_id','message'=>'Така комбінація послуга - клас - категорія вже існує у базі даних!'),
 		);
 	}
 

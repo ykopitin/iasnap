@@ -65,11 +65,15 @@ $cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'img'); ?>
-		<?php echo $form->textArea($model,'img',array('rows'=>6, 'cols'=>50)); ?>
-		<?php //echo $form->textField($model,'img',array('size'=>60,'maxlength'=>255)); ?>
+		<?php //echo $form->textArea($model,'img',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'img',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'img'); ?>
 	</div>
-
+<a id="Lnk" href="/ckeditor/kcfinder/browse.php?type=news" >Завантажити піктограму</a>
+    <script>
+    var link = document.getElementById('Lnk')
+    link.setAttribute("onclick","popupWin = window.open(this.href,'contacts','location,top=0'); popupWin.focus(); return false")
+    </script>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>
@@ -81,6 +85,6 @@ $cs->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
                // CKEDITOR.replace( 'GenNews[title]' );
 				CKEDITOR.replace( 'GenNews[summary]' );
 				CKEDITOR.replace( 'GenNews[text]' );
-				CKEDITOR.replace( 'GenNews[img]' );
+			//	CKEDITOR.replace( 'GenNews[img]' );
 </script>
 </div><!-- form -->

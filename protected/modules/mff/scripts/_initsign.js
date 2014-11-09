@@ -42,7 +42,7 @@ function ff_loadFile(filepath, filecontext, filecrypt, imagestatus) {
         $('#' + imagestatus + '2').hide();
         $('#' + imagestatus + '3').hide();
         euSign.Finalize();
-        alert("Файл не обраний" + e);
+        alert("Файл не обраний");
     }
 
     return false;
@@ -162,7 +162,7 @@ function ff_saveFile(filecontext, filename, imagestatus) {
         $('#' + imagestatus + '1').hide();
         $('#' + imagestatus + '2').show();
         $('#' + imagestatus + '3').hide();
-        alert("Помилка при перевірці підпису"+e);
+        alert("Помилка при перевірці підпису");
     } finally {
         euSign.Finalize();
     }

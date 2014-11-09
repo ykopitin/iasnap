@@ -29,7 +29,7 @@ class GenNewsController extends Controller
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('create','update','admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->checkAccess('siteadmin')||Yii::app()->user->id=='admin'",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -48,7 +48,7 @@ class GenNewsController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+$_SESSION['KCFINDER']['disabled'] = false;
 		if(isset($_POST['GenNews']))
 		{
 			$model->attributes=$_POST['GenNews'];
@@ -72,7 +72,7 @@ class GenNewsController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+$_SESSION['KCFINDER']['disabled'] = false;
 		if(isset($_POST['GenNews']))
 		{
 			$model->attributes=$_POST['GenNews'];

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Адміністративна панель'=>array('default/index'),
-	'Управління користувачами'=>array('default/id3'),
+	'Управління довідниками'=>array('default/id4'),
 	'Таблиця «Сертифікати зовнішніх користувачів»'=>array('index'),
 	$model->id,
 );
@@ -32,5 +32,29 @@ $this->menu=array(
 		'certData',
 		'certType',
 		'ext_user_id',
-	),
+		'certSignTime',
+		'certUseTSP',
+		'certIssuerCN',
+		'certSubject',
+		'certSubjCN',
+		'certSubjOrg',
+		'certSubjOrgUnit',
+		'certSubjTitle',
+		'certSubjState',
+		'certSubjLocality',
+		'certSubjFullName',
+		'certSubjAddress',
+		'certSubjPhone',
+		'certSubjEMail',
+		'certSubjDNS',
+		array(
+			'name'=>'certExpireBeginTime',
+			'value'=>date("d.m.Y h:i:s", $model->certExpireBeginTime),
+		),
+		array(
+			'name'=>'certExpireEndTime',
+			'value'=>date("d.m.Y h:i:s", $model->certExpireEndTime),
+		),
+//		'certExpireEndTime',
+		),
 )); ?>

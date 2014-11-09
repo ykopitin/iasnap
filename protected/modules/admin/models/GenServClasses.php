@@ -31,6 +31,7 @@ class GenServClasses extends CActiveRecord
 		return array(
 			array('item_name, visability', 'required'),
 			array('item_name', 'length', 'max'=>45),
+			array('item_name','unique','message'=>'{attribute}:{value} вже існує у базі даних!'),
 			array('visability', 'length', 'max'=>6),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

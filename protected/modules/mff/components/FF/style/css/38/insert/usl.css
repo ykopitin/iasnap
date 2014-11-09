@@ -1,0 +1,120 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08.11.2014, 0:59:45
+    Author     : prk
+*/
+#FFIND1_field_regnum {
+    display: none;
+}
+
+#FFIND1_field_regdate {
+    display: none;
+}
+
+#FFIND1_field_initeds {
+/*    position: absolute;
+    left: 550px;
+    top: 10px;
+    width: 20px;
+    height: 20px;*/
+}
+
+#FFIND1_field_legal_personality {
+    display: none;   
+}
+
+#FFIND1_field_organization {
+     display: none;  
+}
+
+#FFIND1_field_person_name {
+     display: none;  
+}
+
+#FFIND1_field_person_drfo {
+     display: none;  
+}
+
+#FFIND1_field_address {
+      
+}
+
+#FFModel_address {
+      width: 400px;
+}
+
+#FFIND1_field_phone1 {
+    display: none;
+}
+
+#FFIND1_field_phone2 {
+    display: none;
+}
+
+#FFIND1_field_delivery_reply {
+    
+}
+
+#FFModel_delivery_reply {
+    width: 400px;
+}
+
+#FFIND1_field_email {
+    display: none;
+}
+
+#FFIND1_field_service {
+     display: none;  
+}
+
+#FFIND1_field_tracknumber {
+     display: none;      
+}
+
+#FFIND1_field_plandate {
+     display: none;      
+}
+
+#FFIND1_field_factdate {
+     display: none;      
+}
+
+#FFIND1_field_context {
+    display: none;
+}
+
+#FFIND1_field_reply {
+     display: none;  
+}
+
+#FFIND1_field_reason {
+     display: none;  
+}
+
+#FFIND1_field_administrator {
+     display: none;  
+}
+
+#FFIND1_field_executor {
+     display: none;  
+}
+
+#FFIND1_field_file_petition {
+    
+}
+
+#FFModelfile_petition_fileedspath{
+    width: 400px;
+}
+
+#FFIND1_field_file_result {
+     display: none;  
+}
+
+#FFModel_service {
+     display: none;  
+}

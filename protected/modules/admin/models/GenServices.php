@@ -50,14 +50,17 @@ class GenServices extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, subjnap_id, subjwork_id, regulations, reason, submission_proc, docums, is_payed, deadline, result, answer, is_online,have_expertise,is_payed_expertise', 'required'),
+			array('name','unique','message'=>'{attribute}:{value} вже існує у базі даних!'),
 			array('subjnap_id, subjwork_id, is_payed, have_expertise, is_payed_expertise', 'numerical', 'integerOnly'=>true),
 		//	array('length', 'max'=>255),
+			array('ff_link', 'numerical', 'integerOnly'=>true),
+		 //  array('ff_link','length','max'=>255),
 			array('name','length','max'=>500),
 			array('is_online', 'length', 'max'=>6),
 			array('payed_regulations, payed_rate, bank_info, denail_grounds, nes_expertise, payed_expertise, regul_expertise, bank_info_expertise, rate_expertise', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, subjnap_id, subjwork_id,regulations, reason, submission_proc, docums, is_payed, payed_regulations, payed_rate, bank_info, deadline, denail_grounds, result, answer, is_online, nes_expertise, payed_expertise, regul_expertise, bank_info_expertise, rate_expertise', 'safe', 'on'=>'search'),
+			array('id, name, subjnap_id, subjwork_id,regulations, reason, submission_proc, docums, is_payed, payed_regulations, payed_rate, bank_info, deadline, denail_grounds, result, answer, is_online, nes_expertise, payed_expertise, regul_expertise, bank_info_expertise, rate_expertise,ff_link', 'safe', 'on'=>'search'),
 		    array('author_search', 'safe', 'on'=>'search'),
 			array('author_search1', 'safe', 'on'=>'search'),
 			array('idi', 'safe', 'on'=>'search'),
@@ -111,6 +114,7 @@ class GenServices extends CActiveRecord
 			'regul_expertise'=>'Акти законодавства експертиза',
 			'rate_expertise'=>'Розмір плати за експертизу',
 			'bank_info_expertise'=>'Банківські реквізити експертиза',
+			'ff_link'=>'Посилання на вільну форму',
 		);
 	}
 

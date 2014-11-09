@@ -1,4 +1,3 @@
-<BR>
 <h3>Відомості про нормативно-правові акти</h3>
 
 <?php
@@ -26,7 +25,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		'hyperlink',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

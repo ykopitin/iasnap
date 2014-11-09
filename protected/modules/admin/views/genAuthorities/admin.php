@@ -1,4 +1,3 @@
-<BR>
 <h3>Відомості про центри та суб'єкти</h3>
 
 <?php
@@ -30,9 +29,9 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		//'locations_id',
 		array(
         	'header' => 'Населений пункт',
-			'name'=>'locations.name',
+			'name'=>'locat',
 	        'value'=>'$data->locations->name',
-			'filter'=> CHtml::activeTextField($model, 'locat'),
+			//'filter'=> CHtml::activeTextField($model, 'locat'),
 	    ),
 		//'index',
 		/*
@@ -50,7 +49,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		*/
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

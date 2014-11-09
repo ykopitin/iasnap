@@ -1,4 +1,3 @@
-<BR>
 <h3>Пункти меню</h3>
 
 <?php
@@ -15,11 +14,11 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 ));
 ?>
 
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'gen-menu-items-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+	//'itemsCssClass'=>'table-striped',
 	'columns'=>array(
 		array(
 		'name'=>'id',
@@ -33,7 +32,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		'visability',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

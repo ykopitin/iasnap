@@ -1,21 +1,21 @@
 #footer
 {   
     padding: 0px;
-	height: 270px;
+	height: 240px;
 	font-size: 0.8em;
 	text-align: center;
-	
     background: #18262a;
-    background-image: url(http://allium2.soborka.net/iasnap/images/but.jpg);
-    background-position: bottom center; 
+    background-image: url(/images/but.jpg);
+    background-position: top center; 
     background-repeat: no-repeat; 
+    margin-bottom: -150px;
 }
 
 
 
 #banner1{
     
-    background-image: url(http://allium2.soborka.net/iasnap/images/b1.jpg); 
+    background-image: url(/images/b1.jpg); 
     border-radius: 20px;
     width: 300px;
     height:100px;vertical-align: bottom; 
@@ -24,7 +24,7 @@
 }
 
 #banner2{
-      background-image: url(http://allium2.soborka.net/iasnap/images/b2.jpg); 
+      background-image: url(/images/b2.jpg); 
     border-radius: 20px;
     width: 300px;
     height:100px;vertical-align: bottom; 
@@ -32,7 +32,7 @@
  vertical-align: middle; 
 }
 #banner3{
-      background-image: url(http://allium2.soborka.net/iasnap/images/b3.jpg); 
+      background-image: url(/images/b3.jpg); 
     border-radius: 20px;
     width: 300px;
     height:100px;vertical-align: bottom; 
@@ -42,7 +42,7 @@
 
 .css_sub_menu
 {
-	background-image: url(http://allium2.soborka.net/iasnap/images/menu.png); 
+	background-image: url(/images/menu.png); 
     background-repeat: no-repeat;
     text-align: left;
     display:none;
@@ -53,13 +53,15 @@
     padding: 30px 0 30px 0 ;
     margin-top: 0px;
       
+      
 }
+
 
 #shortblocktext ul li.active a 
 {
 display:  block;
 background-color: #a2d507;
-background-image: url(http://allium2.soborka.net/iasnap/images/strelka_r.png);
+background-image: url(/images/strelka_r.png);
 background-repeat: no-repeat;
 background-position: right center;
 background-size: cover; 

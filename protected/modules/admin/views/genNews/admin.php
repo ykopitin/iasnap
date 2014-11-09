@@ -1,4 +1,3 @@
-<BR>
 <h3>Управління новинами</h3>
 
 <?php
@@ -29,7 +28,7 @@ $this->widget('zii.widgets.jui.CJuiButton',array(
 		'img',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}{update}',
+			'template'=>'{update}{delete}',
 			'buttons'=>array
                  (
                    'delete' => array

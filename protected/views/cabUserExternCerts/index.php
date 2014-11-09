@@ -3,16 +3,18 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Cab User Extern Certs',
+	'Адміністративна панель'=>array('default/index'),
+	'Управління користувачами'=>array('default/id3'),
+	'Таблиця «Сертифікати зовнішніх користувачів»',
 );
 
 $this->menu=array(
-	array('label'=>'Create CabUserExternCerts', 'url'=>array('create')),
-	array('label'=>'Manage CabUserExternCerts', 'url'=>array('admin')),
+	array('label'=>'Додати', 'url'=>array('create')),
+	array('label'=>'Управляти', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Cab User Extern Certs</h1>
+<h1>Таблиця «Сертифікати зовнішніх користувачів»</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

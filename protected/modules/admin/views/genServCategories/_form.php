@@ -41,11 +41,15 @@ $cs->registerScriptFile($baseUrl.'/js/ShowHide.js');
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'icon'); ?>
-		<?php //echo $form->textField($model,'icon',array('size'=>60,'maxlength'=>60)); ?>
-		<?php echo $form->textArea($model,'icon',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'icon',array('size'=>60,'maxlength'=>60)); ?>
+		<?php //echo $form->textArea($model,'icon',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'icon'); ?>
 	</div>	
-	
+	<a id="Lnk" href="/ckeditor/kcfinder/browse.php?type=icons" >Завантажити піктограму</a>
+    <script>
+    var link = document.getElementById('Lnk')
+    link.setAttribute("onclick","popupWin = window.open(this.href,'contacts','location,top=0'); popupWin.focus(); return false")
+    </script>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>
@@ -56,5 +60,5 @@ $cs->registerScriptFile($baseUrl.'/js/ShowHide.js');
 <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
-				CKEDITOR.replace( 'GenServCategories[icon]' );
+			//	CKEDITOR.replace( 'GenServCategories[icon]' );
 </script>

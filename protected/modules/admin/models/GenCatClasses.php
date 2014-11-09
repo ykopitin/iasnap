@@ -40,6 +40,7 @@ class GenCatClasses extends CActiveRecord
 			array('id, categorie_id, class_id', 'safe', 'on'=>'search'),
 			array('author_search', 'safe', 'on'=>'search'),
 			array('author_search1', 'safe', 'on'=>'search'),
+			array('categorie_id', 'ext.UniqueAttributesValidator.UniqueAttributesValidator', 'with'=>'class_id','message'=>'Така комбінація клас - категорія вже існує у базі даних!'),
 		);
 	}
 
