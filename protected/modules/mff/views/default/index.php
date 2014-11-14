@@ -6,10 +6,10 @@
 //);
 ?>
 <ul>
-    <li><a href="<?= $this->createUrl('formgen/index') ?>">Генератор свободных форм</a></li>
-    <li><a href="<?= $this->createUrl('storage/index') ?>">Управление хранилищами</a></li>
-    <li><a href="<?= $this->createUrl('formview/index') ?>">Внесение документов в хранилища</a></li>
-    <li><a href="<?= $this->createUrl('cabinet/index') ?>">Просмотр кабинетов</a></li>
-    <li><a href="<?= $this->createUrl('default/testff') ?>">Пример одиночной СФ</a></li>
+    <li><a href="<?= $this->createUrl('formgen/index') ?>">Генератор вільних форм</a></li>
+    <li><a href="<?= $this->createUrl('storage/index') ?>">Управління сховищами</a></li>
+    <li><a href="<?= $this->createUrl('formview/index') ?>">Внесення документів до сховищи</a></li>
+    <li><a href="<?= $this->createUrl('cabinet/index') ?>">Перегляд кабінетів</a></li>
+    <!--<li><a href="< ?= $this->createUrl('default/testff') ?>">Пример одиночной СФ</a></li>-->
 </ul>
 

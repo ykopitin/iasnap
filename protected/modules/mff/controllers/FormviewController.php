@@ -62,9 +62,40 @@ class FormviewController extends Controller
                         
             $dataold=$datamodel->attributes;           
             $datamodel->setAttributes($_POST["FFModel"], FALSE);
-
+            
             $datamodel->storage=$idstorage;
             $datamodel->registry=$idregistry;
+            
+            // Проверяем значения по умолчанию 
+            $route=null;
+            $fields=FFField::model()->findAll("(`formid`=:formid) and (`default` is not null)",array(":formid"=>$idregistry));
+            foreach ($fields as $field) {
+                if ($scenario=="insert" && substr(trim($field->default), 0, strlen("AISTATIC:"))=="AISTATIC:") { 
+                    $data=trim(substr(trim($field->default), strlen("AISTATIC:")));
+                    $datamodel->setAttribute($field->name, $data);
+                }
+                if ($scenario=="update" && substr(trim($field->default), 0, strlen("AUSTATIC:"))=="AUSTATIC:") { 
+                    $data=trim(substr(trim($field->default), strlen("AUSTATIC:")));
+                    $datamodel->setAttribute($field->name, $data);
+                }
+                if ($scenario=="insert" && substr(trim($field->default), 0, strlen("AIPHP:"))=="AIPHP:") { 
+                    $data=eval(trim(substr(trim($field->default), strlen("AIPHP:"))));
+                    $datamodel->setAttribute($field->name, $data);
+                }
+                if ($scenario=="update" && substr(trim($field->default), 0, strlen("AUPHP:"))=="AUPHP:") { 
+                    $data=eval(trim(substr(trim($field->default), strlen("AUPHP:"))));
+                    $datamodel->setAttribute($field->name, $data);
+                }
+                if ($scenario=="insert" && substr(trim($field->default), 0, strlen("AI_ROUTE_AND_APLLY_FIRST_ACTION:"))=="AI_ROUTE_AND_APLLY_FIRST_ACTION:") { 
+                    $data=trim(substr(trim($field->default), strlen("AI_ROUTE_AND_APLLY_FIRST_ACTION:")));
+//                    echo 'Value:'.$data."<br />";
+                    $datamodel->setAttribute($field->name, $data);
+                    $route=array($field->name => $data);
+                }
+            }
+            
+//            echo '<pre>';var_dump($datamodel);echo '</pre>';
+//            return;
             
             // Загрузка картинок, файлов
             if (isset($_FILES) && isset($_FILES[get_class($datamodel)]) && isset($_FILES[get_class($datamodel)]["tmp_name"])) {
@@ -92,7 +123,16 @@ class FormviewController extends Controller
            if ($datamodel->validate() && $datamodel->save()) {
                 if ($scenario=="insert") {
                      // Маршрутизация
-                     $datamodel->applyRoute();
+                     if ($route!=null) {
+                        $userId=  Yii::app()->user->id;
+                        if (isset($userId) && $userId!=NULL) {
+                            $datamodel->applyRoute($userId,TRUE);
+                        } else {
+                            $datamodel->applyRoute(null,TRUE);
+                        }
+                     } else {
+                         $datamodel->applyRoute();
+                     }
                 }                
                 foreach ($_POST as $key => $value) {
                     $partkey=explode("_",$key);
@@ -103,6 +143,7 @@ class FormviewController extends Controller
                         $datamodel->setMultiGuide($fieldname, $multi_value);
                     }
                 }    
+                
 //                $transaction->commit();
                 try {
                     @$backurlparams=  unserialize($backurl);

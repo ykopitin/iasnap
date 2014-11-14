@@ -1,20 +1,38 @@
 <?php
+ if(Yii::app()->user->checkAccess('customer')) {
+$usid=Yii::app()->user->id;
 
+$criteria = new CDbCriteria;
+$criteria->compare('user_id', $usid);
+$criteria->order = 'id';
+$rows=CabUserBidsConnect::model()->findAll($criteria);   
+$i=1;
 
-          echo '<div id="navigbg" class="container"><div id="navig">';
-          echo CHtml::link('Головна', array('..'));
-          echo '&nbsp;<img src='.Yii::app()->baseUrl.'/images/dot.png>&nbsp;Замовлення послуги on-line';
-          echo	'</div></div>';
- 
+if (isset($_POST['mail']) || isset($_POST['fone'])){
+$em = CabUser::model()->findByPk($usid);
+$em->email = $_POST['mail'];
+$em->phone = $_POST['fone'];
+$em->update(); 
+$ok=1; 
+}
+else {$ok=0;}
+?>
 
+<h3>Шановний(на) <b><?php echo CabUser::model()->findByPk($usid)->fio;?></b>!</h3>
+<p> Ви намагаєтесь замовити послугу: <font size=3 color="black">"<?php echo GenServices::model()->findByPk($_GET['addons'])->name;?>"</font></p>
+<hr>
+<p><font color=black>Додайте скановану копію заповнених та підписаних власноруч документів у форматі .pdf:</font></p>
+<?php
 
         $ff=$this->widget('mff.components.FF.FFWidget',
                     array(
                         "idregistry"=>38,
                         "idstorage"=>16,
-                        "backurl"=>$this->createUrl("/mff/formview/index",array("id"=>8)), 
-			   "profile"=>"usl",	
+                        "backurl"=>$this->createUrl("cabinet",array("id"=>1)), 
+			"profile"=>"usl",	
                 )
             );
-    echo CHtml::button("Сохранить",array("onclick"=>$ff->name."_form.submit()"));
+    $script="SubmitPetition('".$ff->name."');";
+    echo CHtml::button("Надіслати заявку",array("onclick"=>$script, "class" => "mybutton"));
+}
 ?> 

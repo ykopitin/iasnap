@@ -9,13 +9,13 @@ $formregistry = FFRegistry::model()->findByPk($id);
 $this->beginWidget("zii.widgets.jui.CJuiDialog",
         array( 'options' => 
             array(
-                'title' => 'Изменить форму ID:'.$id,
+                'title' => 'Змінити форму ID:'.$id,
                 'modal' => true,
                 'resizable'=> true,
                 'width'=>"85%",
                 'buttons' => array(
-                    array('text'=>'Сохранить','click'=> 'js:function(){formedit.submit();}', 'visible'=>!$formregistry->isProtected($this)),
-                    array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
+                    array('text'=>'Зберігти','click'=> 'js:function(){formedit.submit();}', 'visible'=>!$formregistry->isProtected($this)),
+                    array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
                 )
             ),
             'id' => 'frmedit',
@@ -93,7 +93,7 @@ echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
         'template'=>'<caption>{summary}</caption>'.
             '<thead><tr><th>'.$headlabel["name"].'</th><th>'.$headlabel["type"].
             '</th><th>'.$headlabel["order"].'</th><th>'.$headlabel["default"].'</th><th>'.
-            $headlabel["description"].'</th><th>Действия</th></tr></thead>'.
+            $headlabel["description"].'</th><th>Дії</th></tr></thead>'.
             '<tfoot><tr><td colspan="5">{pager}</td></tr></tfoot>'.
             '{items}',
         )
@@ -105,7 +105,7 @@ echo "<td colspan=3>".$form->checkBox($formregistry,"copying")."</td>";
 <?php  
 if (!($formregistry->attaching==1) && !$formregistry->isProtected()) {
         $this->widget("zii.widgets.jui.CJuiButton", array (
-            "caption"=>"Добавить поле",
+            "caption"=>"Додати поле",
             "name"=>"addfield",
             "onclick"=>'js:function(){$("#frmaddfield").dialog("open");}',
         ));

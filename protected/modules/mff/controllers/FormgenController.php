@@ -4,7 +4,7 @@ class FormgenController extends Controller
 {
     public $layout='//layouts/column4';
     //public $defaultAction='listforms';
-    public $label = "Генератор свободных форм";
+    public $label = "Генератор ввільних форм";
     
     /// Формирует список сободных форм
     public function actionIndex($parentid=null)
@@ -23,8 +23,10 @@ class FormgenController extends Controller
     {
         if (isset($_POST["FFRegistry"])) {
             $registry = FFRegistry::model()->findByPk($_POST["FFRegistry"]["id"]);
-            $registry->description = $_POST["FFRegistry"]["description"];
-            $registry->copying = $_POST["FFRegistry"]["copying"];
+            if (isset($_POST["FFRegistry"]["description"]) && $_POST["FFRegistry"]["description"]!=NULL) 
+                $registry->description = $_POST["FFRegistry"]["description"];
+            if (isset($_POST["FFRegistry"]["copying"]) && $_POST["FFRegistry"]["copying"]!=NULL) 
+                $registry->copying = $_POST["FFRegistry"]["copying"];
 
             if ($registry->validate()) {
                 if ($registry->save()) {

@@ -1,5 +1,9 @@
 <?php
-if ($scenario=="view") echo CHtml::label($modelff->getAttribute(strtolower($data->name)),$htmlOptions) ;
+if ($scenario=="view") {
+    $date = $modelff->getAttribute(strtolower($data->name));
+    $date=($date==NULL)?"Не визначено":$date;
+    echo CHtml::label($date,"",$htmlOptions) ;
+}
 else
     $this->widget('zii.widgets.jui.CJuiDatePicker',array(
         'name'=>$data->name,

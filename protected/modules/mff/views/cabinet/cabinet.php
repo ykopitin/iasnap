@@ -7,7 +7,7 @@ if (!isset($cabinetmodel)) {
     }
     $cabinetmodel=FFModel::model()->findByPk($cabinetid);
     if (empty($cabinetmodel) || $cabinetmodel==NULL) {
-        echo "Такой кабинет отсутствует";
+        echo "Такий кабінет відсутній";
         return;
     }
 }
@@ -21,15 +21,15 @@ if (is_numeric($userId)){
     $user->refreshMetaData();
     $user=$user->findByPk($userId);
     if (empty($cabinetmodel) || $cabinetmodel==NULL) {
-        echo "Такой пользователь отсутствует";
+        echo "Такий користувач відсутній";
         return;
     }    
-    echo "<span>Пользователь:".$user->getAttribute("fio")."</span><br /><br />";
+//    echo "<span>Доброго дня,".$user->getAttribute("fio")."!</span><br /><br />";
 }
 
 $folders=$cabinetmodel->getItems("folders");
 if (!is_array($folders)) {
-    echo "Проблема с отображением папок в кабинете";
+    echo "Помилка з відображенням папок, зверніться до адміністратору сайту";
     return;
 }
 $tabs=array();
@@ -59,7 +59,7 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 //    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
     )
 );
-if ($this->owner->action->id=="save") {
+if ((isset($this->owner) && ($this->owner->action->id=="save")) || (isset($this->action) && ($this->action->id=="save"))) {
     $urldata=array(
         "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id))),
         "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),

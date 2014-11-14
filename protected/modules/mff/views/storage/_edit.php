@@ -5,14 +5,14 @@ $this->beginWidget("zii.widgets.jui.CJuiDialog",
             "id"=>"dialogeditstorage",
             'options' => 
             array(
-                'title' => 'Изменение хранилища',
+                'title' => 'Редагування сховища',
                 'modal' => true,
                 'resizable'=> true,
                 'autoOpen'=>true,
                 'width'=>"65%",
                 'buttons' => array(
-                    array('text'=>'Сохранить','type' => 'submit','click'=>'js:function(){formeditstorage.submit();}'), 
-                    array('text'=>'Отменить','click'=> 'js:function(){$(this).dialog("close");}'),
+                    array('text'=>'Зберігти','type' => 'submit','click'=>'js:function(){formeditstorage.submit();}'), 
+                    array('text'=>'Відмінити','click'=> 'js:function(){$(this).dialog("close");}'),
                 )
             ),
          )
@@ -48,13 +48,12 @@ $form=$this->beginWidget("CActiveForm", array(
         <td style="width:30%"><?= $form->labelEx($modelstorage,"subtype") ?></td>
         <td><?= $form->dropDownList($modelstorage,"subtype",
                 array("",
-                    "Выпадающий список",
-                    "Линейный список",
-                    "Встраиваемый справочник",
-                    "Переключатель",
-                    "Список нескольких значений",
-//                    "Список нескольких значений для внешних таблиц",
-                    )
+                    "Список, що випадає",
+                    "Лінійний список",
+                    "Вбудований довідник",
+                    "Перемикач",
+                    "Список декількох значень",
+                   )
                 ) 
         ?></td>
     <tr>

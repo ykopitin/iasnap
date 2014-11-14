@@ -78,17 +78,17 @@ class FFWidget extends CWidget {
             $path="mff.components.FF.style.css.".$profile;
             $file=Yii::getPathOfAlias($path).".css";
             if (file_exists($file)) {
-                 Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=>  $path, "fullAlias"=>true)));
+                 Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=> base64_encode($path), "fullAlias"=>true)));
             }
             $path="mff.components.FF.style.css.".$this->idregistry.".".$profile;
             $file=Yii::getPathOfAlias($path).".css";
             if (file_exists($file)) {
-                 Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=>  $path, "fullAlias"=>true)));
+                 Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=>  base64_encode($path), "fullAlias"=>true)));
             }
             $path="mff.components.FF.style.css.".$this->idregistry.".".$this->scenario.".".$profile;
             $file=Yii::getPathOfAlias($path).".css";          
             if (file_exists($file)) {
-                Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=>$path, "fullAlias"=>true)));
+                Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=>base64_encode($path), "fullAlias"=>true)));
             }
             
        }        
@@ -99,17 +99,17 @@ class FFWidget extends CWidget {
             $path="mff.components.FF.style.js.".$profile;
             $file=Yii::getPathOfAlias($path).".js";
             if (file_exists($file)) {
-                 Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>$path, "fullAlias"=>true)));
+                 Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>base64_encode($path), "fullAlias"=>true)));
             }
             $path="mff.components.FF.style.js.".$this->idregistry.".".$profile;
             $file=Yii::getPathOfAlias($path).".js";
             if (file_exists($file)) {
-                 Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>$path, "fullAlias"=>true)));
+                 Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>base64_encode($path), "fullAlias"=>true)));
             }
             $path="mff.components.FF.style.js.".$this->idregistry.".".$this->scenario.".".$profile;
             $file=Yii::getPathOfAlias($path).".js";
             if (file_exists($file)) {
-                Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>$path, "fullAlias"=>true)));
+                Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>base64_encode($path), "fullAlias"=>true)));
             }
             // Добавить в зависимости от узла
        }                

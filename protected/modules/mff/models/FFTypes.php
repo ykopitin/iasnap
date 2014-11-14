@@ -57,10 +57,10 @@ class FFTypes extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'typename' => 'Имя типа данных',
-			'systemtype' => 'Табличное имя',
-			'view' => 'Компонент отображения',
-			'description' => 'Описание',
+			'typename' => 'Ім\'я типу даних',
+			'systemtype' => 'Табличне ім\'я',
+			'view' => 'Компонент відображения',
+			'description' => 'Опис',
 		);
 	}
 

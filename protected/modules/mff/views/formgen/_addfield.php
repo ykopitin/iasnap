@@ -5,14 +5,14 @@
     $this->beginWidget("zii.widgets.jui.CJuiDialog",
             array( 'options' => 
                 array(
-                    'title' => 'Добавление поля',
+                    'title' => 'Додавання поля',
                     'modal' => true,
                     'resizable'=> true,
                     'autoOpen'=>false,
                     'width'=>"45%",
                     'buttons' => array(
-                        array('text'=>'Сохранить','type' => 'submit','click'=>'js:function(){formaddfield.submit(); return true;}'), // 'click'=> 'js:function(){$.yii.submitForm(this,"","");}'
-                        array('text'=>'Отменить','click'=> 'js:function(){$(this).dialog("close");}'),
+                        array('text'=>'Зберігти','type' => 'submit','click'=>'js:function(){formaddfield.submit(); return true;}'), // 'click'=> 'js:function(){$.yii.submitForm(this,"","");}'
+                        array('text'=>'Відмінити','click'=> 'js:function(){$(this).dialog("close");}'),
                     )
                 ),
                 'id' => 'frmaddfield',

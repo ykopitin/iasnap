@@ -6,15 +6,15 @@
 //    $this->label => array("/".$this->module->id."/".$this->id),
 //);
 $root_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Home")),"Корень",array("width"=>24,"height"=>24));
-$parent_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Arrow_up")),"Родители",array("width"=>24,"height"=>24));
+$parent_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Arrow_up")),"До батьків",array("width"=>24,"height"=>24));
 $add_img = CHtml::image($this->createUrl("default/getimage",array("image"=>"Plus")),"Зар.таблицу",array("width"=>24,"height"=>24));
 $topparentid = (isset($parentid) && $parentid!=NULL)?FFRegistry::model()->findByPk($parentid)->parent:NULL;
 $this->menu = array(
         array("label"=>$root_img."Корень","url"=>array($this->id."/index","parentid"=>"")),
-        array("label"=>$parent_img."Родители","url"=>array($this->id."/index","parentid"=>$topparentid)),
+        array("label"=>$parent_img."До батьків","url"=>array($this->id."/index","parentid"=>$topparentid)),
         array("label"=>" ", "itemOptions"=>array("style"=>"border-top: double #55b")),
         array("label"=>$add_img."Зар.таблицу","url"=>array($this->id."/registry")),    
-        array("label"=>$add_img."Добавить потомка","url"=>array($this->id."/new","parentid"=>$parentid),"visible"=>($parentid!=NULL)),
+        array("label"=>$add_img."Додати нащадка","url"=>array($this->id."/new","parentid"=>$parentid),"visible"=>($parentid!=NULL)),
 );
 
 $criteria=new CDbCriteria();
@@ -40,7 +40,7 @@ $this->widget("zii.widgets.CListView", array(
     'itemsTagName'=>'tbody',
     'tagName'=>'table',
     'template'=>'<caption>{summary}</caption><thead><tr><th>ID</th><th>'.
-    $headlabel["tablename"].'</th><th>'.$headlabel["description"].'</th><th>Действия</th></tr></thead>{items}',
+    $headlabel["tablename"].'</th><th>'.$headlabel["description"].'</th><th>Дії</th></tr></thead>{items}',
     )
 );
 if ($this->action->id=="edit") {

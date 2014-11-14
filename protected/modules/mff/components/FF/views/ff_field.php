@@ -1,3 +1,5 @@
+<?php 
+if ($data->type!='20') { ?>
 <div id="<?=$this->name?>_field_<?=$data->name?>">
     <div id="<?=$this->name?>_fieldlabel_<?=$data->name?>"><?= CHtml::label($data->description,"") ?></div>
     <div id="<?=$this->name?>_fieldvalue_<?=$data->name?>">
@@ -27,3 +29,6 @@
     </div> 
     <div id="<?=$this->name?>_fielderror_<?=$data->name?>"><?= CHtml::error($data,"description") ?></div>    
 </div>
+<?php } else {
+     echo '<hr id="'.$this->name."_field_".$data->name.'"/>';
+}

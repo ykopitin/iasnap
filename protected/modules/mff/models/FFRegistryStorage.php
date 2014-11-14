@@ -53,8 +53,8 @@ class FFRegistryStorage extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'registry' => 'Registry',
-			'storage' => 'Storage',
+			'registry' => 'Реєстрація',
+			'storage' => 'Сховище',
 		);
 	}
 
