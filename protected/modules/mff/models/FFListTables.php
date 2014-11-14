@@ -48,7 +48,7 @@ class FFListTables extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'TABLE_NAME' => 'Имя таблицы',
+			'TABLE_NAME' => 'И\'мя таблиці',
 		);
 	}
 

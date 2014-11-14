@@ -22,3 +22,4 @@ $("#formff_fieldvalue_legal_personality").on('change',"input:radio[name='FFModel
 });
     }
 );
+

@@ -7,13 +7,13 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
             'id' => 'dialognew',
             'options' => 
             array(
-                'title' => 'Новая форма. Родительская форма: '.$formregistry->parentItem->tablename,
+                'title' => 'Нова форма. Батьківська форма: '.$formregistry->parentItem->tablename,
                 'modal' => true,
                 'resizable'=> true,
                 'width'=>"65%",
                 'buttons' => array(
-                    array('text'=>'Сохранить','click'=> ('js:function(){formnew.submit();}')),
-                    array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
+                    array('text'=>'Зберігти','click'=> ('js:function(){formnew.submit();}')),
+                    array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
                 )
             )
        )

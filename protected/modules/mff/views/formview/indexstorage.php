@@ -17,7 +17,7 @@ $this->breadcrumbs=array(
     <?php
     $registryItems=$storagemodel->registryItems;
     if (count($registryItems)==0) {
-        echo "К хранилищу не прикрепленно ни одной свободной формы";
+        echo "До сховища не прикріпленно жодної вільної форми";
         return;
     }
     $attaching=0;
@@ -27,15 +27,15 @@ $this->breadcrumbs=array(
         $thisrender=base64_encode("mff.views.formview.indexstorage");        
         ?>
     <tr>
-        <td><?= ($registrymodel->attaching==0)?CHtml::link("Зарегистрировать!",
+        <td><?= ($registrymodel->attaching==0)?CHtml::link("Зареєструвати!",
                 $this->createUrl("save",array_merge($urlparam, array("thisrender"=>$thisrender)))
-                ):"Внешняя таблица" ?></td>
+                ):"Зовнішня таблица" ?></td>
         <td><?= $registrymodel->tablename."(".$registrymodel->description.")" ?></td>
     </tr>
     <?php
     }
     if (($attaching>0 && $attaching<count($registryItems))) {
-        echo "Не возможно отобразить хранилище с внешними и нутреними таблицами в перемешку";
+        echo "Не відображаєме сховище";
         return;
     }
     ?>
@@ -100,7 +100,7 @@ if ($vidregistry!=null){
             ),
         'tagName'=>'table',
         'template'=>'<caption>{summary}</caption><thead><th>ID</th>'.$columns.
-        '<th>Действия</th></thead><tfoot><tr><td colspan="100">{pager}<td><tr></tfoot>{items}',
+        '<th>Дії</th></thead><tfoot><tr><td colspan="100">{pager}<td><tr></tfoot>{items}',
         )
     );
 }

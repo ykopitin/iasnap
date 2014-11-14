@@ -40,7 +40,7 @@ $this->widget('zii.widgets.grid.CGridView',
                 array('name'=>"name",), 
                 array('name'=>"description",), 
                 array('class'=>'CButtonColumn', 
-                    "header"=>"Действия",
+                    "header"=>"Дії",
                     'buttons'=>array(
                         'view'=>array(
                         'visible'=>'false',

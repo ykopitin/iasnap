@@ -58,11 +58,11 @@ class FFStorage extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Имя хранилища',
-			'description' => 'Описание',
-                        'subtype' => 'Подтип',
-                        'type' => 'Тип данных',
-                        'fields' =>'Отображемые поля',
+			'name' => 'Ім\'я сховища',
+			'description' => 'Опис',
+                        'subtype' => 'Підтип',
+                        'type' => 'Тип даних',
+                        'fields' =>'Відображення поля',
 		);
 	}
 

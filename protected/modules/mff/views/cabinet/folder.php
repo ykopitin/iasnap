@@ -1,5 +1,7 @@
-<p style="font-style: italic"><?= $folder->comment ?></p>
 <?php
+echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p>";
+$userId=Yii::app()->User->id;
+if (!is_numeric($userId)) $userId='null';
 $storageItems_new=$folder->getItems("allow_new");
 $storageItems_new_deny=$folder->getItems("deny_new");
 
@@ -68,7 +70,7 @@ if (count($storageItems_new)>0) {
                 }
             }
             if ($skip) continue;
-            $label = "Новый: ".$registryItem->getAttribute("description")." (".$storageItem->getAttribute("description").")";
+            $label = "Зареєструвати: ".$registryItem->getAttribute("description");
             $url=$this->createUrl(
                     "/mff/formview/save", 
                     array(
@@ -137,15 +139,13 @@ echo CHtml::hiddenField("folder_".$folder->id,count($idDocuments));
 // Определение списка действий
 // отбираем все действия
 $templateButton=" {view} {update} {delete}";
-$ActionItem= new FFModel();
-$ActionItem->registry=FFModel::route_action;
-$ActionItem->refreshMetaData();
-$ActionList=$ActionItem->findAll("storage=".FFModel::route_action_storage);
+$ActionList=$folder->getItems("allow_action");
 foreach ($ActionList as $ActionItem) {
 //    $ActionItem->refresh();
+    
     $buttonItem=array(
        'action'.$ActionItem->id=>array(
-            'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.')',
+            'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.','.$userId.')',
             'label'=>$ActionItem->name,
             'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Flag")),
 //            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Gears")),
@@ -174,10 +174,11 @@ if (strlen($folder->getAttribute("visual_names"))>0) {
        $columnVisualName=$columnVisualList[0];
        if (count($columnVisualList)>1) $columnVisualTitle=$columnVisualList[1];
        else $columnVisualTitle=$columnVisualName;
+       // сюда можно добавить отображение сложных полей
        $columns = array_merge($columns,array(array('name'=>$columnVisualName,"header"=>$columnVisualTitle)));
    }
 }
-$columns = array_merge($columns, array(array('class'=>'mff.components.mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Действия", 'buttons'=>$buttons)));
+$columns = array_merge($columns, array(array('class'=>'mff.components.mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Дії", 'buttons'=>$buttons)));
 
 // Отображение грида
 $documentCriteria = new CDbCriteria();

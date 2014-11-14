@@ -5,13 +5,13 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
             'id' => 'dialognew',
             'options' => 
             array(
-                'title' => 'Регистрация внешней таблицы',
+                'title' => 'Реєстрація зовнішньої таблиці',
                 'modal' => true,
                 'resizable'=> true,
                 'width'=>"65%",
                 'buttons' => array(
-                    array('text'=>'Сохранить','click'=> ('js:function(){registrytable.submit();}')),
-                    array('text'=>'Отменить','click'=> ('js:function(){$(this).dialog("close");}')),
+                    array('text'=>'Зберігти','click'=> ('js:function(){registrytable.submit();}')),
+                    array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
                 )
             )
        )
@@ -31,7 +31,7 @@ $form=$this->beginWidget("CActiveForm", array(
 </script>
 
 <div id="noteblock">
-<b>Внимание: </b><i>Регистрация внешних таблиц возможна только в корне</i>
+<b>Увага: </b><i>Реєстрація зовнішніх таблиц дозволяється тільки у корні</i>
 </div>
 <table style="width: 100%">
     <tr>

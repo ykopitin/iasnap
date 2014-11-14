@@ -66,13 +66,13 @@ class FFRegistry extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'parent' => 'ссылка на родителя',
-			'tablename' => 'Имя таблицы',
-			'description' => 'Описание',
-			'protected' => 'Блокировка/ системная таблица',
-			'attaching' => 'Внешняя таблица',
-			'copying' => 'Копирование при наследовании',
-			'view' => 'Отображение',
+			'parent' => 'Посилання на батька',
+			'tablename' => 'Ім\'я таблицы',
+			'description' => 'Опис',
+			'protected' => 'Блокировка/ системна таблица',
+			'attaching' => 'Зовнішня таблица',
+			'copying' => 'Копіювання при наслідуванні',
+			'view' => 'Відображення',
 		);
 	}
 

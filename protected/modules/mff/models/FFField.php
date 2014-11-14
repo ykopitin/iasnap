@@ -60,12 +60,12 @@ class FFField extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'formid' => 'Formid',
-			'name' => 'Имя',
+			'name' => 'Ім\'я',
 			'type' => 'Тип',
-			'default' => 'Умолчание',
-			'description' => 'Описание',
+			'default' => 'Замовчення',
+			'description' => 'Опис',
 			'order' => 'Порядок',
-                        'protected' => 'Защищеный',
+                        'protected' => 'Захищений',
 		);
 	}
 
