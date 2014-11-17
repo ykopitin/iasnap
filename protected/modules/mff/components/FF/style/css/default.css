@@ -79,6 +79,18 @@ and open the template in the editor.
     width: 32px;
 }
 
-formff_field_ownernodes {
+#formff_field_ownernodes {
+    width: 100%;
+}
+
+#FFModel_default_attributes {
+    width: 100%;
+}
+
+#FFModel_authorities {
+    width: 100%;
+}
+
+#multiguide_deny_new {
     width: 100%;
 }

@@ -621,6 +621,8 @@ class FFModel extends CActiveRecord
     // Применяет действие к документу
     public function applyAction($actionId, $userId=NULL) {   
         $roleId=NULL;
+        $roles=array();
+        $users=array();
         if ($userId!=null) {
             $_user=new FFModel();
             $_user->registry=FFModel::user;
@@ -639,14 +641,12 @@ class FFModel extends CActiveRecord
         $action=$action->findByPk($actionId);
         $action->refresh();
         // Определяем список пользователей или ролей
-        $roles=array();
-        $users=array();
         $registry_available_nodes=FFModel::available_nodes;
         $registry_available_actions=FFModel::available_actions;
         // Читаем текущего пользователя
-        if ($action->getAttribute("currentuser")==1)
+        if ($action->getAttribute("currentuser")=='1')
             $users=array_merge($users,array($userId));
-        if ($action->getAttribute("currentrole")==1 && $roleId!=null)
+        if ($action->getAttribute("currentrole")=='1' && $roleId!=null)
             $roles=array_merge($roles,array($roleId));        
         // Читаем из действи перечень ролей
   
@@ -662,7 +662,8 @@ class FFModel extends CActiveRecord
                 $users=array_merge($users,array($_user->id));
             }               
         }
-
+        $clearuser=FALSE;
+        $authorities=null;       
         // Устанавливаем константы
         if ($action->registry==FFModel::route_action_for_role){
             $registry_available_nodes=FFModel::available_nodes_for_role;
@@ -672,14 +673,42 @@ class FFModel extends CActiveRecord
             $registry_available_nodes=FFModel::available_nodes_for_user;
             $registry_available_actions=FFModel::available_actions_for_user;
         }
+        if ($action->registry==FFModel::route_action_for_cnap){            
+            $registry_available_nodes=FFModel::available_nodes_for_cnap;
+            $registry_available_actions=FFModel::available_actions_for_cnap;
+            $clearuser=($action->getAttribute("clearuser")=='1')?TRUE:FALSE;
+            $current_authorities=$action->getAttribute("current_authorities");
+            if (isset($current_authorities) && $current_authorities!=null && $current_authorities!=''){
+                $authorities=$this->getAttribute($current_authorities);
+                if (isset($authorities) && $authorities!=null) {
+                    $_users= new FFModel();
+                    $_users->registry=  FFModel::user;
+                    $_users->refreshMetaData();
+                    $_users=$_users->findAll("authorities_id=".$authorities);
+                    foreach ($_users as $_user) {
+                        $users=array_merge($users,array($_user->id));
+                    }
+                }
+            }
+        }
         // Загружаем список очистки        
         $clearnodes=$action->getItems("clearnodes");
+        
         if (isset($clearnodes) && $clearnodes!=null) {
         // Очищаем узлы согластно действию
             $index=0;
             foreach ($available_nodes as $available_node) {                
                 foreach ($clearnodes as $node) {
                     if ($available_node->node == $node->id) {
+                        if ($clearuser) {
+                            $available_node->refresh();
+                            $_users=$available_node->getItems("users");
+                            if (isset($_users) && $_users!=null) {
+                                foreach ($_users as $_user) {
+                                    $users=array_merge($users,array($_user->id));
+                                }
+                            }
+                        }                
                         $available_node->delete();
                         unset($available_nodes[$index]);
                     }
@@ -687,16 +716,17 @@ class FFModel extends CActiveRecord
                 }           
             }
         }
+        
         // Считываем узлы которые необходимо добавить
         $gotonodes=$action->getItems("gotonodes");
         if ($gotonodes==NULL) $gotonodes=array();
         // Убираем те узлы которые уже присутствуют
-        $index=0;
-        foreach ($gotonodes as $node) {
+        
+        foreach ($gotonodes as $index=>$node) {
             foreach ($available_nodes as $available_node) {
                 if ($node->id==$available_node->node) {
                     unset($gotonodes[$index]);
-                } else $index++;
+                }
             }            
         }
         
@@ -718,7 +748,7 @@ class FFModel extends CActiveRecord
             $skip=FALSE;
             foreach ($available_nodes as $available_node) {
                 if ($node->id==$available_node->node) {
-                    $available_nodeIds=  array_merge($available_nodeIds, array($node->id));
+                    $available_nodeIds=  array_merge($available_nodeIds, array($available_node->id));
                     $skip=TRUE;
                     break;
                 }
@@ -740,6 +770,11 @@ class FFModel extends CActiveRecord
                     case FFModel::available_nodes_for_user:
                         $available_nodesclass->setMultiGuide("users", $users);    
                         break;
+                    case FFModel::available_nodes_for_cnap:
+                        $available_nodesclass->setMultiGuide("users", $users);
+                        $available_nodesclass->setMultiGuide("roles", $roles);  
+//                        $available_nodesclass->setAttribute("authorities", $authorities);  
+                        break;
                 }      
             }
             // Допустимые действия                
@@ -760,25 +795,40 @@ class FFModel extends CActiveRecord
             }
             /// Переписываем старые допустимые действия
             foreach ($allow_actions as $allow_action) { 
-                // Добавляем номое действие
-                $available_actionsclass=new available_actions_route_FFModel();
-                $available_actionsclass->registry=$registry_available_actions;
-                $available_actionsclass->refreshMetaData();  
-                $available_actionsclass->storage=FFModel::available_actions_storage;
-                $available_actionsclass->node = $node->id;   
-                $available_actionsclass->action = $allow_action->id;   
-                // Сохраняем
-                $available_actionsclass->save();
-                $available_actionIds=array_merge($available_actionIds,array($available_actionsclass->id));
-                // Определить пользователя или роль
-                switch ($registry_available_actions) {
-                    case FFModel::available_actions_for_role:
-                        $available_actionsclass->setMultiGuide("roles", $roles);    
+                $skip=FALSE;
+                foreach ($available_actions as $available_action) {
+                    if ($available_action->action==$allow_action->id) {
+                        $available_actionIds=array_merge($available_actionIds, array($available_action->id));
+                        $skip=TRUE;
                         break;
-                    case FFModel::available_actions_for_user:
-                        $available_actionsclass->setMultiGuide("users", $users);    
-                        break;
-                }                        
+                    }
+                }
+                if (!$skip) {
+                    // Добавляем номое действие
+                    $available_actionsclass=new available_actions_route_FFModel();
+                    $available_actionsclass->registry=$registry_available_actions;
+                    $available_actionsclass->refreshMetaData();  
+                    $available_actionsclass->storage=FFModel::available_actions_storage;
+                    $available_actionsclass->node = $node->id;   
+                    $available_actionsclass->action = $allow_action->id;   
+                    // Сохраняем
+                    $available_actionsclass->save();
+                    $available_actionIds=array_merge($available_actionIds,array($available_actionsclass->id));
+                    // Определить пользователя или роль
+                    switch ($registry_available_actions) {
+                        case FFModel::available_actions_for_role:
+                            $available_actionsclass->setMultiGuide("roles", $roles);    
+                            break;
+                        case FFModel::available_actions_for_user:
+                            $available_actionsclass->setMultiGuide("users", $users);    
+                            break;
+                        case FFModel::available_actions_for_cnap:
+                            $available_actionsclass->setMultiGuide("users", $users);
+                            $available_actionsclass->setMultiGuide("roles", $roles);  
+//                            $available_actionsclass->setAttribute("authorities", $authorities);  
+                            break;
+                    }  
+                }
             }            
         }
          // Устанавливаем в текущем документе привязку к узлам

@@ -16,13 +16,15 @@ class CabinetController extends Controller
         $this->render('cabinet',array("cabinetid"=>$id,"folderid"=>$folderid));
     }
 
-    public function actionDoAction($documentid,$cabinetid,$actionid,$folderid=null) {
+    public function actionDoAction($documentid,$cabinetid,$actionid,$folderid=null,$cabineturl=NULL,$userId=null) {
         $document=FFModel::model()->findByPk($documentid);
         $document->refresh();
-        $document->applyAction($actionid);
+        $document->applyAction($actionid,$userId);
         $cabinetmodel=FFModel::model()->findByPk($cabinetid);
         $cabinetmodel->refresh();
-        $this->render('cabinet',array("cabinetmodel"=>$cabinetmodel,"folderid"=>$folderid));
+        if ($cabineturl==null) $cabineturl='cabinet';
+        else $cabineturl=base64_decode ($cabineturl);
+        $this->render($cabineturl,array("cabinetmodel"=>$cabinetmodel,"folderid"=>$folderid));
     }
     
     // Uncomment the following methods and override them if needed

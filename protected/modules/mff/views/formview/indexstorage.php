@@ -1,18 +1,18 @@
 <?php
 if (!isset($storagemodel)) $storagemodel=FFStorage::model()->findByPk($idstorage);
-$this->breadcrumbs=array(
-    "Головна"=>array("/"),
-    "Админка"=>array("/admin"),
-    $this->module->label => array("/".$this->module->id),
-    $this->label => array("/".$this->module->id."/".$this->id),
-    $storagemodel->name=>$this->createUrl("indexstorage",array("id"=>$storagemodel->id)),
-);
+//$this->breadcrumbs=array(
+//    "Головна"=>array("/"),
+//    "Админка"=>array("/admin"),
+//    $this->module->label => array("/".$this->module->id),
+//    $this->label => array("/".$this->module->id."/".$this->id),
+//    $storagemodel->name=>$this->createUrl("indexstorage",array("id"=>$storagemodel->id)),
+//);
 ?> 
 <h3>
-<p><b>Хранилище:</b> <?= $storagemodel->name ?></p>
+<p><b>Сховище:</b> <?= $storagemodel->name ?></p>
 <p><i><?= $storagemodel->description ?></i></p>
 </h3>
-Доступные свободные формы:
+Доступні вільні форми:
 <table>
     <?php
     $registryItems=$storagemodel->registryItems;

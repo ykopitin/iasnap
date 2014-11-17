@@ -2,6 +2,16 @@
 echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p>";
 $userId=Yii::app()->User->id;
 if (!is_numeric($userId)) $userId='null';
+$roleId=NULL;
+$authoritie=NULL;
+if ($userId!='null') {
+    $user=new FFModel;
+    $user->registry=  FFModel::user;
+    $user->refreshMetaData();
+    $user=$user->findByPk($userId);
+    $roleId=$user->user_roles_id;
+    $authoritie=$user->authorities_id;
+}
 $storageItems_new=$folder->getItems("allow_new");
 $storageItems_new_deny=$folder->getItems("deny_new");
 
@@ -60,7 +70,7 @@ if (count($storageItems_new)>0) {
     foreach ($storageItems_new as $storageItem) {
         $storageItem=FFStorage::model()->findByPk($storageItem->id); // Чтобы не терять
         foreach ($storageItem->registryItems as $registryItem) {
-            if (in_array($registryItem->id, $storageItemIds)) continue;;
+            if (in_array($registryItem->id, $storageItemIds)) continue;
             $storageItemIds=  array_merge($storageItemIds,array($registryItem->id));
             $skip=FALSE;
             foreach ($storageItems_new_deny as $storageItem_new_deny) {
@@ -100,13 +110,61 @@ $availableNode->registry=  FFModel::available_nodes;
 $availableNode->refreshMetaData();
 $availableNodeCriteria = new CDbCriteria();
 $availableNodeCriteria->addInCondition("node", $nodeIds);
+
+/// проверка на пользователя
+
 $availableNodes=$availableNode->findAll($availableNodeCriteria);
 if (count($availableNodes)==0) {
     return;
 }
 $nodeIds=array();
 foreach ($availableNodes as $node) {
-    $nodeIds=array_merge($nodeIds,array($node->id));
+    if ($userId=='null') {
+        $nodeIds=array_merge($nodeIds,array($node->id));
+        continue;
+    }
+    switch ($node->registry){
+    case FFModel::available_nodes_for_cnap:
+        $node->refresh();
+        $users=$node->getItems("users");
+        if (isset($users) && $users!=NULL) {
+            $continue=FALSE;
+            foreach ($users as $userItem) {
+                if ($userItem->id==$userId) {
+                    $continue=TRUE;
+                    break;
+                }
+            }
+            if ($continue) {
+                $nodeIds=array_merge($nodeIds,array($node->id));
+                continue;
+            }
+        }
+        $roles=$node->getItems("roles");
+        if (isset($roles) && $roles!=NULL) {
+            $continue=FALSE;
+            foreach ($roles as $roleItem) {
+                if ($roleItem->id==$roleId) {
+                    $continue=TRUE;
+                    break;
+                }
+            }
+            if ($continue) {
+                $nodeIds=array_merge($nodeIds,array($node->id));
+                continue;
+            }
+        }
+        $authorities=$node->getAttribute("authorities");
+        if (isset($authorities) && $authorities!=NULL) {           
+            if ($authoritiesItem->id==$authorities) {
+                $nodeIds=array_merge($nodeIds,array($node->id));
+                continue;
+            }            
+        }
+        break;
+    default :
+        $nodeIds=array_merge($nodeIds,array($node->id));
+    }   
 }
 // Определение форм
 $refDocument=new FFModel;
@@ -139,8 +197,13 @@ echo CHtml::hiddenField("folder_".$folder->id,count($idDocuments));
 // Определение списка действий
 // отбираем все действия
 $templateButton=" {view} {update} {delete}";
-$ActionList=$folder->getItems("allow_action");
-foreach ($ActionList as $ActionItem) {
+
+$ActionItems= new FFModel();
+$ActionItems->registry=  FFModel::route_action;
+$ActionItems->refreshMetaData();
+$ActionItems=$ActionItems->findAll("storage=:storage",array(":storage"=>  FFModel::route_action_storage));
+
+foreach ($ActionItems as $ActionItem) {
 //    $ActionItem->refresh();
     
     $buttonItem=array(
@@ -155,13 +218,15 @@ foreach ($ActionList as $ActionItem) {
                         "cabinetid"=>'.$cabinet->id.',
                         "actionid"=>'.$ActionItem->id.',
                         "documentid"=>$data->id,
-                        "folderid"=>'.$folder->id.'
+                        "folderid"=>'.$folder->id.',
+                        "userId"=>'.$userId.',
+                        "cabineturl"=>"'.$cabineturl.'",
                         )
                     )'          
             )
         );
-    $templateButton = ' {action'.$ActionItem->id.'}'.$templateButton;
-    $buttons = array_merge($buttonItem,$buttons);
+    $templateButton .= ' {action'.$ActionItem->id.'}';
+    $buttons = array_merge($buttons, $buttonItem);
 }
 // Определение колонок
 $columns = array(array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));

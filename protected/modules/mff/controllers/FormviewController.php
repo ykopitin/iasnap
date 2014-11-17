@@ -121,6 +121,8 @@ class FormviewController extends Controller
             }
 
            if ($datamodel->validate() && $datamodel->save()) {
+               // Очищаем свзки многие-ко-многим
+               Yii::app()->db->createCommand( "DELETE FROM `ff_ref_multiguide` WHERE `owner`=".$datamodel->id)->execute();
                 if ($scenario=="insert") {
                      // Маршрутизация
                      if ($route!=null) {
@@ -136,10 +138,9 @@ class FormviewController extends Controller
                 }                
                 foreach ($_POST as $key => $value) {
                     $partkey=explode("_",$key);
-                    // Работает, но требуется поправить на setMultiGuide
                     if ($partkey[0]=="multiguide") {
                         $fieldname=substr($key, 11);
-                        $multi_value=$_POST[$key];     
+                        $multi_value=$_POST[$key];                         
                         $datamodel->setMultiGuide($fieldname, $multi_value);
                     }
                 }    

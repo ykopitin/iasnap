@@ -18,11 +18,15 @@ class CabinetWidget extends CWidget {
     public $folderId=null;
     public $userId=null;
     public $roleId=null;
+    public $cabineturl=null;
     private $cabinets=null;
     
     public function init() {       
         Yii::import("mff.models.*");
         parent::init();
+        if (empty($this->cabineturl) || $this->cabineturl==NULL) {
+            $this->cabineturl=  base64_encode("mff.views.cabinet.cabinet");
+        }
         if (empty($this->userId) || $this->userId==NULL) {
             $this->userId=  Yii::app()->user->id;
             if (empty($this->roleId) || $this->roleId==NULL) {
@@ -78,7 +82,8 @@ class CabinetWidget extends CWidget {
 
     public function run() {
         foreach ($this->cabinets as $cabinetId) {
-            $this->render("mff.views.cabinet.cabinet",array("cabinetid"=>  $cabinetId, "folderid"=>  $this->folderId));
+            $this->render("mff.views.cabinet.cabinet",array(
+                "cabinetid"=>  $cabinetId, "folderid"=>  $this->folderId,"cabineturl"=>$this->cabineturl));
         }
     }
 

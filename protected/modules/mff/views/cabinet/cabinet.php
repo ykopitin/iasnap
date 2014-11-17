@@ -12,6 +12,8 @@ if (!isset($cabinetmodel)) {
     }
 }
 $cabinetmodel->refresh();
+if (empty($cabineturl) && isset($thisrender)) $cabineturl=$thisrender;
+else if (empty($cabineturl) && empty($thisrender)) $cabineturl=  base64_encode(Yii::app()->getRequest()->getUrl());
 echo "<b>".$cabinetmodel->name."</b><br />";
 echo "<i>".$cabinetmodel->comment."</i><br />";
 $userId=Yii::app()->User->id;
@@ -48,7 +50,8 @@ foreach ($folders as $folder) {
                 "data"=>array_merge(
                         array(
                             "folder"=>$folder,
-                            "cabinet"=>$cabinetmodel,),
+                            "cabinet"=>$cabinetmodel,
+                            "cabineturl"=>$cabineturl),
                         $urldata
                      )
                 )
@@ -62,7 +65,7 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 if ((isset($this->owner) && ($this->owner->action->id=="save")) || (isset($this->action) && ($this->action->id=="save"))) {
     $urldata=array(
         "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id))),
-        "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),
+        "thisrender"=>$cabineturl,
         "addons"=>base64_encode('array("cabinetid"=>'.$cabinetmodel->id.')'));
     if (isset($idregistry)) $urldata=array_merge($urldata,array("idregistry"=>$idregistry,));
     if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
