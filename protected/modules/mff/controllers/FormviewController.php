@@ -68,6 +68,21 @@ class FormviewController extends Controller
             
             // Проверяем значения по умолчанию 
             $route=null;
+            $_addons=null;
+            $firstdefault=FALSE;
+            if (isset($addons) || $addons!=NULL) {
+                $_addons=base64_decode($addons);
+                eval('$_addons='.$_addons.";");
+                
+                if (is_array($_addons) && isset($_addons["fielddefaults"])) {
+                    $datamodel->setAttributes($_addons["fielddefaults"],FALSE);
+                    $firstdefault=TRUE;
+                }
+            }
+//            var_dump($_addons);
+//            Yii::app()->end();
+//            return;
+
             $fields=FFField::model()->findAll("(`formid`=:formid) and (`default` is not null)",array(":formid"=>$idregistry));
             foreach ($fields as $field) {
                 if ($scenario=="insert" && substr(trim($field->default), 0, strlen("AISTATIC:"))=="AISTATIC:") { 
@@ -86,7 +101,7 @@ class FormviewController extends Controller
                     $data=eval(trim(substr(trim($field->default), strlen("AUPHP:"))));
                     $datamodel->setAttribute($field->name, $data);
                 }
-                if ($scenario=="insert" && substr(trim($field->default), 0, strlen("AI_ROUTE_AND_APLLY_FIRST_ACTION:"))=="AI_ROUTE_AND_APLLY_FIRST_ACTION:") { 
+                if (!$firstdefault && $scenario=="insert" && substr(trim($field->default), 0, strlen("AI_ROUTE_AND_APLLY_FIRST_ACTION:"))=="AI_ROUTE_AND_APLLY_FIRST_ACTION:") { 
                     $data=trim(substr(trim($field->default), strlen("AI_ROUTE_AND_APLLY_FIRST_ACTION:")));
 //                    echo 'Value:'.$data."<br />";
                     $datamodel->setAttribute($field->name, $data);
@@ -180,8 +195,8 @@ class FormviewController extends Controller
     }
     
     public function actionBarcode($id="0",$code="BCGean13"){
-        $text="482000000000";
-        $text=str_pad($id, 12, $text, STR_PAD_LEFT);
+        Yii::import("mff.components.utils.tracknumberUtil");
+        $text=  tracknumberUtil::getTracknumberFromId($id);
         Yii::import("application.extensions.barcodegen.*");
         require_once('BCGFontFile.php');
         require_once('BCGColor.php');

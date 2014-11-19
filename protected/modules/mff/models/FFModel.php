@@ -340,6 +340,156 @@ class FFModel extends CActiveRecord
         return $field;
     }  
     
+    public function getFieldValue($name) {
+        $field=$this->getField($name);
+        if (empty($field) || $field==NULL) return NULL;
+        switch ($field->getAttribute("type")) {
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '16':
+            case '17':
+            case '18':
+            case '19':
+                return $this->getAttribute($name);
+                break;
+            case '8':
+                Yii::import("mff.components.utils.tracknumberUtil");
+                $tracknumber=tracknumberUtil::getTracknumberFromId($this->id);
+                return $tracknumber;
+                break;
+            case '9':
+                return CHtml::link("Малюнок",  
+                        Yii::app()->createUrl(
+                                "/mff/formview/getimage",
+                                array(
+                                    "id"=>  $this->id, 
+                                    "name"=>$field->name
+                                    )
+                                )
+                        );
+                break;
+            case '10':
+                return CHtml::link(
+                        $this->getAttribute($field->name."_filename"),
+                        Yii::app()->createUrl(
+                                "/mff/formview/getfile",
+                                array(
+                                    "id"=>  $this->id, 
+                                    "name"=>$field->name
+                                    )
+                                )
+                        );
+                break;
+            case '14':
+                return CHtml::link(
+                        $this->getAttribute($field->name."_fileedsname"),
+                        Yii::app()->createUrl(
+                                "/mff/formview/getfile",
+                                array(
+                                    "id"=>  $this->id, 
+                                    "name"=>$field->name
+                                    )
+                                )
+                        );
+                break;               
+            default :                  
+                switch ($field->typeItem->getAttribute("view")){
+                    case "combobox":
+                    case "listbox":
+                    case "innerguide":
+                    case "radiobox":
+                        $valueField=$this->getAttribute($field->name);
+                        if (empty($valueField) || $valueField==NULL) return NULL;
+                        $storage=FFStorage::model()->find("type=:type",array(":type"=>$field->getAttribute("type")));
+                        if (empty($storage) || $storage==NULL) return NULL;
+                        if (isset($storage->fields) && $storage->fields!="") {
+                            $_fieldNames=explode(";", $storage->fields);
+                            $fieldNames=array();
+                            foreach ($_fieldNames as $_fieldName) {
+                                $fieldName=  explode(":",trim($_fieldName));
+                                if (count($fieldName)==2) {
+                                    $fieldNames=array_merge($fieldNames,  array(trim($fieldName[0])=>trim($fieldName[1])));
+                                } elseif (count($fieldName)==1) {
+                                    $fieldNames=array_merge($fieldNames,  array(trim($fieldName[0])=>trim($fieldName[0])));                                
+                                }
+                            }
+                        } 
+                        if (empty($storage) || $storage==NULL) return NULL;
+                        foreach ($storage->registryItems as $registryItem) {
+                            $subitem=new subguide_FFModel();
+                            $subitem->registry=$registryItem->id;
+                            $subitem->refreshMetaData();
+                            $subitem=$subitem->findByPk($valueField);
+                            if (empty($subitem) || $subitem==NULL) {
+                                continue;
+                            } 
+                            if (isset($storage->fields) && $storage->fields!="") {
+                                $_valueField="";
+                                foreach ($fieldNames as $fieldName => $fieldCaption) {
+                                    $_value=$subitem->getAttribute($fieldName);
+                                    if ($fieldName==$fieldCaption) {
+                                        $_valueField.=$_value."; ";
+                                    } else {
+                                        $_valueField.=$fieldCaption.": ".$_value."; ";
+                                    }
+                                }
+                                if ($_valueField!="") return $_valueField;
+                                return $valueField;
+                            } else {
+                                if ((int)$subitem->getAttaching()==0) {
+                                    return $subitem->getAttribute("name");
+                                } else {
+                                    return $subitem->id;
+                                }
+                            }
+                        }
+                        return NULL;
+                        break;
+                    case "listbox_multi":
+                        $subitems=$this->getItems($field->name);
+                        if (empty($subitems) || $subitems==NULL) return NULL;
+                        $storage=FFStorage::model()->find("type=:type",array(":type"=>$field->getAttribute("type")));
+                        if (empty($storage) || $storage==NULL) return NULL;
+                        if (isset($storage->fields) && $storage->fields!="") {
+                            $_fieldNames=explode(";", $storage->fields);
+                            $result="";
+                            foreach ($subitems as $subitem) {
+                                if ($result!="") $result.="<br />";
+                                foreach ($_fieldNames as $_fieldName) {
+                                    $fieldName=  explode(":", $_fieldName);
+                                    if (count($fieldName)==2) {
+                                        $result.=trim($fieldName[1]).": ".$subitem->getAttribute(trim($fieldName[0]))."; ";
+                                    } elseif (count($fieldName)==1) {
+                                        $result.=$subitem->getAttribute(trim($fieldName[0]))."; ";                                
+                                    }
+                                }                                
+                            }
+                            return $result;
+                        } 
+                        else {
+                            $result="";
+                            foreach ($subitems as $subitem) {
+                                if ((int)$subitem->getAttaching()==0) {
+                                    return $subitem->getAttribute("name");
+                                } else {
+                                    return $subitem->id;
+                                }
+                            }
+                        }
+                        return NULL;
+                        break;
+                    default :
+                        return NULL;
+                }                
+        }
+    }
+
+
     public function getType($name) {
         $field=  $this->getField($name);
         $type=  FFTypes::model()->findByPk($field->type);

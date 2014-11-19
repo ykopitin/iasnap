@@ -21,7 +21,7 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
                 'title' => $title,
                 'modal' => true,
                 'resizable'=> true,
-                'width'=>"65%",
+                'width'=>"75%",
                 'buttons' => $buttons,
             )
        )
@@ -31,13 +31,14 @@ Yii::app()->clientScript->registerScript(
         "dialogclose_dialogffform",
         '$("#dialogffform").dialog({close:function(){window.location="'.$backurl.'"}})'
         );
-
+if (empty($addons)) $addons=NULL;
 $widgetparams=array(
             "name"=>"formff",
             "idregistry"=>$idregistry,
             "idstorage"=>$idstorage,    
             "scenario"=>$scenario,
             "backurl"=>$backurl,
+            "addons"=>$addons,
 //            "cssOptions"=>"/css/mff/test.css",
             );
 if (isset($idform)) $widgetparams=array_merge($widgetparams,array("idform"=>$idform));

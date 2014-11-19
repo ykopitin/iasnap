@@ -1,9 +1,15 @@
 <?php
+    if (get_class($this)=="CabinetWidget") {
+        $backurl=base64_encode(Yii::app()->createUrl("/cabinet"));
+    } else {
+        $backurl=base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id)));
+    }
 echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p>";
 $userId=Yii::app()->User->id;
 if (!is_numeric($userId)) $userId='null';
 $roleId=NULL;
 $authoritie=NULL;
+$fielddefault='';
 if ($userId!='null') {
     $user=new FFModel;
     $user->registry=  FFModel::user;
@@ -11,7 +17,11 @@ if ($userId!='null') {
     $user=$user->findByPk($userId);
     $roleId=$user->user_roles_id;
     $authoritie=$user->authorities_id;
+    if ($user->getAttribute("user_roles_id")=='2') {
+        $fielddefault='"fielddefaults"=>array("route"=>"1742")';
+    }
 }
+
 $storageItems_new=$folder->getItems("allow_new");
 $storageItems_new_deny=$folder->getItems("deny_new");
 
@@ -27,7 +37,7 @@ $buttons=array(
                         "idstorage"=>$data->storage,
                         "idform"=>$data->id,
                         "scenario"=>"view",
-                        "thisrender"=>"'.base64_encode("mff.views.cabinet.cabinet").'",
+                        "thisrender"=>"'.$cabineturl.'",
                         "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').'",'.    
                         ')
                     )'          
@@ -41,7 +51,7 @@ $buttons=array(
                         "idstorage"=>$data->storage,
                         "idform"=>$data->id,
                         "scenario"=>"update",
-                        "thisrender"=>"'.base64_encode("mff.views.cabinet.cabinet").'",
+                        "thisrender"=>"'.$cabineturl.'",
                         "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.')').'",'.
                         ')
                     )'          
@@ -52,7 +62,7 @@ $buttons=array(
             'url'=>'Yii::app()->createUrl("/mff/formview/delete", 
                     array(
                         "idform"=>$data->id,
-                        "backurl"=>"'.base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id))).'",'.
+                        "backurl"=>"'.$backurl.'",'.
                         ')
                     )'          
             ),
@@ -67,6 +77,8 @@ if (count($storageItems_delete)>0) {
 if (count($storageItems_new)>0) {
     $items=array();
     $storageItemIds=array();
+    echo CHtml::label("Обрати послугу ", "");
+    $datalist=array();
     foreach ($storageItems_new as $storageItem) {
         $storageItem=FFStorage::model()->findByPk($storageItem->id); // Чтобы не терять
         foreach ($storageItem->registryItems as $registryItem) {
@@ -80,19 +92,28 @@ if (count($storageItems_new)>0) {
                 }
             }
             if ($skip) continue;
-            $label = "Зареєструвати: ".$registryItem->getAttribute("description");
+            $label = $registryItem->getAttribute("description");
             $url=$this->createUrl(
-                    "/mff/formview/save", 
+                    "/usl/save", 
                     array(
                         "idregistry"=>$registryItem->id,
                         "idstorage"=>$storageItem->id,
-                        "thisrender"=>base64_encode("mff.views.cabinet.cabinet"),
+                        "thisrender"=>$cabineturl,
 //                        "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinet->id))),
-                        "addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.')')));
-            $items=array_merge($items,array(array("label"=>$label,"url"=>$url)));                    
+                        "addons"=>base64_encode('array("cabinetid"=>'.$cabinet->id.','.$fielddefault.')')));
+            $datalist=array_merge($datalist, array($url=>$label));
+//            $items=array_merge($items,array(array("label"=>$label,"url"=>$url)));                    
         }
     }
-    $this->widget("zii.widgets.CMenu",array("items"=>$items,"htmlOptions"=>array("id"=>"menucreate")));
+    echo CHtml::dropDownList("selectservice", NULL, $datalist)." ";
+    $this->widget(
+            "zii.widgets.jui.CJuiButton",
+            array(
+                'buttonType'=>'button',
+                'name'=>'btnSave',
+                'caption'=>'Нова заявка',
+                'onclick'=>new CJavaScriptExpression('function(){window.location=selectservice.options[selectservice.selectedIndex].value; return false;}')));
+//    $this->widget("zii.widgets.CMenu",array("items"=>$items,"htmlOptions"=>array("id"=>"menucreate")));
 }
 // Узлы папки
 $nodes=$folder->getItems("nodes");
@@ -229,18 +250,29 @@ foreach ($ActionItems as $ActionItem) {
     $buttons = array_merge($buttons, $buttonItem);
 }
 // Определение колонок
-$columns = array(array('name'=>'id',"headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));
+$columns = array(
+    array(
+//        'class'=>'mff.components.mffDataColumn',
+        'name'=>'id',
+        "headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));
 if (strlen($folder->getAttribute("visual_names"))>0) {
-   $columnVisualNames = explode(";",$folder->visual_names);
+   $columnVisualNames = explode(";",trim($folder->visual_names));
    foreach ($columnVisualNames as $columnVisual) {
        if (trim($columnVisual)=="") continue;
-       $columnVisualList=explode(":", $columnVisual);
+       $columnVisualList=explode(":", trim($columnVisual));
        if (count($columnVisualList)==0) continue;
-       $columnVisualName=$columnVisualList[0];
-       if (count($columnVisualList)>1) $columnVisualTitle=$columnVisualList[1];
-       else $columnVisualTitle=$columnVisualName;
+       $columnVisualName=trim($columnVisualList[0]);
+       if (count($columnVisualList)>1) $columnVisualTitle=trim($columnVisualList[1]);
+       else $columnVisualTitle=trim($columnVisualName);
        // сюда можно добавить отображение сложных полей
-       $columns = array_merge($columns,array(array('name'=>$columnVisualName,"header"=>$columnVisualTitle)));
+       $columns = array_merge(
+               $columns,
+               array(
+                   array(
+                       'class'=>'mff.components.mffDataColumn',
+                       'name'=>$columnVisualName,
+//                       "value"=>'$data->getFieldValue("'.$columnVisualName.'")',
+                       "header"=>$columnVisualTitle)));
    }
 }
 $columns = array_merge($columns, array(array('class'=>'mff.components.mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Дії", 'buttons'=>$buttons)));

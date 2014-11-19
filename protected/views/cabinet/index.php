@@ -44,11 +44,15 @@ if ($ok==1) {
 <?php
 
 /// Вставка перехода в кабинет
+$urlparam=array(
+    "cabineturl"=>  base64_encode("application.views.cabinet.index"),
+    "thisrender"=>  base64_encode("application.views.cabinet.index"),
+    "idregistry"=>38,
+    "idstorage"=>16,
+);
+if (isset($addons) && $addons!=NULL) $urlparam=array_merge($urlparam,array("addons"=>$addons));
+$this->widget('mff.components.CabinetWidget',$urlparam);
 
-$this->widget('mff.components.CabinetWidget');
-//$this->widget('mff.components.CabinetWidget',array("cabinetId"=>1));
-return; // ОТКЛЮЧИЛ ИЗ-ЗА ТОГО ЧТО ЛОКАЛЬНО ТЕСТИРОВАТЬ НЕЛЬЗЯ (НЕ ПРОХОДИТ АВТОРИЗАЦИЯ)
-/// Конец вставки
 
 }
 ?>

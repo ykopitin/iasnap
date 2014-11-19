@@ -19,4 +19,5 @@ class mffGridView extends CGridView {
         parent::renderTableRow($row);
     }
 
+    
 }

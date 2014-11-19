@@ -4,6 +4,9 @@ $urlparam=array();
 if($this->scenario!=null) {    
     $urlparam=array_merge($urlparam,array("scenario"=>$this->scenario));
 }
+if($this->addons!=null) {    
+    $urlparam=array_merge($urlparam,array("addons"=>$this->addons));
+}
 if($this->idregistry!=null) {
     $urlparam=array_merge($urlparam,array("idregistry"=>$this->idregistry));
 }
@@ -22,6 +25,8 @@ if($this->idform!=null) {
 }
 $urlparam=array_merge($urlparam,array("backurl"=>  base64_encode($this->backurl) ));
 CActiveForm::validate($modelff);
+$_addons=  base64_decode($this->addons);
+//var_dump($_addons);
 $form=$this->beginWidget("CActiveForm", array(
         'id'=>$this->name."_form",
         'enableAjaxValidation' => true,

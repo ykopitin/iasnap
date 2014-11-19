@@ -18,6 +18,7 @@ class FFWidget extends CWidget {
     public $idform=null;
     public $scenario="insert";
     public $name=null;
+    public $addons=null;
     public $fieldOptions=null;
     public $fieldcount=100;
     public $cssOptions=null;
@@ -42,7 +43,14 @@ class FFWidget extends CWidget {
     }
 
     public function run() {      
-        $this->render("ff",array("idregistry"=>$this->idregistry, "idstorage"=>$this->idstorage, "scenario"=>$this->scenario, "idform"=>$this->idform));
+        $this->render(
+                "ff",
+                array(
+                    "idregistry"=>$this->idregistry, 
+                    "idstorage"=>$this->idstorage, 
+                    "scenario"=>$this->scenario, 
+                    "idform"=>$this->idform,
+                    "addons"=>  $this->addons));
     }    
     
     protected function applyHtmlOptions($profile="default") {

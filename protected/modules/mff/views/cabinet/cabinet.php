@@ -1,9 +1,9 @@
 <?php
 if (!isset($cabinetmodel)) {
     if (isset($addons)) {
-        $addons=base64_decode($addons);
-        eval('$addons='.$addons.";");
-        $cabinetid=$addons["cabinetid"];
+        $_addons=base64_decode($addons);
+        eval('$_addons='.$_addons.";");
+        $cabinetid=$_addons["cabinetid"];
     }
     $cabinetmodel=FFModel::model()->findByPk($cabinetid);
     if (empty($cabinetmodel) || $cabinetmodel==NULL) {
@@ -62,14 +62,25 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 //    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
     )
 );
+
 if ((isset($this->owner) && ($this->owner->action->id=="save")) || (isset($this->action) && ($this->action->id=="save"))) {
+    if (empty($scenario)) $scenario="insert";
+    if (get_class($this)=="CabinetWidget") {
+        $backurl=base64_encode(Yii::app()->createUrl("/cabinet"));
+    } else {
+        $backurl=base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id)));
+    }
+    if (empty($addons)) $addons=base64_encode('array("cabinetid"=>'.$cabinetmodel->id.')');
     $urldata=array(
-        "backurl"=>base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id))),
+        "backurl"=>$backurl,
         "thisrender"=>$cabineturl,
-        "addons"=>base64_encode('array("cabinetid"=>'.$cabinetmodel->id.')'));
+        "addons"=>$addons);
     if (isset($idregistry)) $urldata=array_merge($urldata,array("idregistry"=>$idregistry,));
     if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
     if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
     if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
-    $this->renderPartial("/formview/_ff",$urldata);
+    if (get_class($this)=="CabinetWidget") 
+        $this->owner->renderPartial("mff.views.formview._ff",$urldata);
+    else
+        $this->renderPartial("/formview/_ff",$urldata);
 }

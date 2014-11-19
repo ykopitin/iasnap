@@ -19,6 +19,10 @@ class CabinetWidget extends CWidget {
     public $userId=null;
     public $roleId=null;
     public $cabineturl=null;
+    public $idregistry=null;
+    public $idstorage=null;
+    public $addons=null;
+    public $thisrender=null;
     private $cabinets=null;
     
     public function init() {       
@@ -82,8 +86,18 @@ class CabinetWidget extends CWidget {
 
     public function run() {
         foreach ($this->cabinets as $cabinetId) {
-            $this->render("mff.views.cabinet.cabinet",array(
-                "cabinetid"=>  $cabinetId, "folderid"=>  $this->folderId,"cabineturl"=>$this->cabineturl));
+            $this->render(
+                    "mff.views.cabinet.cabinet",
+                    array(
+                        "cabinetid"=>  $cabinetId, 
+                        "folderid"=>  $this->folderId, 
+                        "cabineturl"=>$this->cabineturl, 
+                        "idregistry"=>$this->idregistry,
+                        "idstorage"=>$this->idstorage,   
+                        "thisrender"=>$this->thisrender,   
+                        "addons"=>$this->addons,  
+                        )
+                    );
         }
     }
 

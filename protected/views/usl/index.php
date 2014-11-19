@@ -28,7 +28,7 @@ else {$ok=0;}
                     array(
                         "idregistry"=>38,
                         "idstorage"=>16,
-                        "backurl"=>$this->createUrl("cabinet",array("id"=>1)), 
+                        "backurl"=>$this->createUrl("application.cabinet"), 
 			"profile"=>"usl",	
                 )
             );
