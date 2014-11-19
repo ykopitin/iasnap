@@ -23,6 +23,7 @@ class FFWidget extends CWidget {
     public $fieldcount=100;
     public $cssOptions=null;
     public $jsOptions=null;
+    public $xslOptions=null;
     public $profile="default";
 
 
@@ -43,14 +44,20 @@ class FFWidget extends CWidget {
     }
 
     public function run() {      
-        $this->render(
+        $rendform=$this->render(
                 "ff",
                 array(
                     "idregistry"=>$this->idregistry, 
                     "idstorage"=>$this->idstorage, 
                     "scenario"=>$this->scenario, 
                     "idform"=>$this->idform,
-                    "addons"=>  $this->addons));
+                    "addons"=>  $this->addons),
+                true);
+        $rendform=$this->applyXSLOptions($rendform);
+        if (isset($this->profile) && $this->profile!=NULL && $this->profile!="" && $this->profile!="default") {
+             $rendform=$this->applyXSLOptions($rendform,$this->profile);
+        }
+        echo $rendform;
     }    
     
     protected function applyHtmlOptions($profile="default") {
@@ -97,9 +104,13 @@ class FFWidget extends CWidget {
             $file=Yii::getPathOfAlias($path).".css";          
             if (file_exists($file)) {
                 Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=>base64_encode($path), "fullAlias"=>true)));
-            }
-            
-       }        
+            }           
+        } else {
+            $file=Yii::getPathOfAlias($this->cssOptions).".css";
+            if (file_exists($file)) {
+                 Yii::app()->clientScript->registerCSSFile(Yii::app()->createUrl("mff/default/getcss",array("css"=> base64_encode($path), "fullAlias"=>true)));
+            }            
+        }
     }
     
     protected function applyScriptOptions($profile="default") {
@@ -120,6 +131,48 @@ class FFWidget extends CWidget {
                 Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>base64_encode($path), "fullAlias"=>true)));
             }
             // Добавить в зависимости от узла
-       }                
+       }  else {
+            $file=Yii::getPathOfAlias($this->jsOptions).".js";
+            if (file_exists($file)) {
+                Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl("mff/default/getscript",array("script"=>base64_encode($path), "fullAlias"=>true)));
+            }
+       }              
+    }
+    
+    protected function applyXSLOptions($renderdata, $profile="default") {
+        $result=$renderdata;
+        if (empty($this->xslOptions) || $this->xslOptions==NULL) {
+            $path="mff.components.FF.style.xsl.".$profile;
+            $file=Yii::getPathOfAlias($path).".xsl";
+            if (file_exists($file)) {
+                $xsl=  file_get_contents($file);
+                $result=$this->transformationXSL($result, $xsl);
+            }
+            $path="mff.components.FF.style.xsl.".$this->idregistry.".".$profile;
+            $file=Yii::getPathOfAlias($path).".xsl";
+            if (file_exists($file)) {
+                $xsl=  file_get_contents($file);
+                $result=$this->transformationXSL($result, $xsl);
+            }
+            $path="mff.components.FF.style.xsl.".$this->idregistry.".".$this->scenario.".".$profile;
+            $file=Yii::getPathOfAlias($path).".xsl";
+            if (file_exists($file)) {
+                $xsl=  file_get_contents($file);
+                $result=$this->transformationXSL($result, $xsl);
+            }
+        } else {
+            $file=Yii::getPathOfAlias($this->xslOptions).".xsl";
+            if (file_exists($file)) {
+                $xsl=  file_get_contents($file);
+                $result=$this->transformationXSL($result, $xsl);
+            }
+        }   
+        return $result;
+    }
+    
+    protected function transformationXSL($data,$xsl) {
+        $xslt = new XSLTProcessor();
+        $xslt->importStylesheet(new SimpleXMLElement($xsl));
+        return $xslt->transformToXml(new SimpleXMLElement($data));        
     }
 }
