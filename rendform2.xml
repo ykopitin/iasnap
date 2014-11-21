@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<div id="formff">
+<form enctype="multipart/form-data" id="formff_form" action="/mff/formview/save/scenario/insert/idregistry/38/idstorage/16/backurl/L21mZi9mb3Jtdmlldy9pbmRleHN0b3JhZ2UvaWQvMTY%3D" method="post"><input name="FFModel[id]" id="FFModel_id" type="hidden"/><div id="yw2" class="list-view">
+<div class="items">
+<div id="formff_field_initeds">
+    <div id="formff_fieldlabel_initeds"><label for=""/></div>
+    <div id="formff_fieldvalue_initeds">
+        
+<style type="text/css">
+label .eusign{
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+checkbox .eusign{
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+</style>
+
+<applet codebase="https://cnaptest.pp.ua/auth" code="com.iit.certificateAuthority.endUser.libraries.signJava.EndUser.class" archive="EUSignJava.jar" id="euSign" width="100%" height="16">
+</applet>
+<script type="text/javascript">
+function YiiBaseUrl() { return ""; };
+function YiiUrl(Where) { if (Where=='base') {return "";};
+		if (Where=='getcertificates'){return "/sign/getcertificates";};
+		if (Where=='getstring'){return "/sign/getstring";};
+
+}</script>
+
+                <!--	Елементи opaco та popup необхідні для коректного відображення форми вибору носія закритого ключа та форми параметрів	-->
+                <div id="opaco" class="hidden"/>
+                <div id="popup" class="hidden"/>
+<input id="OwnCertPath" type="hidden" value=""/>
+<input id="SignRandstr" type="hidden" value=""/>
+    </div> 
+    <div id="formff_fielderror_initeds"/>    
+</div>
+<div id="formff_field_regnum">
+    <div id="formff_fieldlabel_regnum"><label for="">Реєстраційний номер</label></div>
+    <div id="formff_fieldvalue_regnum">
+        <input name="FFModel[regnum]" id="FFModel_regnum" type="text"/>    </div> 
+    <div id="formff_fielderror_regnum"/>    
+</div>
+<div id="formff_field_regdate">
+    <div id="formff_fieldlabel_regdate"><label for="">Дата реєстрації</label></div>
+    <div id="formff_fieldvalue_regdate">
+        <input id="regdate" name="FFModel[regdate]" type="text"/>    </div> 
+    <div id="formff_fielderror_regdate"/>    
+</div>
+<div id="formff_field_number_of_pages">
+    <div id="formff_fieldlabel_number_of_pages"><label for="">Аркушів</label></div>
+    <div id="formff_fieldvalue_number_of_pages">
+        <input name="FFModel[number_of_pages]" id="FFModel_number_of_pages" type="text"/>    </div> 
+    <div id="formff_fielderror_number_of_pages"/>    
+</div>
+<div id="formff_field_delivery">
+    <div id="formff_fieldlabel_delivery"><label for="">Доставлено</label></div>
+    <div id="formff_fieldvalue_delivery">
+        <select name="FFModel[delivery]" id="FFModel_delivery">
+<option value="" selected="selected"/>
+<option value="89">Особисто</option>
+<option value="90">Пошта</option>
+<option value="88">Сайт</option>
+</select>    </div> 
+    <div id="formff_fielderror_delivery"/>    
+</div>
+<div id="formff_field_outnum">
+    <div id="formff_fieldlabel_outnum"><label for="">Вих. номер</label></div>
+    <div id="formff_fieldvalue_outnum">
+        <input name="FFModel[outnum]" id="FFModel_outnum" type="text"/>    </div> 
+    <div id="formff_fielderror_outnum"/>    
+</div>
+<div id="formff_field_outdate">
+    <div id="formff_fieldlabel_outdate"><label for="">Вих. дата</label></div>
+    <div id="formff_fieldvalue_outdate">
+        <input id="outdate" name="FFModel[outdate]" type="text"/>    </div> 
+    <div id="formff_fielderror_outdate"/>    
+</div>
+<div id="formff_field_legal_personality">
+    <div id="formff_fieldlabel_legal_personality"><label for="">Правова форма</label></div>
+    <div id="formff_fieldvalue_legal_personality">
+        <input id="ytFFModel_legal_personality" type="hidden" value="" name="FFModel[legal_personality]"/><span id="FFModel_legal_personality"><input id="FFModel_legal_personality_0" value="5" type="radio" name="FFModel[legal_personality]"/> <label for="FFModel_legal_personality_0">Фізична особа</label><br/>
+<input id="FFModel_legal_personality_1" value="6" type="radio" name="FFModel[legal_personality]"/> <label for="FFModel_legal_personality_1">Фізична особа - підприємець</label><br/>
+<input id="FFModel_legal_personality_2" value="7" type="radio" name="FFModel[legal_personality]"/> <label for="FFModel_legal_personality_2">Юридична особа</label></span>    </div> 
+    <div id="formff_fielderror_legal_personality"/>    
+</div>
+<div id="formff_field_organization_name">
+    <div id="formff_fieldlabel_organization_name"><label for="">Організація</label></div>
+    <div id="formff_fieldvalue_organization_name">
+        <input name="FFModel[organization_name]" id="FFModel_organization_name" type="text"/>    </div> 
+    <div id="formff_fielderror_organization_name"/>    
+</div>
+<div id="formff_field_organization_edrpou">
+    <div id="formff_fieldlabel_organization_edrpou"><label for="">Код ЄДРПОУ</label></div>
+    <div id="formff_fieldvalue_organization_edrpou">
+        <input name="FFModel[organization_edrpou]" id="FFModel_organization_edrpou" type="text"/>    </div> 
+    <div id="formff_fielderror_organization_edrpou"/>    
+</div>
+<div id="formff_field_person_name">
+    <div id="formff_fieldlabel_person_name"><label for="">Ім'я фізичної особи</label></div>
+    <div id="formff_fieldvalue_person_name">
+        <input name="FFModel[person_name]" id="FFModel_person_name" type="text"/>    </div> 
+    <div id="formff_fielderror_person_name"/>    
+</div>
+<div id="formff_field_person_drfo">
+    <div id="formff_fieldlabel_person_drfo"><label for="">Код ДРФО</label></div>
+    <div id="formff_fieldvalue_person_drfo">
+        <input name="FFModel[person_drfo]" id="FFModel_person_drfo" type="text"/>    </div> 
+    <div id="formff_fielderror_person_drfo"/>    
+</div>
+<div id="formff_field_its_autority">
+    <div id="formff_fieldlabel_its_autority"><label for="">За довіреністю</label></div>
+    <div id="formff_fieldvalue_its_autority">
+        <div>
+<input id="ytFFModel_its_autority" type="hidden" value="0" name="FFModel[its_autority]"/><input name="FFModel[its_autority]" id="FFModel_its_autority" value="1" type="checkbox"/></div>    </div> 
+    <div id="formff_fielderror_its_autority"/>    
+</div>
+<div id="formff_field_autority_person_name">
+    <div id="formff_fieldlabel_autority_person_name"><label for="">ПІБ довіреної особи</label></div>
+    <div id="formff_fieldvalue_autority_person_name">
+        <input name="FFModel[autority_person_name]" id="FFModel_autority_person_name" type="text"/>    </div> 
+    <div id="formff_fielderror_autority_person_name"/>    
+</div>
+<div id="formff_field_autority_person_number">
+    <div id="formff_fieldlabel_autority_person_number"><label for="">№ довіреності</label></div>
+    <div id="formff_fieldvalue_autority_person_number">
+        <input name="FFModel[autority_person_number]" id="FFModel_autority_person_number" type="text"/>    </div> 
+    <div id="formff_fielderror_autority_person_number"/>    
+</div>
+<div id="formff_field_address">
+    <div id="formff_fieldlabel_address"><label for="">Адреса</label></div>
+    <div id="formff_fieldvalue_address">
+        <textarea name="FFModel[address]" id="FFModel_address"/>    </div> 
+    <div id="formff_fielderror_address"/>    
+</div>
+<div id="formff_field_phone1">
+    <div id="formff_fieldlabel_phone1"><label for="">Телефон 1</label></div>
+    <div id="formff_fieldvalue_phone1">
+        <input id="phone1" name="FFModel[phone1]" type="text"/>    </div> 
+    <div id="formff_fielderror_phone1"/>    
+</div>
+<div id="formff_field_phone2">
+    <div id="formff_fieldlabel_phone2"><label for="">Телефон 2</label></div>
+    <div id="formff_fieldvalue_phone2">
+        <input id="phone2" name="FFModel[phone2]" type="text"/>    </div> 
+    <div id="formff_fielderror_phone2"/>    
+</div>
+<div id="formff_field_delivery_reply">
+    <div id="formff_fieldlabel_delivery_reply"><label for="">Форма надання відповіді</label></div>
+    <div id="formff_fieldvalue_delivery_reply">
+        <select name="FFModel[delivery_reply]" id="FFModel_delivery_reply">
+<option value="" selected="selected"/>
+<option value="89">Особисто</option>
+<option value="90">Пошта</option>
+<option value="88">Сайт</option>
+</select>    </div> 
+    <div id="formff_fielderror_delivery_reply"/>    
+</div>
+<div id="formff_field_email">
+    <div id="formff_fieldlabel_email"><label for="">E-Mail</label></div>
+    <div id="formff_fieldvalue_email">
+        <input name="FFModel[email]" id="FFModel_email" type="email"/>    </div> 
+    <div id="formff_fielderror_email"/>    
+</div>
+<div id="formff_field_authorities">
+    <div id="formff_fieldlabel_authorities"><label for="">Суб'єкт розгляду</label></div>
+    <div id="formff_fieldvalue_authorities">
+        <select name="FFModel[authorities]" id="FFModel_authorities">
+<option value="" selected="selected"/>
+<option value="16">Назва: Інспекція державного архітектурно-будівельного контролю в Одеській області</option>
+<option value="14">Назва: Головне управління Державної Служби надзвичайних ситуацій України в Одеської області</option>
+<option value="15">Назва: Головне управління Держсанепідслужби в Одеській області</option>
+<option value="19">Назва: Головне управління ДМС в Одеській області</option>
+<option value="17">Назва: Головне управління юстиції в Одеській області</option>
+<option value="2">Назва: Департамент  освіти і науки Одеської обласної державної адміністрації</option>
+<option value="11">Назва: Департамент агропромислового розвитку Одеської обласної державної адміністрації</option>
+<option value="7">Назва: Департамент екології та природних ресурсів Одеської обласної державної адміністрації</option>
+<option value="10">Назва: Департамент економічного розвитку і торгівлі Одеської обласної державної адміністрації</option>
+<option value="5">Назва: Департамент зовнішньоекономічної діяльності та європейської інтеграції Одеської обласної державної адміністрації</option>
+<option value="8">Назва: Департамент освіти і науки Одеської обласної державної адміністрації</option>
+<option value="3">Назва: Департамент розвитку інфраструктури та житлово-комунального господарства Одеської обласної державної адміністрації</option>
+<option value="18">Назва: Реєстраційна служба  Одеського міського управління юстиції</option>
+<option value="4">Назва: Управління  архітектури та містобудування  Одеської міської  ради</option>
+<option value="12">Назва: Управління інформаційної діяльності Одеської обласної державної адміністрації</option>
+<option value="6">Назва: Управління культури і туризму, національностей та релігії Одеської обласної державної адміністрації</option>
+<option value="13">Назва: Управління охорони об’єктів культурної спадщини Одеської обласної державної адміністрації</option>
+<option value="1">Назва: Центр надання адміністративних послуг Одеської міської ради </option>
+</select>    </div> 
+    <div id="formff_fielderror_authorities"/>    
+</div>
+<div id="formff_field_service">
+    <div id="formff_fieldlabel_service"><label for="">Послуга</label></div>
+    <div id="formff_fieldvalue_service">
+        <select name="FFModel[service]" id="FFModel_service">
+<option value="" selected="selected"/>
+<option value="6">Анулювання державної реєстрації іноземних інвестицій</option>
+<option value="77">Анулювання дозволу на відновлення земляних робіт</option>
+<option value="59">Анулювання ліцензії  на право провадження господарської діяльності з виробництва теплової енергії (крім діяльності  з виробництва теплової енергії на теплоелектроцентралях, теплоелектростанціях, атомних електростанціях і когенераційних установках</option>
+<option value="47">Анулювання ліцензії  на право провадження господарської діяльності з постачання теплової енергії</option>
+<option value="52">Анулювання ліцензії  на право провадження господарської діяльності з транспортування  теплової енергії магістральними та місцевими (розподільчими) тепловими мережами</option>
+<option value="69">Анулювання ліцензії на діяльність з торгівлі пестицидами та агрохімікатами (тільки регуляторами росту рослин)</option>
+<option value="22">Анулювання ліцензії на надання освітніх послуг у сфері дошкільної освіти</option>
+<option value="17">Анулювання ліцензії на надання освітніх послуг у сфері загальної середньої освіти</option>
+<option value="27">Анулювання ліцензії на надання освітніх послуг у сфері позашкільної освіти</option>
+<option value="37">Анулювання ліцензії на право провадження господарської діяльності з централізованого водовідведення</option>
+<option value="32">Анулювання ліцензії на право провадження господарської діяльності з централізованого водопостачання</option>
+<option value="42">Анулювання ліцензії на право провадження господарської діяльності з централізованого водопостачання та водовідведення</option>
+<option value="90">Видача виписки з Єдиного державного реєстру юридичних осіб та фізичних осіб підприємців</option>
+<option value="91">Видача витягу з Єдиного державного реєстру юридичних осіб та фізичних осіб підприємців
+</option>
+<option value="92">Видача довідки з Єдиного державного реєстру юридичних осіб та фізичних осіб  підприємців.
+</option>
+<option value="7">Видача дубліката інформаційного повідомлення про внесення іноземної інвестиції, у разі його втрати (знищення)</option>
+<option value="75">Видача дубліката дозволу на відновлення земляних робіт</option>
+<option value="12">Видача дубліката дозволу на викиди забруднюючих речовин в атмосферне повітря стаціонарними джерелами</option>
+<option value="19">Видача дубліката ліцензії на надання освітніх послуг у сфері дошкільної освіти</option>
+<option value="14">Видача дубліката ліцензії на надання освітніх послуг у сфері загальної середньої освіти</option>
+<option value="24">Видача дубліката ліцензії на надання освітніх послуг у сфері позашкільної освіти </option>
+<option value="71">Видача дубліката Свідоцтва про внесення до Державного реєстру  видавців, виготівників і розповсюджувачів видавничої продукції </option>
+<option value="110">Видача дубліката свідоцтва про державну реєстрацію друкованого засобу масової інформації
+</option>
+<option value="64">видача дублікату картки державної реєстрації договору (контракту) про спільну інвестиційну діяльність за участю іноземного інвестора</option>
+<option value="66">Видача дублікату ліцензії на торгівлю пестицидами та агрохімікатами (тільки регуляторами росту рослин)</option>
+<option value="20">Видача копії ліцензії на надання освітніх послуг у сфері дошкільної освіти</option>
+<option value="15">Видача копії ліцензії на надання освітніх послуг у сфері загальної середньої освіти</option>
+<option value="25">Видача копії ліцензії на надання освітніх послуг у сфері позашкільної освіти</option>
+<option value="68">Видача копії ліцензії на торгівлю пестицидами та агрохімікатами (тільки регуляторами росту рослин)</option>
+<option value="18">Видача ліцензії на надання освітніх послуг у сфері дошкільної освіти</option>
+<option value="13">Видача ліцензії на надання освітніх послуг у сфері загальної середньої освіти</option>
+<option value="23">Видача ліцензії на надання освітніх послуг у сфері позашкільної освіти </option>
+<option value="108">Видача свідоцтва про державну реєстрацію друкованого засобу масової інформації з місцевою сферою розповсюдження
+</option>
+<option value="109">Видача свідоцтва про державну реєстрацію друкованого засобу масової інформації у зв&amp;#39;язку з перереєстрацією
+</option>
+<option value="101">Видача свідоцтва про реєстрацію громадської організації
+</option>
+<option value="87">Видача сертифікату у разі прийняття в експлуатацію закінченого будівництвом об`єкта</option>
+<option value="80">Видача фізичним особам висновку державної санітарно-епідеміологічної експертизи діючих об’єктів</option>
+<option value="97">Видача юридичним особам дублікатів оригіналів їх установчих документів та змін до них
+</option>
+<option value="103">Видача&amp;nbsp;дубліката свідоцтва про реєстрацію громадської організації
+</option>
+<option value="111">Визнання недійсним свідоцтва про державну реєстрацію друкованого засобу масової&amp;nbsp; інформації з місцевою сферою розповсюдження на підставі повідомлення засновника
+</option>
+<option value="73">Виключення суб'єкта видавничої справи з Державного реєстру  видавців, виготівників і розповсюджувачів видавничої продукції </option>
+<option value="3">Висновок по проекту землеустрою щодо відведення земельної ділянки або технічній документації по встановленню меж земельної ділянки</option>
+<option value="114">Вклеювання до паспорта громадянина України фотокартки при досягненні 25- та 45- річного віку
+</option>
+<option value="94">Включення до Єдиного державного реєстру юридичних осіб та фізичних осіб-підприємців відомостей про закриття відокремленого підрозділу юридичної особи</option>
+<option value="95">Включення до Єдиного державного реєстру юридичних осіб та фізичних осіб-підприємців відомостей про створення відокремленого підрозділу юридичної особи
+</option>
+<option value="120">Внесення до Єдиного державного реєстру юридичних осіб та фізичних осіб &amp;ndash; підприємців запису про втрату оригіналів установчих документів юридичної особи
+</option>
+<option value="119">Внесення до Єдиного державного реєстру юридичних осіб та фізичних осіб &amp;ndash; підприємців запису про рішення засновників (учасників) юридичної особи або уповноваженим ними органом щодо припинення юридичної особи
+</option>
+<option value="107">Внесення до реєстру &amp;nbsp;громадських об&amp;rsquo;єднань запису про рішення щодо саморозпуску або реорганізації громадського об&amp;rsquo;єднання, а також про припинення діяльності громадського об&amp;rsquo;єднання
+</option>
+<option value="104">Внесення до реєстру громадських&amp;nbsp;об&amp;rsquo;єднань відомостей про відокремлений підрозділ громадського об&amp;rsquo;єднання
+</option>
+<option value="86">Внесення змін до декларації про готовність об`єкта до експлуатації
+</option>
+<option value="84">Внесення змін до декларації про початок виконання будівельних робіт
+</option>
+<option value="82">Внесення змін до декларації про початок виконання підготовчих робіт
+</option>
+<option value="72">Внесення змін до Державного реєстру  видавців, виготівників і розповсюджувачів видавничої продукції </option>
+<option value="70">Внесення суб'єкта видавничої справи до Державного реєстру  видавців, виготівників і розповсюджувачів видавничої продукції</option>
+<option value="79">Декларація відповідності матеріально-технічної бази суб’єкта господарювання вимогам законодавства з питань пожежної безпеки</option>
+<option value="4">Державна реєстрація іноземних інвестицій</option>
+<option value="8">Державна реєстрація договорів (контрактів) про спільну інвестиційну діяльність за участю іноземного інвестора</option>
+<option value="62">Державна реєстрація змін і доповнень до договорів (контрактів) про спільну інвестиційну діяльність за участю іноземного інвестора</option>
+<option value="96">Державна реєстрація змін до відомостей про фізичну особу-підприємця, які містяться в Єдиному державному реєстрі юридичних осіб та&amp;nbsp;фізичних осіб-підприємців</option>
+<option value="93">Державна реєстрація змін до установчих документів юридичної особи
+</option>
+<option value="100">Державна реєстрація припинення підприємницької діяльності фізичної особи-підприємця за її рішенням
+</option>
+<option value="99">Державна реєстрація припинення юридичної особи в результаті її ліквідації
+</option>
+<option value="98">Державна реєстрація припинення юридичної особи в результаті злиття,&amp;nbsp; приєднання, поділу або перетворення
+</option>
+<option value="88">Державна реєстрація фізичної особи, яка має намір стати підприємцем
+</option>
+<option value="89">Державна реєстрація юридичної особи
+</option>
+<option value="74">Дозвіл на відновлення земляних робіт</option>
+<option value="10">Дозвіл на викиди забруднюючих речовин в атмосферне повітря стаціонарними джерелами (для об’єктів другої та третьої груп)</option>
+<option value="54">Дублікат ліцензії  на право провадження господарської діяльності з виробництва теплової енергії (крім діяльності  з виробництва теплової енергії на теплоелектроцентралях, теплоелектростанціях, атомних електростанціях і когенераційних установках та установ</option>
+<option value="44">Дублікат ліцензії  на право провадження господарської діяльності з постачання теплової енергії</option>
+<option value="49">Дублікат ліцензії  на право провадження господарської діяльності з транспортування  теплової енергії магістральними та місцевими (розподільчими) тепловими мережами</option>
+<option value="34">Дублікат ліцензії на право провадження господарської діяльності з централізованого водовідведення</option>
+<option value="29">Дублікат ліцензії на право провадження господарської діяльності з централізованого водопостачання</option>
+<option value="39">Дублікат ліцензії на право провадження господарської діяльності з централізованого водопостачання та водовідведення</option>
+<option value="116">Зняття з реєстрації місця проживання
+</option>
+<option value="56">Копія ліцензії  на право провадження господарської діяльності з виробництва теплової енергії (крім діяльності  з виробництва теплової енергії на теплоелектроцентралях, теплоелектростанціях, атомних електростанціях і когенераційних установках та установ</option>
+<option value="45">Копія ліцензії  на право провадження господарської діяльності з постачання теплової енергії</option>
+<option value="50">Копія ліцензії  на право провадження господарської діяльності з транспортування  теплової енергії магістральними та місцевими (розподільчими) тепловими мережами</option>
+<option value="35">Копія ліцензії на право провадження господарської діяльності з централізованого водовідведення</option>
+<option value="30">Копія ліцензії на право провадження господарської діяльності з централізованого водопостачання</option>
+<option value="40">Копія ліцензії на право провадження господарської діяльності з централізованого водопостачання та водовідведення</option>
+<option value="2">Ліцензія  на право провадження господарської діяльності з виробництва та транспортування теплової енергії магістральними та місцевими (розподільчими) тепловими мережами</option>
+<option value="53">Ліцензія  на право провадження господарської діяльності з виробництва теплової енергії (крім діяльності  з виробництва теплової енергії на теплоелектроцентралях, теплоелектростанціях, атомних електростанціях і когенераційних установках та установках з вик</option>
+<option value="60">Ліцензія  на право провадження господарської діяльності з виробництва теплової енергії, транспортування її магістральними та місцевими (розподільчими) тепловими мережами та постачання теплової енергії</option>
+<option value="43">Ліцензія  на право провадження господарської діяльності з постачання теплової енергії</option>
+<option value="48">Ліцензія  на право провадження господарської діяльності з транспортування  теплової енергії магістральними та місцевими (розподільчими) тепловими мережам</option>
+<option value="33">Ліцензія на право провадження господарської діяльності з централізованого водовідведення</option>
+<option value="28">Ліцензія на право провадження господарської діяльності з централізованого водопостачання</option>
+<option value="38">Ліцензія на право провадження господарської діяльності з централізованого водопостачання та водовідведення</option>
+<option value="1">Ліцензування діяльності з надання освітніх послуг у сфері загальної середньої освіти (юридичні особи)</option>
+<option value="65">Ліцензування діяльності з торгівлі пестицидами та агрохімікатами (тільки регуляторами росту рослин)</option>
+<option value="117">Оформлення та видача або обмін паспорта громадянина України для виїзду за кордон
+</option>
+<option value="112">Оформлення та видача паспорта громадянина України
+</option>
+<option value="113">Оформлення та видача паспорта громадянина України у разі обміну замість втраченого чи пошкодженого
+</option>
+<option value="118">Оформлення та видача проїзного документу дитини для виїзду за кордон
+</option>
+<option value="76">Переоформлення дозволу на відновлення земляних робіт</option>
+<option value="11">Переоформлення дозволу на викиди забруднюючих речовин в атмосферне повітря стаціонарними джерелами</option>
+<option value="46">Переоформлення ліцензії  на право провадження господарської діяльності з постачання теплової енергії</option>
+<option value="51">Переоформлення ліцензії  на право провадження господарської діяльності з транспортування  теплової енергії магістральними та місцевими (розподільчими) тепловими мережами</option>
+<option value="21">Переоформлення ліцензії на надання освітніх послуг у сфері дошкільної освіти</option>
+<option value="16">Переоформлення ліцензії на надання освітніх послуг у сфері загальної середньої освіти</option>
+<option value="26">Переоформлення ліцензії на надання освітніх послуг у сфері позашкільної освіти</option>
+<option value="58">Переоформлення ліцензії на право провадження господарської діяльності з виробництва теплової енергії (крім діяльності  з виробництва теплової енергії на теплоелектроцентралях, теплоелектростанціях, атомних електростанціях і когенераційних установках </option>
+<option value="36">Переоформлення ліцензії на право провадження господарської діяльності з централізованого водовідведення</option>
+<option value="31">Переоформлення ліцензії на право провадження господарської діяльності з централізованого водопостачання</option>
+<option value="41">Переоформлення ліцензії на право провадження господарської діяльності з централізованого водопостачання та водовідведення</option>
+<option value="67">Переоформлення ліцензії на торгівлю пестицидами та агрохімікатами (тільки регуляторами росту рослин)</option>
+<option value="5">Перереєстрація іноземних інвестицій</option>
+<option value="78">Погодження розміщення реклами  на пам’ятках місцевого значення, в межах зон охорони цих пам’яток</option>
+<option value="102">Прийняття повідомлення про утворення громадського об'єднання</option>
+<option value="105">Прийняття&amp;nbsp;повідомлення про зміни до статуту громадського об&amp;rsquo;єднання, зміни у складі керівних органів громадського об&amp;rsquo;єднання, зміну місцезнаходження зареєстрованого громадського об&amp;rsquo;єднання
+</option>
+<option value="106">Прийняття&amp;nbsp;повідомлення про зміну &amp;nbsp;найменування &amp;nbsp;громадського об&amp;rsquo;єднання, мети(цілей), зміну особи (осіб), уповноваженої представляти громадське об&amp;rsquo;єднання, утворене шляхом прийняття повідомлення про утворення
+</option>
+<option value="85">Реєстрація декларації про готовність об`єкта до експлуатації
+</option>
+<option value="83">Реєстрація декларації про початок виконання будівельних робіт
+</option>
+<option value="81">Реєстрація декларації про початок виконання підготовчих робіт
+</option>
+<option value="115">Реєстрація місця проживання / перебування
+</option>
+<option value="9">Реєстрація статутів (положень) релігійних громад та змін до них</option>
+<option value="61">Складання актів обстеження спеціалізованих або спеціалізованих металургійних переробних підприємств або їх приймальних пунктів</option>
+</select>    </div> 
+    <div id="formff_fielderror_service"/>    
+</div>
+<div id="formff_field_tracknumber">
+    <div id="formff_fieldlabel_tracknumber"><label for="">Трек-номер</label></div>
+    <div id="formff_fieldvalue_tracknumber">
+        <img src="/mff/formview/barcode/id" alt=""/>    </div> 
+    <div id="formff_fielderror_tracknumber"/>    
+</div>
+<div id="formff_field_context">
+    <div id="formff_fieldlabel_context"><label for="">Короткий зміст</label></div>
+    <div id="formff_fieldvalue_context">
+        <textarea name="FFModel[context]" id="FFModel_context"/>    </div> 
+    <div id="formff_fielderror_context"/>    
+</div>
+<div id="formff_field_reason">
+    <div id="formff_fieldlabel_reason"><label for="">Висновок</label></div>
+    <div id="formff_fieldvalue_reason">
+        <textarea name="FFModel[reason]" id="FFModel_reason"/>    </div> 
+    <div id="formff_fielderror_reason"/>    
+</div>
+<div id="formff_field_reply">
+    <div id="formff_fieldlabel_reply"><label for="">Результат</label></div>
+    <div id="formff_fieldvalue_reply">
+        <select name="FFModel[reply]" id="FFModel_reply">
+<option value="" selected="selected"/>
+<option value="91">Відмовленно</option>
+<option value="93">Видано дозвільний документ</option>
+<option value="92">Прийняте рішення</option>
+</select>    </div> 
+    <div id="formff_fielderror_reply"/>    
+</div>
+<div id="formff_field_file_petition">
+    <div id="formff_fieldlabel_file_petition"><label for="">Заява</label></div>
+    <div id="formff_fieldvalue_file_petition">
+        <input name="FFModel[file_petition]" id="FFModel_file_petition" type="hidden"/><input readonly="readonly" type="text" value="" name="FFModelfile_petition_fileedspath" id="FFModelfile_petition_fileedspath"/> <img title="&#x41F;&#x440;&#x438;&#x43A;&#x440;&#x456;&#x43F;&#x438;&#x442;&#x438; &#x434;&#x43E;&#x43A;&#x443;&#x43C;&#x435;&#x43D;&#x442;" alt="&#x41F;&#x435;&#x440;&#x435;&#x433;&#x43B;&#x44F;&#x43D;&#x443;&#x442;&#x438;" src="/mff/default/getimage/image/Folder" class="fileedsbutton" onclick="ff_loadFile('FFModelfile_petition_fileedspath','FFModel_file_petition',1,'FFModelfile_petition_signimage');"/> <img title="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x438;&#x437;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x439;" alt="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x438;&#x437;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x439;" id="FFModelfile_petition_signimage1" src="/mff/default/getimage/image/Question_mark" class="fileedsbutton" onclick="ff_certInfo(&quot;FFModel_file_petition&quot;,&quot;FFModelfile_petition_signimage&quot;);"/><img title="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" alt="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" id="FFModelfile_petition_signimage2" src="/mff/default/getimage/image/Banned_sign" class="fileedsbutton" style="display:none;" onclick="ff_certInfo(&quot;FFModel_file_petition&quot;,&quot;FFModelfile_petition_signimage&quot;);"/><img title="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" alt="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" id="FFModelfile_petition_signimage3" src="/mff/default/getimage/image/Key" class="fileedsbutton" style="display:none;" onclick="ff_certInfo(&quot;FFModel_file_petition&quot;,&quot;FFModelfile_petition_signimage&quot;);"/>    </div> 
+    <div id="formff_fielderror_file_petition"/>    
+</div>
+<div id="formff_field_plandate">
+    <div id="formff_fieldlabel_plandate"><label for="">Контрольна дата</label></div>
+    <div id="formff_fieldvalue_plandate">
+        <input id="plandate" name="FFModel[plandate]" type="text"/>    </div> 
+    <div id="formff_fielderror_plandate"/>    
+</div>
+<div id="formff_field_renewal_date">
+    <div id="formff_fieldlabel_renewal_date"><label for="">Продовжено до</label></div>
+    <div id="formff_fieldvalue_renewal_date">
+        <input id="renewal_date" name="FFModel[renewal_date]" type="text"/>    </div> 
+    <div id="formff_fielderror_renewal_date"/>    
+</div>
+<div id="formff_field_factdate">
+    <div id="formff_fieldlabel_factdate"><label for="">Знято з контролю</label></div>
+    <div id="formff_fieldvalue_factdate">
+        <input id="factdate" name="FFModel[factdate]" type="text"/>    </div> 
+    <div id="formff_fielderror_factdate"/>    
+</div>
+<div id="formff_field_exec_date">
+    <div id="formff_fieldlabel_exec_date"><label for="">Дата виконання</label></div>
+    <div id="formff_fieldvalue_exec_date">
+        <input id="exec_date" name="FFModel[exec_date]" type="text"/>    </div> 
+    <div id="formff_fielderror_exec_date"/>    
+</div>
+<div id="formff_field_administrator">
+    <div id="formff_fieldlabel_administrator"><label for="">Адміністратор</label></div>
+    <div id="formff_fieldvalue_administrator">
+        <input name="FFModel[administrator]" id="FFModel_administrator" type="text"/>    </div> 
+    <div id="formff_fielderror_administrator"/>    
+</div>
+<div id="formff_field_executor">
+    <div id="formff_fieldlabel_executor"><label for="">Виконавец</label></div>
+    <div id="formff_fieldvalue_executor">
+        <input name="FFModel[executor]" id="FFModel_executor" type="text"/>    </div> 
+    <div id="formff_fielderror_executor"/>    
+</div>
+<div id="formff_field_executor_post">
+    <div id="formff_fieldlabel_executor_post"><label for="">Посада</label></div>
+    <div id="formff_fieldvalue_executor_post">
+        <input name="FFModel[executor_post]" id="FFModel_executor_post" type="text"/>    </div> 
+    <div id="formff_fielderror_executor_post"/>    
+</div>
+<div id="formff_field_file_result">
+    <div id="formff_fieldlabel_file_result"><label for="">Результат розглядення</label></div>
+    <div id="formff_fieldvalue_file_result">
+        <input name="FFModel[file_result]" id="FFModel_file_result" type="hidden"/><input readonly="readonly" type="text" value="" name="FFModelfile_result_fileedspath" id="FFModelfile_result_fileedspath"/> <img title="&#x41F;&#x440;&#x438;&#x43A;&#x440;&#x456;&#x43F;&#x438;&#x442;&#x438; &#x434;&#x43E;&#x43A;&#x443;&#x43C;&#x435;&#x43D;&#x442;" alt="&#x41F;&#x435;&#x440;&#x435;&#x433;&#x43B;&#x44F;&#x43D;&#x443;&#x442;&#x438;" src="/mff/default/getimage/image/Folder" class="fileedsbutton" onclick="ff_loadFile('FFModelfile_result_fileedspath','FFModel_file_result',1,'FFModelfile_result_signimage');"/> <img title="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x438;&#x437;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x439;" alt="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x438;&#x437;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x439;" id="FFModelfile_result_signimage1" src="/mff/default/getimage/image/Question_mark" class="fileedsbutton" onclick="ff_certInfo(&quot;FFModel_file_result&quot;,&quot;FFModelfile_result_signimage&quot;);"/><img title="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" alt="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x43D;&#x435; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" id="FFModelfile_result_signimage2" src="/mff/default/getimage/image/Banned_sign" class="fileedsbutton" style="display:none;" onclick="ff_certInfo(&quot;FFModel_file_result&quot;,&quot;FFModelfile_result_signimage&quot;);"/><img title="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" alt="&#x41F;&#x456;&#x434;&#x43F;&#x438;&#x441; &#x432;&#x456;&#x440;&#x43D;&#x438;&#x439;" id="FFModelfile_result_signimage3" src="/mff/default/getimage/image/Key" class="fileedsbutton" style="display:none;" onclick="ff_certInfo(&quot;FFModel_file_result&quot;,&quot;FFModelfile_result_signimage&quot;);"/>    </div> 
+    <div id="formff_fielderror_file_result"/>    
+</div>
+<div id="formff_field_result_delivery">
+    <div id="formff_fieldlabel_result_delivery"><label for="">Результат вручено субъекту</label></div>
+    <div id="formff_fieldvalue_result_delivery">
+        <div>
+<input id="ytFFModel_result_delivery" type="hidden" value="0" name="FFModel[result_delivery]"/><input name="FFModel[result_delivery]" id="FFModel_result_delivery" value="1" type="checkbox"/></div>    </div> 
+    <div id="formff_fielderror_result_delivery"/>    
+</div>
+<div id="formff_field_result_date_delivery">
+    <div id="formff_fieldlabel_result_date_delivery"><label for="">Дата вручення</label></div>
+    <div id="formff_fieldvalue_result_date_delivery">
+        <input id="result_date_delivery" name="FFModel[result_date_delivery]" type="text"/>    </div> 
+    <div id="formff_fielderror_result_date_delivery"/>    
+</div>
+</div><div class="keys" style="display:none" title="/mff/formview/save/idregistry/38/idstorage/16/scenario/insert/thisrender/bWZmLnZpZXdzLmZvcm12aWV3LmluZGV4c3RvcmFnZQ%3D%3D"><span>270</span><span>252</span><span>253</span><span>329</span><span>331</span><span>319</span><span>321</span><span>254</span><span>315</span><span>317</span><span>256</span><span>257</span><span>323</span><span>325</span><span>327</span><span>258</span><span>259</span><span>260</span><span>261</span><span>262</span><span>313</span><span>263</span><span>264</span><span>265</span><span>266</span><span>267</span><span>268</span><span>271</span><span>333</span><span>272</span><span>335</span><span>273</span><span>274</span><span>337</span><span>275</span><span>339</span><span>341</span></div>
+</div><div id="yw3" class="list-view">
+<div class="items">
+<input name="FFModel[registry]" id="FFModel_registry" type="hidden" value="38"/><input name="FFModel[storage]" id="FFModel_storage" type="hidden" value="16"/><input name="FFModel[createdate]" id="FFModel_createdate" type="hidden"/><input name="FFModel[route]" id="FFModel_route" type="hidden"/><input name="FFModel[available_nodes]" id="FFModel_available_nodes" type="hidden"/><input name="FFModel[available_actions]" id="FFModel_available_actions" type="hidden"/><input name="FFModel[file_petition_fileedsname]" id="FFModel_file_petition_fileedsname" type="hidden"/><input name="FFModel[file_result_fileedsname]" id="FFModel_file_result_fileedsname" type="hidden"/></div><div class="keys" style="display:none" title="/mff/formview/save/idregistry/38/idstorage/16/scenario/insert/thisrender/bWZmLnZpZXdzLmZvcm12aWV3LmluZGV4c3RvcmFnZQ%3D%3D"><span>246</span><span>247</span><span>248</span><span>249</span><span>250</span><span>251</span><span>269</span><span>276</span></div>
+</div></form></div>

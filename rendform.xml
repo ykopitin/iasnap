@@ -1,5 +1,5 @@
 <div id="formff">
-<form enctype="multipart/form-data" id="formff_form" action="/mff/formview/save/scenario/insert/addons/YXJyYXkoImNhYmluZXRpZCI9PjMsImZpZWxkZGVmYXVsdHMiPT5hcnJheSgicm91dGUiPT4iMTc0MiIpKQ%3D%3D/idregistry/38/idstorage/16/backurl/L2NhYmluZXQ%3D" method="post"><input name="FFModel[id]" id="FFModel_id" type="hidden" /><div id="yw11" class="list-view">
+<form enctype="multipart/form-data" id="formff_form" action="/mff/formview/save/scenario/insert/idregistry/38/idstorage/16/backurl/L21mZi9mb3Jtdmlldy9pbmRleHN0b3JhZ2UvaWQvMTY%3D" method="post"><input name="FFModel[id]" id="FFModel_id" type="hidden" /><div id="yw2" class="list-view">
 <div class="items">
 <div id="formff_field_initeds">
     <div id="formff_fieldlabel_initeds"><label for=""></label></div>
@@ -41,12 +41,8 @@ function YiiUrl(Where) { if (Where=='base') {return "";};
                 <!--	Елементи opaco та popup необхідні для коректного відображення форми вибору носія закритого ключа та форми параметрів	-->
                 <div id="opaco" class="hidden"></div>
                 <div id="popup" class="hidden"></div>
-
 <input id="OwnCertPath" type="hidden" value="" />
-
-
 <input id="SignRandstr" type="hidden" value="" />
-
     </div> 
     <div id="formff_fielderror_initeds"></div>    
 </div>
@@ -62,6 +58,35 @@ function YiiUrl(Where) { if (Where=='base') {return "";};
         <input id="regdate" name="FFModel[regdate]" type="text" />    </div> 
     <div id="formff_fielderror_regdate"></div>    
 </div>
+<div id="formff_field_number_of_pages">
+    <div id="formff_fieldlabel_number_of_pages"><label for="">Аркушів</label></div>
+    <div id="formff_fieldvalue_number_of_pages">
+        <input name="FFModel[number_of_pages]" id="FFModel_number_of_pages" type="text" />    </div> 
+    <div id="formff_fielderror_number_of_pages"></div>    
+</div>
+<div id="formff_field_delivery">
+    <div id="formff_fieldlabel_delivery"><label for="">Доставлено</label></div>
+    <div id="formff_fieldvalue_delivery">
+        <select name="FFModel[delivery]" id="FFModel_delivery">
+<option value="" selected="selected"></option>
+<option value="89">Особисто</option>
+<option value="90">Пошта</option>
+<option value="88">Сайт</option>
+</select>    </div> 
+    <div id="formff_fielderror_delivery"></div>    
+</div>
+<div id="formff_field_outnum">
+    <div id="formff_fieldlabel_outnum"><label for="">Вих. номер</label></div>
+    <div id="formff_fieldvalue_outnum">
+        <input name="FFModel[outnum]" id="FFModel_outnum" type="text" />    </div> 
+    <div id="formff_fielderror_outnum"></div>    
+</div>
+<div id="formff_field_outdate">
+    <div id="formff_fieldlabel_outdate"><label for="">Вих. дата</label></div>
+    <div id="formff_fieldvalue_outdate">
+        <input id="outdate" name="FFModel[outdate]" type="text" />    </div> 
+    <div id="formff_fielderror_outdate"></div>    
+</div>
 <div id="formff_field_legal_personality">
     <div id="formff_fieldlabel_legal_personality"><label for="">Правова форма</label></div>
     <div id="formff_fieldvalue_legal_personality">
@@ -70,29 +95,17 @@ function YiiUrl(Where) { if (Where=='base') {return "";};
 <input id="FFModel_legal_personality_2" value="7" type="radio" name="FFModel[legal_personality]" /> <label for="FFModel_legal_personality_2">Юридична особа</label></span>    </div> 
     <div id="formff_fielderror_legal_personality"></div>    
 </div>
-<div id="formff_field_organization">
-    <div id="formff_fieldlabel_organization"><label for="">Підприємство</label></div>
-    <div id="formff_fieldvalue_organization">
-        <input name="FFModel[organization]" id="FFModel_organization" type="hidden" /><div id="yw12" class="list-view">
-<div class="items">
-<div id="formff_field_name">
-    <div id="formff_fieldlabel_name"><label for="">Найменування</label></div>
-    <div id="formff_fieldvalue_name">
-        <input name="FFModel_organization[name]" id="FFModel_organization_name" type="text" />    </div> 
-    <div id="formff_fielderror_name"></div>    
+<div id="formff_field_organization_name">
+    <div id="formff_fieldlabel_organization_name"><label for="">Організація</label></div>
+    <div id="formff_fieldvalue_organization_name">
+        <input name="FFModel[organization_name]" id="FFModel_organization_name" type="text" />    </div> 
+    <div id="formff_fielderror_organization_name"></div>    
 </div>
-<div id="formff_field_edrpou">
-    <div id="formff_fieldlabel_edrpou"><label for="">ЄДРПОУ</label></div>
-    <div id="formff_fieldvalue_edrpou">
-        <input name="FFModel_organization[edrpou]" id="FFModel_organization_edrpou" type="text" />    </div> 
-    <div id="formff_fielderror_edrpou"></div>    
-</div>
-</div><div class="keys" style="display:none" title="/usl/save?idregistry=38&amp;idstorage=16&amp;thisrender=YXBwbGljYXRpb24udmlld3MuY2FiaW5ldC5pbmRleA%3D%3D&amp;addons=YXJyYXkoImNhYmluZXRpZCI9PjMsImZpZWxkZGVmYXVsdHMiPT5hcnJheSgicm91dGUiPT4iMTc0MiIpKQ%3D%3D"><span>222</span><span>223</span></div>
-</div><div id="yw13" class="list-view">
-<div class="items">
-<input name="FFModel_organization[registry]" id="FFModel_organization_registry" type="hidden" value="37" /><input name="FFModel_organization[storage]" id="FFModel_organization_storage" type="hidden" value="18" /></div><div class="keys" style="display:none" title="/usl/save?idregistry=38&amp;idstorage=16&amp;thisrender=YXBwbGljYXRpb24udmlld3MuY2FiaW5ldC5pbmRleA%3D%3D&amp;addons=YXJyYXkoImNhYmluZXRpZCI9PjMsImZpZWxkZGVmYXVsdHMiPT5hcnJheSgicm91dGUiPT4iMTc0MiIpKQ%3D%3D"><span>220</span><span>221</span></div>
-</div>    </div> 
-    <div id="formff_fielderror_organization"></div>    
+<div id="formff_field_organization_edrpou">
+    <div id="formff_fieldlabel_organization_edrpou"><label for="">Код ЄДРПОУ</label></div>
+    <div id="formff_fieldvalue_organization_edrpou">
+        <input name="FFModel[organization_edrpou]" id="FFModel_organization_edrpou" type="text" />    </div> 
+    <div id="formff_fielderror_organization_edrpou"></div>    
 </div>
 <div id="formff_field_person_name">
     <div id="formff_fieldlabel_person_name"><label for="">Ім'я фізичної особи</label></div>
@@ -105,6 +118,25 @@ function YiiUrl(Where) { if (Where=='base') {return "";};
     <div id="formff_fieldvalue_person_drfo">
         <input name="FFModel[person_drfo]" id="FFModel_person_drfo" type="text" />    </div> 
     <div id="formff_fielderror_person_drfo"></div>    
+</div>
+<div id="formff_field_its_autority">
+    <div id="formff_fieldlabel_its_autority"><label for="">За довіреністю</label></div>
+    <div id="formff_fieldvalue_its_autority">
+        <div>
+<input id="ytFFModel_its_autority" type="hidden" value="0" name="FFModel[its_autority]" /><input name="FFModel[its_autority]" id="FFModel_its_autority" value="1" type="checkbox" /></div>    </div> 
+    <div id="formff_fielderror_its_autority"></div>    
+</div>
+<div id="formff_field_autority_person_name">
+    <div id="formff_fieldlabel_autority_person_name"><label for="">ПІБ довіреної особи</label></div>
+    <div id="formff_fieldvalue_autority_person_name">
+        <input name="FFModel[autority_person_name]" id="FFModel_autority_person_name" type="text" />    </div> 
+    <div id="formff_fielderror_autority_person_name"></div>    
+</div>
+<div id="formff_field_autority_person_number">
+    <div id="formff_fieldlabel_autority_person_number"><label for="">№ довіреності</label></div>
+    <div id="formff_fieldvalue_autority_person_number">
+        <input name="FFModel[autority_person_number]" id="FFModel_autority_person_number" type="text" />    </div> 
+    <div id="formff_fielderror_autority_person_number"></div>    
 </div>
 <div id="formff_field_address">
     <div id="formff_fieldlabel_address"><label for="">Адреса</label></div>
@@ -363,16 +395,28 @@ function YiiUrl(Where) { if (Where=='base') {return "";};
     <div id="formff_fielderror_file_petition"></div>    
 </div>
 <div id="formff_field_plandate">
-    <div id="formff_fieldlabel_plandate"><label for="">Запланована дата виконання</label></div>
+    <div id="formff_fieldlabel_plandate"><label for="">Контрольна дата</label></div>
     <div id="formff_fieldvalue_plandate">
         <input id="plandate" name="FFModel[plandate]" type="text" />    </div> 
     <div id="formff_fielderror_plandate"></div>    
 </div>
+<div id="formff_field_renewal_date">
+    <div id="formff_fieldlabel_renewal_date"><label for="">Продовжено до</label></div>
+    <div id="formff_fieldvalue_renewal_date">
+        <input id="renewal_date" name="FFModel[renewal_date]" type="text" />    </div> 
+    <div id="formff_fielderror_renewal_date"></div>    
+</div>
 <div id="formff_field_factdate">
-    <div id="formff_fieldlabel_factdate"><label for="">Дата виконання</label></div>
+    <div id="formff_fieldlabel_factdate"><label for="">Знято з контролю</label></div>
     <div id="formff_fieldvalue_factdate">
         <input id="factdate" name="FFModel[factdate]" type="text" />    </div> 
     <div id="formff_fielderror_factdate"></div>    
+</div>
+<div id="formff_field_exec_date">
+    <div id="formff_fieldlabel_exec_date"><label for="">Дата виконання</label></div>
+    <div id="formff_fieldvalue_exec_date">
+        <input id="exec_date" name="FFModel[exec_date]" type="text" />    </div> 
+    <div id="formff_fielderror_exec_date"></div>    
 </div>
 <div id="formff_field_administrator">
     <div id="formff_fieldlabel_administrator"><label for="">Адміністратор</label></div>
@@ -386,14 +430,33 @@ function YiiUrl(Where) { if (Where=='base') {return "";};
         <input name="FFModel[executor]" id="FFModel_executor" type="text" />    </div> 
     <div id="formff_fielderror_executor"></div>    
 </div>
+<div id="formff_field_executor_post">
+    <div id="formff_fieldlabel_executor_post"><label for="">Посада</label></div>
+    <div id="formff_fieldvalue_executor_post">
+        <input name="FFModel[executor_post]" id="FFModel_executor_post" type="text" />    </div> 
+    <div id="formff_fielderror_executor_post"></div>    
+</div>
 <div id="formff_field_file_result">
     <div id="formff_fieldlabel_file_result"><label for="">Результат розглядення</label></div>
     <div id="formff_fieldvalue_file_result">
         <input name="FFModel[file_result]" id="FFModel_file_result" type="hidden" /><input readonly="readonly" type="text" value="" name="FFModelfile_result_fileedspath" id="FFModelfile_result_fileedspath" /> <img title='Прикріпити документ' alt='Переглянути' src='/mff/default/getimage/image/Folder' class='fileedsbutton' onclick="ff_loadFile('FFModelfile_result_fileedspath','FFModel_file_result',1,'FFModelfile_result_signimage');" /> <img title='Підпис не визначений' alt='Підпис не визначений' id='FFModelfile_result_signimage1' src='/mff/default/getimage/image/Question_mark' class='fileedsbutton'  onclick='ff_certInfo("FFModel_file_result","FFModelfile_result_signimage");' /><img title='Підпис не вірний' alt='Підпис не вірний' id='FFModelfile_result_signimage2' src='/mff/default/getimage/image/Banned_sign' class='fileedsbutton' style='display:none;'  onclick='ff_certInfo("FFModel_file_result","FFModelfile_result_signimage");' /><img title='Підпис вірний' alt='Підпис вірний' id='FFModelfile_result_signimage3' src='/mff/default/getimage/image/Key' class='fileedsbutton' style='display:none;' onclick='ff_certInfo("FFModel_file_result","FFModelfile_result_signimage");' />    </div> 
     <div id="formff_fielderror_file_result"></div>    
 </div>
-</div><div class="keys" style="display:none" title="/usl/save?idregistry=38&amp;idstorage=16&amp;thisrender=YXBwbGljYXRpb24udmlld3MuY2FiaW5ldC5pbmRleA%3D%3D&amp;addons=YXJyYXkoImNhYmluZXRpZCI9PjMsImZpZWxkZGVmYXVsdHMiPT5hcnJheSgicm91dGUiPT4iMTc0MiIpKQ%3D%3D"><span>270</span><span>252</span><span>253</span><span>254</span><span>255</span><span>256</span><span>257</span><span>258</span><span>259</span><span>260</span><span>261</span><span>262</span><span>313</span><span>263</span><span>264</span><span>265</span><span>266</span><span>267</span><span>268</span><span>271</span><span>272</span><span>273</span><span>274</span><span>275</span></div>
-</div><div id="yw14" class="list-view">
-<div class="items">
-<input name="FFModel[registry]" id="FFModel_registry" type="hidden" value="38" /><input name="FFModel[storage]" id="FFModel_storage" type="hidden" value="16" /><input name="FFModel[createdate]" id="FFModel_createdate" type="hidden" /><input name="FFModel[route]" id="FFModel_route" type="hidden" /><input name="FFModel[available_nodes]" id="FFModel_available_nodes" type="hidden" /><input name="FFModel[available_actions]" id="FFModel_available_actions" type="hidden" /><input name="FFModel[file_petition_fileedsname]" id="FFModel_file_petition_fileedsname" type="hidden" /><input name="FFModel[file_result_fileedsname]" id="FFModel_file_result_fileedsname" type="hidden" /></div><div class="keys" style="display:none" title="/usl/save?idregistry=38&amp;idstorage=16&amp;thisrender=YXBwbGljYXRpb24udmlld3MuY2FiaW5ldC5pbmRleA%3D%3D&amp;addons=YXJyYXkoImNhYmluZXRpZCI9PjMsImZpZWxkZGVmYXVsdHMiPT5hcnJheSgicm91dGUiPT4iMTc0MiIpKQ%3D%3D"><span>246</span><span>247</span><span>248</span><span>249</span><span>250</span><span>251</span><span>269</span><span>276</span></div>
+<div id="formff_field_result_delivery">
+    <div id="formff_fieldlabel_result_delivery"><label for="">Результат вручено субъекту</label></div>
+    <div id="formff_fieldvalue_result_delivery">
+        <div>
+<input id="ytFFModel_result_delivery" type="hidden" value="0" name="FFModel[result_delivery]" /><input name="FFModel[result_delivery]" id="FFModel_result_delivery" value="1" type="checkbox" /></div>    </div> 
+    <div id="formff_fielderror_result_delivery"></div>    
+</div>
+<div id="formff_field_result_date_delivery">
+    <div id="formff_fieldlabel_result_date_delivery"><label for="">Дата вручення</label></div>
+    <div id="formff_fieldvalue_result_date_delivery">
+        <input id="result_date_delivery" name="FFModel[result_date_delivery]" type="text" />    </div> 
+    <div id="formff_fielderror_result_date_delivery"></div>    
+</div>
+</div><div class="keys" style="display:none" title="/mff/formview/save/idregistry/38/idstorage/16/scenario/insert/thisrender/bWZmLnZpZXdzLmZvcm12aWV3LmluZGV4c3RvcmFnZQ%3D%3D"><span>270</span><span>252</span><span>253</span><span>329</span><span>331</span><span>319</span><span>321</span><span>254</span><span>315</span><span>317</span><span>256</span><span>257</span><span>323</span><span>325</span><span>327</span><span>258</span><span>259</span><span>260</span><span>261</span><span>262</span><span>313</span><span>263</span><span>264</span><span>265</span><span>266</span><span>267</span><span>268</span><span>271</span><span>333</span><span>272</span><span>335</span><span>273</span><span>274</span><span>337</span><span>275</span><span>339</span><span>341</span></div>
+</div><div id="yw3" class="list-view">
+<div class="hiddenItems">
+<input name="FFModel[registry]" id="FFModel_registry" type="hidden" value="38" /><input name="FFModel[storage]" id="FFModel_storage" type="hidden" value="16" /><input name="FFModel[createdate]" id="FFModel_createdate" type="hidden" /><input name="FFModel[route]" id="FFModel_route" type="hidden" /><input name="FFModel[available_nodes]" id="FFModel_available_nodes" type="hidden" /><input name="FFModel[available_actions]" id="FFModel_available_actions" type="hidden" /><input name="FFModel[file_petition_fileedsname]" id="FFModel_file_petition_fileedsname" type="hidden" /><input name="FFModel[file_result_fileedsname]" id="FFModel_file_result_fileedsname" type="hidden" /></div><div class="keys" style="display:none" title="/mff/formview/save/idregistry/38/idstorage/16/scenario/insert/thisrender/bWZmLnZpZXdzLmZvcm12aWV3LmluZGV4c3RvcmFnZQ%3D%3D"><span>246</span><span>247</span><span>248</span><span>249</span><span>250</span><span>251</span><span>269</span><span>276</span></div>
 </div></form></div>

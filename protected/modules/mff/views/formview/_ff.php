@@ -1,4 +1,9 @@
 <?php
+if (isset($_GET["idregistry"])) $idregistry=$_GET["idregistry"];
+if (isset($_GET["idstorage"])) $idstorage=$_GET["idstorage"];
+if (isset($_GET["idform"])) $idform=$_GET["idform"];
+if (isset($_GET["scenario"])) $scenario=$_GET["scenario"];
+
 $title="Новый";
 if (isset($scenario) && $scenario=="update"){
     $title="Відредагувати";

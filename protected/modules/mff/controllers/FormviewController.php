@@ -14,8 +14,7 @@ class FormviewController extends Controller
         $storagemodel = FFStorage::model()->findByPk($id);
         $this->render("indexstorage",array("storagemodel"=>$storagemodel));
     }
-    
-   
+      
     public function actionSave($idregistry=null,$idstorage=null,$scenario="insert",$idform=null,$thisrender=null,$backurl=null,$addons=null)
     {        
         if ($backurl!=null) $backurl=base64_decode($backurl);

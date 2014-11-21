@@ -70,12 +70,8 @@ $this->endWidget();
 echo '</div><!-- form -->';
 }
 ?>
-
 <input id="OwnCertPath" type="hidden" value="" />
-
-
 <input id="SignRandstr" type="hidden" value="" />
-
 <?php if (($this->WidgetType!="Hidden") && ($this->WidgetType!="Login")) {
 echo '<label><input id="ProxyUse" type="checkbox" onclick="Use_Proxy_Check()"/>Використовувати проксі-сервер</label><br>';
 

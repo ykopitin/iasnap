@@ -1,8 +1,9 @@
 <div id="<?= $this->name ?>">
 <?php
+
 $urlparam=array();
-if($this->scenario!=null) {    
-    $urlparam=array_merge($urlparam,array("scenario"=>$this->scenario));
+if($scenario!=null) {    
+    $urlparam=array_merge($urlparam,array("scenario"=>$scenario));
 }
 if($this->addons!=null) {    
     $urlparam=array_merge($urlparam,array("addons"=>$this->addons));
@@ -91,6 +92,7 @@ if ($scenario!="view") {
         'itemView'=>"view/_hidden",
         'summaryText'=>'',
         'emptyText'=>'',
+        'itemsCssClass'=>'hiddenItems',
         'viewData'=>array(
             "form"=>$form,
             "modelff"=>$modelff,

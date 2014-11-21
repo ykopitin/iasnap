@@ -27,7 +27,11 @@ class FFWidget extends CWidget {
     public $profile="default";
 
 
-    public function init() {    
+    public function init() {   
+        if (isset($_GET["idregistry"])) $this->idregistry=$_GET["idregistry"];
+        if (isset($_GET["idstorage"])) $this->idstorage=$_GET["idstorage"];
+        if (isset($_GET["idform"])) $this->idform=$_GET["idform"];
+        if (isset($_GET["scenario"])) $this->scenario=$_GET["scenario"];
         static $genid=0;       
         Yii::import("mff.models.*");
         $genid++;
@@ -53,6 +57,7 @@ class FFWidget extends CWidget {
                     "idform"=>$this->idform,
                     "addons"=>  $this->addons),
                 true);
+//        file_put_contents("rendform.xml", $rendform);
         $rendform=$this->applyXSLOptions($rendform);
         if (isset($this->profile) && $this->profile!=NULL && $this->profile!="" && $this->profile!="default") {
              $rendform=$this->applyXSLOptions($rendform,$this->profile);
@@ -148,6 +153,7 @@ class FFWidget extends CWidget {
                 $xsl=  file_get_contents($file);
                 $result=$this->transformationXSL($result, $xsl);
             }
+//            file_put_contents("rendform2.xml", $result);
             $path="mff.components.FF.style.xsl.".$this->idregistry.".".$profile;
             $file=Yii::getPathOfAlias($path).".xsl";
             if (file_exists($file)) {
