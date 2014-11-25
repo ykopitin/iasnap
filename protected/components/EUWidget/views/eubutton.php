@@ -20,7 +20,7 @@ checkbox .eusign{
 }
 </style>
 
-<applet codebase="https://cnaptest.pp.ua/auth"
+<applet codebase="<?= Yii::app()->request->getHostInfo() ?>/auth"
 	code="com.iit.certificateAuthority.endUser.libraries.signJava.EndUser.class"
 	archive="EUSignJava.jar"
 	id="euSign"
@@ -70,8 +70,12 @@ $this->endWidget();
 echo '</div><!-- form -->';
 }
 ?>
+
 <input id="OwnCertPath" type="hidden" value="" />
+
+
 <input id="SignRandstr" type="hidden" value="" />
+
 <?php if (($this->WidgetType!="Hidden") && ($this->WidgetType!="Login")) {
 echo '<label><input id="ProxyUse" type="checkbox" onclick="Use_Proxy_Check()"/>Використовувати проксі-сервер</label><br>';
 

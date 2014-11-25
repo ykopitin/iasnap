@@ -25,6 +25,15 @@ class DefaultController extends Controller
         readfile($file);
     }
     
+    public function actionGetJScan() {        
+        $file=Yii::getPathOfAlias('mff.components.ffscan').DIRECTORY_SEPARATOR."JScan.jar";
+        header("Content-Type: application/java");
+        header("Accept-Ranges: bytes");
+        header("Content-Length: " . filesize($file));
+        header("Content-Disposition: attachment; filename=".basename($file));
+        readfile($file);
+    }
+    
     public function actionGetScript($script, $fullAlias=false) {       
         if ($fullAlias) $file=Yii::getPathOfAlias(base64_decode($script)).".js";
         else $file=Yii::getPathOfAlias('mff.scripts').DIRECTORY_SEPARATOR.$script.".js";           

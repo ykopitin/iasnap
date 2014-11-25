@@ -26,7 +26,7 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
                 'title' => $title,
                 'modal' => true,
                 'resizable'=> true,
-                'width'=>"75%",
+                'width'=>"1000px",
                 'buttons' => $buttons,
             )
        )

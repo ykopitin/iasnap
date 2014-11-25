@@ -104,6 +104,14 @@ error_log("sResultData at login:".$sResultData);
 		error_log("Auth: Error: Auth string has expired 120s");
 		$this->errorCode=self::ERROR_USERNAME_INVALID;
 		return !$this->errorCode; }
+//	Перевірка часу підпису
+//	$date1 = DateTime::createFromFormat('d.M.Y H:i:s', $sSignTime);
+//	$this->CertExpireEndTime = $date1->getTimestamp();
+//	if (abs(time() - $date1->getTimestamp()) > 600)	// час підпису користувача відріняється від систеного часу сервера на 10 та більше хвилин
+//	{
+//        $this->errorCode=self::ERROR_USERNAME_INVALID;
+//        return !$this->errorCode;		
+//	}
 	GenStr::model()->find('sauth=:sauth', array(':sauth'=>$sResultData))->delete();
 
 error_log("step2b,certiss:".$sIssuer);

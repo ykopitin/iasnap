@@ -650,8 +650,8 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	}
 	formContent+= "<tr><td valign=\"top\" align=\"center\" class=\"form eusign\">"; 
 	formContent+= "   <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Тип носія:</td></tr>"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"center\">"; 
+	formContent+= "   <tr><td class=\"form eusign\" valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Тип носія:</td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"center\" style=\"text-align: center\">"; 
 	formContent+= "   <select id = " + DeviceTypeSelectID + " class=\"select eusign\">"; 
 	var result = "";
 	var typeIndex = 0; 
@@ -664,10 +664,10 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	}
 	formContent+= "   </select>"; 
 	formContent+= "   </td></tr>"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Назва носія:</td></tr>"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"center\"><div id=" + DivDeviceNamesID + " ></div></td></tr>"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Пароль:</td></tr>"; 
-	formContent+= "   <tr><td valign=\"top\" align=\"center\"><input type=\"Password\" id = " + PasswordEditID + " class=\"edit eusign\" maxlength=\"20\" onkeydown=\"if(event.keyCode==13){GetKeyMediaButton.onclick();}\"></td></tr>"; 
+	formContent+= "   <tr><td class=\"form eusign\" valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Назва носія:</td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"center\" style=\"text-align: center\"><div id=" + DivDeviceNamesID + " ></div></td></tr>"; 
+	formContent+= "   <tr><td class=\"form eusign\" valign=\"top\" align=\"left\" style=\"padding: 30px 30px 10px 30px\">Пароль:</td></tr>"; 
+	formContent+= "   <tr><td valign=\"top\" align=\"center\" style=\"text-align: center\"><input type=\"Password\" id = " + PasswordEditID + " class=\"edit eusign\" maxlength=\"20\" onkeydown=\"if(event.keyCode==13){GetKeyMediaButton.onclick();}\"></td></tr>"; 
 
 	switch(this.formType) {
 		case GetPrivateKeyFormType.ChangePassword: {
@@ -681,11 +681,11 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 		}
 	}	
 	
-	formContent+= "   <tr><td valign=\"top\" align=\"right\" nowrap style=\"padding-top:20px\"></td></tr>"; 
+//	formContent+= "   <tr><td valign=\"top\" align=\"right\" nowrap style=\"padding-top:20px\"></td></tr>"; 
 	formContent+= "   </table>"; 
 	formContent+= "</td></tr>"; 
 	formContent+= "</table>"; 
-	formContent+= '<div align="right" style="padding: 0px 10px 10px 0px"><input type="button" id = ' + GetKeyMediaButtonID + ' value="' + okButtonTitle + '" class="btn btn-primary"  />';
+	formContent+= '<div align="center" style="padding: 0px 10px 10px 0px"><input type="button" id = ' + GetKeyMediaButtonID + ' value="' + okButtonTitle + '" class="btn btn-primary"  />';
 	formContent+= '<input type="button" id = ' + CloseKeyMediaButtonID + ' value=\"Відміна\" class="btn" /></div>';
 	formContent+= "</form>"; 
 	formContent+= "</div>"; 

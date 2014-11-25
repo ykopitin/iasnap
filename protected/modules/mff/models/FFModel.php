@@ -127,6 +127,8 @@ class FFModel extends CActiveRecord
         $result=array(
                     'storageItem' => array(self::BELONGS_TO, 'FFStorage', 'storage'),
                     'registryItem' => array(self::BELONGS_TO, 'FFRegistry', 'registry'),                   
+//'storageItems' => array(self::MANY_MANY, 'FFStorage', 'ff_registry_storage(registry, storage)'),
+//                    'fields' => array(self::MANY_MANY, 'FFField', 'ff_field(formid,registry)'),                   
             );
          return $result;
     }

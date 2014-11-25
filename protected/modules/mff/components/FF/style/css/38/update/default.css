@@ -8,12 +8,24 @@ and open the template in the editor.
     Author     : prk
 */
 
-#FFModel_service {
-    width: 100%;
+table{
+border:0px; /* border="0" */
+border-collapse:collapse; /* cellspacing="0" */
+border-radius:8px;
+margin-bottom:0;
+color:#000;
 }
 
+
+table td{
+padding:2px; /* cellpadding="0" */
+
+} 
+#FFModel_service {
+    width: 800px;
+}
 #FFModel_service option {
-     width: 700px;
+    width: 600px;
 }
 
 #FFModel_address {
@@ -23,3 +35,20 @@ and open the template in the editor.
 #FFModel_reason {
     width: 100%;
 }
+
+#formff_fieldvalue_person_name input
+{
+    width: 250px;
+}
+
+#formff_fieldvalue_autority_person_name input {  width: 250px;}
+
+#formff_fieldvalue_organization_name input {width: 250px}
+#formff_fieldvalue_regnum input {width: 100px}
+#formff_fieldvalue_regdate input {width: 100px}
+#formff_fieldvalue_outnum input {width: 100px}
+#formff_fieldvalue_outdate input {width: 100px}
+#formff_fieldvalue_factdate input {width: 100px}
+#formff_fieldvalue_plandate input {width: 100px}
+#formff_fieldvalue_renewal_date input {width: 100px}
+#formff_fieldvalue_number_of_pages input {width: 20px}

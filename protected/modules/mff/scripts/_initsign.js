@@ -1,7 +1,9 @@
-function ff_loadFile(filepath, filecontext, filecrypt, imagestatus) {
-    $('#' + imagestatus + '1').show();
-    $('#' + imagestatus + '2').hide();
-    $('#' + imagestatus + '3').hide();
+function ff_loadFile(filepath, filecontext, filecrypt, imagestatus,scandata) {
+    if (imagestatus!='') {
+        $('#' + imagestatus + '1').show();
+        $('#' + imagestatus + '2').hide();
+        $('#' + imagestatus + '3').hide();
+    }
     var euSign = document.getElementById("euSign");
     try {
         var euisinit = euSign.IsInitialized();
@@ -26,21 +28,30 @@ function ff_loadFile(filepath, filecontext, filecrypt, imagestatus) {
     }
     var data;
     try {
-        var selectedFile = euSign.SelectFile(true, "*.pdf");
-        var sepPos = selectedFile.lastIndexOf('/');
-        sepPos = (sepPos === -1) ? selectedFile.lastIndexOf('\\') : sepPos;
-        var selectedFileName = selectedFile.substring(sepPos + 1);
-        document.getElementById(filepath).value = selectedFile;
-        document.getElementById(filecontext + "_fileedsname").value = selectedFileName;
-        var data = euSign.ReadFile(selectedFile);
+        var data;
+        if (!scandata) {
+            var selectedFile = euSign.SelectFile(true, "*.pdf");
+            var sepPos = selectedFile.lastIndexOf('/');
+            sepPos = (sepPos === -1) ? selectedFile.lastIndexOf('\\') : sepPos;
+            var selectedFileName = selectedFile.substring(sepPos + 1);
+            document.getElementById(filepath).value = selectedFile;
+            document.getElementById(filecontext + "_fileedsname").value = selectedFileName;
+            data = euSign.ReadFile(selectedFile);
+        } else {
+            document.getElementById(filepath).value = "Відсканованно.pdf";
+            document.getElementById(filecontext + "_fileedsname").value = "Відсканованно.pdf";
+            data = scandata;
+        }
 //      var data=euSign.BASE64Encode(euSign.ReadFile(selectedFile));
         euSign.Finalize();
 
         EUWidgetSign(data, false, "", false, ff_callbackSign(filecontext, imagestatus), "", ff_callbackSignError(imagestatus), ff_callbackWait, filecrypt);
     } catch (e) {
-        $('#' + imagestatus + '1').show();
-        $('#' + imagestatus + '2').hide();
-        $('#' + imagestatus + '3').hide();
+        if (imagestatus!='') {
+            $('#' + imagestatus + '1').show();
+            $('#' + imagestatus + '2').hide();
+            $('#' + imagestatus + '3').hide();
+        }
         euSign.Finalize();
         alert("Файл не обраний");
     }
@@ -50,9 +61,11 @@ function ff_loadFile(filepath, filecontext, filecrypt, imagestatus) {
 
 function ff_callbackSign(filecontext, imagestatus) {
     return function(signed_data, original_data) {
-        $('#' + imagestatus + '1').hide();
-        $('#' + imagestatus + '2').hide();
-        $('#' + imagestatus + '3').show();
+        if (imagestatus!='') {
+            $('#' + imagestatus + '1').hide();
+            $('#' + imagestatus + '2').hide();
+            $('#' + imagestatus + '3').show();
+        }
         document.getElementById(filecontext).value = signed_data;
         $("#overlaywait").remove();
         alert("Успішно підписаний");
@@ -62,9 +75,11 @@ function ff_callbackSign(filecontext, imagestatus) {
 function ff_callbackSignError(imagestatus) {
     return function(error_string, error_code) {
         if (error_code != 0) {
-            $('#' + imagestatus + '1').hide();
-            $('#' + imagestatus + '2').show();
-            $('#' + imagestatus + '3').hide();
+            if (imagestatus!='') {
+                $('#' + imagestatus + '1').hide();
+                $('#' + imagestatus + '2').show();
+                $('#' + imagestatus + '3').hide();
+            }
             $("#overlaywait").remove();
             alert(error_string);
         }
@@ -94,9 +109,11 @@ function ff_callbackWait(waitstatus) {
 }
 
 function ff_certInfo(filecontext, imagestatus) {
-    $('#' + imagestatus + '1').show();
-    $('#' + imagestatus + '2').hide();
-    $('#' + imagestatus + '3').hide();
+    if (imagestatus!='') {
+        $('#' + imagestatus + '1').show();
+        $('#' + imagestatus + '2').hide();
+        $('#' + imagestatus + '3').hide();
+    }
     signed_data = document.getElementById(filecontext).value;
     var euSign = document.getElementById("euSign");
     try {
@@ -106,9 +123,11 @@ function ff_certInfo(filecontext, imagestatus) {
         euSign.width = "1px";
         euSign.SetUIMode(false);
         var SignInfo = euSign.VerifyInternal(signed_data);
-        $('#' + imagestatus + '1').hide();
-        $('#' + imagestatus + '2').hide();
-        $('#' + imagestatus + '3').show();
+        if (imagestatus!='') {
+            $('#' + imagestatus + '1').hide();
+            $('#' + imagestatus + '2').hide();
+            $('#' + imagestatus + '3').show();
+        }
         showSignerInfo(SignInfo);
 //        SignInfo = SignInfo.GetOwnerInfo();
 //        var summary = "Підпис дійсний!\n\n";
@@ -130,9 +149,11 @@ function ff_certInfo(filecontext, imagestatus) {
 //        summary += "ДРФО:" + SignInfo.GetSubjDRFOCode() + "\n";
 //        alert(summary);
     } catch (e) {
-        $('#' + imagestatus + '1').hide();
-        $('#' + imagestatus + '2').show();
-        $('#' + imagestatus + '3').hide();
+            if (imagestatus!='') {
+            $('#' + imagestatus + '1').hide();
+            $('#' + imagestatus + '2').show();
+            $('#' + imagestatus + '3').hide();
+        }
         alert("Помилка при перевірці підпису");
     } finally {
         euSign.Finalize();
@@ -141,9 +162,11 @@ function ff_certInfo(filecontext, imagestatus) {
 }
 
 function ff_saveFile(filecontext, filename, imagestatus) {
-    $('#' + imagestatus + '1').show();
-    $('#' + imagestatus + '2').hide();
-    $('#' + imagestatus + '3').hide();
+    if (imagestatus!='') {
+        $('#' + imagestatus + '1').show();
+        $('#' + imagestatus + '2').hide();
+        $('#' + imagestatus + '3').hide();
+    }
     signed_data = document.getElementById(filecontext).value;
     var euSign = document.getElementById("euSign");
     try {
@@ -155,13 +178,17 @@ function ff_saveFile(filecontext, filename, imagestatus) {
         var returndata=euSign.VerifyInternal(signed_data,false);
         var saveFilePath = euSign.SelectFile(true, filename);
         euSign.WriteFile(saveFilePath,returndata);
-        $('#' + imagestatus + '1').hide();
-        $('#' + imagestatus + '2').hide();
-        $('#' + imagestatus + '3').show();       
+        if (imagestatus!='') {
+            $('#' + imagestatus + '1').hide();
+            $('#' + imagestatus + '2').hide();
+            $('#' + imagestatus + '3').show(); 
+        }
     } catch (e) {
-        $('#' + imagestatus + '1').hide();
-        $('#' + imagestatus + '2').show();
-        $('#' + imagestatus + '3').hide();
+        if (imagestatus!='') {
+            $('#' + imagestatus + '1').hide();
+            $('#' + imagestatus + '2').show();
+            $('#' + imagestatus + '3').hide();
+        }
         alert("Помилка при перевірці підпису");
     } finally {
         euSign.Finalize();

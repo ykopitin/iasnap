@@ -92,9 +92,13 @@ function EUWidgetSign(DataToSign, DataToSignIsBase64, DataToSignAddRandom, Signa
 		euSign.SetCharset("UTF-16LE");
 		euSign.SetUIMode(false);
 		euSign.Initialize();
-		euSign.width = "0px";
+		if(getInternetExplorerVersion()>0){
+			euSign.width = "1px";
+		} else 
+			euSign.width = "0px";
 		euSign.SetUIMode(false);
 	} catch(e) {
+		alert(e);
 		if (confirm("Помилка при запуску Java-аплету. Можливо, Вам необхідно дозволити браузеру запуск Java. Чи бажаєти перейти на сторінку перевірки інсталяції Java?")) {
 			window.open("http://www.java.com/ru/download/testjava.jsp");
 			
@@ -483,7 +487,7 @@ console.log("CMP search,catch,after ReadPrivateKeySilently");
 						}
 						if (euSign.GetLastErrorCode() == 65)	//EU_ERROR_GET_TIME_STAMP
 						{
-							alert("Виникла помилка при отриманні позначки часу. Перевірте з'єднання з мережею Інтернет (параметри проксі-сервера) а також чинність сертифікату.");
+							alert("Виникла помилка при отриманні позначки часу. Перевірте з'єднання з мережею Інтернет (параметри проксі-сервера), а також чинність сертифікату.");
 							euSign.Finalize(); euSign.Initialize();
 							return;
 						}
@@ -861,6 +865,7 @@ function post(path, params, method) {
     subm.setAttribute("value", "Send");
     subm.setAttribute("type", "submit");
     subm.setAttribute("name", "AuthForm");
+	subm.style.visibility = "hidden"; // hiding Send button
     form.appendChild(subm);
     document.body.appendChild(form);
     document.forms["AuthForm"].submit();
@@ -915,4 +920,19 @@ console.log("Parsing CMP Servers");
 }
 function stringTrim(str) {
 	return str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' ');
+}
+
+function getInternetExplorerVersion()
+// Returns the version of Internet Explorer or a -1
+// (indicating the use of another browser).
+{
+  var rv = -1; // Return value assumes failure.
+  if (navigator.appName == 'Microsoft Internet Explorer')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  return rv;
 }

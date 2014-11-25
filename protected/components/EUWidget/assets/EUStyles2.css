@@ -167,6 +167,9 @@ a.link:hover {
     font-size: 12px;
     padding: 15px;
 }
+.form.eusign {
+	font-weight: bold;
+}
 
 #popup .edit.eusign {
     border: 1px solid #808080;
@@ -194,7 +197,7 @@ a.link:hover {
     position: fixed;
     display: block;
     border: 2px solid #0E0E0E;
-    background-color: #F7F7F7;
+    background-color: #F0F0F0;
 	border-radius: 15px
     /*box-shadow:3px 3px 7px 3px #000;*/
 }
@@ -342,4 +345,18 @@ div#certFakeScrollContainer {
     overflow: hidden;
     position: relative;
     align: center
+}
+
+input[type=button].btn {
+	border-radius: 5px;
+	width: 130px;
+	height: 30px;
+}
+
+input[type=button].btn-primary {
+	background-color: #16bbe9;
+}
+
+input[type=button].btn-primary:disabled {
+	background-color: #dddddd;
 }
