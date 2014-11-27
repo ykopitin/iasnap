@@ -52,6 +52,7 @@ class FFWidget extends CWidget {
                 "ff",
                 array(
                     "idregistry"=>$this->idregistry, 
+                    "backurl"=>$this->backurl, 
                     "idstorage"=>$this->idstorage, 
                     "scenario"=>$this->scenario, 
                     "idform"=>$this->idform,

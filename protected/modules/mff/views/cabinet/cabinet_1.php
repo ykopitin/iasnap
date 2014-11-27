@@ -4,7 +4,6 @@ if (!isset($cabinetmodel)) {
         $_addons=base64_decode($addons);
         eval('$_addons='.$_addons.";");
         $cabinetid=$_addons["cabinetid"];
-        if (isset($_addons["folderid"])) $folderid=$_addons["folderid"];
     }
     $cabinetmodel=FFModel::model()->findByPk($cabinetid);
     if (empty($cabinetmodel) || $cabinetmodel==NULL) {
@@ -13,18 +12,8 @@ if (!isset($cabinetmodel)) {
     }
 }
 $cabinetmodel->refresh();
-if ($this instanceof CWidget) {
-    $controller=$this->getOwner();
-    $backurl=base64_encode(Yii::app()->createUrl("cabinet/index"));
-    
-}
-else {
-    $controller=$this;
-    $backurl=base64_encode(Yii::app()->createUrl("cabinet/cabinet",array("id"=>$cabinetmodel->id)));
-
-}
-echo Yii::app()->createUrl(Yii::app()->request->getUrl(),array("folderid"=>$folderid));
-$cabineturl=$thisrender;
+if (empty($cabineturl) && isset($thisrender)) $cabineturl=$thisrender;
+else if (empty($cabineturl) && empty($thisrender)) $cabineturl=  base64_encode(Yii::app()->getRequest()->getUrl());
 echo "<b>".$cabinetmodel->name."</b><br />";
 echo "<i>".$cabinetmodel->comment."</i><br />";
 $userId=Yii::app()->User->id;
@@ -52,37 +41,29 @@ if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstora
 if (isset($storagemodel)) $urldata=array_merge($urldata,array("storagemodel"=>$storagemodel,));
 if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
 if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
-if (!isset($folderid) || $folderid==NULL) {
-    if (isset($_GET["folderid"])) $folderid=$_GET["folderid"];
-    else $folderid=$folders[0]->id;
-}
-
-Yii::import("mff.components.utils.cabinetHelper");
-$ch=new cabinetHelper($userId);
+if (!isset($folderid) || $folderid==NULL) $folderid=$folders[0]->id;
 foreach ($folders as $folder) {
-    $documentIds=$ch->getDocumensFromFolder($folder->id);
     if ($folder->id==$folderid) {
         $tab=array("tab".$folder->id=>
                 array(
-                    'title'=>$folder->name." (<span class='countdocuments' id='counter".$folder->id."'>".count($documentIds)."</span>)",
+                    'title'=>$folder->name." (<span class='countdocuments' id='counter".$folder->id."'>0</span>)",
                     "view"=>"mff.views.cabinet.folder",
                     "data"=>array_merge(
                             array(
-                                "backurl"=>$backurl,
                                 "folder"=>$folder,
                                 "cabinet"=>$cabinetmodel,
-                                "cabineturl"=>$cabineturl,
-                                "documentIds"=>$documentIds),
+                                "cabineturl"=>$cabineturl),
                             $urldata
                      )
                 )
         );
     } else {
+        if ($this instanceof CWidget) $controller=$this->getOwner();
+        else $controller=$this;
         $tab=array("tab".$folder->id=>
                  array(
-                     'title'=>$folder->name." (<span class='countdocuments' id='counter".$folder->id."'>".count($documentIds)."</span>)",
-                     'url'=>  Yii::app()->createUrl($controller->route,array("folderid"=>$folder->id))       
-//                     'url'=>Yii::app()->createUrl(Yii::app()->request->getUrl(),array("folderid"=>$folderid)),
+                     'title'=>$folder->name." (<span class='countdocuments' id='counter".$folder->id."'>0</span>)",
+                     'url'=>  Yii::app()->createUrl($controller->route,array("folderid"=>$folder->id))                     
                      )
         );
         
@@ -94,8 +75,13 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
     )
 );
 
-if ($controller->action->id=="save") {
+if ((isset($this->owner) && ($this->owner->action->id=="save")) || (isset($this->action) && ($this->action->id=="save"))) {
     if (empty($scenario)) $scenario="insert";
+    if (get_class($this)=="CabinetWidget") {
+        $backurl=base64_encode(Yii::app()->createUrl("/cabinet"));
+    } else {
+        $backurl=base64_encode(Yii::app()->createUrl("/mff/cabinet/cabinet",array("id"=>$cabinetmodel->id)));
+    }
     if (empty($addons)) $addons=base64_encode('array("cabinetid"=>'.$cabinetmodel->id.')');
     $urldata=array(
         "backurl"=>$backurl,
@@ -105,5 +91,8 @@ if ($controller->action->id=="save") {
     if (isset($idstorage)) $urldata=array_merge($urldata,array("idstorage"=>$idstorage,));
     if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
     if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
-    $controller->renderPartial("mff.views.formview._ff",$urldata);
+    if (get_class($this)=="CabinetWidget") 
+        $this->owner->renderPartial("mff.views.formview._ff",$urldata);
+    else
+        $this->renderPartial("/formview/_ff",$urldata);
 }

@@ -23,12 +23,12 @@ else {$ok=0;}
 <hr>
 <p><font color=black>Додайте скановану копію заповнених та підписаних власноруч документів у форматі .pdf:</font></p>
 <?php
-
+    echo 'backurl'.  base64_decode($backurl);
         $ff=$this->widget('mff.components.FF.FFWidget',
                     array(
                         "idregistry"=>38,
                         "idstorage"=>16,
-                        "backurl"=>$this->createUrl("application.cabinet"), 
+                        "backurl"=>$backurl, 
 			"profile"=>"usl",	
                 )
             );

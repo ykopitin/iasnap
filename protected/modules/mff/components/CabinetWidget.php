@@ -44,6 +44,9 @@ class CabinetWidget extends CWidget {
                 }
                 $this->roleId=$user->user_roles_id;
             }
+            if ((empty($this->folderId) || $this->folderId==NULL) && isset($_GET["folderid"])) {
+                $this->folderId=$_GET["folderid"];
+            }
             if (empty($this->cabinetId) || $this->cabinetId==NULL) {
                 $cabinets=new FFModel();
                 $cabinets->registry=  FFModel::route_cabinet;

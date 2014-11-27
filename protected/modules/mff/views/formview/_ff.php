@@ -31,10 +31,9 @@ $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
             )
        )
 );
-$backurl=base64_decode($backurl);
 Yii::app()->clientScript->registerScript(
         "dialogclose_dialogffform",
-        '$("#dialogffform").dialog({close:function(){window.location="'.$backurl.'"}})'
+        '$("#dialogffform").dialog({close:function(){window.location="'.Yii::app()->createAbsoluteUrl(base64_decode($backurl)).'"}})'
         );
 if (empty($addons)) $addons=NULL;
 $widgetparams=array(

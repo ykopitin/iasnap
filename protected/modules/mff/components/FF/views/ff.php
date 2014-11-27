@@ -24,7 +24,7 @@ if($this->idform!=null) {
     $modelff->refreshMetaData();
     $modelff->storage=$this->idstorage;
 }
-$urlparam=array_merge($urlparam,array("backurl"=>  base64_encode($this->backurl) ));
+$urlparam=array_merge($urlparam,array("backurl"=>$this->backurl));
 CActiveForm::validate($modelff);
 $_addons=  base64_decode($this->addons);
 //var_dump($_addons);

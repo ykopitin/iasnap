@@ -22,6 +22,7 @@ function ff_loadFile(filepath, filecontext, filecrypt, imagestatus,scandata) {
         try {
             euSign.Finalize();
         } catch (e1) {
+            
         }
         ;
         return false;
@@ -150,10 +151,10 @@ function ff_certInfo(filecontext, imagestatus) {
 //        alert(summary);
     } catch (e) {
             if (imagestatus!='') {
-            $('#' + imagestatus + '1').hide();
-            $('#' + imagestatus + '2').show();
-            $('#' + imagestatus + '3').hide();
-        }
+                $('#' + imagestatus + '1').hide();
+                $('#' + imagestatus + '2').show();
+                $('#' + imagestatus + '3').hide();
+            }
         alert("Помилка при перевірці підпису");
     } finally {
         euSign.Finalize();

@@ -43,7 +43,8 @@ class FFModel extends CActiveRecord
     const route_cabinet_for_role = 12;
     const route_cabinet_for_users = 15;
     const route_cabinet_storage = 7;
-    
+    const document_base=13;
+    const document_cnap=36;
     const role=11;
     const user=10;
     
