@@ -82,8 +82,7 @@ foreach ($folders as $folder) {
         $tab=array("tab".$folder->id=>
                  array(
                      'title'=>$folder->name." (<span class='countdocuments' id='counter".$folder->id."'>".count($documentIds)."</span>)",
-                     'url'=>  Yii::app()->createUrl($controller->route,array("folderid"=>$folder->id))       
-//                     'url'=>Yii::app()->createUrl(Yii::app()->request->getUrl(),array("folderid"=>$folderid)),
+                     'url'=>  Yii::app()->createUrl($controller->route,array("id"=>$cabinetmodel->id,"folderid"=>$folder->id))       
                      )
         );
         
