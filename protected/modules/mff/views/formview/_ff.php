@@ -18,6 +18,26 @@ if ($scenario!="view") $buttons=array(
 else $buttons=array(
             array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
         );
+if (isset($scenario) && ($scenario=="view" || $scenario=="update")) {
+    $printurl=Yii::app()->createUrl("/mff/print/print",array("id"=>$idform,"profile"=>"opis"));
+    $buttons=array_merge(
+            array(
+                array(
+                'text'=>'Друк опису',
+                'click'=> 'js:function(){window.open("'.$printurl.'","print1");}'),
+                ),
+            $buttons
+            );
+    $printurl=Yii::app()->createUrl("/mff/print/print",array("id"=>$idform,"profile"=>"prohod"));
+    $buttons=array_merge(
+            array(
+                array(
+                'text'=>'Друк листа проходження',
+                'click'=> 'js:function(){window.open("'.$printurl.'","print2");}'),
+                ),
+            $buttons
+            );
+}
 $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
         array( 
             'id' => 'dialogffform',

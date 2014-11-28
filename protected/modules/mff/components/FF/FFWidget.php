@@ -47,7 +47,7 @@ class FFWidget extends CWidget {
         }
     }
 
-    public function run() {      
+    public function run() { 
         $rendform=$this->render(
                 "ff",
                 array(
@@ -154,7 +154,6 @@ class FFWidget extends CWidget {
                 $xsl=  file_get_contents($file);
                 $result=$this->transformationXSL($result, $xsl);
             }
-//            file_put_contents("rendform2.xml", $result);
             $path="mff.components.FF.style.xsl.".$this->idregistry.".".$profile;
             $file=Yii::getPathOfAlias($path).".xsl";
             if (file_exists($file)) {
