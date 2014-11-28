@@ -19,8 +19,14 @@ $ok=1;
 else {$ok=0;}
 ?>
 <div id="cabinet">
-<h1>Особистий кабінет користувача</h1>
+
+<?php  if(Yii::app()->user->checkAccess('customer')) { ?>
+<font  size=2 >Ви авторизовані як <?php echo CabUser::model()->findByPk(Yii::app()->user->id)->fio;?>.</font><br><br>
+
 <br />
+
+
+
 <p>Шановний(на) <b><?php echo CabUser::model()->findByPk($usid)->fio;?></b>!</p>
 <p> Ласкаво просимо до Вашого особистого кабінету.
 Тут Ви можете продивитися статус та історію Ваших заяв, або переглянути та змінти Ваші персональні дані. </p>
@@ -38,8 +44,11 @@ if ($ok==1) {
 </form>
 
 
-<br />
 
+
+
+<br />
+<?php } ?>
 
 <?php
 
@@ -54,3 +63,4 @@ $this->widget('mff.components.CabinetWidget',$urlparam);
 
 }
 ?>
+</div>

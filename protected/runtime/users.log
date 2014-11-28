@@ -1,0 +1,24 @@
+2014/11/27 11:31:57 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=1.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 11:32:11 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=51.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 12:33:01 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=1.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 15:26:20 [trace] [custom.users.login] Доступ до сторінки автентифікації.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (132)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 15:27:04 [trace] [custom.users.login] Доступ до сторінки автентифікації.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (132)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 15:27:36 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=1.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 15:30:01 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=1.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/27 15:30:06 [trace] [custom.users.login] Доступ до сторінки автентифікації.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (132)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)

@@ -17,9 +17,9 @@ class CabinetController extends Controller
 }
 	
     
-    public function actionIndex($folderid=null)
+    public function actionIndex()
 	{
-		$this->render('index',array("folderid"=>$folderid));
+		$this->render('index');
 	}
 
 

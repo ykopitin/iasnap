@@ -23,7 +23,7 @@ else {
     $backurl=base64_encode(Yii::app()->createUrl("cabinet/cabinet",array("id"=>$cabinetmodel->id)));
 
 }
-echo Yii::app()->createUrl(Yii::app()->request->getUrl(),array("folderid"=>$folderid));
+if (empty($thisrender) || $thisrender==NULL) $thisrender=  base64_encode ("mff.views.cabinet.cabinet");
 $cabineturl=$thisrender;
 echo "<b>".$cabinetmodel->name."</b><br />";
 echo "<i>".$cabinetmodel->comment."</i><br />";
@@ -41,6 +41,7 @@ if (is_numeric($userId)){
 }
 
 $folders=$cabinetmodel->getItems("folders");
+
 if (!is_array($folders)) {
     echo "Помилка з відображенням папок, зверніться до адміністратору сайту";
     return;
@@ -56,9 +57,9 @@ if (!isset($folderid) || $folderid==NULL) {
     if (isset($_GET["folderid"])) $folderid=$_GET["folderid"];
     else $folderid=$folders[0]->id;
 }
-
 Yii::import("mff.components.utils.cabinetHelper");
 $ch=new cabinetHelper($userId);
+
 foreach ($folders as $folder) {
     $documentIds=$ch->getDocumensFromFolder($folder->id);
     if ($folder->id==$folderid) {

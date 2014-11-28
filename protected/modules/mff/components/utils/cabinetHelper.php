@@ -11,6 +11,7 @@
  *
  * @author prk
  */
+
 class cabinetHelper {
     
     private $userId;
@@ -40,7 +41,6 @@ class cabinetHelper {
         $this->tableNameNode=  "ff_".FFRegistry::model()->findByPk(FFModel::route_node)->tablename;
         $this->tableNameAvailableNode=  "ff_".FFRegistry::model()->findByPk(FFModel::available_nodes)->tablename;
         $this->tableNameRefMultiguide=  "ff_".FFRegistry::model()->findByPk(FFModel::ref_multiguide)->tablename;
-
      }
     
     /**
@@ -72,7 +72,7 @@ class cabinetHelper {
             if (($document->getAttribute("owner_field")=="users" && $document->getAttribute("reference")==$this->userId) || 
                 ($document->getAttribute("owner_field")=="roles" && $document->getAttribute("reference")==$this->roleId) || 
                 ($document->getAttribute("owner_field")=="authorities" && $document->getAttribute("reference")==$this->authoritiesId) || 
-                (empty($document->getAttribute("owner_field")) || $document->getAttribute("owner_field")==null)  
+                ($document->getAttribute("owner_field")==null)  
                ) 
                 {
                     $documentIds=  array_merge ($documentIds, array($document->getAttribute("id")));
@@ -82,7 +82,7 @@ class cabinetHelper {
         for ($i1=0;$i1<count($documentIds);$i1++) {
             for ($i2=$i1+1;$i2<count($documentIds);$i2++) {
                 if ($i1==$i2) continue;
-                if (($documentIds[$i1]===$documentIds[$i2])) {
+                if (($documentIds[$i1]==$documentIds[$i2])) {
                     $documentIds[$i2]=NULL;
                 }
             }                    

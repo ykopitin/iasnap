@@ -137,8 +137,6 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     <div>
         Якщо вихід до Інтернету здійснюється за допомогою проксі-сервера, необхідно вказати параметри підключення до
         нього
-        <i class="help-pop sprite sprite-info"
-           data-content="Зверніться до адміністратора мережі або у ІТ відділ за параметрами проксі-сервера">i</i>
     </div>
     <br>
 
@@ -211,7 +209,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                                             <br></br>
                                         </div>
                                     </noscript>
-	<div id="divJavaHelp2" hidden="hidden" style="width:80%; margin-left: 200px;">
+	<div id="divJavaHelp2" style="display: none" style="width:80%; margin-left: 200px;">
                                 <p align="justify">Шановні відвідувачі, для успішного подання документів в електронній формі, на Вашому комп’ютері повинен бути встановлений пакет (плагін) Java.
                                 </p>
 <input type="button" id="btnTestJavaNow" onclick="TestJavaNow()" value="Перевірити Java зараз" /><br><br>
@@ -231,7 +229,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 									Також необхідно дозволити завантаження та запуск Java-модулю.
 								</p>
 </div></div><br>
-	                                <ul class="person-types unstyled" style="float:left; list-style: none; margin-top: 27px;">
+	                                <ul id="ulMainRegForm" class="person-types unstyled" style="float:left; list-style: none; margin-top: 27px;">
                                         <li style="margin-bottom: 20px;"><a href="#" class="person-type fiz-person active" style="padding-top: 10px; padding-bottom: 10px;">
                                             <img src="/images/fizik.png" />
                                             <p>Я - фіз. особа</p>
@@ -246,9 +244,6 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 <input type="hidden" id="type_of_user" name="type_of_user" value="0"></input>									
 <div class="container" style="margin-left:170px;">
 <div style="float:left;">
-<?php //$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Login', 'model'=>$model));
-	$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden', 'model'=>$model));
-	?>
 
 <div id="divMainRegForm" ><table><tr><td style="width:50%;"><span align=left style="width:30%;">
 	
@@ -272,19 +267,19 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 	
 	<div class="row eusign">
 		<?php echo $form->labelEx($model,'Email'); ?>
-		<?php echo $form->emailField($model, 'Email',array('placeholder'=>'Електронна пошта', 'class'=>'edit eusign')); ?>
+		<?php echo $form->emailField($model, 'Email',array('placeholder'=>'Електронна пошта', 'class'=>'edit')); ?>
 		<?php echo $form->error($model,'Email'); ?>
 	</div>	
 
 	<div class="row usign">
 		<?php echo $form->labelEx($model,'Email2'); ?>
-		<?php echo $form->emailField($model, 'Email2',array('placeholder'=>'Підтвердження електронної пошти', 'class'=>'edit eusign')); ?>
+		<?php echo $form->emailField($model, 'Email2',array('placeholder'=>'Підтвердження електронної пошти', 'class'=>'edit')); ?>
 		<?php echo $form->error($model,'Email2'); ?>
 	</div>
 
 	<div class="row eusign">
 		<?php echo $form->labelEx($model,'Phone'); ?>
-		<?php echo $form->telField($model, 'Phone',array('placeholder' => 'Ваш номер телефону', 'class'=>'edit eusign')); ?>
+		<?php echo $form->telField($model, 'Phone',array('placeholder' => 'Ваш номер телефону', 'class'=>'edit')); ?>
 		<?php echo $form->error($model,'Phone'); ?>
 	</div>
 
@@ -320,8 +315,10 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 	</span></td>
 	</tr>
 	
-	</table></div></a>
-
+	</table></div>
+<?php //$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Login', 'model'=>$model));
+	$this->Widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden', 'model'=>$model));
+	?>
 
 </div>  
 
@@ -341,6 +338,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     $( window ).load(function() {
 		var euSign = document.getElementById("euSign");
 		try {
+			euSign.style.display="block";
 			euSign.SetCharset("UTF-16LE");
 			euSign.SetUIMode(false);
 			euSign.Initialize();
@@ -348,20 +346,29 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 			euSign.SetUIMode(false);
 			authForm_GetProxy();
 			euSign.Finalize();
-			document.getElementById("divMainRegForm").hidden = "";
-			document.getElementById("divJavaHelp").hidden = "hidden";
+			euSign.style.display="none";
+			document.getElementById("divMainRegForm").style.display = "block";
+			document.getElementById("ulMainRegForm").style.display = "block";
+			document.getElementById("divJavaHelp").style.display = "none";
 		} catch(e) { 
-			document.getElementById("divJavaHelp").hidden = "";
-			document.getElementById("divJavaHelp2").hidden = "";
-			document.getElementById("divMainRegForm").hidden = "hidden";
-			alert("Помилка ініціалізації Java-аплету:"+euSign.GetLastErrorCode()); 
+			document.getElementById("divJavaHelp").style.display = "block";
+			document.getElementById("divJavaHelp2").style.display = "block";
+			document.getElementById("divMainRegForm").style.display = "none";
+			document.getElementById("ulMainRegForm").style.display = "none";
+			try {
+				alert("Помилка ініціалізації Java-аплету:"+euSign.GetLastErrorCode()); 
+				euSign.Finalize();
+			} catch(e) {
+				alert("Помилка ініціалізації Java-аплету."); 
+				euSign.style.display="none";
+			}
 		}
-		
     });
 	
     function proxy_window_SetProxy() {
         var euSign = document.getElementById("euSign");
         try {
+			euSign.style.display="block";
             euSign.SetCharset("UTF-16LE");
             euSign.SetUIMode(false);
             euSign.Initialize();
@@ -369,10 +376,13 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
             euSign.SetUIMode(false);
             authForm_SetProxy();
             euSign.Finalize();
+			euSign.style.display="none";
         } catch (e) {
             try {
                 euSign.Finalize();
+				euSign.style.display="none";
             } catch (e) {
+				euSign.style.display="none";
             }
         }
     }
@@ -380,6 +390,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     function proxy_window_GetProxy() {
         var euSign = document.getElementById("euSign");
         try {
+			euSign.style.display="block";
             euSign.SetCharset("UTF-16LE");
             euSign.SetUIMode(false);
             euSign.Initialize();
@@ -387,10 +398,13 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
             euSign.SetUIMode(false);
             authForm_GetProxy();
             euSign.Finalize();
+			euSign.style.display="none";
         } catch (e) {
             try {
                 euSign.Finalize();
+				euSign.style.display="none";
             } catch (e) {
+				euSign.style.display="none";
             }
         }
     }	
@@ -415,7 +429,7 @@ function personTypesSwitcher() {
         personTypes.removeClass('active');
         $(this).addClass('active');
 //        legalInput.show().find('#legal_person').addClass('validate[required]');
-        typeOfUser.val(1);
+        typeOfUser.val(2);
 
 //        $('.formError').remove();
     });
@@ -427,6 +441,7 @@ personTypesSwitcher();
     function TestJavaNow() {
 	var euSign = document.getElementById("euSign");
 	try {
+		euSign.style.display="block";
 	    euSign.SetCharset("UTF-16LE");
 	    euSign.SetUIMode(false);
 	    euSign.Initialize();
@@ -434,16 +449,21 @@ personTypesSwitcher();
 	    euSign.SetUIMode(false);
 	    if (euSign.IsInitialized()) {
 		euSign.Finalize();
+		euSign.style.display="none";
 		document.getElementById("btnTestJavaNow").style.backgroundColor = "green";
 		document.getElementById("btnTestJavaNow").value = "Java-аплет перевірено";
 		$('#divJavaHelp').slideUp();
+		document.getElementById("divMainRegForm").style.display = "block";
+		document.getElementById("ulMainRegForm").style.display = "block";
 	    }
 	} catch (e) {
 		try {
 			alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
 			euSign.Finalize();
+			euSign.style.display="none";
 		} catch (e) {
 			alert("Необхідний Java-модуль не завантажений. Здійсніть оновлення сторінки. Якщо помилка залишається - виконайте інструкції, наведені у примітках.");
+			euSign.style.display="none";
 		}
 	}
     }
@@ -488,11 +508,12 @@ personTypesSwitcher();
 			if($.isEmptyObject(mes)) { // valid
 //  Variable sign scenario, depending on type of user	
 				var typeOfUser = document.getElementById("type_of_user");
-				if (typeOfUser.value == 1) {	// 0-Fiz osoba; 1-Ur osoba
+				if (typeOfUser.value == 2) {	// 0-Fiz osoba; 2-Ur osoba
 					alert("Підключіть носій з ключом ЕЦП керівника установи");
 				}
 				
 				var euSign = document.getElementById("euSign");
+				euSign.style.display="block";
 //		euSign.SetCharset("UTF-16LE");
 //		euSign.SetUIMode(false);
 //		euSign.Initialize();
@@ -504,11 +525,12 @@ personTypesSwitcher();
 				var tosign = document.getElementById("RegForm_Email").value+";"+document.getElementById("RegForm_Email2").value+";"+document.getElementById("RegForm_Phone").value+";"+text1;
 //		tosign="123321"+"";
 				var DataToSign = tosign;
-				EUWidgetSign(DataToSign, false, ";", false, aftersign, ";", "", aftersign_waitfunction);
+				EUWidgetSign(DataToSign, false, ";", false, aftersign, ";", aftersign_error, aftersign_waitfunction);
 				return false;
 			} else {  // invalid        
 //        alert('invalid data');
 				errorsExist = true;
+				euSign.style.display="none";
 				return false;
 			}
 		});
@@ -517,38 +539,64 @@ personTypesSwitcher();
 	function aftersign($signed_data, $original_data64) {
 		try {
 			var typeOfUser = document.getElementById("type_of_user");
-			if(typeOfUser.value == 1) {
+			if(typeOfUser.value == 2) {
 //				document.getElementById("first_sign").value = signed_data;
 				alert("Тепер необхідно підключити носій з ключом електронної печатки та підписати заявку з використанням цього ключа. Після підключення носія натисніть кнопку ОК");
-				EUWidgetSign($signed_data, false, ";", false, aftersign2, ";", "", aftersign_waitfunction);
+				EUWidgetSign($signed_data, false, ";", false, aftersign2, ";", aftersign_error, aftersign_waitfunction);
 			} else {
-				euSign.SetCharset("UTF-16LE");
-				euSign.SetUIMode(false);
-				euSign.Initialize();
-				euSign.width = "1px";
-				euSign.SetUIMode(false);
-//				var pd = euSign.BASE64Decode($original_data64);
-				var truevalid=$signed_data;
-//				euSign.WriteFile("C:\\Users\\Dencom\\0002.p7s", euSign.BASE64Decode(truevalid));
-//				var SignInfo = euSign.VerifyInternal($signed_data);
-				var SignInfo = euSign.VerifyInternal(truevalid);
-//				alert(euSign.BytesToString(SignInfo.GetData()));
-				euSign.Finalize();
-				$(".hidescreen,.load_page").fadeOut(600);
-				document.getElementById("RegForm_Signature").value = $signed_data;
-				var em = document.getElementById("RegForm_Email").value;
-				var params = new Array(); params["Signature"] = $signed_data; params["Email"] = em;
-				params["Email2"] = document.getElementById("RegForm_Email2").value;
-				params["Phone"] = document.getElementById("RegForm_Phone").value;
-				params["Acceptance"] = document.getElementById("RegForm_Acceptance").value;
-				params["TypeOfUser"] = document.getElementById("type_of_user").value;
-				post('register', params);
+				try {
+					euSign.style.display="block";
+					euSign.SetCharset("UTF-16LE");
+					euSign.SetUIMode(false);
+					euSign.Initialize();
+					euSign.width = "1px";
+					euSign.SetUIMode(false);
+//					var pd = euSign.BASE64Decode($original_data64);
+					var truevalid=$signed_data;
+//					euSign.WriteFile("C:\\Users\\Dencom\\0002.p7s", euSign.BASE64Decode(truevalid));
+//					var SignInfo = euSign.VerifyInternal($signed_data);
+					var SignInfo = euSign.VerifyInternal(truevalid);
+//					alert(euSign.BytesToString(SignInfo.GetData()));
+					euSign.Finalize();
+					euSign.style.display="none";
+					$(".hidescreen,.load_page").fadeOut(600);
+					document.getElementById("RegForm_Signature").value = $signed_data;
+					var em = document.getElementById("RegForm_Email").value;
+					var params = new Array(); params["Signature"] = $signed_data; params["Email"] = em;
+					params["Email2"] = document.getElementById("RegForm_Email2").value;
+					params["Phone"] = document.getElementById("RegForm_Phone").value;
+					params["Acceptance"] = document.getElementById("RegForm_Acceptance").value;
+					params["TypeOfUser"] = document.getElementById("type_of_user").value;
+					post('register', params);
+					$(".hidescreen,.load_page").fadeOut(10);
+				} catch(e) {
+					$(".hidescreen,.load_page").fadeOut(10);
+					try {
+						alert("Виникла помилка при перевірці підпису перед поданням запиту на реєстрацію. Код помилки: " + euSign.GetLastErrorCode());
+						euSign.Finalize();
+						euSign.style.display="none";
+					} catch(e) {
+						alert("Виникла помилка при перевірці підпису перед поданням запиту на реєстрацію.");
+						euSign.style.display="none";
+					}
+				}
+				$(".hidescreen,.load_page").fadeOut(10);
+				euSign.style.display="none";
 			}
-		} catch(e) { alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize();}
+		} catch(e) {
+			try {
+				alert("Виникла помилка при спробі відправити запит на реєстрацію. Код помилки: "+euSign.GetLastErrorCode()); euSign.Finalize();
+				euSign.style.display="none";
+			} catch(e) {
+				alert("Виникла помилка при спробі відправити запит на реєстрацію. Повідомлення помилки: "+e);
+				euSign.style.display="none";
+			}
+		}
 	}
 
 	function aftersign2($signed_data, $original_data64) {
 		try {
+			euSign.style.display="block";
 			euSign.SetCharset("UTF-16LE");
 			euSign.SetUIMode(false);
 			euSign.Initialize();
@@ -583,6 +631,7 @@ personTypesSwitcher();
 //			} else {alert("Виникла помилка при накладанні додаткових ЕЦП. Будь-ласка, виконайте процедуру з дотриманням інструкцій, що з'являються на екрані."); return false;}
 //				alert(euSign.BytesToString(SignInfo.GetData()));
 			euSign.Finalize();
+			euSign.style.display="none";
 			$(".hidescreen,.load_page").fadeOut(600);
 			document.getElementById("RegForm_Signature").value = $signed_data;
 			var em = document.getElementById("RegForm_Email").value;
@@ -594,8 +643,34 @@ personTypesSwitcher();
 //			params["Cert2ExpireBeginTime"] = Cert2ExpireBeginTime;
 //			params["Cert2ExpireEndTime"] = Cert2ExpireEndTime;
 			post('register', params);
-		} catch(e) { alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize(); $(".hidescreen,.load_page").fadeOut(600);}
+		} catch(e) {
+			try {
+				alert("Помилка підпису. Код: "+euSign.GetLastErrorCode());
+				euSign.Finalize();
+				$(".hidescreen,.load_page").fadeOut(600);
+				euSign.style.display="none";
+			} catch(e2) {
+				alert("Помилка підпису. Повідомлення помилки: "+e2);
+				$(".hidescreen,.load_page").fadeOut(600);
+				euSign.style.display="none";
+			}
+		}
 	}
+	
+    function aftersign_error(s_step, i_errorcode) {
+    // EU_ERROR_TRANSMIT_REQUEST (5), EU_ERROR_PROXY_NOT_AUTHORIZED (8), EU_ERROR_DOWNLOAD_FILE (10),
+    // EU_ERROR_GET_TIME_STAMP (65), EU_ERROR_GET_OCSP_STATUS (81), EU_ERROR_LDAP_ERROR (97)
+        $(".hidescreen,.load_page").fadeOut(600);
+		network_errors_array = [5, 8, 10, 65, 81, 97];
+        if (($.inArray(i_errorcode, network_errors_array) > -1)) {
+			$("#proxy_div").show();
+            $("#proxy_window").dialog("open");
+        }
+//		console.log(s_step);
+//		console.log(i_errorcode);
+		
+//		$("#btnSign").prop("disabled", false);
+    }		
 	
 	function aftersign_waitfunction(wait_state) {
 		if (wait_state == "wait_on") {
@@ -608,7 +683,4 @@ personTypesSwitcher();
 		}
 	}
 
-	function FillDataToSign(){
-		document.getElementsByName("RegForm[Signature]")[0].value = document.getElementById("reg-form[Email]").value+";"+document.getElementById("reg-form[Email2]").value+";"+document.getElementById("reg-form[Phone]").value;
-	}
 </script>

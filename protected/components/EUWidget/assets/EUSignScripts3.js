@@ -648,9 +648,9 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	if(this.subTitle != null && this.subTitle != "") {
 		formContent+= '<tr><td align="center"><i>'+ this.subTitle + '</i></tr></td>';
 	}
-	formContent+= "<tr><td valign=\"top\" align=\"center\" class=\"form eusign\">"; 
-	formContent+= "   <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"; 
-	formContent+= "   <tr><td class=\"form eusign\" valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Тип носія:</td></tr>"; 
+	formContent+= "<tr><td valign=\"top\" align=\"center\" class=\"form eusign\" style=\"height: 263px;\">"; 
+	formContent+= "   <table class=\"eusigninternaltable\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"; 
+	formContent+= "   <tr><td class=\"form eusign eusigninternaltable\" valign=\"top\" align=\"left\" style=\"padding: 10px 30px\">Тип носія:</td></tr>"; 
 	formContent+= "   <tr><td valign=\"top\" align=\"center\" style=\"text-align: center\">"; 
 	formContent+= "   <select id = " + DeviceTypeSelectID + " class=\"select eusign\">"; 
 	var result = "";
@@ -685,8 +685,8 @@ function(frameHeight, frameWidth, formHeight, formWidth) {
 	formContent+= "   </table>"; 
 	formContent+= "</td></tr>"; 
 	formContent+= "</table>"; 
-	formContent+= '<div align="center" style="padding: 0px 10px 10px 0px"><input type="button" id = ' + GetKeyMediaButtonID + ' value="' + okButtonTitle + '" class="btn btn-primary"  />';
-	formContent+= '<input type="button" id = ' + CloseKeyMediaButtonID + ' value=\"Відміна\" class="btn" /></div>';
+	formContent+= '<div class="eusigninternaltable" align="center" style="padding: 0px 10px 10px 0px"><input type="button" id = ' + GetKeyMediaButtonID + ' value="' + okButtonTitle + '" class="btn btn-primary eusigninternaltable"  />';
+	formContent+= '<input type="button" id = ' + CloseKeyMediaButtonID + ' value=\"Відміна\" class="btn eusigninternaltable" /></div>';
 	formContent+= "</form>"; 
 	formContent+= "</div>"; 
 	

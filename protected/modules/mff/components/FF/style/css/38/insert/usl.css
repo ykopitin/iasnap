@@ -118,3 +118,56 @@ and open the template in the editor.
 #FFModel_service {
      display: none;  
 }
+
+#FFIND1_field_number_of_pages {
+    display: none;
+}
+
+#FFIND1_field_delivery {
+    display: none;
+}
+
+#FFIND1_field_authorities {
+    display: none;
+}
+
+#FFIND1_field_organization_name {
+    display: none;
+}
+
+#FFIND1_field_organization_edrpou {
+    display: none;
+}
+
+#FFIND1_field_its_autority {
+    display: none;
+}
+
+#FFIND1_field_autority_person_name {
+    display: none;
+}
+
+#FFIND1_field_autority_person_number {
+    display: none;
+}
+
+#FFIND1_field_renewal_date {
+    display: none;
+}
+
+#FFIND1_field_exec_date {
+    display: none;
+}
+
+#FFIND1_field_executor_post {
+    display: none;
+}
+
+#FFIND1_field_result_delivery {
+    display: none;
+}
+
+#FFIND1_field_result_date_delivery {
+    display: none;
+}
+

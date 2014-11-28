@@ -20,7 +20,7 @@ checkbox .eusign{
 }
 </style>
 
-<applet codebase="<?= Yii::app()->request->getHostInfo() ?>/auth"
+<applet codebase="https://cnaptest.pp.ua/auth"
 	code="com.iit.certificateAuthority.endUser.libraries.signJava.EndUser.class"
 	archive="EUSignJava.jar"
 	id="euSign"

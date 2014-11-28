@@ -59,6 +59,13 @@ class CabUserExternCerts extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, type_of_user, certissuer, certserial, certSubjDRFOCode, certSubjEDRPOUCode, certData, certType, ext_user_id, certSignTime, certUseTSP, certIssuerCN, certSubject, certSubjCN, certSubjOrg, certSubjOrgUnit, certSubjTitle, certSubjState, certSubjLocality, certSubjFullName, certSubjAddress, certSubjPhone, certSubjEMail, certSubjDNS, certExpireBeginTime, certExpireEndTime', 'safe', 'on'=>'search'),
+			array('certissuer', 'unique', 'criteria'=>array(
+				'condition'=>'`certserial`=:secondKey',
+				'params'=>array(
+					':secondKey'=>$this->certserial
+				)
+			)),
+			
 		);
 	}
 
@@ -81,8 +88,8 @@ class CabUserExternCerts extends CActiveRecord
 	{
 		return array(
 			'id' => '№ з/п',
-			'type_of_user' => 'Тип користувача (0-фіз.особа 1-організація)',
-			'certissuer' => 'Власник сертифікату',
+			'type_of_user' => 'Сертифікат особи', // (0-фіз.особа 1-юридична)',
+			'certissuer' => 'Ім\'я видавця сертифікату',
 			'certserial' => 'Серійний номер сертифікату',
 			'certSubjDRFOCode' => 'Код ДРФО',
 			'certSubjEDRPOUCode' => 'Код ЄДРПОУ',

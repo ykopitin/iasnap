@@ -105,10 +105,14 @@ error_log("sResultData at login:".$sResultData);
 		$this->errorCode=self::ERROR_USERNAME_INVALID;
 		return !$this->errorCode; }
 //	Перевірка часу підпису
-//	$date1 = DateTime::createFromFormat('d.M.Y H:i:s', $sSignTime);
+error_log("sSignTime:".$sSignTime);
+	$date1 = DateTime::createFromFormat('m.d.Y H:i:s', $sSignTime);
 //	$this->CertExpireEndTime = $date1->getTimestamp();
+error_log("date1:".$date1->getTimestamp());
+error_log("time:".time());
 //	if (abs(time() - $date1->getTimestamp()) > 600)	// час підпису користувача відріняється від систеного часу сервера на 10 та більше хвилин
 //	{
+//error_log("time error");
 //        $this->errorCode=self::ERROR_USERNAME_INVALID;
 //        return !$this->errorCode;		
 //	}

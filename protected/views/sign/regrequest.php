@@ -188,7 +188,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                                             <br></br>
                                         </div>
                                     </noscript>
-	<div id="divJavaHelp2" hidden="hidden" style="width:80%; margin-left: 200px;">
+	<div id="divJavaHelp2" style="width:80%; margin-left: 200px; display: none;">
                                 <p align="justify">Шановні відвідувачі, для успішного подання документів в електронній формі, на Вашому комп’ютері повинен бути встановлений пакет (плагін) Java.
                                 </p>
 <input type="button" id="btnTestJavaNow" onclick="TestJavaNow()" value="Перевірити Java зараз" /><br><br>
@@ -276,7 +276,8 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     $( window ).load(function() {
 		var euSign = document.getElementById("euSign");
 		try {
-			document.getElementById("divJavaHelp").hidden = "";
+			euSign.style.display="block";
+			document.getElementById("divJavaHelp").style.display = "block";
 			euSign.SetCharset("UTF-16LE");
 			euSign.SetUIMode(false);
 			euSign.Initialize();
@@ -284,13 +285,20 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 			euSign.SetUIMode(false);
 			authForm_GetProxy();
 			euSign.Finalize();
-			document.getElementById("divMainRegForm").hidden = "";
-			document.getElementById("divJavaHelp").hidden = "hidden";
+			euSign.style.display="none";
+			document.getElementById("divMainRegForm").style.display = "block";
+			document.getElementById("divJavaHelp").style.display = "none";
 		} catch(e) { 
-			document.getElementById("divJavaHelp").hidden = "";
-			document.getElementById("divJavaHelp2").hidden = "";
-			document.getElementById("divMainRegForm").hidden = "hidden";
-			alert("Помилка ініціалізації Java-аплету:"+euSign.GetLastErrorCode()); 
+			document.getElementById("divJavaHelp").style.display = "block";
+			document.getElementById("divJavaHelp2").style.display = "block";
+			document.getElementById("divMainRegForm").style.display = "none";
+			try {
+				alert("Помилка ініціалізації Java-аплету:"+euSign.GetLastErrorCode()); 
+				euSign.style.display="none";
+			} catch(e) {
+				alert("Помилка ініціалізації Java-аплету."); 
+				euSign.style.display="none";
+			}
 		}
 		
     });
@@ -298,17 +306,21 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     function proxy_window_SetProxy() {
         var euSign = document.getElementById("euSign");
         try {
-            euSign.SetCharset("UTF-16LE");
+			euSign.style.display="block";
+			euSign.SetCharset("UTF-16LE");
             euSign.SetUIMode(false);
             euSign.Initialize();
             euSign.width = "1px";
             euSign.SetUIMode(false);
             authForm_SetProxy();
             euSign.Finalize();
+			euSign.style.display="none";
         } catch (e) {
             try {
                 euSign.Finalize();
+				euSign.style.display="none";
             } catch (e) {
+				euSign.style.display="none";
             }
         }
     }
@@ -316,6 +328,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     function proxy_window_GetProxy() {
         var euSign = document.getElementById("euSign");
         try {
+			euSign.style.display="block";
             euSign.SetCharset("UTF-16LE");
             euSign.SetUIMode(false);
             euSign.Initialize();
@@ -323,10 +336,13 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
             euSign.SetUIMode(false);
             authForm_GetProxy();
             euSign.Finalize();
+			euSign.style.display="none";
         } catch (e) {
             try {
                 euSign.Finalize();
+				euSign.style.display="none";
             } catch (e) {
+				euSign.style.display="none";
             }
         }
     }	
@@ -335,23 +351,31 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 
 <script language="javascript" type="text/javascript">
     function TestJavaNow() {
-	var euSign = document.getElementById("euSign");
-	try {
-	    euSign.SetCharset("UTF-16LE");
-	    euSign.SetUIMode(false);
-	    euSign.Initialize();
-	    euSign.width = "1px";
-	    euSign.SetUIMode(false);
-	    if (euSign.IsInitialized()) {
-		euSign.Finalize();
-		document.getElementById("btnTestJavaNow").style.backgroundColor = "green";
-		document.getElementById("btnTestJavaNow").value = "Java-аплет перевірено";
-		$('#divJavaHelp').slideUp();
-	    }
-	} catch (e) {
-	    alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
-	    euSign.Finalize();
-	}
+		var euSign = document.getElementById("euSign");
+		try {
+			euSign.style.display="block";
+			euSign.SetCharset("UTF-16LE");
+			euSign.SetUIMode(false);
+			euSign.Initialize();
+			euSign.width = "1px";
+			euSign.SetUIMode(false);
+			if (euSign.IsInitialized()) {
+				euSign.Finalize();
+				euSign.style.display="none";
+				document.getElementById("btnTestJavaNow").style.backgroundColor = "green";
+				document.getElementById("btnTestJavaNow").value = "Java-аплет перевірено";
+				$('#divJavaHelp').slideUp();
+			}
+		} catch (e) {
+			try {
+				alert("Виникла помилка при перевірці Java-аплету. Код помилки: "+euSign.GetLastErrorCode());
+				euSign.Finalize();
+				euSign.style.display="none";
+			} catch(e) {
+				alert("Виникла помилка при перевірці Java-аплету.");
+				euSign.style.display="none";
+			}
+		}
     }
 </script>
 
@@ -374,11 +398,17 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 //				}
  //           });
 //			if($.isEmptyObject(mes)) { // valid
-				var euSign = document.getElementById("euSign");
-				var tosign = document.getElementById("RegrequestForm_activ_code").value;
-				var DataToSign = tosign;
-				EUWidgetSign(DataToSign, false, "", false, aftersign, ";", "", aftersign_waitfunction);
-				return false;
+		try {
+			var euSign = document.getElementById("euSign");
+			euSign.style.display="block";
+			var tosign = document.getElementById("RegrequestForm_activ_code").value;
+			var DataToSign = tosign;
+			EUWidgetSign(DataToSign, false, "", false, aftersign, ";", aftersign_error, aftersign_waitfunction);
+			return false;
+		} catch(e) {
+			alert("Виникла помилка при накладанні ЕЦП. Здійсніть перезавантаження веб-сторінка або веб-браузеру та повторіть ще раз.");
+			euSign.style.display="none";
+		}
 //			} else {  // invalid        
 //			errorsExist = true;
 //			return false;
@@ -388,6 +418,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 	
 	function aftersign($signed_data, $original_data64) {
 		try {
+			euSign.style.display="block";
 			euSign.SetCharset("UTF-16LE");
 			euSign.SetUIMode(false);
 			euSign.Initialize();
@@ -397,14 +428,38 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 			var SignInfo = euSign.VerifyInternal(truevalid);
 //			alert(euSign.BytesToString(SignInfo.GetData()));
 			euSign.Finalize();
+			euSign.style.display="none";
 			$(".hidescreen,.load_page").fadeOut(600);
 			document.getElementById("RegrequestForm_Signature").value = $signed_data;
 			var params = new Array();
 			params["Signature"] = $signed_data;
 			post('register2', params);
-		} catch(e) { alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize();}
+		} catch(e) {
+			try {
+				alert("Помилка підпису. Код:"+euSign.GetLastErrorCode()); euSign.Finalize();
+				euSign.style.display="none";
+			} catch(e) {
+				alert("Помилка підпису.");
+				euSign.style.display="none";
+			}
+		}
 	}
 
+    function aftersign_error(s_step, i_errorcode) {
+    // EU_ERROR_TRANSMIT_REQUEST (5), EU_ERROR_PROXY_NOT_AUTHORIZED (8), EU_ERROR_DOWNLOAD_FILE (10),
+    // EU_ERROR_GET_TIME_STAMP (65), EU_ERROR_GET_OCSP_STATUS (81), EU_ERROR_LDAP_ERROR (97)
+        $(".hidescreen,.load_page").fadeOut(600);
+		network_errors_array = [5, 8, 10, 65, 81, 97];
+        if (($.inArray(i_errorcode, network_errors_array) > -1)) {
+			$("#proxy_div").show();
+            $("#proxy_window").dialog("open");
+        }
+//		console.log(s_step);
+//		console.log(i_errorcode);
+		
+//		$("#btnSign").prop("disabled", false);
+    }		
+	
 	function aftersign_waitfunction(wait_state) {
 		if (wait_state == "wait_on") {
 	        $(".hidescreen,.load_page").fadeIn(10);

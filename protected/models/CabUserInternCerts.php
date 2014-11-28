@@ -66,7 +66,7 @@ class CabUserInternCerts extends CActiveRecord
 	{
 		return array(
 			'id' => '№ з/п',
-			'certissuer' => 'Власник сертифікату',
+			'certissuer' => 'Ім\'я видавця сертифікату',
 			'certserial' => 'Серійний номер сертифікату',
 			'certSubjDRFOCode' => 'Код ДРФО',
 			'certSubjEDRPOUCode' => 'Код ЄДРПОУ',

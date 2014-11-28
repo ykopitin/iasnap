@@ -1,8 +1,9 @@
 <?php
 /* @var $this ServController */
 
-
-$this->widget('zii.widgets.CMenu', array('encodeLabel'=>false, 'items' => GenServCategories::model()->getOrgMenu()));
+$items=GenServCategories::model()->getOrgMenu();
+var_dump($items);
+//$this->widget('zii.widgets.CMenu', array('encodeLabel'=>false, 'items' => $items));
 
 ?>
 

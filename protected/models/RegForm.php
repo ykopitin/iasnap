@@ -20,7 +20,7 @@ class RegForm extends CFormModel
 	public $AgreementText;
 	public $CertExpireBeginTime;
 	public $CertExpireEndTime;
-	public $TypeOfUser = 0; //0 Fiz osoba, 1 Ur osoba
+	public $TypeOfUser = 0; //0 Fiz osoba, 2 Ur osoba
 	public $CertSignOrg;
 	public $CertCypherOrg;
 	public $CertOrgExpireBeginTime;
@@ -88,7 +88,7 @@ error_log("RegForm,sResultData:".$this->SigData->sResultData);
 //	for fiz.osoba must be:	[Email];[Email2];[Phone];[AgreementText];[randstr];[CertSign];[CertExpireEndTime];[CertExpireBeginTime]
 //	for ur.osoba must be:  {[Email];[Email2];[Phone];[AgreementText];[randstr];[CertSign];[CertEndTime];[CertBeginTime]};[randstr];[CertSignOrg];[CertOrgExpireEndTime];[CertOrgExpireBeginTime]
 // --- Begin Ur osoba sign checking ---
-		if ($this->TypeOfUser == 1) {
+		if ($this->TypeOfUser == 2) {	// Ur osoba
 error_log("RegForm,Ur osoba");
 			$this->SigDataOrg = $this->SigData;
 			$this->SigData = "";

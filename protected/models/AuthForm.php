@@ -76,6 +76,12 @@ error_log("AuthForm model login");
 			return true;
 		}
 		else
+		{
+//			if ($this->_identity->errorCode===EUUserIdentity::ERROR_PASSWORD_INVALID) {
+error_log("authform,error at sign in...".$this->_identity->errorCode);
+				$this->addError('Signature', 'Не вдалось здійснити вхід.');
+//			}
 			return false;
+		}
 	}
 }

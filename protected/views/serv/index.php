@@ -23,7 +23,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td>';
      
    echo ' <a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a>';
    echo ' </td></tr>';
@@ -50,7 +50,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table>
@@ -71,7 +71,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table>
@@ -88,7 +88,7 @@ $rows1=GenServices::model()->findAll($criteria1);
 
 foreach($rows1 as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?class='.$_GET['class'].'&&param='.$row['id'].'&&servid='.$_GET['servid'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table></p>
@@ -134,7 +134,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td>';
      
    echo ' <a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a>';
    echo ' </td></tr>';
@@ -161,7 +161,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table>
@@ -182,7 +182,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table>
@@ -199,7 +199,7 @@ $rows1=GenServices::model()->findAll($criteria1);
 
 foreach($rows1 as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?sub='.$_GET['sub'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table></p>
@@ -247,7 +247,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td>';
      
    echo ' <a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a>';
    echo ' </td></tr>';
@@ -274,7 +274,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table>
@@ -295,7 +295,7 @@ $rows=GenServices::model()->findAll($criteria);
 
 foreach($rows as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table>
@@ -312,7 +312,7 @@ $rows1=GenServices::model()->findAll($criteria1);
 
 foreach($rows1 as $row) {
      if ($row['is_online']=='так') {$status='<div id="isonline">online</div>';} else {$status='';}
-     echo '<tr><td>'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
+     echo '<tr><td style="width: 46px;">'.$status.'</td><td><a href='.Yii::app()->request->baseUrl.'/service?life='.$_GET['life'].'&&param='.$row['id'].'#anchor1>'.$row['name'].'</a></td></tr>';
        }
        
 ?></table></p>

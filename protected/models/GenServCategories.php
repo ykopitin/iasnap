@@ -119,18 +119,19 @@ class GenServCategories extends CActiveRecord
          $m=array();
          $pam='';
        $rows1=GenCatClasses::model()->findAllByAttributes(array('class_id'=>2));
-                 
+         $menu=array();        
         foreach($rows1 as $row) 
         {
               
              $t=GenCatClasses::model()->getMenuOrg($row['id']);
              $m=$row['id'];
+             
             if (isset($_GET['servid'])) {$pam=$_GET['servid'];} 
              $rows3=$this->findAllByPk($t);   
                 foreach($rows3 as $row) {
                     if ($row['visability']=='так'){
                  $c=GenServCatClass::model()->getcountService($m);
-                $menu[]=array(
+                $menu=array(
                 'label'=>'<div><table><tr><td width=33px><img src='.Yii::app()->baseUrl.'/images/icons/'.$row['icon'].' align=left></td><td><span>'.$row['name'].' <font size=1 color=#808080>('.$c.')</font></span></td></tr></table></div>',
                 'url'=>array('/serv/?class=2&&servid='.$m.'#anchor1'),
                 'active'=>$pam==$m,
@@ -146,42 +147,35 @@ class GenServCategories extends CActiveRecord
     
     
         public function getGromMenu() {
-              $t=array();
-              $m=array(); $pam='';
-       $rows1=GenCatClasses::model()->findAllByAttributes(array('class_id'=>1));  
-            
-        foreach($rows1 as $row) 
-        {
-           $k='';
-             $t=GenCatClasses::model()->getMenuGrom($row['id']);
-             $m=$row['id'];
-             if (isset($_GET['servid'])) {$pam=$_GET['servid'];} 
-             $rows3=$this->findAllByPk($t);   
-                foreach($rows3 as $row) {
-                     if ($row['visability']=='так'){
-               $c=GenServCatClass::model()->getcountService($m);
-                $menu[]=array(
-                 'label'=>'<div><table><tr><td width=33px><img src='.Yii::app()->baseUrl.'/images/icons/'.$row['icon'].' align=left></td><td><span>'.$row['name'].' <font size=1 color=#808080>('.$c.')</font></span></td></tr></table></div>',
-                 'url'=>array('/serv/?class=1&&servid='.$m.'#anchor1'),
-                'active'=>$pam==$m,
-               
-                //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
-           ) ;
-        }  }}
+        $t = array();
+        $m = array();
+        $pam = '';
+        $rows1 = GenCatClasses::model()->findAllByAttributes(array('class_id' => 1));
+        $menu = array();
+        foreach ($rows1 as $row) {
+            $k = '';
+            $t = GenCatClasses::model()->getMenuGrom($row['id']);
+            $m = $row['id'];
+            if (isset($_GET['servid'])) {
+                $pam = $_GET['servid'];
+            }
+            $rows3 = $this->findAllByPk($t);
+            foreach ($rows3 as $row) {
+                if ($row['visability'] == 'так') {
+                    $c = GenServCatClass::model()->getcountService($m);
+                    $menu[] = array(
+                        'label' => '<div><table><tr><td width=33px><img src=' . Yii::app()->baseUrl . '/images/icons/' . $row['icon'] . ' align=left></td><td><span>' . $row['name'] . ' <font size=1 color=#808080>(' . $c . ')</font></span></td></tr></table></div>',
+                        'url' => array('/serv/?class=1&&servid=' . $m . '#anchor1'),
+                        'active' => $pam == $m,
+                            //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
+                            );
+                }
+            }
+        }
         return $menu;
     }
 
-
-
-
-
-
-
-
-
-
-
- public function getOrgMenu1() {
+    public function getOrgMenu1() {
          $t=array();
          $m=array();
          $pam='';

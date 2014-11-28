@@ -9,6 +9,7 @@
 			$url=$this->createUrl("usl/save",  array(
                        "idregistry"=>GenServices::model()->findByPk($_GET['param'])->ff_link,
                         "idstorage"=>16,  
+ "addons"=>GenServices::model()->findByPk($_GET['param'])->id,
                          "thisrender"=>base64_encode("application.views.usl.index")                    
                     )
             );    

@@ -72,9 +72,8 @@ try{
             }
         }   
     }
-    if ($scenario=="view") {          
-        $id=$modelff->getAttribute(strtolower($data->name));
-        echo CHtml::label($listdata[$id],"",$htmlOptions) ;
+    if ($scenario=="view") {                  
+        echo CHtml::label($modelff->getFieldValue($data->name),"",$htmlOptions) ;
         return;      
     } else
     echo $form->dropDownList($modelff,$data->name,$listdata,$htmlOptions);

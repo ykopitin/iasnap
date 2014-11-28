@@ -103,4 +103,33 @@ class GenLifeSituation extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
+
+
+
+    
+    public function getLifeMenu() {
+        $criteria = new CDbCriteria;
+        $criteria->compare('visability', 'так');
+        $criteria->order = 'name';
+        $rows1 = GenLifeSituation::model()->findAll($criteria);
+        $menu=array();
+        foreach ($rows1 as $row) {
+
+            $rows = GenServLifeSituations::model()->findAllByAttributes(array('life_situation_id' => $row['id']));
+            $scount = count($rows);
+            if ($scount > 0) {
+                $menu[] = array(
+                    'label' => '<div><table><tr><td width=25px><img src=' . Yii::app()->baseUrl . '/images/life_icons/' . $row['icon'] . ' align=left width=34px></td><td><span>' . $row['name'] . ' <font size=1 color=#808080>(' . $scount . ')</font></span></td></tr></table></div>',
+                    'url' => array('/serv/?life=' . $row['id'] . '#anchor1'),
+                    'encodeLabel' => false,
+                        //'linkOptions' => array('class' => 'listItemLink', 'title' => $row['title'])
+                );
+            }
+        }
+
+        return $menu;
+    }
+
 }

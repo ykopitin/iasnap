@@ -59,10 +59,10 @@ class FFWidget extends CWidget {
                     "addons"=>  $this->addons),
                 true);
 //        file_put_contents("rendform.xml", $rendform);
-        $rendform=$this->applyXSLOptions($rendform);
-        if (isset($this->profile) && $this->profile!=NULL && $this->profile!="" && $this->profile!="default") {
+//        $rendform=$this->applyXSLOptions($rendform);
+//        if (isset($this->profile) && $this->profile!=NULL && $this->profile!="" && $this->profile!="default") {
              $rendform=$this->applyXSLOptions($rendform,$this->profile);
-        }
+//        }
         echo $rendform;
     }    
     

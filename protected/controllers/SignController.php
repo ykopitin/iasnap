@@ -55,6 +55,39 @@ function randomText()
 
 class SignController extends Controller
 {
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+				'actions'=>array('index', 'login', 'getstring', 'getcertificates', 'register', 'regconfirm', 'register2'),
+				'users'=>array('?'),
+			),
+			array('allow',
+				'actions'=>array('getstring', 'getcertificates', 'userid', 'logout', 'test'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array(/*'signform',*/'test','createRBAC'),
+				//'users'=>array('admin'),
+				 'expression' => "Yii::app()->user->checkAccess('siteadmin')||Yii::app()->user->id=='admin'",
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+//	getstring, index, login, logout, getcertificates, register, regconfirm, signform, userid, test, register2, createRBAC
 	public function actionGetString()
 	{
 	        $input = Yii::app()->request->getPost('ask');
@@ -73,6 +106,7 @@ class SignController extends Controller
 				$sauth_record->itime=time();
 				$sauth_record->save();
 				$arr = array('randstr' => $randstr);
+				Yii::log('Запит рядка автентфікації.', CLogger::LEVEL_TRACE, 'custom.users.actions');				
 				echo json_encode($arr);
 			        Yii::app()->end();
 			}
@@ -85,6 +119,7 @@ class SignController extends Controller
 	public function actionIndex()
 	{
 		$model = new AuthForm;
+		Yii::log('Доступ до сторінки автентифікації.', CLogger::LEVEL_TRACE, 'custom.users.login');
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUAuthMini.js',CClientScript::POS_END);
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUSignScripts3.js',CClientScript::POS_END);
@@ -94,41 +129,55 @@ class SignController extends Controller
 
 	public function actionLogin()
 	{
+	  	  Yii::log('Доступ до сторінки автентифікації.', CLogger::LEVEL_TRACE, 'custom.users.login');
 	  $cs = Yii::app()->clientScript;
       $cs->registerCoreScript('yiiactiveform');
 		$model = new AuthForm;
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUAuthMini.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUSignScripts3.js',CClientScript::POS_END);
-		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/auth/EUStyles2.css');
-var_dump($_POST);
+//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.js',CClientScript::POS_END);
+//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUAuthMini.js',CClientScript::POS_END);
+//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/auth/EUSignScripts3.js',CClientScript::POS_END);
+//		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/auth/EUStyles2.css');
+//var_dump($_POST);
 		if(isset($_POST['Signature']))
 		{
+			Yii::log('Є дані від користувача (POST-запит).', CLogger::LEVEL_TRACE, 'custom.users.login');
 			$model->Signature = $_POST['Signature'];
 //			$model->attributes=$_POST['AuthForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($model->validate() && $model->login()) {
 //				$this->redirect(Yii::app()->user->returnUrl);
 error_log("After authenticate, performing redirection");
-				if(Yii::app()->user->checkAccess('siteadmin'))
+				Yii::log('Первинні дані від користувача перевірені успішно.', CLogger::LEVEL_TRACE, 'custom.users.login');
+				if(Yii::app()->user->checkAccess('siteadmin')) {
+					Yii::log('Успішний вхід у систему: користувач з user_id='.Yii::app()->user->id.' авторизований як Адміністратор порталу.', CLogger::LEVEL_WARNING, 'custom.users.login');
 					$this->redirect(Yii::app()->createUrl('admin'));
-				else
+				}	
+				else {
+					$t1 = CabUser::model()->findByPk(Yii::app()->user->id);
+					if($t1->user_roles_id==4) $rolename="Заявник"; else if($t1->user_roles_id==3) $rolename="Відповідальна особа"; else if($t1->user_roles_id==2) $rolename="Адміністратор ЦНАП"; else $rolename="Невизначений";
+					Yii::log('Успішний вхід у систему: користувач з user_id='.Yii::app()->user->id.' авторизований як '.$rolename.'.', CLogger::LEVEL_WARNING, 'custom.users.login');					
 					$this->redirect(Yii::app()->createUrl('cabinet'));
+				}
+			} else {
+				Yii::log('Відмова у автентифікації.', CLogger::LEVEL_WARNING, 'custom.users.login');
+			}
 		}
 		$this->render('index', array('model'=>$model));
 	}
 
     public function actionLogout()
     {
+		$t1=Yii::app()->user->id;
             Yii::app()->user->logout();
-            $this->redirect(Yii::app()->homeUrl);
+		Yii::log('Успішний вихід з системи: користувач з user_id='.$t1.'.', CLogger::LEVEL_WARNING, 'custom.users.login');
+			$this->redirect(Yii::app()->homeUrl);
     }
 
 
 	public function actionGetCertificates()
 	{
 		$certdir = Yii::app()->basePath."/../certificates";
-error_log($certdir);
+//error_log($certdir);
 //		$certdir = "../../certificates";
 		$file_list = scandir($certdir);
 		$file_list2 = array();
@@ -138,14 +187,15 @@ error_log("getcertificates 1");
 		{
 			if (is_file($certdir."/".$file_name) && (substr($file_name, -4)==".cer"))
 			{
-error_log("getcertificates 2");
+//error_log("getcertificates 2");
 				$file_content=file_get_contents($certdir."/".$file_name);
 //				$file_content="0934287509384j5f234jf5";
 				$file_list2[$file_name] = base64_encode($file_content);
 //				$file_list2[$i++] = $file_content;
 			}
 		}
-error_log("getcertificates 3");
+//error_log("getcertificates 3");
+		Yii::log('Запит сертифікатів системи.', CLogger::LEVEL_TRACE, 'custom.users.actions');
 		echo json_encode($file_list2);
 //		return $file_list2;
 	}
@@ -154,11 +204,13 @@ error_log("getcertificates 3");
 
 	public function actionRegister()
 	{
+	  Yii::log('Доступ до сторінки реєстрації.', CLogger::LEVEL_TRACE, 'custom.users.register');
       $cs = Yii::app()->clientScript;
       $cs->registerCoreScript('yiiactiveform');
 		$model = new RegForm;
 		if(isset($_POST['Signature']) && isset($_POST['Email']))
 		{
+			Yii::log('Є дані від користувача (POST-запит).', CLogger::LEVEL_TRACE, 'custom.users.register');
 			//$sig = new EUSignature($_POST['RegForm[Signature]']);
 //			$model->attributes=$_POST['regform'];
 //print_r($_POST);
@@ -183,22 +235,36 @@ error_log("getcertificates 3");
 //			$model->ConfirmPersonalData = $_POST['RegForm[Email]'];
 error_log("reg001");
 			if($model->validate()){
+				Yii::log('Первинні дані від користувача перевірені успішно.', CLogger::LEVEL_TRACE, 'custom.users.register');
+
 				$user_activation_code = "none";
 				if($model->verify_sign()) {
 //error_log("reg002");
-					if ($model->Email != $model->Email2) {$this->addError('Email', 'Введені адреси електронної пошти не співпадають'); return false;}
+					Yii::log('ЕЦП запиту на реєстрацію перевірений успішно.', CLogger::LEVEL_INFO, 'custom.users.register');
+
+					if ($model->Email != $model->Email2) {$this->addError('Email', 'Введені адреси електронної пошти не співпадають'); 
+						Yii::log('Відмова у реєстрації: введені адреси електронної пошти не співпадають.', CLogger::LEVEL_WARNING, 'custom.users.register');
+						Yii::app()->clientScript->corePackages = array();
+						$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
+						Yii::app()->end;
+						return false;}
 					$existing_cert = CabUserExternCerts::model()->findByAttributes(array('certissuer'=>$model->SigData->sIssuer, 'certserial'=>$model->SigData->sSerial));
 					if(!($existing_cert===null)){	// There is same certificate already exists, we cannot allow to register current user
 						$model->addError('Email', 'Користувач, зареєстрований з Вашим сертифікатом вже існує на Порталі. Якщо Ви раніше реєструвалися на Порталі, виконайте вхід за ЕЦП (авторизацію). Якщо ні - зверніться до онлайн-консультанта або за гарячою лінією (048) 705-45-74.');
+						Yii::log('Відмова у реєстрації: користувач з таким сертифікатом вже зареєстрований.', CLogger::LEVEL_WARNING, 'custom.users.register');
+						Yii::log('Спроба повторної реєстрації з зареєстрованим у Системі сертифікатом. Серійний номер сертифікату: '.$model->SigData->sSerial.', видавник сертифікату: '.$model->SigData->sIssuer, CLogger::LEVEL_TRACE, 'custom.users.register');
 						Yii::app()->clientScript->corePackages = array();
 						$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
 						return false;
 					}
 //	Now we allow only 1 org user with 1 dir cert and 1 org cert (pechatka)
-					if ($model->TypeOfUser == 1) {
+					if ($model->TypeOfUser == 2) {
+						Yii::log('Здійснюється реєстрація юридичної особи.', CLogger::LEVEL_TRACE, 'custom.users.register');
 						$existing_cert = CabUserExternCerts::model()->findByAttributes(array('certissuer'=>$model->SigDataOrg->sIssuer, 'certserial'=>$model->SigDataOrg->sSerial));
 						if(!($existing_cert===null)){	// There is same certificate already exists, we cannot allow to register current user
 							$model->addError('Email', 'Організація, зареєстрована з Вашим сертифікатом вже існує на Порталі. Якщо Ви раніше реєструвалися на Порталі, виконайте вхід за ЕЦП (авторизацію). Якщо ні - зверніться до онлайн-консультанта або за гарячою лінією (048) 705-45-74.');
+							Yii::log('Відмова у реєстрації: користувач з такою печаткою вже зареєстрований.', CLogger::LEVEL_WARNING, 'custom.users.register');
+							Yii::log('Спроба повторної реєстрації з зареєстрованим у Системі сертифікатом печатки. Серійний номер сертифікату: '.$model->SigDataOrg->sSerial.', видавник сертифікату: '.$model->SigDataOrg->sIssuer, CLogger::LEVEL_TRACE, 'custom.users.register');
 							Yii::app()->clientScript->corePackages = array();
 							$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
 							return false;
@@ -221,9 +287,13 @@ error_log("reg001");
 //error_log("reg004");
 					if($user_model->validate()){
 						$user_model->save();
+						Yii::log('Обліковий запис користувача згенеровано та збережено.', CLogger::LEVEL_TRACE, 'custom.users.register');
 					}else{
 //	Need to be fixed
 						$model->addError('Acceptance', 'Виникла помилка при реєстрації облікового запису.');
+						Yii::log('Відмова у реєстрації: помилка валідації даних нового користувача.', CLogger::LEVEL_WARNING, 'custom.users.register');
+						Yii::log('Помилка валідації даних нового користувача. Email:'.$user_model->email.'; Тип користувача: '.($user_model->type_of_user == 0 ? 'Фізична особа':'Юридична особа'), CLogger::LEVEL_TRACE, 'custom.users.register');
+						Yii::app()->clientScript->corePackages = array();
 						$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
 //						print_r($user_model->getErrors());
 						Yii::app()->end();
@@ -261,11 +331,13 @@ error_log("reg001");
 					$user_model_cert->certExpireBeginTime = $model->CertExpireBeginTime;
 					$user_model_cert->certExpireEndTime = $model->CertExpireEndTime;
 					
+					Yii::log('Серійний номер сертифіката ЕЦП користувача: ' . $user_model_cert->certserial, CLogger::LEVEL_TRACE, 'custom.users.register');
+
 					$user_model_cert_org = "";
 					
-					if ($model->TypeOfUser == 1) {
+					if ($model->TypeOfUser == 2) {	// Ur osoba
 						$user_model_cert_org = new CabUserExternCerts();
-						$user_model_cert_org->type_of_user = 1;
+						$user_model_cert_org->type_of_user = 1;	// pechatka
 						$user_model_cert_org->certissuer = $model->SigDataOrg->sIssuer;
 						$user_model_cert_org->certserial = $model->SigDataOrg->sSerial;
 						$user_model_cert_org->certSubjDRFOCode = $model->SigDataOrg->sSubjDRFOCode;
@@ -295,10 +367,13 @@ error_log("reg001");
 					
 						$user_model_cert_org->certExpireBeginTime = $model->CertOrgExpireBeginTime;
 						$user_model_cert_org->certExpireEndTime = $model->CertOrgExpireEndTime;
+						Yii::log('Серійний номер сертифіката печатки користувача: ' . $user_model_cert_org->certserial, CLogger::LEVEL_TRACE, 'custom.users.register');
 						if(!$user_model_cert_org->validate()) {
 // Deleting corresponding user, that was not completely registered with certificates
 							$user_model->delete();
 							$model->addError('Acceptance', 'Виникла помилка при реєстрації юридичної особи.');
+							Yii::log('Відмова у реєстрації: помилка при перевірці даних сертифіката печатки.', CLogger::LEVEL_WARNING, 'custom.users.register');
+							Yii::app()->clientScript->corePackages = array();
 							$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
 //							print_r($user_model_cert->getErrors());
 							Yii::app()->end();
@@ -307,13 +382,16 @@ error_log("reg001");
 					
 //error_log("reg007");
 					if($user_model_cert->validate()){
-						if ($user_model->type_of_user == 1) {
+						if ($user_model->type_of_user == 2) {
 							$user_model->fio = $model->SigDataOrg->sSubjCN;
-						} else
+							$user_model->organization = $user_model_cert_org->certSubjOrg;
+						} else {
 							$user_model->fio = $model->SigData->sSubjCN;
+							$user_model->organization = $user_model_cert->certSubjOrg;
+						}
 						$user_model->save();
 						$user_model_cert->save();
-						if ($user_model->type_of_user == 1)
+						if ($user_model->type_of_user == 2)
 							$user_model_cert_org->save();
 // Sending email to new user via extension SwiftMailer
 						// Plain text content
@@ -347,29 +425,34 @@ error_log("reg001");
 							->addPart($richTextContent, 'text/html')
 							->setBody($plainTextContent);
 						// Finally, send mail
-						$result = $Mailer->send($Message);							
+						$result = $Mailer->send($Message);
+						Yii::log('Відправлено e-mail листа з кодом активації на '.$user_model->email, CLogger::LEVEL_TRACE, 'custom.users.register');
+						
 					}else{
 // Deleting corresponding user, that was not completely registered with certificates
 						$user_model->delete();
-						print_r($user_model_cert->getErrors());
+						Yii::log('Відмова у реєстрації: помилка при перевірці даних сертифіката користувача.', CLogger::LEVEL_WARNING, 'custom.users.register');
+						$model->addError('Acceptance', 'Виникла помилка при перевірці сертифіката користувача. Інформація у сертифікаті повинна відповідати дійсності.');
+						Yii::app()->clientScript->corePackages = array();
+						$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
+//						print_r($user_model_cert->getErrors());
 						Yii::app()->end();
 					}
 error_log("reg008");
 					//$this->redirect(Yii::app()->createUrl('sign/registerdone'));
 					
+					Yii::log('Успішна реєстрація: зареєстрований новий зовнішній користувач, user_id='.$user_model->id.', ім\'я: '.$user_model->fio.', сертифікат cert_id='.$user_model_cert->id, CLogger::LEVEL_WARNING, 'custom.users.register');
 					$this->render('regconfirm', array('model'=>$user_model));
+				} else {
+					Yii::log('Відмова у реєстрації: підпис не перевірений.', CLogger::LEVEL_WARNING, 'custom.users.register');
 				}
+			} else {
+				Yii::log('Відмова у реєстрації: отримані некоректні дані від користувача.', CLogger::LEVEL_WARNING, 'custom.users.register');
+			
 			}
 			
-//var_dump($model->validate());
-			// validate user input and redirect to the previous page if valid
-//			if($model->validate() && $model->register())
-//				$this->redirect(Yii::app()->user->returnUrl);
-//				$this->redirect(Yii::app()->baseUrl.'/auth/regconfirm');
-			if($model->validate() && $model->verify_sign())
-//				$this->render('regconfirm');
-//				$this->redirect(Yii::app()->createUrl('auth/regconfirm'));
-				Yii::app()->end();
+//			if($model->validate() && $model->verify_sign())
+//				Yii::app()->end();
 		}
 		Yii::app()->clientScript->corePackages = array();
 		$this->render('register', array('model'=>$model, 'errors'=>$model->getErrors()));
@@ -377,7 +460,7 @@ error_log("reg008");
 	}
 
 
-
+// Тестова функція
 	public function actionRegconfirm() {
 		$model = new AuthForm;
 		if(isset($_POST['AuthForm']))
@@ -393,7 +476,8 @@ error_log("reg008");
 		$this->render('regconfirm', array('model'=>$model));
 	}
 
-	public function actionSignform() {
+// Тестова функція
+/*	public function actionSignform() {
 		$model = new AuthForm;
 		if(isset($_POST['Signform']))
 		{
@@ -406,21 +490,97 @@ error_log("reg008");
 		}
 		$this->render('signform', array('model'=>$model));
 	}
-	
+*/	
+// Тестова функція
 	public function actionUserid() {
+		echo Yii::app()->user->checkAccess('siteadmin').'<br>';
 		echo Yii::app()->user->id;
 		echo "<br>";
 		$auth = Yii::app()->authManager;
 		var_dump($auth->getRoles(Yii::app()->user->id));
 	}
 	
+// Тестова функція
 	public function actionTest() {
-		echo Yii::app()->user->checkAccess('siteadmin');
+//		$logfile = file_get_contents(Yii::getPathOfAlias('application').DIRECTORY_SEPARATOR.'users.log');
+		$handle = fopen(Yii::getPathOfAlias('application').DIRECTORY_SEPARATOR.'runtime'.DIRECTORY_SEPARATOR.'users.log', 'r');
+		$logarr = array();
+		if ($handle) {
+			$linecounter = 0;
+			while (($line = fgets($handle)) !== false) {
+				// process the line read.
+				if($linecounter%3==0){
+					$linearr = explode(' ', $line, 6);
+					$logline = array();
+					$logline['id'] = $linecounter/3;
+					$logline['date'] = $linearr[0];
+					$logline['time'] = $linearr[1];
+					$logline['level'] = $linearr[2];
+					$logline['category'] = $linearr[3];
+					$logline['ip'] = $linearr[4];
+					$logline['event'] = $linearr[5];
+					$logarr[] = $logline;
+				}
+				$linecounter++;
+			}
+//			var_dump($logarr);
+		} else {
+			// error opening the file.
+		} 
+		fclose($handle);
+		
+		$logArrayDataProvider = new CArrayDataProvider($logarr);
+		$this->widget('zii.widgets.grid.CGridView', array(
+			'id'=>'log-grid',
+			'dataProvider'=>$logArrayDataProvider,
+			'columns'=>array(
+				array(
+					'name'=>'Дата',
+					'value'=>'$data["date"]',
+				),
+				array(
+					'name'=>'Час',
+					'value'=>'$data["time"]',
+				),
+				array(
+					'name'=>'Рівень',
+					'value'=>'$data["level"]',
+				),
+				array(
+					'name'=>'Категорія',
+					'value'=>'$data["category"]',
+				),
+				array(
+					'name'=>'IP адреса',
+					'value'=>'$data["ip"]',
+				),
+				array(
+					'name'=>'Подія',
+					'value'=>'$data["event"]',
+				),
+				
+			),
+			));
+		
+//		echo Yii::app()->user->checkAccess('siteadmin');
+//		if (isset(Yii::app()->controller->action->id)){
+//			echo "<br>SERVER:";
+//			echo var_dump($_SERVER);
+//		}
+//		if (isset(Yii::app()->controller->id)){
+//			echo "<br>ControllerID:";
+//			echo Yii::app()->controller->id;
+//		}
+//		if (isset(Yii::app()->controller->module->id)){
+//			echo "<br>ModuleID:";
+//			echo Yii::app()->controller->module->id;
+//		}
 	}
 
 	
 	public function actionRegister2()
 	{
+	  Yii::log('Доступ до сторінки спеціального запиту.', CLogger::LEVEL_TRACE, 'custom.users.register2');
       $cs = Yii::app()->clientScript;
       $cs->registerCoreScript('yiiactiveform');
 	  $countFreeIntUsers = CabUser::model()->count(new CDbCriteria(array
@@ -430,12 +590,14 @@ error_log("reg008");
 		)));
 		if ($countFreeIntUsers < 1) {	// Немає необхідності подавати запити на реєстрацію з кодом активації
 //			$this->render('regrequestconfirm', array('model'=>'deny'));
+			Yii::log('Відмова у спеціальному запиті: немає підготовлених облікових записів.', CLogger::LEVEL_TRACE, 'custom.users.register2');
 			throw new CHttpException(404,'Системі не вдалося знайти запитувану дію "register2".');
 //			Yii::app()->end;
 		}
 		$model = new RegrequestForm;
 		if(isset($_POST['Signature']))
 		{
+			Yii::log('Є дані від користувача (POST-запит).', CLogger::LEVEL_TRACE, 'custom.users.register2');
 			$model->Signature = $_POST['Signature'];
 			if ($model->verify_sign()) {
 				$user_model_cert = new CabUserInternCerts();
@@ -448,11 +610,15 @@ error_log("reg008");
 				$user_model_cert->signedData = $model->activ_code;
 				if($user_model_cert->validate()){
 					$user_model_cert->save();
+					Yii::log('Успішне подання спеціального запиту: сертифікат на реєстрацію з cert_id='.$user_model_cert->id.' збережений у системі.', CLogger::LEVEL_WARNING, 'custom.users.register2');
 					$this->render('regrequestconfirm', array('model'=>'allow'));
 				}else{
+					Yii::log('Відмова у спеціальному запиті: некоректне подання сертифікату.', CLogger::LEVEL_WARNING, 'custom.users.register2');
 					print_r($user_model_cert->getErrors());
 					Yii::app()->end();
 				}				
+			} else {
+				Yii::log('Відмова у спеціальному запиті: електронний цифровий підпис не перевірено (код помилки '.$model->SigData->iErrorCode.'.', CLogger::LEVEL_WARNING, 'custom.users.register2');
 			}
 			
 		}
@@ -492,6 +658,7 @@ error_log("reg008");
 		}
 
 	}
+
 
 
 	// Uncomment the following methods and override them if needed

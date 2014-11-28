@@ -42,7 +42,7 @@ class CabUser extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_of_user, email, phone, cab_state, user_roles_id', 'required'),
+			array('fio, type_of_user, email, phone, cab_state, user_roles_id', 'required'),
 //			array('type_of_user, email, phone', 'required'),
 			array('type_of_user, authorities_id, user_roles_id', 'numerical', 'integerOnly'=>true),
 			array('id', 'length', 'max'=>10),
@@ -85,11 +85,12 @@ class CabUser extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'type_of_user' => 'Тип користувача (0-фіз.особа, 1- ФОП, 2-юр.особа)',
-			'fio' => 'Прізвище, ім\'я та по-батькові користувача',
+			'type_of_user' => 'Тип особи', // (0-фіз.особа, 1- ФОП, 2-юр.особа),
+			'fio' => 'ПІБ або найменування',
 			'email' => 'Електронна поштова скринька',
-			'phone' => 'Мобільний телефон',
-			'cab_state' => 'стан кабінету',
+			'phone' => 'Номер телефону',
+			'cab_state' => 'Стан кабінету',
+			'organization' => 'Організація',
 			'authorities_id' => 'ID місця надання послуг',
 			'user_roles_id' => 'Роль користувача (0-адм.безп., 1-сист.адм., 2-адм.ЦНАП, 3-оп.НАП, 4-суб.зверн.)',
 			'str_activcode' => 'Дані для тимчасового використання при реєстрації (строка активації користувача та ін.)',
@@ -119,6 +120,7 @@ class CabUser extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('type_of_user',$this->type_of_user);
+		$criteria->compare('fio',$this->fio,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('cab_state',$this->cab_state,true);
@@ -143,6 +145,7 @@ class CabUser extends CActiveRecord
 		$criteria->with = array( 'cabUserRole', 'cabUserAuthorityId' );
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('type_of_user',$this->type_of_user);
+		$criteria->compare('fio',$this->fio,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('cab_state',$this->cab_state,true);
@@ -173,10 +176,10 @@ class CabUser extends CActiveRecord
                 'asc'=>'t.fio',
                 'desc'=>'t.fio DESC',
             ),
-			'type_of_user'=>array(
-                'asc'=>'t.type_of_user',
-                'desc'=>'t.type_or_user DESC',
-            ),
+//			'type_of_user'=>array(
+//                'asc'=>'t.type_of_user',
+//                'desc'=>'t.type_or_user DESC',
+//            ),
 			'cab_state'=>array(
                 'asc'=>'t.cab_state',
                 'desc'=>'t.cab_state DESC',
@@ -188,6 +191,10 @@ class CabUser extends CActiveRecord
 		   'author_search'=>array(
                 'asc'=>'cabUserAuthorityId.name',
                 'desc'=>'cabUserAuthorityId.name DESC',
+            ),
+		   'TimeLastLoginStr'=>array(
+                'asc'=>'t.time_last_login',
+                'desc'=>'t.time_last_login DESC',
             ),
 			
 			),
@@ -226,6 +233,23 @@ class CabUser extends CActiveRecord
         parent::afterSave();
     }	
 	
+	public function getTimeRegisteredStr(){
+		if(isset($this->time_registered)&&($this->time_registered !== null)){
+			return date('d.m.Y H:i:s', $this->time_registered);
+		} else return null;
+	}
+
+	public function getTimeLastLoginStr(){
+		if(isset($this->time_last_login)&&($this->time_last_login !== null)){
+			return date('d.m.Y H:i:s', $this->time_last_login);
+		} else return null;
+	}
+	
+	public function getTimeActivCodeStr(){
+		if(isset($this->time_activcode)&&($this->time_activcode !== null)&&($this->time_activcode > 1416131542)){
+			return date('d.m.Y H:i:s', $this->time_activcode);
+		} else return "Активація не потрібна";
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.

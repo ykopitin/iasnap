@@ -10,7 +10,7 @@
 <xsl:attribute name="action" >
 	<xsl:value-of select="//form/@action"/>
 </xsl:attribute>
-<input name="FFModel[id]" id="FFModel_id" type="hidden" />
+<xsl:copy-of select="//input[@id='FFModel_id']" />
 <table>
 	<tr>
 		<td style="margin-bottom: -23px;">
