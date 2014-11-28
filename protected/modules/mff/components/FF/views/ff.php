@@ -64,7 +64,8 @@ $this->widget("zii.widgets.CListView", array(
     'itemView'=>'ff_field',
     'template'=>'{items}',
     'enablePagination'=>TRUE,
-    'viewData'=>array("form"=>$form,
+    'viewData'=>array(
+        "form"=>$form,
         "modelff"=>$modelff,
         "scenario"=>$this->scenario,
         "htmlOptions"=>$this->fieldOptions,
@@ -89,13 +90,14 @@ if ($scenario!="view") {
 
     $this->widget("zii.widgets.CListView", array(
         'dataProvider'=>$dataProvider2,
-        'itemView'=>"view/_hidden",
+        'itemView'=>"ff_field",
         'summaryText'=>'',
         'emptyText'=>'',
         'itemsCssClass'=>'hiddenItems',
         'viewData'=>array(
             "form"=>$form,
             "modelff"=>$modelff,
+            "scenario"=>$this->scenario,
             ),
         'template'=>'{items}',
         )

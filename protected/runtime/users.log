@@ -22,3 +22,18 @@ in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
 2014/11/27 15:30:06 [trace] [custom.users.login] Доступ до сторінки автентифікації.
 in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (132)
 in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/28 02:26:26 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=51.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/28 02:26:28 [trace] [custom.users.login] Доступ до сторінки автентифікації.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (132)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/28 02:27:44 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=52.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/28 02:27:48 [trace] [custom.users.login] Доступ до сторінки автентифікації.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (132)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/11/28 02:44:04 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=1.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)

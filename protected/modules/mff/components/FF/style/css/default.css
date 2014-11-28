@@ -7,6 +7,10 @@ and open the template in the editor.
     Created on : 08.11.2014, 23:31:22
     Author     : prk
 */
+.hiddenItems {
+    display: none;
+}
+
 #formff_field_name {
     width: 100%;
 }

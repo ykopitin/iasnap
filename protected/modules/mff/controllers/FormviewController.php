@@ -78,9 +78,6 @@ class FormviewController extends Controller
                     $firstdefault=TRUE;
                 }
             }
-//            var_dump($_addons);
-//            Yii::app()->end();
-//            return;
 
             $fields=FFField::model()->findAll("(`formid`=:formid) and (`default` is not null)",array(":formid"=>$idregistry));
             foreach ($fields as $field) {
