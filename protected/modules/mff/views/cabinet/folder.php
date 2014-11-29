@@ -167,8 +167,6 @@ foreach ($ActionItems as $ActionItem) {
 }
 
 $documentCriteria = new CDbCriteria();
-$documentCriteria->addInCondition("id", $documentIds);
-
 
 $model=new FFModel();
 $model->registry= FFModel::document_cnap;
@@ -179,15 +177,51 @@ if(Yii::app()->request->isAjaxRequest) {
         if (empty($value) || $value==null || $value=="") continue;
         $model->$attribute=$value;
         $documentCriteria->addSearchCondition($attribute, $value);
-    }           
+    }  
+    /// Поиск по трек номеру
+    Yii::import("mff.components.utils.tracknumberUtil");
+    $fields=  FFField::model()->findAll("formid=".FFModel::document_cnap." and `type`=8");
+    $tracknumberset=FALSE;
+    foreach ($fields as $field) {
+        if (isset($_GET[$field->name])) {
+            $tracknumber=$_GET[$field->name];
+            if ($tracknumber!="") {
+                if (tracknumberUtil::checkTracknumber($tracknumber)) {
+                    $id=tracknumberUtil::getIdFromTracknumber($tracknumber);
+                    $documentIdFound=FALSE;
+                    foreach ($documentIds as $documentId) {
+                        if ($documentId==$id) {
+                            $documentIdFound=TRUE;
+                            break;
+                        }
+                    }
+                    if ($documentIdFound) {
+                        $tracknumberset=TRUE;                  
+                        $documentCriteria->addCondition("id=".$id);
+                        break;
+                    } else {
+                        $documentCriteria->addCondition("0=1");
+                    }
+                } else {
+                    $documentCriteria->addCondition("0=1");
+                }
+            }
+        }
+    }
+    if (!$tracknumberset) {
+        $documentCriteria->addInCondition("id", $documentIds);
+    }
+} else {
+    $documentCriteria->addInCondition("id", $documentIds);
 }
 
 Yii::import("mff.components.utils.generatorFilter");
 // Определение колонок
 $columns = array(
-    array(
-        'name'=>'id',
-        "headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));
+//    array(
+//        'name'=>'id',
+//        "headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>'')
+    );
 if (strlen($folder->getAttribute("visual_names"))>0) {
    $columnVisualNames = explode(";",trim($folder->visual_names));
    foreach ($columnVisualNames as $columnVisual) {

@@ -29,10 +29,17 @@ class generatorFilter {
             case '19':
                 return CHtml::activeTextField($model, $id);
                 break;    
+            case '8': // Трекномер
+                $value="";
+                if (Yii::app()->request->isAjaxRequest) {
+                    $value=$_GET[$id];
+                }
+                return CHtml::NumberField($id,$value, array("style"=>"width:80pt"));
+                break;    
             case '3':
             case '7':
             case '17':               
-                return CHtml::activeDateField($model, $id);
+                return CHtml::activeDateField($model, $id, array("style"=>"width:100pt"));
                 break;
             default :
                 switch ($type->getAttribute("view")){
