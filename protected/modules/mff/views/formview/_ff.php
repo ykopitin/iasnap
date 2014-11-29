@@ -3,6 +3,7 @@ if (isset($_GET["idregistry"])) $idregistry=$_GET["idregistry"];
 if (isset($_GET["idstorage"])) $idstorage=$_GET["idstorage"];
 if (isset($_GET["idform"])) $idform=$_GET["idform"];
 if (isset($_GET["scenario"])) $scenario=$_GET["scenario"];
+if (isset($_GET["addons"])) $addons=$_GET["addons"];
 
 $title="Новый";
 if (isset($scenario) && $scenario=="update"){
@@ -37,6 +38,47 @@ if (isset($scenario) && ($scenario=="view" || $scenario=="update")) {
                 ),
             $buttons
             );
+    // Список действий
+    if (isset($addons)) {
+        eval('$_addons='.base64_decode($addons).";");
+        $userId=Yii::app()->user->id;
+        if (isset($_addons) && isset($_addons["folderid"])) {
+            $folderid=$_addons["folderid"];
+            $doc=FFModel::model()->findByPk($idform);
+            $doc->refresh();
+            $actions=$doc->getActionsFromFolder($folderid,$userId);
+            foreach ($actions as $action) {
+                if ($scenario=="update") {
+                    $click="activeaction.value=".$action->id.";formff_form.submit();";
+                } else {
+                    $cabinetid=$_addons["cabinetid"];
+                    $urlaction=Yii::app()->createUrl("/mff/cabinet/doaction",
+                    array(                    
+                        "actionid"=>$action->id,
+                        "documentid"=>$idform,                       
+                        "userId"=>$userId,
+                        "cabineturl"=>base64_encode(
+                                Yii::app()->createUrl("/cabinet",
+                                        array("id"=>$cabinetid,
+                                            "folderid"=>$folderid)
+                                        )
+                                ),
+                        )
+                    );
+                    $click='document.location="'.$urlaction.'";';
+                }
+                $buttons=array_merge(
+                    array(
+                        array(
+                        'text'=>$action->name,
+                        'click'=> 'js:function(){'.$click.';}'),
+                        ),
+                    $buttons
+                );                 
+            }
+                       
+        }
+    }
 }
 $dialog=$this->beginWidget("zii.widgets.jui.CJuiDialog",
         array( 

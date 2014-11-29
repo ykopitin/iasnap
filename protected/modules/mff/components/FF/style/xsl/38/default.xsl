@@ -11,6 +11,7 @@
 	<xsl:value-of select="//form/@action"/>
 </xsl:attribute>
 <xsl:copy-of select="//input[@id='FFModel_id']" />
+<xsl:copy-of select="//input[@id='activeaction']" />
 <table>
 	<tr>
 		<td style="margin-bottom: -23px;">

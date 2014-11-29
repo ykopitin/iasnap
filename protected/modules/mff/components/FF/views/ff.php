@@ -57,6 +57,8 @@ $dataProvider=new CActiveDataProvider("FFField", array(
 
 
 echo $form->hiddenField($modelff,"id");
+?><input type="hidden" name="activeaction" id="activeaction" /><?php
+
 $this->widget("zii.widgets.CListView", array(
     'dataProvider'=>$dataProvider,
     'summaryText'=>'',
@@ -102,7 +104,7 @@ if ($scenario!="view") {
         'template'=>'{items}',
         )
     );
-    
+
 }
 
 $this->endWidget("CActiveForm");

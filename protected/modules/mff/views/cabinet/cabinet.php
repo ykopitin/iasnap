@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($cabinetmodel)) {
     if (isset($addons)) {
         $_addons=base64_decode($addons);
@@ -25,8 +26,8 @@ else {
 }
 if (empty($thisrender) || $thisrender==NULL) $thisrender=  base64_encode ("mff.views.cabinet.cabinet");
 $cabineturl=$thisrender;
-echo "<b>".$cabinetmodel->name."</b><br />";
-echo "<i>".$cabinetmodel->comment."</i><br />";
+//echo "<b>".$cabinetmodel->name."</b><br />";
+//echo "<i>".$cabinetmodel->comment."</i><br />";
 $userId=Yii::app()->User->id;
 if (is_numeric($userId)){
     $user=new FFModel();

@@ -420,7 +420,7 @@ error_log("reg001");
 						// New message
 						$Message = $SM
 							->newMessage('Портал Центру надання адміністративних послуг')
-							->setFrom(array('cnap@cnaptest.pp.ua' => 'Портал Центру надання адміністративних послуг'))
+							->setFrom(array('cnap@cnap.odessa.gov.ua' => 'Портал Центру надання адміністративних послуг'))
 							->setTo(array($user_model->email => $model->SigData->sSubjCN))
 							->addPart($richTextContent, 'text/html')
 							->setBody($plainTextContent);

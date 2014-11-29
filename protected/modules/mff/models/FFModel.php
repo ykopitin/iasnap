@@ -668,6 +668,7 @@ class FFModel extends CActiveRecord
         $folder->registry=  FFModel::route_folder;
         $folder->refreshMetaData();
         $folder=$folder->findByPk($folderid);
+//        $folder->refresh();
         $nodes=$folder->getItems("nodes");
         if (!isset($nodes) || $nodes==null) return NULL;        
         $available_actions=$this->getItems("available_actions");       
@@ -682,17 +683,17 @@ class FFModel extends CActiveRecord
                     $findIt=FALSE;
                     if ($userId!=NULL) {
                         $actionclass->refresh();
-                        switch ($actionclass->registry) {
-                            case FFModel::route_action_for_user:
+                        switch ($available_action->registry) {
+                            case FFModel::available_actions_for_user:
                                 $users=$actionclass->getItems("users");
                                 foreach ($users as $userItem) {
-                                    if ($user==$userItem->id) {
+                                    if ($userId==$userItem->id) {
                                         $findIt=TRUE;
                                         break;
                                     }
                                 }
                                 break;
-                            case FFModel::route_action_for_role:
+                            case FFModel::available_actions_for_role:
                                 $roles=$actionclass->getItems("roles");
                                 foreach ($roles as $roleItem) {
                                     if ($roleId==$roleItem->id) {
@@ -701,6 +702,25 @@ class FFModel extends CActiveRecord
                                     }
                                 }
                                 break;
+                            case FFModel::available_actions_for_cnap:
+                                $roles=$actionclass->getItems("roles");
+                                foreach ($roles as $roleItem) {
+                                    if ($roleId==$roleItem->id) {
+                                        $findIt=TRUE;
+                                        break;
+                                    }
+                                }
+                                if ($findIt) break;
+                                $users=$actionclass->getItems("users");
+                                foreach ($users as $userItem) {
+                                    if ($userId==$userItem->id) {
+                                        $findIt=TRUE;
+                                        break;
+                                    }
+                                }                                
+                                break;
+                            default :
+                                $findIt=TRUE;
                         }    
                     }
                     if (($userId==NULL) || ($findIt))

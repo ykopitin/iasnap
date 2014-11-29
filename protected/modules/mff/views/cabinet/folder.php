@@ -12,7 +12,7 @@ if ($this instanceof CWidget) {
     }
 }
 
-echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p>";
+echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p><hr />";
 $userId=Yii::app()->User->id;
 if (!is_numeric($userId)) $userId='null';
 $roleId=NULL;
@@ -47,7 +47,7 @@ $buttons=array(
                         "scenario"=>"view",
                         "backurl"=>"'.$backurl.'",
                         "thisrender"=>"'.$cabineturl.'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderif"=>'.$folder->id.')').'",'.    
+                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderid"=>'.$folder->id.')').'",'.    
                         ')
                     )'          
             ),
@@ -62,7 +62,7 @@ $buttons=array(
                         "scenario"=>"update",
                         "backurl"=>"'.$backurl.'",
                         "thisrender"=>"'.$cabineturl.'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderif"=>'.$folder->id.')').'",'.
+                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderid"=>'.$folder->id.')').'",'.
                         ')
                     )'          
             ),
@@ -87,7 +87,7 @@ if (count($storageItems_delete)>0) {
 if (count($storageItems_new)>0) {
     $items=array();
     $storageItemIds=array();
-    echo CHtml::label("Обрати послугу ", "");
+    echo "<p>".CHtml::label("Обрати послугу ", "")."</p>";
     $datalist=array();
     foreach ($storageItems_new as $storageItem) {
         $storageItem=FFStorage::model()->findByPk($storageItem->id); // Чтобы не терять
@@ -114,7 +114,7 @@ if (count($storageItems_new)>0) {
             $datalist=array_merge($datalist, array($url=>$label));
         }
     }
-    echo CHtml::dropDownList("selectservice", NULL, $datalist)." ";
+    echo CHtml::dropDownList("selectservice", NULL, $datalist)." <br /><br />";
     $this->widget(
             "zii.widgets.jui.CJuiButton",
             array(
@@ -165,10 +165,27 @@ foreach ($ActionItems as $ActionItem) {
     $templateButton .= ' {action'.$ActionItem->id.'}';
     $buttons = array_merge($buttons, $buttonItem);
 }
+
+$documentCriteria = new CDbCriteria();
+$documentCriteria->addInCondition("id", $documentIds);
+
+
+$model=new FFModel();
+$model->registry= FFModel::document_cnap;
+$model->refreshMetaData();
+
+if(Yii::app()->request->isAjaxRequest) {
+    foreach ($_GET[get_class($model)] as $attribute => $value) {
+        if (empty($value) || $value==null || $value=="") continue;
+        $model->$attribute=$value;
+        $documentCriteria->addSearchCondition($attribute, $value);
+    }           
+}
+
+Yii::import("mff.components.utils.generatorFilter");
 // Определение колонок
 $columns = array(
     array(
-//        'class'=>'mff.components.mffDataColumn',
         'name'=>'id',
         "headerHtmlOptions"=>array("style"=>"width:60px"),'filter'=>''));
 if (strlen($folder->getAttribute("visual_names"))>0) {
@@ -187,18 +204,14 @@ if (strlen($folder->getAttribute("visual_names"))>0) {
                    array(
                        'class'=>'mff.components.mffDataColumn',
                        'name'=>$columnVisualName,
-//                       "value"=>'$data->getFieldValue("'.$columnVisualName.'")',
+                       'filter'=>generatorFilter::columnFilter($model, $columnVisualName),
                        "header"=>$columnVisualTitle)));
    }
 }
 $columns = array_merge($columns, array(array('class'=>'mff.components.mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Дії", 'buttons'=>$buttons)));
 
 // Отображение грида
-$documentCriteria = new CDbCriteria();
-$documentCriteria->addInCondition("id", $documentIds);
-$model=new FFModel();
-$model->registry= FFModel::document_cnap;
-$model->refreshMetaData();
+
 $dp=new CActiveDataProvider($model, 
                     array(
                         'criteria'=>$documentCriteria,
@@ -211,6 +224,7 @@ $dp=new CActiveDataProvider($model,
 $this->widget("mff.components.mffGridView",
         array(
             "dataProvider"=>$dp, 
+            'filter'=>$model,
             "enablePagination"=>TRUE,
             'columns'=>$columns,
         ));

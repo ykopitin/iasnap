@@ -131,13 +131,13 @@ class FormviewController extends Controller
                 $datamodel->$key=$value;
             }
 
-           if ($datamodel->validate() && $datamodel->save()) {
-               // Очищаем свзки многие-ко-многим
-               Yii::app()->db->createCommand( "DELETE FROM `ff_ref_multiguide` WHERE `owner`=".$datamodel->id)->execute();
+            if ($datamodel->validate() && $datamodel->save()) {
+                $userId=  Yii::app()->user->id;
+                // Очищаем свзки многие-ко-многим
+                Yii::app()->db->createCommand( "DELETE FROM `ff_ref_multiguide` WHERE `owner`=".$datamodel->id)->execute();
                 if ($scenario=="insert") {
                      // Маршрутизация
                      if ($route!=null) {
-                        $userId=  Yii::app()->user->id;
                         if (isset($userId) && $userId!=NULL) {
                             $datamodel->applyRoute($userId,TRUE);
                         } else {
@@ -155,7 +155,9 @@ class FormviewController extends Controller
                         $datamodel->setMultiGuide($fieldname, $multi_value);
                     }
                 }    
-                
+                if (isset($_POST["activeaction"]) && $_POST["activeaction"]!=NULL && $_POST["activeaction"]!="") {
+                    $datamodel->applyAction($_POST["activeaction"],$userId);
+                }
 //                $transaction->commit();
                 try {
                     @$backurlparams=  unserialize($backurl);
@@ -190,9 +192,13 @@ class FormviewController extends Controller
         $this->redirect($backurl);  
     }
     
-    public function actionBarcode($id="0",$code="BCGean13"){
-        Yii::import("mff.components.utils.tracknumberUtil");
-        $text=  tracknumberUtil::getTracknumberFromId($id);
+    public function actionBarcode($id="0",$code="BCGean13"){        
+        if ($id=="" || $id=="0") {
+            $text="000000000000";
+        } else {
+            Yii::import("mff.components.utils.tracknumberUtil");
+            $text=  tracknumberUtil::getTracknumberFromId($id);
+        }
         Yii::import("application.extensions.barcodegen.*");
         require_once('BCGFontFile.php');
         require_once('BCGColor.php');
