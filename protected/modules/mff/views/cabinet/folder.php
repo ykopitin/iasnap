@@ -1,4 +1,5 @@
 <?php
+
 if ($this instanceof CWidget) {
     $controller=$this->getOwner();
     $ffcontroller="/usl/save";
@@ -266,4 +267,5 @@ $this->widget("mff.components.mffGridView",
 ?>
 <script type="text/javascript">
     $.ready($("#counter<?= $folder->id?>").html($("#folder_<?= $folder->id?>").val()));
+    
 </script>

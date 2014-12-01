@@ -20,6 +20,7 @@ else $buttons=array(
             array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
         );
 if (isset($scenario) && ($scenario=="view" || $scenario=="update")) {
+//    if ()
     $printurl=Yii::app()->createUrl("/mff/print/print",array("id"=>$idform,"profile"=>"opis"));
     $buttons=array_merge(
             array(
@@ -58,11 +59,11 @@ if (isset($scenario) && ($scenario=="view" || $scenario=="update")) {
                         "documentid"=>$idform,                       
                         "userId"=>$userId,
                         "cabineturl"=>base64_encode(
-                                Yii::app()->createUrl("/cabinet",
-                                        array("id"=>$cabinetid,
-                                            "folderid"=>$folderid)
-                                        )
-                                ),
+                            Yii::app()->createUrl("/cabinet",
+                                    array("id"=>$cabinetid,
+                                        "folderid"=>$folderid)
+                                    )
+                            ),
                         )
                     );
                     $click='document.location="'.$urlaction.'";';

@@ -15,13 +15,34 @@ Yii::import('zii.widgets.grid.CDataColumn');
 class mffDataColumn extends CDataColumn{
     
     protected function renderDataCellContent($row, $data) {
-        
-		if($this->value!==null)
-			$value=$this->evaluateExpression($this->value,array('data'=>$data,'row'=>$row));
-		elseif($this->name!==null)
+        $type="text";
+        if($this->value!==null)
+            $value=$this->evaluateExpression($this->value,array('data'=>$data,'row'=>$row));
+        elseif($this->name!==null) {
 //			$value=CHtml::value($data,$this->name);
-			$value=$data->getFieldValue($this->name);
-		echo $value===null ? $this->grid->nullDisplay : $this->grid->getFormatter()->format($value,$this->type);
+            $value=$data->getFieldValue($this->name);
+            switch($data->getType($this->name)->id) {
+                case '3':
+                    $type="date"; 
+                    break;
+                case '7':
+                case '17': 
+                    $type="datetime"; 
+                    break;
+                case '10':
+                case '14':  
+                    $type="raw";
+                    break;
+            }
+        }
+        if ($value===null) {
+            echo $this->grid->nullDisplay;
+        } else {
+            $formatter=$this->grid->getFormatter();
+            $formatter->datetimeFormat='d/m/Y H:i:s';
+            $formatter->dateFormat='d/m/Y';
+            echo $formatter->format($value,$type);
+        }
     }
 
 

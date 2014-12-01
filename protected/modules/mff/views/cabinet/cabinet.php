@@ -1,5 +1,10 @@
 <?php
-
+Yii::app()->clientScript->registerScriptFile(
+        Yii::app()->createUrl("/mff/default/getscript",array("script"=>"cabineteds")));
+if (empty($this->action) || $this->action->id!="save") {
+    $this->widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden'));
+}
+echo "<br />";
 if (!isset($cabinetmodel)) {
     if (isset($addons)) {
         $_addons=base64_decode($addons);
@@ -94,6 +99,7 @@ $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
 //    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
     )
 );
+//$this->widget("booster.widgets.TbTabs", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,));
 
 if ($controller->action->id=="save") {
     if (empty($scenario)) $scenario="insert";

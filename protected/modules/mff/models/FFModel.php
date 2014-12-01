@@ -252,7 +252,7 @@ class FFModel extends CActiveRecord
                 queryScalar(array(":idregistry1"=>$registry1,":idregistry2"=>$registry2));
     }
 
-    // Bcghfdbnm 
+     
     public static function commonParent($registrys) {        
         if (is_array($registrys) && count($registrys)>0) {
             $commonP=$registrys[0];
@@ -377,28 +377,38 @@ class FFModel extends CActiveRecord
                         );
                 break;
             case '10':
-                return CHtml::link(
-                        $this->getAttribute($field->name."_filename"),
+                $filelink="Відсутній";
+                    if ($this->getAttribute($field->name."_filename")!="") {
+                    $filelink=CHtml::link(
+                        "Переглянути",
                         Yii::app()->createUrl(
                                 "/mff/formview/getfile",
                                 array(
                                     "id"=>  $this->id, 
-                                    "name"=>$field->name
+                                    "name"=>$this->getAttribute($field->name."_filename")
                                     )
                                 )
                         );
+                    }
+                return $filelink;    
                 break;
             case '14':
-                return CHtml::link(
-                        $this->getAttribute($field->name."_fileedsname"),
-                        Yii::app()->createUrl(
+                $filelink="Відсутній";
+                if ($this->getAttribute($field->name."_fileedsname")!="") {
+                    $linkclick="CabinetLoadFile('".Yii::app()->createUrl(
                                 "/mff/formview/getfile",
                                 array(
                                     "id"=>  $this->id, 
-                                    "name"=>$field->name
+                                    "name"=>$this->getAttribute($field->name."_fileedsname")
                                     )
-                                )
+                                )."')";
+                    $filelink=CHtml::link(
+                        "Переглянути",
+                        "#",
+                        array("onclick"=>$linkclick)
                         );
+                }
+                return $filelink;
                 break;               
             default :                  
                 switch ($field->typeItem->getAttribute("view")){
