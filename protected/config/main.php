@@ -8,7 +8,7 @@ Yii::setPathOfAlias('booster', dirname(__FILE__) . DIRECTORY_SEPARATOR . '../ext
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Інформаційно-аналітична система надання адміністративних послуг',
-'sourceLanguage'=>'en',
+'sourceLanguage'=>'uk',
 'language'=>'uk', 
 	// preloading 'log' component
 //	'preload'=>array('log','booster'),
@@ -30,8 +30,7 @@ return array(
 		),*/
 		  'mff'=>array( // Модуль свободных форм
               //      'enableprotected'=>FALSE, // Игнорирование защиты системных данных в свободных формах (нужно для отладки)
-                ),
-		
+                ),	
 		/**/
 	),
 
@@ -61,9 +60,9 @@ return array(
 			//	'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 			//	'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			//),
-		),
-		'booster' => array(
-            'class' => 'booster.components.Booster',
+                    ),
+                    'booster' => array(
+                'class' => 'ext.yiibooster.components.Booster',
         ),
 		/*
 		'db'=>array(
