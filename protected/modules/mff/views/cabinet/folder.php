@@ -173,12 +173,16 @@ $model=new FFModel();
 $model->registry= FFModel::document_cnap;
 $model->refreshMetaData();
 
+$currentpage=0;
 if(Yii::app()->request->isAjaxRequest) {
-    foreach ($_GET[get_class($model)] as $attribute => $value) {
-        if (empty($value) || $value==null || $value=="") continue;
-        $model->$attribute=$value;
-        $documentCriteria->addSearchCondition($attribute, $value);
-    }  
+    if (isset($_GET[get_class($model)."_page"])) $currentpage=$_GET[get_class($model)."_page"];
+    if (isset($_GET[get_class($model)])) {
+        foreach ($_GET[get_class($model)] as $attribute => $value) {
+            if (empty($value) || $value==null || $value=="") continue;
+            $model->$attribute=$value;
+            $documentCriteria->addSearchCondition($attribute, $value);
+        } 
+    }
     /// Поиск по трек номеру
     Yii::import("mff.components.utils.tracknumberUtil");
     $fields=  FFField::model()->findAll("formid=".FFModel::document_cnap." and `type`=8");
@@ -251,7 +255,8 @@ $dp=new CActiveDataProvider($model,
                     array(
                         'criteria'=>$documentCriteria,
                         'pagination' => array(
-                            'pageSize' => 10,
+                            'pageSize' => 20,
+                            'currentPage'=>$currentpage,
                             )
                         )
                     );

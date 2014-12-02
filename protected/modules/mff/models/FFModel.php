@@ -395,11 +395,11 @@ class FFModel extends CActiveRecord
             case '14':
                 $filelink="Відсутній";
                 if ($this->getAttribute($field->name."_fileedsname")!="") {
-                    $linkclick="CabinetLoadFile('".Yii::app()->createUrl(
+                    $linkclick="CabinetLoadFile('".Yii::app()->request->getHostInfo().Yii::app()->createUrl(
                                 "/mff/formview/getfile",
                                 array(
                                     "id"=>  $this->id, 
-                                    "name"=>$this->getAttribute($field->name."_fileedsname")
+                                    "name"=>$field->name
                                     )
                                 )."')";
                     $filelink=CHtml::link(

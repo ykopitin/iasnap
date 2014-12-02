@@ -1,17 +1,21 @@
-function CabinetLoadFile($url) {
+function CabinetLoadFile(url) {
     try {
+        alert(url);
+        var data=$.ajax({
+            url: url,         
+            async: false
+        }).responseText;
         var euSign = document.getElementById("euSign");
         euSign.SetCharset("UTF-16LE");
         euSign.SetUIMode(false);
         euSign.Initialize();
         euSign.width = "1px";
-        euSign.SetUIMode(false);
-        data = euSign.ReadFile($url);
+        euSign.SetUIMode(false);        
         var returndata=euSign.VerifyInternal(data,false);
-        var saveFilePath = euSign.SelectFile(true, filename);
-        euSign.WriteFile(saveFilePath,returndata);
+        var saveFilePath = euSign.SelectFile(true, "Документ.pdf");
+        euSign.WriteFile(saveFilePath,returndata);  
     } catch (e) {
-        alert("Помилка при перевірці підпису" + e);
+        alert("Помилка при ініціалізації апплету");
     } finally {
         euSign.Finalize();
     }

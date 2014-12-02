@@ -114,3 +114,4 @@ if ($controller->action->id=="save") {
     if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
     $controller->renderPartial("mff.views.formview._ff",$urldata);
 }
+ 

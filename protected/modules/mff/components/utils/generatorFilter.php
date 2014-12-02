@@ -31,15 +31,15 @@ class generatorFilter {
                 break;    
             case '8': // Трекномер
                 $value="";
-                if (Yii::app()->request->isAjaxRequest) {
+                if (Yii::app()->request->isAjaxRequest && isset($_GET[$id])) {
                     $value=$_GET[$id];
                 }
-                return CHtml::NumberField($id,$value, array("style"=>"width:80pt"));
+                return CHtml::NumberField($id,$value, array("style"=>"width:60pt"));
                 break;    
             case '3':
             case '7':
             case '17':               
-                return CHtml::activeDateField($model, $id, array("style"=>"width:100pt"));
+                return CHtml::activeDateField($model, $id, array("style"=>"width:80pt"));
                 break;
             default :
                 switch ($type->getAttribute("view")){
