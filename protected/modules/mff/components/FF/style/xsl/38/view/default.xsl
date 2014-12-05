@@ -37,7 +37,7 @@
 	</tr>
 	<tr>
 		<td>
-		<table border="0" bgcolor="#E9E9E9" height="0%" style="border: 1px solid #808080; border-radius:8px; padding: 1px">
+		<table border="0" bgcolor="#E9E9E9" height="0%" style="border: 1px solid #808080; padding: 1px">
 			<tr>
 				<td width="33%"  style="vertical-align: top;" >
 				
@@ -124,7 +124,7 @@
 
 	<tr>
 		<td>
-		<table border="0" width="100%" id="table9" bgcolor="#E9E9E9" style="border: 1px solid #808080;  border-radius:8px; padding: 1px">
+		<table border="0" width="100%" id="table9" bgcolor="#E9E9E9" style="border: 1px solid #808080; padding: 1px">
 			<tr>
 				<td>
 				<table  width="100%" id="table10">
@@ -280,7 +280,7 @@
 		
 	<tr>
 		<td>
-		<table border="0" width="100%" id="table19" bgcolor="#E9E9E9" style="border: 1px solid #808080;  border-radius:8px; padding: 1px">
+		<table border="0" width="100%" id="table19" bgcolor="#E9E9E9" style="border: 1px solid #808080;   padding: 1px">
 			<tr>
 				<td>
 				<div align="left">
@@ -306,7 +306,7 @@
 	</tr>
 	<tr>
 		<td>
-		<table border="0" width="100%" id="table24" bgcolor="#E9E9E9" style="border: 1px solid #808080; border-radius:8px;  padding: 1px">
+		<table border="0" width="100%" id="table24" bgcolor="#E9E9E9" style="border: 1px solid #808080; padding: 1px">
 			<tr>
 				<td>
 				<table border="0" width="100%" id="table25">
@@ -369,7 +369,7 @@
 										<table border="0" width="100%" id="table30">
 											<tr>
 												<td><font face="Arial" size="2">
-													<xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" />
+													<xsl:value-of select="//div[@id='formff_fieldvalue_executor']/select/option[@selected]" />
 												</font></td>
 												<td><font face="Arial" size="2">Дата виконання:
 													

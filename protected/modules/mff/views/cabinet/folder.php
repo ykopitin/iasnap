@@ -13,7 +13,7 @@ if ($this instanceof CWidget) {
     }
 }
 
-echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p><hr />";
+//echo '<p style="font-style: italic;">'.$folder->getAttribute("comment")."</p><hr />";
 $userId=Yii::app()->User->id;
 if (!is_numeric($userId)) $userId='null';
 $roleId=NULL;
@@ -36,54 +36,61 @@ $storageItems_new_deny=$folder->getItems("deny_new");
 
 $storageItems_edit=$folder->getItems("allow_edit");
 $storageItems_delete=$folder->getItems("allow_delete");
-$buttons=array(
-    'view'=>
-        array(
-            'visible'=>'true',
-            'url'=>'Yii::app()->createUrl("'.$ffcontroller.'", 
-                    array(
-                        "idregistry"=>$data->registry,
-                        "idstorage"=>$data->storage,
-                        "idform"=>$data->id,
-                        "scenario"=>"view",
-                        "backurl"=>"'.$backurl.'",
-                        "thisrender"=>"'.$cabineturl.'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderid"=>'.$folder->id.')').'",'.    
-                        ')
-                    )'          
-            ),
-    'update'=>
-        array(
-            'visible'=>'false',
-            'url'=>'Yii::app()->createUrl("'.$ffcontroller.'", 
-                    array(
-                        "idregistry"=>$data->registry,
-                        "idstorage"=>$data->storage,
-                        "idform"=>$data->id,
-                        "scenario"=>"update",
-                        "backurl"=>"'.$backurl.'",
-                        "thisrender"=>"'.$cabineturl.'",
-                        "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderid"=>'.$folder->id.')').'",'.
-                        ')
-                    )'          
-            ),
-    'delete'=>
-        array(
-            'visible'=>'false',
-            'url'=>'Yii::app()->createUrl("/mff/formview/delete", 
-                    array(
-                        "idform"=>$data->id,
-                        "backurl"=>"'.$backurl.'",'.
-                        ')
-                    )'          
-            ),
-    ); 
-    
-if (count($storageItems_edit)>0) {
-    $buttons["update"]["visible"]="true";
+
+$hideaction = FALSE; 
+if ($folder->hasAttribute("hideaction") && $folder->getAttribute("hideaction")=='1') {
+    $hideaction = TRUE;
 }
-if (count($storageItems_delete)>0) {
-    $buttons["delete"]["visible"]="true";
+if (!$hideaction) {
+    $buttons=array(
+        'view'=>
+            array(
+                'visible'=>'true',
+                'url'=>'Yii::app()->createUrl("'.$ffcontroller.'", 
+                        array(
+                            "idregistry"=>$data->registry,
+                            "idstorage"=>$data->storage,
+                            "idform"=>$data->id,
+                            "scenario"=>"view",
+                            "backurl"=>"'.$backurl.'",
+                            "thisrender"=>"'.$cabineturl.'",
+                            "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderid"=>'.$folder->id.')').'",'.    
+                            ')
+                        )'          
+                ),
+        'update'=>
+            array(
+                'visible'=>'false',
+                'url'=>'Yii::app()->createUrl("'.$ffcontroller.'", 
+                        array(
+                            "idregistry"=>$data->registry,
+                            "idstorage"=>$data->storage,
+                            "idform"=>$data->id,
+                            "scenario"=>"update",
+                            "backurl"=>"'.$backurl.'",
+                            "thisrender"=>"'.$cabineturl.'",
+                            "addons"=>"'.base64_encode('array("cabinetid"=>'.$cabinet->id.',"folderid"=>'.$folder->id.')').'",'.
+                            ')
+                        )'          
+                ),
+        'delete'=>
+            array(
+                'visible'=>'false',
+                'url'=>'Yii::app()->createUrl("/mff/formview/delete", 
+                        array(
+                            "idform"=>$data->id,
+                            "backurl"=>"'.$backurl.'",'.
+                            ')
+                        )'          
+                ),
+        ); 
+
+    if (count($storageItems_edit)>0) {
+        $buttons["update"]["visible"]="true";
+    }
+    if (count($storageItems_delete)>0) {
+        $buttons["delete"]["visible"]="true";
+    }
 }
 if (count($storageItems_new)>0) {
     $items=array();
@@ -128,47 +135,48 @@ if (count($storageItems_new)>0) {
 
 //$registryDocuments=array_unique($registryDocuments,SORT_NUMERIC);
 echo CHtml::hiddenField("folder_".$folder->id,count($documentIds));
+if ( !$hideaction) {
+    // Определение списка действий
+    // отбираем все действия
+    $templateButton=" {view} {update} {delete}";
 
-// Определение списка действий
-// отбираем все действия
-$templateButton=" {view} {update} {delete}";
+    $ActionItems= new FFModel();
+    $ActionItems->registry=  FFModel::route_action;
+    $ActionItems->refreshMetaData();
+    $ActionItems=$ActionItems->findAll("storage=:storage",array(":storage"=>  FFModel::route_action_storage));
 
-$ActionItems= new FFModel();
-$ActionItems->registry=  FFModel::route_action;
-$ActionItems->refreshMetaData();
-$ActionItems=$ActionItems->findAll("storage=:storage",array(":storage"=>  FFModel::route_action_storage));
+    foreach ($ActionItems as $ActionItem) {
+    //    $ActionItem->refresh();
 
-foreach ($ActionItems as $ActionItem) {
-//    $ActionItem->refresh();
-    
-    $buttonItem=array(
-       'action'.$ActionItem->id=>array(
-            'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.','.$userId.')',
-            'label'=>$ActionItem->name,
-            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Flag")),
-//            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Gears")),
-//            "options"=>array("style"=>"width:8px"),
-            'url'=>'Yii::app()->createUrl("/mff/cabinet/doaction",
-                    array(                    
-                        "actionid"=>'.$ActionItem->id.',
-                        "documentid"=>$data->id,                       
-                        "userId"=>'.$userId.',
-                        "cabineturl"=>"'. base64_encode(
-                                Yii::app()->createUrl(
-                                        Yii::app()->request->getUrl(),
-                                        array("folderid"=>$folder->id)
-                                        )
-                                ).'",
-                        )
-                    )'          
-            )
-        );
-    $templateButton .= ' {action'.$ActionItem->id.'}';
-    $buttons = array_merge($buttons, $buttonItem);
+        $buttonItem=array(
+           'action'.$ActionItem->id=>array(
+                'visible'=>'$data->enableAction('.$folder->id.','.$ActionItem->id.','.$userId.')',
+                'label'=>$ActionItem->name,
+                'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Flag")),
+    //            'imageUrl'=>$this->createUrl("/mff/default/getimage",array("image"=>"Gears")),
+    //            "options"=>array("style"=>"width:8px"),
+                'url'=>'Yii::app()->createUrl("/mff/cabinet/doaction",
+                        array(                    
+                            "actionid"=>'.$ActionItem->id.',
+                            "documentid"=>$data->id,                       
+                            "userId"=>'.$userId.',
+                            "cabineturl"=>"'. base64_encode(
+                                    Yii::app()->createUrl(
+                                            Yii::app()->request->getUrl(),
+                                            array("folderid"=>$folder->id)
+                                            )
+                                    ).'",
+                            )
+                        )'          
+                )
+            );
+        $templateButton .= ' {action'.$ActionItem->id.'}';
+        $buttons = array_merge($buttons, $buttonItem);
+    }
 }
-
 $documentCriteria = new CDbCriteria();
-
+if (!(Yii::app()->request->isAjaxRequest && isset($_GET["FFModel_sort"])))
+    $documentCriteria->order=" id DESC ";
 $model=new FFModel();
 $model->registry= FFModel::document_cnap;
 $model->refreshMetaData();
@@ -247,19 +255,20 @@ if (strlen($folder->getAttribute("visual_names"))>0) {
                        "header"=>$columnVisualTitle)));
    }
 }
+if (! $hideaction) {
 $columns = array_merge($columns, array(array('class'=>'mff.components.mffButtonColumn', 'htmlImageOptions'=>array('style'=>"width:16px"), "headerHtmlOptions"=>array("style"=>"width:100px"), "template"=>$templateButton, "header"=>"Дії", 'buttons'=>$buttons)));
-
+}
 // Отображение грида
 
 $dp=new CActiveDataProvider($model, 
-                    array(
-                        'criteria'=>$documentCriteria,
-                        'pagination' => array(
-                            'pageSize' => 20,
-                            'currentPage'=>$currentpage,
-                            )
-                        )
-                    );
+    array(
+        'criteria'=>$documentCriteria,
+        'pagination' => array(
+            'pageSize' => 10,
+            'currentPage'=>$currentpage,
+            )
+        )
+    );
 
 $this->widget("mff.components.mffGridView",
         array(
@@ -267,6 +276,7 @@ $this->widget("mff.components.mffGridView",
             'filter'=>$model,
             "enablePagination"=>TRUE,
             'columns'=>$columns,
+            'cssFile'=>Yii::app()->baseUrl.'/css/folder.css',
         ));
         
 ?>

@@ -8,10 +8,11 @@ and open the template in the editor.
     Author     : prk
 */
 
+
 table{
 border:0px; /* border="0" */
 border-collapse:collapse; /* cellspacing="0" */
-border-radius:8px;
+
 margin-bottom:0;
 color:#000;
 }
@@ -21,9 +22,36 @@ table td{
 padding:2px; /* cellpadding="0" */
 
 } 
-#FFModel_service {
-    width: 800px;
+
+input {
+border:#797979 1px solid;
+transition: all 0.30s ease-in-out;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+outline:none;
+border-radius: 2px;
 }
+select {
+border:#797979 1px solid;
+transition: all 0.30s ease-in-out;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+outline:none;
+border-radius: 2px;
+}
+textarea {
+border:#797979 1px solid;
+transition: all 0.30s ease-in-out;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+outline:none;
+border-radius: 2px;
+}
+
+#FFModel_service {
+    width: 100%;
+}
+
 #FFModel_service option {
     width: 600px;
 }
@@ -51,4 +79,5 @@ padding:2px; /* cellpadding="0" */
 #formff_fieldvalue_factdate input {width: 100px}
 #formff_fieldvalue_plandate input {width: 100px}
 #formff_fieldvalue_renewal_date input {width: 100px}
-#formff_fieldvalue_number_of_pages input {width: 20px}
+#formff_fieldvalue_number_of_pages input {width: 40px}
+#formff_fieldvalue_executor_post input {width: 220px}

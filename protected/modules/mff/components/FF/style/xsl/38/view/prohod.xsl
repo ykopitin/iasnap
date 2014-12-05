@@ -29,7 +29,7 @@
                             <xsl:copy-of select="//div[@id='formff_fieldvalue_regnum']" />
                         </td>
                         <td align="right">
-                            <xsl:copy-of select="//div[@id='formff_fieldvalue_administrator']" />/__________________</td>
+                            <xsl:value-of select="//div[@id='formff_fieldvalue_administrator']/select/option[@selected]" />/__________________</td>
                     </tr>
                     <tr>
                         <td>
@@ -85,7 +85,7 @@
                         <td align="center">
                             <xsl:copy-of select="//div[@id='formff_fieldvalue_factdate']" />
                         </td>
-                        <td align="right">    <xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" />/________________
+                        <td align="right">    <xsl:value-of select="//div[@id='formff_fieldvalue_executor']/select/option[@selected]" />/________________
                         </td>
                     </tr>
                     <tr>
@@ -113,7 +113,7 @@
                 <tbody>
                     <tr>
                         <td>______________________________  </td>
-                        <td align="right">  <xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" /></td>
+                        <td align="right">  <xsl:value-of select="//div[@id='formff_fieldvalue_executor']/select/option[@selected]" /></td>
                     </tr>
                     <tr>
                         <td>
@@ -150,7 +150,7 @@
                     <tr>
                         <td>___________ </td>
                         <td align="right">
-                            <xsl:copy-of select="//div[@id='formff_fieldvalue_administrator']" />/________________
+                            <xsl:value-of select="//div[@id='formff_fieldvalue_administrator']/select/option[@selected]" />/________________
                         </td>
                     </tr>
                     <tr>

@@ -1,6 +1,5 @@
 function CabinetLoadFile(url) {
     try {
-        alert(url);
         var data=$.ajax({
             url: url,         
             async: false

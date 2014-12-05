@@ -1,10 +1,7 @@
 <?php
 Yii::app()->clientScript->registerScriptFile(
         Yii::app()->createUrl("/mff/default/getscript",array("script"=>"cabineteds")));
-if (empty($this->action) || $this->action->id!="save") {
-    $this->widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden'));
-}
-echo "<br />";
+
 if (!isset($cabinetmodel)) {
     if (isset($addons)) {
         $_addons=base64_decode($addons);
@@ -21,14 +18,17 @@ if (!isset($cabinetmodel)) {
 $cabinetmodel->refresh();
 if ($this instanceof CWidget) {
     $controller=$this->getOwner();
-    $backurl=base64_encode(Yii::app()->createUrl("cabinet/index"));
-    
+    $backurl=base64_encode(Yii::app()->createUrl("cabinet/index"));   
 }
 else {
     $controller=$this;
     $backurl=base64_encode(Yii::app()->createUrl("cabinet/cabinet",array("id"=>$cabinetmodel->id)));
-
 }
+if (empty($controller->action) || $controller->action->id!="save") {
+    $this->widget('application.components.EUWidget.EUWidget', array('WidgetType'=>'Hidden'));
+}
+echo "<br />";
+
 if (empty($thisrender) || $thisrender==NULL) $thisrender=  base64_encode ("mff.views.cabinet.cabinet");
 $cabineturl=$thisrender;
 //echo "<b>".$cabinetmodel->name."</b><br />";
@@ -96,7 +96,7 @@ foreach ($folders as $folder) {
     $tabs=array_merge($tabs,$tab);
 }
 $this->widget("CTabView", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,
-//    'cssFile'=>Yii::app()->baseUrl.'/css/jquery.yiitab.css',
+    'cssFile'=>Yii::app()->baseUrl.'/css/cabinet.css',
     )
 );
 //$this->widget("booster.widgets.TbTabs", array('tabs'=>$tabs,"activeTab"=>"tab".$folderid,));

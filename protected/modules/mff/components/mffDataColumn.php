@@ -40,7 +40,6 @@ class mffDataColumn extends CDataColumn{
         } else {
             $formatter=$this->grid->getFormatter();
             $formatter->datetimeFormat='d/m/Y H:i:s';
-            $formatter->dateFormat='d/m/Y';
             echo $formatter->format($value,$type);
         }
     }

@@ -43,7 +43,7 @@ function ff_loadFile(filepath, filecontext, filecrypt, imagestatus,scandata) {
             document.getElementById(filecontext + "_fileedsname").value = "Відсканованно.pdf";
             data = scandata;
         }
-//      var data=euSign.BASE64Encode(euSign.ReadFile(selectedFile));
+        data = euSign.BASE64Encode(data);
         euSign.Finalize();
 
         EUWidgetSign(data, false, "", false, ff_callbackSign(filecontext, imagestatus), "", ff_callbackSignError(imagestatus), ff_callbackWait, filecrypt);
@@ -178,7 +178,10 @@ function ff_saveFile(filecontext, filename, imagestatus) {
         euSign.SetUIMode(false);
         var returndata=euSign.VerifyInternal(signed_data,false);
         var saveFilePath = euSign.SelectFile(true, filename);
-        euSign.WriteFile(saveFilePath,returndata);
+        alert(returndata.length);
+        var data=base64_decode(returndata);
+        alert(data.length);
+        euSign.WriteFile(saveFilePath,data);
         if (imagestatus!='') {
             $('#' + imagestatus + '1').hide();
             $('#' + imagestatus + '2').hide();
@@ -190,9 +193,10 @@ function ff_saveFile(filecontext, filename, imagestatus) {
             $('#' + imagestatus + '2').show();
             $('#' + imagestatus + '3').hide();
         }
-        alert("Помилка при перевірці підпису");
+        alert("Помилка при перевірці підпису" + e.message);
     } finally {
         euSign.Finalize();
     }
     return false;
 }
+

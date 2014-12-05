@@ -26,7 +26,7 @@
             </p>
             <p>
                 <span class="cell_hdr"> Суб’єкт надання адміністративних послуг</span>
-                <span class="cell_under"><xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" /></span>
+                <span class="cell_under"><xsl:value-of select="//div[@id='formff_fieldvalue_executor']/select/option[@selected]" /></span>
             </p>
             <p>
                 <span class="cell_hdr">Назва адміністративної послуги</span>
@@ -61,7 +61,7 @@
                             </td>
                             <td>
                                 <span>
-                                    <b><xsl:copy-of select="//div[@id='formff_fieldvalue_administrator']" /></b>
+                                    <b><xsl:value-of select="//div[@id='formff_fieldvalue_administrator']/select/option[@selected]" /></b>
                                 </span>
                                 <br/>
                                     <hr class="line" noshade="" width="100%" size="1"/>

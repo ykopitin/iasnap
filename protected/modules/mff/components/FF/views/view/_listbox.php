@@ -24,7 +24,7 @@ try{
         $listdata = $listdata+CHtml::listData($modelclassif, "id", "name");  
         $v_FFModel->registry=1;
         $v_FFModel->refreshMetaData();
-    }
+    }  
     $sizecount=count($listdata);
     $sizecount=($sizecount>10)?10:$sizecount;
     $sizecount=($sizecount<2)?2:$sizecount;

@@ -369,7 +369,10 @@
 										<table border="0" width="100%" id="table30">
 											<tr>
 												<td><font face="Arial" size="2">
-													<xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" />
+													<xsl:value-of select="//div[@id='formff_fieldvalue_executor']/select/option[@selected]" />
+													<div style="display:none">
+														<xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" />
+													</div>
 												</font></td>
 												<td><font face="Arial" size="2">Дата виконання:
 													

@@ -823,6 +823,26 @@ class FFModel extends CActiveRecord
         $action->refreshMetaData();
         $action=$action->findByPk($actionId);
         $action->refresh();
+        // Устанавливаем поля при выполнении действия
+        if ($action->hasAttribute("setfields") && $action->getAttribute("setfields")!="") {
+            $setfields=  explode(";", trim($action->getAttribute("setfields")));
+            Yii::import("mff.components.utils.PathUtil");
+            $pu=new PathUtil($this);
+            $this->refresh();
+            foreach ($setfields as $parafield) {
+                $parafieldkeys=explode("=", $parafield);
+                if (count($parafieldkeys)!=2) continue;
+                $type=$this->getType($parafieldkeys[0]);
+                $value=$pu->getValue($parafieldkeys[1]);
+                if ($type->view=="listbox_multi") {
+                    $this->setMultiGuide($parafieldkeys[0], array($value));
+                } else
+                    if ($this->hasAttribute($parafieldkeys[0])) {                       
+                        $this->setAttribute(trim($parafieldkeys[0]),$value);
+                    }
+            }
+            $this->save();
+        }
         // Определяем список пользователей или ролей
         $registry_available_nodes=FFModel::available_nodes;
         $registry_available_actions=FFModel::available_actions;

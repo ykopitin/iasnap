@@ -5,9 +5,9 @@ if (isset($_GET["idform"])) $idform=$_GET["idform"];
 if (isset($_GET["scenario"])) $scenario=$_GET["scenario"];
 if (isset($_GET["addons"])) $addons=$_GET["addons"];
 
-$title="Новый";
+$title="Створення";
 if (isset($scenario) && $scenario=="update"){
-    $title="Відредагувати";
+    $title="Редагування";
 }
 if (isset($scenario) && $scenario=="view"){
     $title="Перегляд";
@@ -19,8 +19,7 @@ if ($scenario!="view") $buttons=array(
 else $buttons=array(
             array('text'=>'Відмінити','click'=> ('js:function(){$(this).dialog("close");}')),
         );
-if (isset($scenario) && ($scenario=="view" || $scenario=="update")) {
-//    if ()
+if (isset($scenario) && ($scenario=="view" || $scenario=="update") && FFModel::isParent($idregistry, FFModel::document_cnap)==FFModel::document_cnap) {
     $printurl=Yii::app()->createUrl("/mff/print/print",array("id"=>$idform,"profile"=>"opis"));
     $buttons=array_merge(
             array(
@@ -59,11 +58,11 @@ if (isset($scenario) && ($scenario=="view" || $scenario=="update")) {
                         "documentid"=>$idform,                       
                         "userId"=>$userId,
                         "cabineturl"=>base64_encode(
-                            Yii::app()->createUrl("/cabinet",
-                                    array("id"=>$cabinetid,
-                                        "folderid"=>$folderid)
-                                    )
-                            ),
+                                Yii::app()->createUrl("/cabinet",
+                                        array("id"=>$cabinetid,
+                                            "folderid"=>$folderid)
+                                        )
+                                ),
                         )
                     );
                     $click='document.location="'.$urlaction.'";';

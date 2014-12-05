@@ -11,7 +11,12 @@
  */
 class PathUtil {
     private $document;
-
+    private $action;
+    private $node;
+    private $folder;
+    private $availableAction;
+    private $availableNode;
+    
     protected function getDocument() {
         return $this->document;
     }
@@ -20,35 +25,102 @@ class PathUtil {
         $this->document = $document;       
     }
 
-    public function __construct($document) {
+    function getAction() {
+        return $this->action;
+    }
+
+    function getNode() {
+        return $this->node;
+    }
+
+    function getFolder() {
+        return $this->folder;
+    }
+
+    function getAvailableAction() {
+        return $this->availableAction;
+    }
+
+    function getAvailableNode() {
+        return $this->availableNode;
+    }
+
+    function setAction($action) {
+        $this->action = $action;
+    }
+
+    function setNode($node) {
+        $this->node = $node;
+    }
+
+    function setFolder($folder) {
+        $this->folder = $folder;
+    }
+
+    function setAvailableAction($availableAction) {
+        $this->availableAction = $availableAction;
+    }
+
+    function setAvailableNode($availableNode) {
+        $this->availableNode = $availableNode;
+    }
+
+        public function __construct($document) {
         $this->setDocument($document);
     }
     
     public function getValue($path) {
-        if (empty($path) || $path==NULL || $path="") return NULL;
+        if (empty($path) || $path==NULL || $path=="") return NULL;
         $pathpart=explode(".", $path);
-        if (empty($pathpart) || $pathpart==NULL || $pathpart="") return NULL;
+        if (empty($pathpart) || $pathpart==NULL || $pathpart=="") return NULL;
+        $firstcheck=TRUE;
         switch ($pathpart[0]) {
             case "{currentuser}":
-                $currentmodel=Yii::app()->user;
-                unset($pathpart[0]);
+                $currentmodel= new fieldlist_FFModel();
+                $currentmodel->registry=fieldlist_FFModel::user;
+                $currentmodel->refreshMetaData();
+                $currentmodel=$currentmodel->findByPk(Yii::app()->user->id);
+                $currentmodel->registry=fieldlist_FFModel::user;
+                $currentmodel->refresh();
                 break;
             case "{currentrole}":
-                $user=Yii::app()->user;
-                $currentmodel= new FFModel();
-                $currentmodel->registry=FFModel::role;
+                $user= new fieldlist_FFModel();
+                $user->registry=fieldlist_FFModel::role;
+                $user->refreshMetaData();
+                $user=$user->findByPk($user->id);
+                $currentmodel= new fieldlist_FFModel();
+                $currentmodel->registry=fieldlist_FFModel::role;
                 $currentmodel->refreshMetaData();
                 $currentmodel=$currentmodel->findByPk($user->user_roles_id);
-                unset($pathpart[0]);
+                $currentmodel->registry=fieldlist_FFModel::role;
+                $currentmodel->refresh();
                 break;
             case "{this}":
-                unset($pathpart[0]);
+            case "{document}":
+                $currentmodel=$this->getDocument();
+                break;
+             case "{node}":
+                $currentmodel=$this->getNode();
+                break;
+             case "{action}":
+                $currentmodel=$this->getAction();
+                break;
+             case "{action}":
+                $currentmodel=$this->getFolder();
+                break;
+             case "{availableaction}":
+                $currentmodel=$this->getAvailableAction();
+                break;
+             case "{availablenode}":
+                $currentmodel=$this->getAvailableNode();
+                break;
             default :
                 $currentmodel=$this->getDocument();
-        }
-        $result=$currentmodel->id;
-        if (isset($pathpart) && $pathpart!=NULL && count($pathpart)>0) {
-            foreach ($pathpart as $part) {
+                $firstcheck=FALSE;
+        }        
+        if (count($pathpart)>1) {
+            foreach ($pathpart as $index=>$part) {
+                if ($index==0 && $firstcheck || $currentmodel->getAttaching()==1) continue;
                 $type=$currentmodel->getType($part);
                 if (strstr($part, "{")!==FALSE) continue;
                 switch ($type->id) {
@@ -74,13 +146,20 @@ class PathUtil {
                             case "listbox":
                             case "innerguide":
                             case "radiobox":   
-                                $guidemodel= new FFModel();
-                                
-                                $currentmodel->getAttribute($part);
+                                $guidemodel= new fieldlist_FFModel();
+                                $guidemodel->registry=1;
+                                $guidemodel->refreshMetaData();
+                                $guidemodel=$guidemodel->findByPk($currentmodel->getAttribute($part));
+                                $guidemodel->refresh();
+                                $currentmodel=$guidemodel;
                                 break;
+                            case "listbox_multi":
+                                return $currentmodel->getItems($part);
+                                break;    
                         }
                 }
             }
         }
+        return $currentmodel->id;
     }
 }
