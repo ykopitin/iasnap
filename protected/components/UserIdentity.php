@@ -27,6 +27,7 @@ class UserIdentity extends CUserIdentity
 			'demo'=>'demo',
 			'admin'=>'admin',
                         'guestcnap'=>'1',
+                        'guestcnap53'=>'1',
                         'admincnap'=>'1',
                         'execcnap'=>'1',
 		);
@@ -39,6 +40,9 @@ class UserIdentity extends CUserIdentity
                         switch ($this->username) {
                             case "guestcnap":
                             $this->_id=1;
+                            break;
+                            case "guestcnap53":
+                            $this->_id=53;
                             break;
                             case "admincnap":
                             $this->_id=51;

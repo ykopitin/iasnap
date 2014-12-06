@@ -60,8 +60,16 @@ if (isset($storagemodel)) $urldata=array_merge($urldata,array("storagemodel"=>$s
 if (isset($scenario)) $urldata=array_merge($urldata,array("scenario"=>$scenario,));
 if (isset($idform)) $urldata=array_merge($urldata,array("idform"=>$idform,));
 if (!isset($folderid) || $folderid==NULL) {
-    if (isset($_GET["folderid"])) $folderid=$_GET["folderid"];
-    else $folderid=$folders[0]->id;
+    if (isset($_GET["folderid"])) 
+        $folderid=$_GET["folderid"];
+    else {
+        $startfolder=$cabinetmodel->getItems("startfolder");
+        if (empty($startfolder) || $startfolder==NULL) {
+            $folderid=$folders[0]->id;
+        } else {
+            $folderid=$startfolder[0]->id;
+        }
+    }
 }
 Yii::import("mff.components.utils.cabinetHelper");
 $ch=new cabinetHelper($userId);

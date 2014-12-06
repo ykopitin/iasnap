@@ -82,7 +82,7 @@ function ff_callbackSignError(imagestatus) {
                 $('#' + imagestatus + '3').hide();
             }
             $("#overlaywait").remove();
-            alert(error_string);
+            alert(error_string+" "+error_code);
         }
     }
 }

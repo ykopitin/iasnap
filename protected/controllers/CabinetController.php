@@ -17,10 +17,10 @@ class CabinetController extends Controller
 }
 	
     
-    public function actionIndex()
-	{
-		$this->render('index');
-	}
+    public function actionIndex($folderid=null)
+    {
+        $this->render('index', array($folderid));
+    }
 
 
 	// Uncomment the following methods and override them if needed

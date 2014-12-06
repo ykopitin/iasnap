@@ -162,7 +162,8 @@ class FormviewController extends Controller
                 try {
                     @$backurlparams=  unserialize($backurl);
                     if(!$backurlparams) {
-                        $this->redirect($backurl);
+                        //$this->redirect($backurl);
+                        header("Location: ".Yii::app()->request->getHostInfo().$backurl);
                     } else {
                         switch (count($backurlparams)) {
                         case 1:
@@ -174,7 +175,8 @@ class FormviewController extends Controller
                         }
                     }
                 } catch (Exception $e) {
-                    $this->redirect($backurl);
+//                    $this->redirect($backurl);
+                    header("Location: ".Yii::app()->request->getHostInfo().$backurl);
                 }
                 return;
             }      

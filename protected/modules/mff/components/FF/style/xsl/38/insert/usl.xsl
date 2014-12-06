@@ -3,10 +3,10 @@
 	version="1.0" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
     <xsl:output method="html" />
-    <xsl:strip-space elements="formff_field_initeds"/>
+    <xsl:strip-space elements="FFIND1_field_initeds"/>
     <xsl:template match="/">    
-<xsl:copy-of select="//div[@id='formff_fieldvalue_initeds']" />    
-<form enctype="multipart/form-data" id="formff_form" method="post">
+<xsl:copy-of select="//div[@id='FFIND1_fieldvalue_initeds']" />    
+<form enctype="multipart/form-data" id="FFIND1_form" method="post">
 <xsl:attribute name="action" >
 	<xsl:value-of select="//form/@action"/>
 </xsl:attribute>

@@ -120,7 +120,10 @@ class PathUtil {
         }        
         if (count($pathpart)>1) {
             foreach ($pathpart as $index=>$part) {
-                if ($index==0 && $firstcheck || $currentmodel->getAttaching()==1) continue;
+                if ($index==0 && $firstcheck) continue;
+                if ($currentmodel->getAttaching()==1) {
+                    return $currentmodel->getAttribute($part);
+                } 
                 $type=$currentmodel->getType($part);
                 if (strstr($part, "{")!==FALSE) continue;
                 switch ($type->id) {

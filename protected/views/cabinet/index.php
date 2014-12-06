@@ -28,10 +28,10 @@ if (!isset($_GET['cabmin'])) {$cabmin=1;} else {$cabmin=$_GET['cabmin'];}
 <?php if ($cabmin==1) { echo '<li class="active">';} else { echo '<li>';} ?>
 
 <a href=?cabmin=1>
-Мої персональні дані</a></li>
+Заявки</a></li>
 <?php if ($cabmin==2) { echo '<li class="active">';} else { echo '<li>';} ?>
 <a href=?cabmin=2>
-Заявки</a></li></ul>
+Мої персональні дані</a></li></ul>
                 </td>
         <td style="border-bottom: 4px;"></td>
 	</tr>
@@ -67,7 +67,7 @@ else {$ok=0;}
 ?>
 
 <div id="cabinet">
-<?php  if(Yii::app()->user->checkAccess('customer')  && ($cabmin==1)) { ?>
+<?php  if(Yii::app()->user->checkAccess('customer')  && ($cabmin==2)) { ?>
 <h3>Ласкаво просимо до Вашого особистого кабінету</h3>
 <p>Тут Ви можете переглянути статус та історію Ваших заявок. Для цього користуйтеся навігацію зліва (дані загружаються з сертифікату і їх змінити неможливо).</p>
 
@@ -98,12 +98,13 @@ if ($ok==1) {
 } 
 
 
-if (Yii::app()->user->checkAccess('customer')  && ($cabmin==2)) {
-
+if (Yii::app()->user->checkAccess('customer')  && ($cabmin==1)) {
+if (empty($folderid)) $folderid=null;
 /// Вставка перехода в кабинет
 $urlparam=array(
     "cabineturl"=>  base64_encode("application.views.cabinet.index"),
     "thisrender"=>  base64_encode("application.views.cabinet.index"),
+    "folderId" => $folderid,
 );
 if (isset($addons) && $addons!=NULL) $urlparam=array_merge($urlparam,array("addons"=>$addons));
 $this->widget('mff.components.CabinetWidget',$urlparam);
