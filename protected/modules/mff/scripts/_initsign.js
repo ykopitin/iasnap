@@ -178,10 +178,9 @@ function ff_saveFile(filecontext, filename, imagestatus) {
         euSign.SetUIMode(false);
         var returndata=euSign.VerifyInternal(signed_data,false);
         var saveFilePath = euSign.SelectFile(true, filename);
-        alert(returndata.length);
-        var data=base64_decode(returndata);
-        alert(data.length);
-        euSign.WriteFile(saveFilePath,data);
+        returndata = euSign.BytesToString(returndata);
+        returndata = euSign.BASE64Decode(returndata);
+        euSign.WriteFile(saveFilePath,returndata);
         if (imagestatus!='') {
             $('#' + imagestatus + '1').hide();
             $('#' + imagestatus + '2').hide();

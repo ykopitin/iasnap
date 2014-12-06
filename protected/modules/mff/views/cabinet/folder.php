@@ -281,6 +281,5 @@ $this->widget("mff.components.mffGridView",
         
 ?>
 <script type="text/javascript">
-    $.ready($("#counter<?= $folder->id?>").html($("#folder_<?= $folder->id?>").val()));
-    
+    $.ready($("#counter<?= $folder->id?>").html($("#folder_<?= $folder->id?>").val()));  
 </script>

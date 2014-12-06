@@ -11,6 +11,8 @@ function CabinetLoadFile(url) {
         euSign.width = "1px";
         euSign.SetUIMode(false);        
         var returndata=euSign.VerifyInternal(data,false);
+        returndata = euSign.BytesToString(returndata);
+        returndata = euSign.BASE64Decode(returndata);
         var saveFilePath = euSign.SelectFile(true, "Документ.pdf");
         euSign.WriteFile(saveFilePath,returndata);  
     } catch (e) {

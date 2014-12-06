@@ -46,3 +46,6 @@ in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
 2014/12/05 14:09:08 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=1.
 in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
 in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
+2014/12/06 05:38:23 [warning] [custom.users.login] Успішний вихід з системи: користувач з user_id=51.
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\protected\controllers\SignController.php (172)
+in C:\Users\prk\Documents\NetBeansProjects\iacnap\index.php (13)
