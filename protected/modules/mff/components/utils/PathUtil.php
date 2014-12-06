@@ -83,6 +83,14 @@ class PathUtil {
                 $currentmodel->registry=fieldlist_FFModel::user;
                 $currentmodel->refresh();
                 break;
+            case "{currentuserext}":
+                $currentmodel= new fieldlist_FFModel();
+                $currentmodel->registry=fieldlist_FFModel::user_ext;
+                $currentmodel->refreshMetaData();
+                $currentmodel=$currentmodel->findByPk(Yii::app()->user->id);
+                $currentmodel->registry=fieldlist_FFModel::user_ext;
+                $currentmodel->refresh();
+                break;
             case "{currentrole}":
                 $user= new fieldlist_FFModel();
                 $user->registry=fieldlist_FFModel::role;
