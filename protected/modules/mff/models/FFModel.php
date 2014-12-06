@@ -47,6 +47,7 @@ class FFModel extends CActiveRecord
     const document_cnap=36;
     const role=11;
     const user=10;
+    const user_ext=43;
     
     private $_ff_tablename = 'ff_default';
     private $_registry=1;
