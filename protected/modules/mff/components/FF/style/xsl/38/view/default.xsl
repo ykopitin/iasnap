@@ -44,7 +44,7 @@
 
 <table width="100%" id="table4" >
 					<tr>
-						<td><font face="Arial" size="2">№&#160;з/п,&#160;дата:&#160;</font></td>
+						<td><font face="Arial" size="2"><b>№&#160;з/п,&#160;дата:&#160;</b></font></td>
 						<td ><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_regnum']" /></font></td>
 						<td width="30%"><font face="Arial" size="2">
@@ -52,7 +52,7 @@
 						</font></td>
 					</tr>
 					<tr>
-						<td><font face="Arial" size="2">Вих.&#160;№,&#160;дата:&#160;</font></td>
+						<td><font face="Arial" size="2"><b>Вих.&#160;№,&#160;дата:&#160;</b></font></td>
 						<td ><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_outnum']" />
 						</font></td>
@@ -62,7 +62,7 @@
 					</tr>
 					<tr>
 						<td> </td>
-						<td  style="text-align: right;"><font face="Arial" size="2">Знято&#160;з&#160;контролю:&#160;</font></td>
+						<td  style="text-align: right;"><font face="Arial" size="2"><b>Знято&#160;з&#160;контролю:&#160;</b></font></td>
 						<td><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_factdate']" />
 						</font></td>
@@ -77,13 +77,13 @@
 <td width="33%"  style="vertical-align: top;">
 				<table border="0" width="100%" id="table5">
 					<tr>
-						<td width="130"><font face="Arial" size="2">Контрольна&#160;дата:&#160;</font></td>
+						<td width="130"><font face="Arial" size="2"><b>Контрольна&#160;дата:&#160;</b></font></td>
 						<td><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_plandate']" />
 						</font></td>
 					</tr>
 					<tr>
-						<td width="130"><font face="Arial" size="2">Продовжено&#160;до:&#160;</font></td>
+						<td width="130"><font face="Arial" size="2"><b>Продовжено&#160;до:&#160;</b></font></td>
 						<td><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_renewal_date']" />
 						</font></td>
@@ -93,19 +93,19 @@
 				<td width="33%"  style="vertical-align: top;">
 				<table border="0" width="100%" id="table6">
 					<tr>
-						<td width="100"><font face="Arial" size="2">Доставлено:&#160;</font></td>
+						<td width="100"><font face="Arial" size="2"><b>Доставлено:&#160;</b></font></td>
 						<td><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_delivery']" />
 						</font></td>
 					</tr>
 					<tr>
-						<td width="100"><font face="Arial" size="2">Трек-номер:&#160;</font></td>
+						<td width="100"><font face="Arial" size="2"><b>Трек-номер:&#160;</b></font></td>
 						<td><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_tracknumber']" />
 						</font></td>
 					</tr>
 					<tr>
-						<td width="100"><font face="Arial" size="2">Аркушів:&#160;</font></td>
+						<td width="100"><font face="Arial" size="2"><b>Аркушів:&#160;</b></font></td>
 						<td><font face="Arial" size="2">
 							<xsl:copy-of select="//div[@id='formff_fieldvalue_number_of_pages']" />
 						</font></td>
@@ -146,14 +146,14 @@
 								<table border="0" width="100%" id="table13">
 									<tr>
 										<td>
-										<font face="Arial" size="2">Організація:</font></td>
+										<font face="Arial" size="2"><b>Організація:</b></font></td>
 										<td style="text-align: left;"><font face="Arial" size="2">
 											<xsl:copy-of select="//div[@id='formff_fieldvalue_organization_name']" />
 										</font></td>
 									</tr>
 
 									<tr>
-										<td><font face="Arial" size="2">ПІБ:</font></td>
+										<td><font face="Arial" size="2"><b>ПІБ:</b></font></td>
 								
 										<td><font face="Arial" size="2">
 											<xsl:copy-of select="//div[@id='formff_fieldvalue_person_name']" />
@@ -169,15 +169,15 @@
 						<td width="33%"   style="vertical-align: top;">
 						<table border="0" id="table15" style='width:"100%" '>
 							<tr>
-								<td width="110"><font face="Arial" size="2">Код 
-								ЄДРПОУ:</font></td>
+								<td width="110"><font face="Arial" size="2"><b>Код 
+								ЄДРПОУ:</b></font></td>
 								<td><font face="Arial" size="2">
 									<xsl:copy-of select="//div[@id='formff_fieldvalue_organization_edrpou']" />
 								</font></td>
 							</tr>
 							<tr>
-								<td width="110"><font face="Arial" size="2">Код 
-								ДРФО:</font></td>
+								<td width="110"><font face="Arial" size="2"><b>Код 
+								ДРФО:</b></font></td>
 								<td><font face="Arial" size="2">
 									<xsl:copy-of select="//div[@id='formff_fieldvalue_person_drfo']" />							
 								</font></td>
@@ -197,10 +197,11 @@
 <td style="width:32%; text-align:left; ">
 
 
-<table width="100%">
+<table style="width:50%; text-align:left; ">
 <tr>
-<td style="width:5px; text-align:left; "><xsl:copy-of select="//div[@id='formff_fieldvalue_its_autority']" /></td>
-<td style="text-align:left;"><font face="Arial" size="2"><xsl:copy-of select="//div[@id='formff_fieldlabel_its_autority']" /></font></td>
+
+<td style="width: 60px; text-align:left;"><font face="Arial" size="2"><xsl:copy-of select="//div[@id='formff_fieldlabel_its_autority']" /></font></td>
+<td style="width:5px; text-align:left;  "><b><xsl:copy-of select="//div[@id='formff_fieldvalue_its_autority']" /></b></td>
 </tr>
 </table>
 
@@ -208,7 +209,7 @@
 <td style="width:35.2%; text-align:left; ">
 <table>
 <tr>
-										<td><font face="Arial" size="2">&#160;ПІБ:</font></td>
+<td><font face="Arial" size="2"><b>&#160;&#160;&#160;&#160;ПІБ:</b></font></td>
 								
 										<td style="text-align:right;"><font face="Arial" size="2">
 											<xsl:copy-of select="//div[@id='formff_fieldvalue_autority_person_name']" />
@@ -230,8 +231,8 @@
 				<td>
 				<table border="0" width="100%" id="table16">
 					<tr>
-						<td style="vertical-align: top;"><font face="Arial" size="2">Контактна адреса для 
-						надання відповіді:</font></td>
+						<td style="vertical-align: top;"><font face="Arial" size="2"><b>Контактна адреса для 
+						надання відповіді:</b></font></td>
 					</tr>
 					<tr>
 						<td><font face="Arial" size="2">
@@ -245,12 +246,12 @@
 				<td>
 				<table border="0" width="100%" id="table17">
 					<tr>
-						<td width="25%"><font face="Arial" size="2">Телефон №1:</font></td>
-						<td width="25%"><font face="Arial" size="2">Телефон №2:</font></td>
+						<td width="25%"><font face="Arial" size="2"><b>Телефон №1:</b></font></td>
+						<td width="25%"><font face="Arial" size="2"><b>Телефон №2:</b></font></td>
 						<td width="25%"><font face="Arial" size="2">
 						e-mail:</font></td>
-						<td width="25%"><font face="Arial" size="2">Форма 
-						надання відповіді:</font></td>
+						<td width="25%"><font face="Arial" size="2"><b>Форма 
+						надання відповіді:</b></font></td>
 					</tr>
 					<tr>
 						<td width="25%"><font face="Arial" size="2">
@@ -275,7 +276,7 @@
 	</tr>
 	<tr>
 
-				<td><b><font face="Arial" size="2">Файли вхідні</font></b></td>
+				<td><b><font face="Arial" size="2"><b>Файли вхідні</b></font></b></td>
 			</tr>
 		
 	<tr>
@@ -286,7 +287,7 @@
 				<div align="left">
 					<table border="0" width="80%" id="table20">
 						<tr>
-							<td width="250"><font face="Arial" size="2">Заява на отримання послуги</font></td>
+							<td width="250"><font face="Arial" size="2"><b>Заява на отримання послуги</b></font></td>
 							<td align="center">
 								<xsl:copy-of select="//div[@id='formff_fieldvalue_file_petition']" />
 							</td>
@@ -306,7 +307,7 @@
 	</tr>
 	<tr>
 		<td>
-		<table border="0" width="100%" id="table24" bgcolor="#E9E9E9" style="border: 1px solid #808080; padding: 1px">
+		<table border="0" width="100%" id="table24" bgcolor="#E9E9E9" style="border: 1px solid #808080; border-radius:8px;  padding: 1px">
 			<tr>
 				<td>
 				<table border="0" width="100%" id="table25">
@@ -370,6 +371,9 @@
 											<tr>
 												<td><font face="Arial" size="2">
 													<xsl:value-of select="//div[@id='formff_fieldvalue_executor']/select/option[@selected]" />
+													<div style="display:none">
+														<xsl:copy-of select="//div[@id='formff_fieldvalue_executor']" />
+													</div>
 												</font></td>
 												<td><font face="Arial" size="2">Дата виконання:
 													
@@ -412,7 +416,6 @@
 		</table>
 		</td>
 	</tr>
-
 </table>
 <xsl:copy-of select="//div[@class='hiddenItems']" />
 </form>

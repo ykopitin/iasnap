@@ -1,5 +1,5 @@
 <?php
-
+Yii::import("mff.components.utils.base58");
 class CabinetController extends Controller
 {
     public $layout='//layouts/column1';
@@ -24,7 +24,7 @@ class CabinetController extends Controller
             $cabineturl='mff.views.cabinet.cabinet';
             $this->render($cabineturl);
         } else {
-            $cabineturl=base64_decode ($cabineturl);
+            $cabineturl= base58::decode($cabineturl);
             header("Location:".$cabineturl);
         }
     }

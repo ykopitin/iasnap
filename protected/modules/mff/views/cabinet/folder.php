@@ -1,4 +1,5 @@
 <?php
+Yii::import("mff.components.utils.base58");
 
 if ($this instanceof CWidget) {
     $controller=$this->getOwner();
@@ -160,7 +161,7 @@ if ( !$hideaction) {
                             "actionid"=>'.$ActionItem->id.',
                             "documentid"=>$data->id,                       
                             "userId"=>'.$userId.',
-                            "cabineturl"=>"'. base64_encode(
+                            "cabineturl"=>"'. base58::encode(
                                     Yii::app()->createUrl(
                                             Yii::app()->request->getUrl(),
                                             array("folderid"=>$folder->id)
