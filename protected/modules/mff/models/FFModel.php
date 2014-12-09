@@ -15,6 +15,8 @@
 class FFModel extends CActiveRecord
 {
     const ref_multiguide = 2;          
+    const oneline = 3;          
+    const reply_storage = 20;          
     const ref_multiguide_storage = 2;          
     const available_nodes = 16;
     const available_nodes_for_user = 17;
@@ -48,10 +50,28 @@ class FFModel extends CActiveRecord
     const role=11;
     const user=10;
     const user_ext=43;
+    const user_cert=44;
+    const gen_services=30;
+    const gen_authorities=39;
     
     private $_ff_tablename = 'ff_default';
     private $_registry=1;
     private $_attaching=0;
+    
+    public function getPrimaryKey() {   
+        $pk=parent::getPrimaryKey();
+        if ($pk==null) {
+            $table = $this->getMetaData()->tableSchema;
+	    $table->primaryKey="id";
+            $pk = $this->id;
+        }
+        return $pk;
+    }
+    
+    public function findByPk($pk, $condition = '', $params = array()) {
+        return parent::findByPk($pk, $condition, $params);
+    }
+
     
     public function getAttaching(){
         return $this->_attaching;
@@ -266,7 +286,9 @@ class FFModel extends CActiveRecord
     }
 	
     public function refresh() {
+        $id=$this->id;
         $this->refreshMetaData();
+        $this->id=$id;
         $result=parent::refresh();
     }
 
